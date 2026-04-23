@@ -575,11 +575,8 @@
 
                 listEl.innerHTML = htmlFiles.map(file => {
                     const name = file.name.replace(/\.html$/i, '');
-                    const date = new Date(file.updated_at || file.created_at);
-                    const dateStr = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
                     return `<li>
                         <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
-                        <div class="file-date">${dateStr}</div>
                     </li>`;
                 }).join('');
             } catch (err) {
