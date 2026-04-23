@@ -233,6 +233,219 @@
             background: var(--accent-light);
             color: var(--text);
         }
+
+        /* ===== 数据展示墙 ===== */
+        .data-wall {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        .data-wall-inner {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .data-wall-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            padding: var(--space-lg) var(--space-xl) var(--space-sm);
+            text-align: center;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        .data-wall-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding: 0 var(--space-lg);
+        }
+
+        .data-wall-title span {
+            color: var(--accent);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 640px) {
+            .data-grid { grid-template-columns: 1fr; }
+        }
+
+        .data-cell {
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            position: relative;
+        }
+
+        .data-cell:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            bottom: 25%;
+            width: 1px;
+            background: var(--border-light);
+        }
+
+        @media (max-width: 640px) {
+            .data-cell:not(:last-child)::after {
+                right: 15%;
+                left: 15%;
+                top: auto;
+                bottom: 0;
+                width: auto;
+                height: 1px;
+            }
+        }
+
+        .data-number {
+            font-family: "Noto Serif SC", serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .data-number .suffix {
+            font-size: 0.55em;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .data-label {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+        }
+
+        .data-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .ticker-wrap {
+            background: var(--bg);
+            border-top: 1px solid var(--border-light);
+            padding: 12px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticker-label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, var(--bg) 70%, transparent);
+            padding: 12px 20px 12px 24px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ticker-track {
+            display: flex;
+            animation: ticker-scroll 50s linear infinite;
+            width: max-content;
+        }
+
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 24px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .ticker-item::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 3px;
+            background: var(--border);
+            border-radius: 50%;
+        }
+
+        .ticker-item .ticker-name {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .ticker-item .ticker-tag {
+            font-size: 0.625rem;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .tag-ip { background: var(--accent-light); color: var(--accent); }
+        .tag-case { background: oklch(92% 0.03 100); color: oklch(50% 0.08 100); }
+        .tag-toy { background: oklch(94% 0.02 240); color: oklch(45% 0.06 240); }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track { animation: none; }
+            .live-dot { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -245,6 +458,46 @@
         <p class="hero-sub">行业数据 · 每周动态 · 深度文章</p>
         <div class="hero-line"></div>
     </div>
+
+    <section class="data-wall">
+        <div class="data-wall-inner">
+            <div class="data-wall-header">
+                <span class="live-badge">
+                    <span class="live-dot"></span>
+                    实时数据看板
+                </span>
+            </div>
+            <div class="data-wall-title">已收录 <span>IP 全链路数据</span>，持续更新中</div>
+
+            <div class="data-grid">
+                <div class="data-cell">
+                    <div class="data-number" data-target="537"><span class="counter">0</span><span class="suffix">+</span></div>
+                    <div class="data-label">收录 IP 数量</div>
+                    <div class="data-desc">动漫 / 游戏 / 文创 / 影视</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-number" data-target="683"><span class="counter">0</span><span class="suffix">+</span></div>
+                    <div class="data-label">授权案例</div>
+                    <div class="data-desc">品牌联名 × 商品授权 × 空间授权</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-number" data-target="754"><span class="counter">0</span><span class="suffix">款</span></div>
+                    <div class="data-label">潮玩新品追踪</div>
+                    <div class="data-desc">盲盒 / 手办 / 毛绒 / 谷子</div>
+                </div>
+            </div>
+
+            <div class="ticker-wrap">
+                <div class="ticker-label">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle;">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    最新收录
+                </div>
+                <div class="ticker-track" id="tickerTrack"></div>
+            </div>
+        </div>
+    </section>
 
     <main class="main">
         <div class="columns">
@@ -338,6 +591,72 @@
         loadFiles('数据分析', 'list-data', 'count-data');
         loadFiles('动态', 'list-news', 'count-news');
         loadFiles('文章', 'list-article', 'count-article');
+
+        // ===== 数据墙数字动画 =====
+        function animateCounter(el, target) {
+            const counter = el.querySelector('.counter');
+            const duration = 1800;
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * target);
+                counter.textContent = current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+                else counter.textContent = target.toLocaleString();
+            }
+            requestAnimationFrame(update);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.data-number').forEach(el => counterObserver.observe(el));
+
+        // ===== Ticker 滚动内容 =====
+        const tickerData = [
+            { name: '原神 × 科颜氏', tag: 'case', tagText: '授权' },
+            { name: '泡泡玛特 LABUBU', tag: 'toy', tagText: '潮玩' },
+            { name: '吉伊卡哇', tag: 'ip', tagText: 'IP' },
+            { name: '蜡笔小新 × 屈臣氏', tag: 'case', tagText: '授权' },
+            { name: 'Jellycat 新品毛绒', tag: 'toy', tagText: '潮玩' },
+            { name: '初音未来 × 优衣库', tag: 'case', tagText: '授权' },
+            { name: '线条小狗', tag: 'ip', tagText: 'IP' },
+            { name: '三丽鸥 × 名创优品', tag: 'case', tagText: '授权' },
+            { name: '第五人格', tag: 'ip', tagText: 'IP' },
+            { name: '52TOYS 猛兽匣', tag: 'toy', tagText: '潮玩' },
+            { name: '哪吒之魔童闹海', tag: 'ip', tagText: 'IP' },
+            { name: '间谍过家家 × 肯德基', tag: 'case', tagText: '授权' },
+            { name: 'TNTSPACE DORA', tag: 'toy', tagText: '潮玩' },
+            { name: '时光代理人', tag: 'ip', tagText: 'IP' },
+            { name: '黄油小熊 × 瑞幸', tag: 'case', tagText: '授权' },
+            { name: '寻找独角兽 FARMER BOB', tag: 'toy', tagText: '潮玩' },
+            { name: '罗小黑战记', tag: 'ip', tagText: 'IP' },
+            { name: '奥特曼 × 布鲁可', tag: 'case', tagText: '授权' },
+            { name: 'Sonny Angel', tag: 'toy', tagText: '潮玩' },
+            { name: '一人之下', tag: 'ip', tagText: 'IP' },
+        ];
+
+        const track = document.getElementById('tickerTrack');
+        function buildTicker(items) {
+            return items.map(item => `
+                <div class="ticker-item">
+                    <span class="ticker-name">${item.name}</span>
+                    <span class="ticker-tag tag-${item.tag}">${item.tagText}</span>
+                </div>
+            `).join('');
+        }
+        // 复制两份实现无缝滚动
+        track.innerHTML = buildTicker(tickerData) + buildTicker(tickerData);
     </script>
 </body>
 </html>
