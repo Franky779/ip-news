@@ -103,7 +103,7 @@
 
         .columns {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--space-lg);
         }
 
@@ -396,6 +396,61 @@
 
         .podcast-link:hover {
             background: var(--accent-light);
+        }
+
+        /* ===== 关于老贾独立板块 ===== */
+        .about-section {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .about-card-standalone {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-xl);
+            text-align: center;
+        }
+
+        .about-card-standalone h3 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: var(--space-md);
+        }
+
+        .about-card-standalone .about-lead {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: var(--space-sm);
+        }
+
+        .about-card-standalone .about-desc {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+        }
+
+        .about-services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-sm) var(--space-md);
+        }
+
+        .about-services-grid .service-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
         .footer {
@@ -746,35 +801,6 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="column about-card" id="col-about">
-                <div class="column-header">
-                    <h2>关于老贾</h2>
-                </div>
-                <div class="about-content">
-                    <p class="about-lead">帮初创IP方少走弯路，帮品牌方找对IP。</p>
-                    <p class="about-desc">10年IP行业实战经验，从展会运营到IP孵化，从授权谈判到商学院教学。相信好IP需要好策略，更需要被看见。</p>
-                    <div class="about-services">
-                        <div class="service-item">
-                            <span class="service-dot"></span>
-                            <span class="service-text">IP授权课程与培训</span>
-                        </div>
-                        <div class="service-item">
-                            <span class="service-dot"></span>
-                            <span class="service-text">品牌联名策划咨询</span>
-                        </div>
-                        <div class="service-item">
-                            <span class="service-dot"></span>
-                            <span class="service-text">IP孵化运营诊断</span>
-                        </div>
-                        <div class="service-item">
-                            <span class="service-dot"></span>
-                            <span class="service-text">行业数据定制研究</span>
-                        </div>
-                    </div>
-                    <a href="https://noz1s9nf0n.feishu.cn/share/base/form/shrcnzt90M9joc0MCHVtPAanLWe" class="subscribe-cta" target="_blank" rel="noopener">订阅每周IP动态</a>
-                </div>
-            </div>
         </div>
     </main>
 
@@ -798,6 +824,32 @@
             <a href="#" class="podcast-link">苹果播客</a>
             <a href="#" class="podcast-link">网易云音乐</a>
             <a href="#" class="podcast-link">视频号</a>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-card-standalone">
+            <h3>关于老贾</h3>
+            <p class="about-lead">帮初创IP方少走弯路，帮品牌方找对IP。</p>
+            <p class="about-desc">10年IP行业实战经验，从展会运营到IP孵化，从授权谈判到商学院教学。相信好IP需要好策略，更需要被看见。</p>
+            <div class="about-services-grid">
+                <div class="service-item">
+                    <span class="service-dot"></span>
+                    <span class="service-text">IP授权课程与培训</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-dot"></span>
+                    <span class="service-text">品牌联名策划咨询</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-dot"></span>
+                    <span class="service-text">IP孵化运营诊断</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-dot"></span>
+                    <span class="service-text">行业数据定制研究</span>
+                </div>
+            </div>
         </div>
     </section>
 
