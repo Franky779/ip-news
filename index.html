@@ -126,7 +126,8 @@
 
         .column-header {
             display: flex;
-            align-items: baseline;
+            align-items: center;
+            justify-content: space-between;
             gap: var(--space-sm);
             margin-bottom: var(--space-lg);
             padding-bottom: var(--space-md);
@@ -143,6 +144,23 @@
         .column-count {
             font-size: 0.8125rem;
             color: var(--text-muted);
+        }
+
+        .more-btn {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 4px 10px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .more-btn:hover {
+            background: var(--accent);
+            color: oklch(98% 0.01 45);
         }
 
         .file-list {
@@ -756,7 +774,7 @@
             <div class="column" id="col-data">
                 <div class="column-header">
                     <h2>IP数据库</h2>
-                    <span class="column-count" id="count-data">加载中...</span>
+                    <a href="ip-database.html" class="more-btn">更多...</a>
                 </div>
                 <ul class="file-list" id="list-data">
                     <li class="loading">正在读取...</li>
@@ -766,7 +784,7 @@
             <div class="column" id="col-news">
                 <div class="column-header">
                     <h2>每周动态</h2>
-                    <span class="column-count" id="count-news">加载中...</span>
+                    <a href="weekly-news.html" class="more-btn">更多...</a>
                 </div>
                 <ul class="file-list" id="list-news">
                     <li class="loading">正在读取...</li>
@@ -776,29 +794,10 @@
             <div class="column" id="col-article">
                 <div class="column-header">
                     <h2>深度洞察</h2>
-                    <span class="column-count" id="count-article">5 篇</span>
+                    <a href="articles.html" class="more-btn">更多...</a>
                 </div>
                 <ul class="file-list" id="list-article">
-                    <li>
-                        <a href="https://mp.weixin.qq.com/s/z8lYek77Mzh8b1d8REnR3A" target="_blank" rel="noopener">凌晨2点，那个做了7年IP授权的朋友说要去卖保险了..</a>
-                        <div class="file-date">2026-04-24</div>
-                    </li>
-                    <li>
-                        <a href="https://mp.weixin.qq.com/s/qaS1yz2OTUxx0JgaUGyRsA" target="_blank" rel="noopener">笑死！那个拿下哪吒1亿订单的工厂，现在要倒闭了....真相远比你想的残酷</a>
-                        <div class="file-date">2026-04-19</div>
-                    </li>
-                    <li>
-                        <a href="https://mp.weixin.qq.com/s/LICmypOt99NgZErAtN6vFA" target="_blank" rel="noopener">我算了一笔账，然后放弃了AI漫剧——这个行业正在活埋老实人</a>
-                        <div class="file-date">2026-04-19</div>
-                    </li>
-                    <li>
-                        <a href="https://mp.weixin.qq.com/s/nfgvkwdkO8ciotkdkqB91A" target="_blank" rel="noopener">【避雷】谁再让你做IP快闪，直接干死TA.......</a>
-                        <div class="file-date">2026-04-14</div>
-                    </li>
-                    <li>
-                        <a href="https://mp.weixin.qq.com/s/FiZShHyXiGgKst-JKh3geQ" target="_blank" rel="noopener">IP\潮玩行业动态汇总【2026.3.13-4.13】</a>
-                        <div class="file-date">2026-04-13</div>
-                    </li>
+                    <li class="loading">正在读取...</li>
                 </ul>
             </div>
         </div>
@@ -864,20 +863,21 @@
         <p style="margin-top: 4px;"><a href="mailto:franky_chia77@163.com" style="color: var(--text-muted); text-decoration: none;">商务合作：franky_chia77@163.com</a></p>
     </footer>
 
+    <script src="articles-data.js"></script>
     <script>
         const REPO = 'Franky779/ip-news';
         const BRANCH = 'main';
 
         async function loadFiles(folder, listId, countId) {
             const listEl = document.getElementById(listId);
-            const countEl = document.getElementById(countId);
+            const countEl = countId ? document.getElementById(countId) : null;
 
             try {
                 const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(folder)}?ref=${BRANCH}`);
                 if (!res.ok) {
                     if (res.status === 404) {
                         listEl.innerHTML = '<li class="empty">暂无内容</li>';
-                        countEl.textContent = '0 篇';
+                        if (countEl) countEl.textContent = '0 篇';
                         return;
                     }
                     throw new Error(`HTTP ${res.status}`);
@@ -887,14 +887,16 @@
                     .filter(item => item.type === 'file' && item.name.endsWith('.html') && item.name !== 'index.html')
                     .sort((a, b) => new Date(b.updated_at || b.created_at) - new Date(a.updated_at || a.created_at));
 
-                countEl.textContent = `${htmlFiles.length} 篇`;
+                const total = htmlFiles.length;
+                const displayFiles = htmlFiles.slice(0, 5);
+                if (countEl) countEl.textContent = `${total} 篇`;
 
-                if (htmlFiles.length === 0) {
+                if (total === 0) {
                     listEl.innerHTML = '<li class="empty">暂无内容</li>';
                     return;
                 }
 
-                listEl.innerHTML = htmlFiles.map(file => {
+                listEl.innerHTML = displayFiles.map(file => {
                     const name = file.name.replace(/\.html$/i, '');
                     return `<li>
                         <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
@@ -902,7 +904,7 @@
                 }).join('');
             } catch (err) {
                 listEl.innerHTML = `<li class="error">读取失败：${err.message}<br>请刷新重试</li>`;
-                countEl.textContent = '—';
+                if (countEl) countEl.textContent = '—';
             }
         }
 
@@ -974,6 +976,21 @@
         }
         // 复制两份实现无缝滚动
         track.innerHTML = buildTicker(tickerData) + buildTicker(tickerData);
+
+        // ===== 深度洞察文章渲染 =====
+        function renderArticles() {
+            const listEl = document.getElementById('list-article');
+            if (!listEl || typeof ARTICLES === 'undefined') return;
+
+            const displayArticles = ARTICLES.slice(0, 5);
+            listEl.innerHTML = displayArticles.map(article => `
+                <li>
+                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                    <div class="file-date">${article.date}</div>
+                </li>
+            `).join('');
+        }
+        renderArticles();
 
     </script>
 </body>
