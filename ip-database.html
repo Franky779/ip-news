@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP数据库 - 新文创商学院老贾聊IP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: oklch(97.5% 0.008 75);
+            --surface: oklch(100% 0.005 75);
+            --text: oklch(22% 0.02 60);
+            --text-secondary: oklch(45% 0.03 60);
+            --text-muted: oklch(60% 0.02 60);
+            --accent: oklch(45% 0.14 45);
+            --accent-light: oklch(92% 0.04 45);
+            --border: oklch(85% 0.015 75);
+            --border-light: oklch(90% 0.01 75);
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2.5rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+            padding: var(--space-lg) 0;
+            text-align: center;
+        }
+
+        .brand {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: var(--space-lg);
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .page-title {
+            font-family: "Noto Serif SC", serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .page-sub {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            margin-bottom: var(--space-xl);
+        }
+
+        .file-list {
+            list-style: none;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .file-list li {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+
+        .file-list a {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1rem;
+            padding: var(--space-md) var(--space-lg);
+            transition: all 0.2s ease;
+        }
+
+        .file-list a:hover {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .loading, .empty, .error {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            padding: var(--space-xl) var(--space-lg);
+        }
+
+        .error { color: #c44; }
+
+        .footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-xl) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer p {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">新文创老贾聊IP</div>
+    </header>
+
+    <main class="main">
+        <a href="index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            返回首页
+        </a>
+
+        <h1 class="page-title">IP数据库</h1>
+        <p class="page-sub" id="pageSub">加载中...</p>
+
+        <ul class="file-list" id="list-data">
+            <li class="loading">正在读取...</li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+        <p>IP行业内容导航 | 内容由新文创商学院老贾聊IP搜集整理</p>
+    </footer>
+
+    <script>
+        const REPO = 'Franky779/ip-news';
+        const BRANCH = 'main';
+
+        async function loadFiles() {
+            const listEl = document.getElementById('list-data');
+            const subEl = document.getElementById('pageSub');
+
+            try {
+                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${encodeURIComponent('数据分析')}?ref=${BRANCH}`);
+                if (!res.ok) {
+                    if (res.status === 404) {
+                        listEl.innerHTML = '<li class="empty">暂无内容</li>';
+                        subEl.textContent = '共 0 篇';
+                        return;
+                    }
+                    throw new Error(`HTTP ${res.status}`);
+                }
+                const data = await res.json();
+                const htmlFiles = data
+                    .filter(item => item.type === 'file' && item.name.endsWith('.html') && item.name !== 'index.html')
+                    .sort((a, b) => new Date(b.updated_at || b.created_at) - new Date(a.updated_at || a.created_at));
+
+                subEl.textContent = `共 ${htmlFiles.length} 篇`;
+
+                if (htmlFiles.length === 0) {
+                    listEl.innerHTML = '<li class="empty">暂无内容</li>';
+                    return;
+                }
+
+                listEl.innerHTML = htmlFiles.map(file => {
+                    const name = file.name.replace(/\.html$/i, '');
+                    return `<li><a href="数据分析/${encodeURIComponent(file.name)}">${name}</a></li>`;
+                }).join('');
+            } catch (err) {
+                listEl.innerHTML = `<li class="error">读取失败：${err.message}<br>请刷新重试</li>`;
+                subEl.textContent = '读取失败';
+            }
+        }
+
+        loadFiles();
+    </script>
+</body>
+</html>
