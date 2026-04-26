@@ -354,6 +354,15 @@
             opacity: 0.85;
         }
 
+        .subscriber-count {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: var(--space-md);
+            letter-spacing: 0.05em;
+        }
+
         .audience-tags {
             display: flex;
             flex-wrap: wrap;
@@ -955,6 +964,7 @@
     <section id="subscribe" class="subscribe-section">
         <h3>订阅《每周IP动态早知道》</h3>
         <p>每周一早上，老贾为你梳理过去一周的IP授权、潮玩新品、行业大事件。不追热点，只抓信号。</p>
+        <div class="subscriber-count" id="subscriberCount"></div>
         <a href="https://noz1s9nf0n.feishu.cn/share/base/form/shrcnzt90M9joc0MCHVtPAanLWe" class="subscribe-btn" id="subscribeBtn" target="_blank" rel="noopener">立即订阅</a>
         <div class="audience-tags">
             <span class="audience-tag">初创IP方</span>
@@ -1090,6 +1100,39 @@
 
             const el = document.querySelector('.data-grid .data-cell:nth-child(2) .data-number');
             if (el) el.dataset.target = count;
+        })();
+
+        // ===== 订阅人数动态增长 =====
+        (function() {
+            const baseDate = new Date('2026-04-26T00:00:00+08:00');
+            const baseValue = 67;
+
+            function getIncrement(dateStr) {
+                let hash = 0;
+                for (let i = 0; i < dateStr.length; i++) {
+                    hash = ((hash << 5) - hash) + dateStr.charCodeAt(i);
+                    hash |= 0;
+                }
+                return (Math.abs(hash) % 21) + 20;
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            let count = baseValue;
+            const cur = new Date(baseDate);
+            cur.setDate(cur.getDate() + 1);
+
+            while (cur <= today) {
+                const day = cur.getDay();
+                if (day !== 0 && day !== 6) {
+                    const ds = cur.getFullYear() + '-' + String(cur.getMonth() + 1).padStart(2, '0') + '-' + String(cur.getDate()).padStart(2, '0');
+                    count += getIncrement(ds);
+                }
+                cur.setDate(cur.getDate() + 1);
+            }
+
+            const el = document.getElementById('subscriberCount');
+            if (el) el.textContent = '已订阅人数：' + count.toLocaleString();
         })();
 
         // ===== 数据墙数字动画 =====
