@@ -713,6 +713,113 @@
             .ticker-track { animation: none; }
             .live-dot { animation: none; }
         }
+
+        /* ===== 活动回顾跑马灯 ===== */
+        .photo-marquee-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .photo-marquee-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .photo-marquee-header h3 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .photo-marquee-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-marquee-wrap::before,
+        .photo-marquee-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .photo-marquee-wrap::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+        }
+
+        .photo-marquee-wrap::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+        }
+
+        .photo-marquee-track {
+            display: flex;
+            gap: var(--space-lg);
+            animation: marquee-scroll 35s linear infinite;
+            width: max-content;
+        }
+
+        .photo-marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .photo-marquee-item {
+            flex-shrink: 0;
+            width: 400px;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: var(--border-light);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .photo-marquee-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-marquee-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px var(--space-md) var(--space-sm);
+            background: linear-gradient(transparent 0%, rgba(108, 50, 150, 0.8) 50%, rgba(108, 50, 150, 0.95) 100%);
+            color: #fff;
+        }
+
+        .photo-marquee-caption h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .photo-marquee-caption p {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body>
@@ -796,6 +903,55 @@
         </div>
     </main>
 
+    <section class="photo-marquee-section">
+        <div class="photo-marquee-wrap">
+            <div class="photo-marquee-track" id="photoMarqueeTrack">
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/13d603a94209d6f79.jpg" alt="活动照片1">
+                    <div class="photo-marquee-caption">
+                        <h4>IP、潮玩、文旅、文创行业线下集训营</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/29f9bcc0030d69267.jpg" alt="活动照片2">
+                    <div class="photo-marquee-caption">
+                        <h4>线下封闭集训营现场</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/3f4432da7f301fe79.jpg" alt="活动照片3">
+                    <div class="photo-marquee-caption">
+                        <h4>美、日、韩出国产业考察团</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/45f2c43544109bce4.jpg" alt="活动照片4">
+                    <div class="photo-marquee-caption">
+                        <h4>艺术家、设计大咖现场分享</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/5b4ad9de1789b0e6f.jpg" alt="活动照片5">
+                    <div class="photo-marquee-caption">
+                        <h4>线下封闭集训营分组实战策划</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/648c059f1e46b210d.jpg" alt="活动照片6">
+                    <div class="photo-marquee-caption">
+                        <h4>线下封闭集训营现场</h4>
+                    </div>
+                </div>
+                <div class="photo-marquee-item">
+                    <img src="https://origin.picgo.net/2026/04/25/7c23c3f30d191a684.jpg" alt="活动照片7">
+                    <div class="photo-marquee-caption">
+                        <h4>中、美、日、韩顶级企业负责人现场授课</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="subscribe" class="subscribe-section">
         <h3>订阅《每周IP动态早知道》</h3>
         <p>每周一早上，老贾为你梳理过去一周的IP授权、潮玩新品、行业大事件。不追热点，只抓信号。</p>
@@ -809,7 +965,7 @@
     </section>
 
     <section class="podcast-section">
-        <h3>播客《IP圈内人》</h3>
+        <h3>播客《新文创老贾聊IP》</h3>
         <p>每周一期，听老贾聊IP行业里的真事儿、狠事儿、有意思的事儿。</p>
         <div class="podcast-links">
             <a href="#" class="podcast-link">小宇宙</a>
@@ -984,6 +1140,12 @@
             `).join('');
         }
         renderArticles();
+
+        // ===== 活动回顾跑马灯：复制一份实现无缝滚动 =====
+        const photoMarqueeTrack = document.getElementById('photoMarqueeTrack');
+        if (photoMarqueeTrack) {
+            photoMarqueeTrack.innerHTML += photoMarqueeTrack.innerHTML;
+        }
 
     </script>
 </body>
