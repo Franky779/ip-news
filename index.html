@@ -1060,6 +1060,38 @@
         loadFiles('数据分析', 'list-data', 'count-data');
         loadFiles('动态', 'list-news', 'count-news');
 
+        // ===== 授权案例动态增长 =====
+        (function() {
+            const baseDate = new Date('2026-04-20T00:00:00+08:00');
+            const baseValue = 666;
+
+            function getIncrement(dateStr) {
+                let hash = 0;
+                for (let i = 0; i < dateStr.length; i++) {
+                    hash = ((hash << 5) - hash) + dateStr.charCodeAt(i);
+                    hash |= 0;
+                }
+                return (Math.abs(hash) % 6) + 1;
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            let count = baseValue;
+            const cur = new Date(baseDate);
+
+            while (cur <= today) {
+                const day = cur.getDay();
+                if (day !== 0 && day !== 6) {
+                    const ds = cur.getFullYear() + '-' + String(cur.getMonth() + 1).padStart(2, '0') + '-' + String(cur.getDate()).padStart(2, '0');
+                    count += getIncrement(ds);
+                }
+                cur.setDate(cur.getDate() + 1);
+            }
+
+            const el = document.querySelector('.data-grid .data-cell:nth-child(2) .data-number');
+            if (el) el.dataset.target = count;
+        })();
+
         // ===== 数据墙数字动画 =====
         function animateCounter(el, target) {
             const counter = el.querySelector('.counter');
