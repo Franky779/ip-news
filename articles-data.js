@@ -1,5 +1,10 @@
 const ARTICLES = [
     {
+        title: "周深做了IP，一年卖了1个亿：这不是好消息",
+        date: "2026-04-27",
+        url: "https://mp.weixin.qq.com/s/4y6US7lK5y9ArHdJA0pPnQ"
+    },
+    {
         title: "凌晨2点，那个做了7年IP授权的朋友说要去卖保险了..",
         date: "2026-04-24",
         url: "https://mp.weixin.qq.com/s/z8lYek77Mzh8b1d8REnR3A"
