@@ -1088,47 +1088,39 @@
     </footer>
 
     <script>
-        const REPO = 'Franky779/ip-news';
-        const BRANCH = 'main';
-
-        async function loadFiles(folder, listId, countId) {
+        function loadFiles(folder, listId, countId) {
             const listEl = document.getElementById(listId);
             const countEl = countId ? document.getElementById(countId) : null;
+            const FILE_LISTS = {
+                '数据分析': [
+                    { name: '线条小狗-IP评估报告.html', date: '2026-04-27' },
+                    { name: '潮玩行业竞品分析_全行业完整报告.html', date: '2026-04-23' }
+                ],
+                '动态': [
+                    { name: 'IP动态早知道-2026-04-22.html', date: '2026-04-22' }
+                ]
+            };
 
-            try {
-                const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(folder)}?ref=${BRANCH}`);
-                if (!res.ok) {
-                    if (res.status === 404) {
-                        listEl.innerHTML = '<li class="empty">暂无内容</li>';
-                        if (countEl) countEl.textContent = '0 篇';
-                        return;
-                    }
-                    throw new Error(`HTTP ${res.status}`);
-                }
-                const data = await res.json();
-                const htmlFiles = data
-                    .filter(item => item.type === 'file' && item.name.endsWith('.html') && item.name !== 'index.html')
-                    .sort((a, b) => new Date(b.updated_at || b.created_at) - new Date(a.updated_at || a.created_at));
+            const files = FILE_LISTS[folder] || [];
+            const htmlFiles = files
+                .filter(f => f.name.endsWith('.html'))
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                const total = htmlFiles.length;
-                const displayFiles = htmlFiles.slice(0, 5);
-                if (countEl) countEl.textContent = `${total} 篇`;
+            const total = htmlFiles.length;
+            const displayFiles = htmlFiles.slice(0, 5);
+            if (countEl) countEl.textContent = `${total} 篇`;
 
-                if (total === 0) {
-                    listEl.innerHTML = '<li class="empty">暂无内容</li>';
-                    return;
-                }
-
-                listEl.innerHTML = displayFiles.map(file => {
-                    const name = file.name.replace(/\.html$/i, '');
-                    return `<li>
-                        <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
-                    </li>`;
-                }).join('');
-            } catch (err) {
-                listEl.innerHTML = `<li class="error">读取失败：${err.message}<br>请刷新重试</li>`;
-                if (countEl) countEl.textContent = '—';
+            if (total === 0) {
+                listEl.innerHTML = '<li class="empty">暂无内容</li>';
+                return;
             }
+
+            listEl.innerHTML = displayFiles.map(file => {
+                const name = file.name.replace(/\.html$/i, '');
+                return `<li>
+                    <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
+                </li>`;
+            }).join('');
         }
 
         loadFiles('数据分析', 'list-data', 'count-data');
