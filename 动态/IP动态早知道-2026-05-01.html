@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP动态早知道-2026-05-01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.97 0.005 85);
+    --surface: oklch(0.995 0.003 85);
+    --text: oklch(0.22 0.02 260);
+    --text-secondary: oklch(0.45 0.03 260);
+    --accent: oklch(0.55 0.14 45);
+    --accent-light: oklch(0.92 0.06 55);
+    --border: oklch(0.88 0.01 85);
+    --muted: oklch(0.94 0.005 85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header {
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .kicker {
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: "Noto Serif SC", serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-family: "Sora", sans-serif;
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .date-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 6px 16px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+
+  /* Overview cards */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .ov-card {
+    background: var(--surface);
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .ov-number {
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ov-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  /* Section styling */
+  section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .section-header h2 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .section-header .count {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .summary-box h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .summary-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .summary-box p + p {
+    margin-top: 12px;
+  }
+
+  /* News items */
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .news-item {
+    background: var(--surface);
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .news-item:hover {
+    box-shadow: 0 4px 20px oklch(0.8 0.01 85 / 0.15);
+  }
+
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .news-meta .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+
+  .news-item h3 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .news-item p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  .news-link {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+  }
+
+  .news-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .news-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* Event table */
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .event-table th {
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 14px 16px;
+    background: var(--muted);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  .event-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .event-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  footer .brand {
+    font-family: "Noto Serif SC", serif;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  footer .date {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container { padding: 32px 16px 60px; }
+    .news-item { padding: 20px; }
+    .summary-box { padding: 24px; }
+    .event-table { font-size: 13px; }
+    .event-table th, .event-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <div class="kicker">IP Industry Weekly Briefing</div>
+  <h1>IP动态早知道-2026-05-01</h1>
+  <div class="subtitle">动漫 · 潮玩 · 文创 · ACG · 谷子经济</div>
+  <div class="date-badge">2026-04-23 至 2026-05-01</div>
+</header>
+
+<div class="overview">
+  <div class="ov-card">
+    <div class="ov-number">42</div>
+    <div class="ov-label">资讯总数</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">38</div>
+    <div class="ov-label">国内资讯</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">4</div>
+    <div class="ov-label">海外动态</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">8</div>
+    <div class="ov-label">展览活动</div>
+  </div>
+</div>
+
+<section>
+  <div class="summary-box">
+    <h3>本周小结</h3>
+    <p><strong>IP授权与出海成主线。</strong>2026香港国际授权展（4月27-29日）成为本周最大舞台，奶龙、线条小狗、黄油小熊等头部IP集体亮相，成都更首次以"组团出海"形式携蓉宝、胖花、《遮天》等特色IP登陆香港。授权展吸引海内外330多家参展商、逾600个IP项目，显示中国IP正加速全球化布局。</p>
+    <p><strong>潮玩行业新品密集、资本动作频繁。</strong>泡泡玛特推出LABUBU联名冰箱（5999元/限量999台），发售瞬间售罄，二手市场一度炒至近2万元，印证IP衍生品的高溢价能力。52TOYS宣布2026年狂发1000款新品，并官宣周柯宇为POUKAPOUKA全球代言人。TOP TOY二次递表港交所冲刺IPO，名创优品密集联动《鸣潮》《女神异闻录5R》。</p>
+    <p><strong>游戏版号大幅放量，开放世界赛道竞争激烈。</strong>4月29日国家新闻出版署发放154款游戏版号，为近年来单月新高。腾讯《王者荣耀世界》与完美世界《异环》在4月形成"王牌对轰"格局，鸣潮二周年版本联动《生化危机》与名创优品，显示游戏IP跨界联动已成常态。</p>
+    <p><strong>谷子经济持续升温但分化加剧。</strong>预计2026年市场规模超2200亿元，成都被列为"谷子经济第三城"。但行业洗牌同步进行，头部品牌谨慎扩张，中小门店因同质化严重大量倒闭。三月兽、TOP TOY等品牌以轻资产方式（mini店、贩卖机、谷子专区）渗透市场。</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🔥 热门资讯</h2>
+    <span class="count">本周最值得关注的8条动态</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">潮玩</span>
+        <span>2026-04-30</span>
+        <span>新浪财经 / 什么值得买</span>
+      </div>
+      <h3>泡泡玛特首款LABUBU联名冰箱限量发售，二手市场价格过山车</h3>
+      <p>泡泡玛特于4月30日22:00正式发售两款Labubu联名冰箱（Home款与House of the Monsters款），每款全球限量999台，售价5999元。发售瞬间即全线售罄，二手市场价格一度被炒至近2万元，溢价超1.4万元；但短短一夜过后价格断崖式下跌，回落超1万元。泡泡玛特CEO王宁此前预告，2026年4月起将推出以IP为核心的衍生小家电产品线，涵盖电水壶、咖啡机、电动牙刷、吹风机等品类。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=58CYK5F-2BBQiVudUK_3rQzN16zLK_BOn5K0ThhvSK1if9p0pFzorN_id9fVJ_j9" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">IP授权</span>
+        <span>2026-04-29</span>
+        <span>中新社 / 中新经纬</span>
+      </div>
+      <h3>香港国际授权展为全球IP跨界合作创造机遇</h3>
+      <p>2026年香港国际授权展4月27日至29日举行，吸引海内外330多家参展商，展示逾600个IP项目。羚邦集团已将"奶龙""乖巧宝宝"授权拓展至东南亚；厦门起重集带来"线条小狗""黄油小熊"联名产品；超过60个四川文旅IP亮相。</p>
+      <div class="news-link"><a href="https://www.jwview.com/jingwei/html/m/04-29/669000.shtml" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">游戏</span>
+        <span>2026-04-29</span>
+        <span>国家新闻出版署 / 财联社</span>
+      </div>
+      <h3>4月154款游戏版号获批，创近年单月新高</h3>
+      <p>国家新闻出版署4月29日公布2026年4月游戏版号审批信息，共154款游戏获批（国产147款、进口7款）。重点产品包括网易《遗忘之海》、腾讯《洛克王国：精灵牌》《弧光猎人（ARC Raiders）》、巨人网络《冰雪之笼》等。另有13款游戏审批信息变更。</p>
+      <div class="news-link"><a href="https://www.nppa.gov.cn/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">潮玩</span>
+        <span>2026-04-29</span>
+        <span>界面新闻 / 证券市场周刊</span>
+      </div>
+      <h3>九号公司×泡泡玛特小甜豆联名款智能电动车发布</h3>
+      <p>4月29日，九号公司举办2026新品发布会，推出Qz1泡泡玛特小甜豆联名款与Q3泡泡玛特小甜豆联名款智能电动车。品牌代言人易烊千玺现身发布会现场。这是泡泡玛特IP首次跨界出行领域。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=EG2RYMGqSaZGJSiD6vCQ4Km1Ge1D3HEJ7rsLkcCUojYhbBV0Re03mg0jMQQBZ_By34QD9J-PvX2PWHdgLcapfHEPdoBfFrEYFQNWKH_Q4t3" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">IP出海</span>
+        <span>2026-04-28</span>
+        <span>澎湃新闻</span>
+      </div>
+      <h3>三大IP成果重磅发布！成都IP阵容首秀香港国际授权展</h3>
+      <p>4月27日，香港国际授权展开幕，成都首次以"组团出海"形式登陆。集结蓉宝、胖花、云抱抱、《遮天》《物华弥新》、金沙太阳神鸟等众多特色IP。展览首日三大成果首发：《十二月花》羌绣数字版权产品全球首发；银花丝×《遮天》跨界联名产品首次在港亮相；成都文旅集团"胖花IP"首款智能文创产品首次在港亮相。</p>
+      <div class="news-link"><a href="https://m.thepaper.cn/newsDetail_forward_33069487" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">潮玩</span>
+        <span>2026-04-22</span>
+        <span>中外玩具网</span>
+      </div>
+      <h3>52TOYS官宣周柯宇为POUKAPOUKA全球代言人</h3>
+      <p>52TOYS正式官宣周柯宇成为旗下潮流IP POUKAPOUKA全球代言人，同步推出新品"POUKAPOUKA寰宇之灵系列"。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=BSEeu89pZ1pbc1jcVEC10u7bIOkIWjf_PpujKFBE2j7k_q0920-bxd6vQ_NwhccF" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">游戏</span>
+        <span>2026-04-23</span>
+        <span>游民星空 / 17173</span>
+      </div>
+      <h3>《王者荣耀世界》全平台上线，开放世界赛道"王牌对轰"</h3>
+      <p>腾讯天美工作室基于《王者荣耀》IP打造的开放世界RPG大作《王者荣耀世界》于4月10日PC端上线，4月17日移动端公测。与完美世界《异环》形成4月开放世界赛道"王牌对轰"格局。</p>
+      <div class="news-link"><a href="https://news.qq.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">谷子经济</span>
+        <span>2026-04-23</span>
+        <span>澎湃新闻 / YOU成都</span>
+      </div>
+      <h3>成都谷子经济的进化之路：预计2026年市场规模超2200亿元</h3>
+      <p>中国谷子经济市场规模从2020年580亿元扩张至2024年1689亿元，预计2026年达2200-2400亿元，2029年达3089亿元。成都被列为"谷子经济第三城"，全年举办超200场动漫与谷子展会。四川省将"谷子经济"纳入政策框架，《人民日报》多次关注。</p>
+      <div class="news-link"><a href="https://m.thepaper.cn/newsDetail_forward_33033187" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎯 潮玩品牌动态</h2>
+    <span class="count">新品 · 联名 · 资本</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">泡泡玛特</span>
+        <span>2026-04-30</span>
+      </div>
+      <h3>泡饭POP FRIENDS东莞首店开业</h3>
+      <p>POP FRIENDS泡饭乐园东莞首店于4月30日在海德汇一城正式开业，品牌以"你的潮玩，你的搭子"为核心主张，突破传统门店以售卖为主的单一模式。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=58CYK5F-2BBQiVudUK_3rQzN16zLK_BOn5K0ThhvSK1if9p0pFzorN_id9fVJ_j9" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">泡泡玛特</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>THE MONSTERS×FIFA世界杯联名系列发售</h3>
+      <p>THE MONSTERS×FIFA世界杯联名系列线上4月2日22:00开抢，LABUBU化身足球小将，克莱因蓝毛绒搭配搪胶头部，含可滑动眼睛设计，隐藏款概率1:72。结合2026美加墨世界杯热点，推出限量版大力神杯造型公仔，二级市场溢价达20%。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">52TOYS</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>TINNOVE梧桐科技×52TOYS旗下NOOK IP联名AI座舱发布</h3>
+      <p>4月23日，腾讯智慧出行技术开放日上，梧桐科技推出AI座舱OS与潮玩IP NOOK联名全新产品，将潮玩IP的情绪表达与AI技术跨界融合，打造更具温度的AI座舱出行体验。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=XgaeK5-NCA9q2qh9zDrtMOKZ8iw3j5Ii7gK5Gklcon_yDm4_87ig5hpg6Q-PmdMN" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">52TOYS</span>
+        <span>2026-04-17</span>
+      </div>
+      <h3>52TOYS宣布2026年狂发1000款新品，覆盖上百IP、七大品类</h3>
+      <p>52TOYS在北京合作伙伴大会上宣布，2026年要一口气发布1000款新品，覆盖上百个IP、七大品类。创始人陈威明确划清界限，表示不做泡泡玛特第二，主打国创机甲+文物潮玩差异化路线。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=XgaeK5-NCA9q2qh9zDrtMSJKSpfPN3ZLH47T66sIP_srI466z66TnnJp2cn1vxRWmG1jckO1PcpoYk2yl96O5dpf1CZkgAsc6-jPMbelROG" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">TOPTOY</span>
+        <span>2026-04-06</span>
+      </div>
+      <h3>TOP TOY二次递表港交所冲刺IPO</h3>
+      <p>TOP TOY于4月6日向港交所重新递交上市材料，此前因招股书过期导致首次申请自动失效。保荐团队调整为中信证券转为整体协调人，摩根大通与瑞银集团组成新的联席保荐团队。基于2025年7月A轮融资13亿美元估值，对应20倍市盈率水平。2025年来自中国内地的GMV为42亿元，自研产品收入占比55%。</p>
+      <div class="news-link"><a href="https://xueqiu.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">名创优品</span>
+        <span>2026-04-29</span>
+      </div>
+      <h3>名创优品×鸣潮联动正式上线</h3>
+      <p>鸣潮×名创优品联动以"漫岸醇光 Coastal Glow"为主题，于4月29日正式上线，涵盖联动周边、线下快闪、主题门店等系列活动。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">名创优品</span>
+        <span>2026-04-30</span>
+      </div>
+      <h3>名创优品×《女神异闻录5R》联名周边上线</h3>
+      <p>名创优品宣布为庆祝《女神异闻录》系列诞生30周年，于4月30日在各大线下店推出联名周边产品，包括Q弹毛绒、金属徽章、旋转立牌、怒目透卡、靠枕、杯垫、鼠标垫等。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">毛绒玩具</span>
+        <span>2026-04-24</span>
+      </div>
+      <h3>问童子"奋斗兔"十周年快闪杭州中心启幕</h3>
+      <p>中式高端毛绒玩具品牌问童子迎来明星IP"奋斗系列"十周年，4月24日-5月24日于杭州中心开启"奋斗之家"主题限时快闪。首发十周年纪念版奋斗兔（十色拼贴设计），推出"奋斗坚果""奋斗家居"新系列，新增猫狗形象，完善尺寸体系（挂偶、小偶、中偶、大偶、骨架版）。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">AI潮玩</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>大麦娱乐发布全球首个潮玩创作者AI设计平台"妙呀"</h3>
+      <p>大麦娱乐（原阿里影业）联手阿里通义大模型，于4月23日发布全球首个潮玩创作者AI设计平台"妙呀"，降低潮玩设计门槛，重塑创作生态。</p>
+      <div class="news-link"><a href="https://www.eastmoney.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">渠道</span>
+        <span>2026-04-28</span>
+      </div>
+      <h3>TNTSPACE CEO透露：DORA和BabyZoraa两款头部IP均能创造3亿以上销售额</h3>
+      <p>TNTSPACE CEO王泽群透露，品牌至今没有独立门店，销售渠道主要为线上官方平台和线下授权潮玩集合店。旗下DORA和BabyZoraa两款头部IP均能创造3亿以上销售额。</p>
+      <div class="news-link"><a href="https://www.tmtpost.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🏛️ 文创与联名</h2>
+    <span class="count">政策 · 博物馆 · 品牌</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">政策</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>2026年度上海市促进文化创意产业发展专项资金项目申报政策解读会召开</h3>
+      <p>4月23日下午，松江区委宣传部主办的"2026年度上海市促进文化创意产业发展专项资金项目申报政策解读会（松江专场）"召开，区委宣传部副部长沈茜、区经委副主任刘勇出席。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">文旅</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>山东省文旅产业高质量发展大会在淄博举行</h3>
+      <p>4月23日，2026山东省文旅产业高质量发展大会在淄博举行。山东省委书记林武出席，省长周乃翔致辞。山东省委、省政府连续7年召开文旅产业高质量发展大会，持续激发文化创新创造活力，释放文旅消费潜能。</p>
+      <div class="news-link"><a href="https://www.mct.gov.cn/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">珠宝联名</span>
+        <span>2026-04-29</span>
+      </div>
+      <h3>周大生 × 朱炳仁·铜联名新品"玲珑塔"发布</h3>
+      <p>以国宝纹样和非遗铜艺打造"可佩戴的国宝"，强调文化传承与当代生活融合。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">博物馆联名</span>
+        <span>2026-04-24</span>
+      </div>
+      <h3>太湖雪 × 苏州博物馆深度合作推出联名丝绸系列</h3>
+      <p>宣布达成深度合作，推出联名丝绸系列产品，涵盖蚕丝被、饰品等，文博联名产品销售增速显著高于常规线。苏州博物馆还与野兽派、松鹤楼等品牌合作，展现"博物馆+"的多元商业形态。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">非遗文创</span>
+        <span>2026-04-19</span>
+      </div>
+      <h3>山东省非遗焕新购物月主场暨菏泽市非遗文创市集</h3>
+      <p>4月19日至21日在菏泽牡丹广场举办，现场汇集非遗好物、潮流文创与特色美食，伴有牛屯鼓乐、商羊舞等非遗节目表演。全省16市参会人员实地观摩菏泽市非遗文旅融合示范点。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">服饰联名</span>
+        <span>2026-04-13</span>
+      </div>
+      <h3>优衣库 x 丰田联名T恤系列发售</h3>
+      <p>优衣库UT宣布与丰田汽车推出全新联名T恤系列，向丰田旗下经典车型致敬，融合休闲街头服饰与汽车文化。每件T恤售价1990日元（约85元人民币），国内预计79-99元。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">茶饮</span>
+        <span>2026-04-25</span>
+      </div>
+      <h3>茶百道×《崩坏星穹铁道》联动活动开启</h3>
+      <p>茶百道和崩坏星穹铁道再次联动，引发玩家热议。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">代言</span>
+        <span>2026-04-28</span>
+      </div>
+      <h3>瑞幸即享咖啡官宣王一博为全球品牌代言人</h3>
+      <p>瑞幸即享咖啡正式官宣王一博为全球品牌代言人，以"随时随地，即享好咖啡"为主题，同步上线瓶装即饮咖啡新品及限定周边活动，引发粉丝抢购热潮。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">IP授权</span>
+        <span>2026-04-22</span>
+      </div>
+      <h3>IP赋能糖玩新赛道，2026深圳IP授权展糖玩对接会圆满落幕</h3>
+      <p>2026深圳IP授权展联动第38届国际玩具及潮玩（深圳）展览会，展出面积达13万平方米，汇聚1400余家展商。对接会现场IP方集中展示热门IP资源，涵盖宝可梦、阿尔派F1车队、小马宝莉、哥斯拉大战金刚等。</p>
+      <div class="news-link"><a href="https://www.163.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎮 ACG与游戏</h2>
+    <span class="count">版号 · 新游 · 联动</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">新游</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>完美世界《异环》全平台公测</h3>
+      <p>完美世界旗下Hotta Studio超自然都市开放世界RPG《异环》于4月23日全平台公测，采用虚幻引擎5技术。4月29日上线海外，Taptap期待值高达9.0。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">联动</span>
+        <span>2026-04-30</span>
+      </div>
+      <h3>《鸣潮》3.3二周年版本上线，联动《生化危机》与名创优品</h3>
+      <p>《鸣潮》3.3版本"自星海尽处回响"正式上线，迎来游戏二周年庆典。版本包含六大跨界联动，与《Resident Evil》（生化危机）联动上线，与名创优品联动活动于4月29日开启。iOS畅销榜升至第6位。</p>
+      <div class="news-link"><a href="https://news.qq.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">联动</span>
+        <span>2026-04-21</span>
+      </div>
+      <h3>《穿越火线》×电影《功夫》联动版本上线</h3>
+      <p>《穿越火线》联动电影《功夫》全新版本《功夫火线》于4月21日上线，包含全新功夫联动小丑模式。4月18日"火线功夫"嘉年华在CFPL S27总决赛期间开展。</p>
+      <div class="news-link"><a href="https://cf.qq.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">联动</span>
+        <span>2026-04-22</span>
+      </div>
+      <h3>《雀魂麻将》×《刀剑神域》联动开启</h3>
+      <p>Yostar旗下《雀魂麻将》与《刀剑神域》联动合作于4月22日开启，持续至5月13日。桐人、亚丝娜作为雀士登场，搭配顶级声优。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">国漫</span>
+        <span>2026-04-23</span>
+      </div>
+      <h3>《将夜》动画上线，采用虚拟拍摄技术</h3>
+      <p>4月23日，《将夜》动画上线，改编自猫腻同名小说，采用虚拟拍摄技术。B站国创春季新番还包括《凡人修仙传年番》《非人哉3》《凹凸世界·新生》等。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">国漫</span>
+        <span>2026-04-29</span>
+      </div>
+      <h3>《雪中悍刀行》动画播出，腾讯视频独播</h3>
+      <p>4月29日，《雪中悍刀行》动画播出，改编自烽火戏诸侯同名小说，主打东方写意美学风格，腾讯视频独播。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">虚拟偶像</span>
+        <span>2026-04-25</span>
+      </div>
+      <h3>虚拟偶像"喵娲娲"复刻李小冉名场面引发热议</h3>
+      <p>虚拟偶像账号"喵娲娲MEWOWOW"于4月25日发布舞蹈视频，高度复刻李小冉在《乘风2026》初舞台表演的《心愿便利贴》。其四肢机械感与软萌动作形成强烈反差，引发网友热议"赛博师傅来代班"。</p>
+      <div class="news-link"><a href="https://cj.sina.cn/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">影视</span>
+        <span>2026-04-20</span>
+      </div>
+      <h3>2026五一档17-18部新片定档，创近年新高</h3>
+      <p>17-18部新片定档2026五一档，创近年新高。涵盖革命历史、动作、悬疑、喜剧、动画等多种类型。年度总票房已破130亿。《寒战1994》《消失的人》《门牙》暂列五一档预售前三。此外还有进口片《穿普拉达的女王2》。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎪 展览活动</h2>
+    <span class="count">展会 · 快闪 · 预告</span>
+  </div>
+
+  <h3 style="font-family:'Sora',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">近期已结束/正在举办</h3>
+  <table class="event-table" style="margin-bottom:32px;">
+    <thead>
+      <tr><th>活动名称</th><th>时间</th><th>地点</th><th>主要内容</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>第38届深圳玩具展&潮玩展</td>
+        <td>4月9-11日</td>
+        <td>深圳国际会展中心</td>
+        <td>52TOYS、Funko、布鲁可、MOMOTOY等品牌携重磅新品亮相。展会规模13万㎡，参展企业1400+家。潮玩展区面积同比暴涨2倍。</td>
+      </tr>
+      <tr>
+        <td>2026泰国潮玩展</td>
+        <td>4月2-5日</td>
+        <td>曼谷尚泰世界购物中心</td>
+        <td>展览面积15000㎡，汇聚全球14国超过300家展商。中国拼搭角色类玩具品牌布鲁可首次参展。</td>
+      </tr>
+      <tr>
+        <td>2026香港国际授权展</td>
+        <td>4月27-29日</td>
+        <td>香港</td>
+        <td>吸引海内外330多家参展商，展示逾600个IP项目。奶龙、线条小狗、黄油小熊、60+四川文旅IP亮相。</td>
+      </tr>
+      <tr>
+        <td>问童子"奋斗之家"主题快闪</td>
+        <td>4月24日-5月24日</td>
+        <td>杭州中心</td>
+        <td>问童子明星IP"奋斗系列"十周年限时快闪，首发十周年纪念版奋斗兔及"奋斗坚果""奋斗家居"新系列。</td>
+      </tr>
+      <tr>
+        <td>成都第23届世界线动漫展</td>
+        <td>5月1日起</td>
+        <td>成都</td>
+        <td>五一期间开幕，四组嘉宾签售活动重磅来袭。成都漫展带动旅游搜索热度增长141%。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'Sora',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">🔮 未来预告</h3>
+  <table class="event-table">
+    <thead>
+      <tr><th>活动名称</th><th>时间</th><th>地点</th><th>期待看点</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>【预告】北京IP授权产业博览会</td>
+        <td>5月29日-31日</td>
+        <td>北京</td>
+        <td>预计30000㎡展区聚焦动漫、潮玩、文娱文创等热门赛道，汇聚超500家IP版权方、品牌商、渠道商。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>📈 行业数据速览</h2>
+  </div>
+  <div class="news-list">
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">市场数据</span>
+        <span>2026-04-21</span>
+      </div>
+      <h3>2026年中国潮玩产业分析：全球市场规模预计达520亿美元</h3>
+      <p>2025年全球潮玩市场规模预计达520亿美元，保持20%以上年增长率。中国市场手办模型以45.1%零售额占比主导市场；搪胶毛绒成为增长最快的细分品类之一。</p>
+      <div class="news-link"><a href="#" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">业绩</span>
+        <span>2026-04-27</span>
+      </div>
+      <h3>实丰文化4月大涨：AI玩具+IP潮玩+业绩爆发</h3>
+      <p>2026Q1营收1.02亿元、净利668.07万元，同比增长200.90%。主因2024Q2起AI玩具成独立品类，公司已构建宝可梦、迪士尼、蛋仔派对等全球IP矩阵。</p>
+      <div class="news-link"><a href="https://www.10jqka.com.cn/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">市场分析</span>
+        <span>2026-04-28</span>
+      </div>
+      <h3>泡泡玛特2026年4月高频数据追踪：基本面尚未出现好转拐点</h3>
+      <p>2026年4月高频数据显示，泡泡玛特正经历从增速放缓向全面收缩的转变。美国市场线下交易已进入负增长区间（3月同比-18.7%），中国市场社交参与度大幅下滑（小红书互动量环比-64%）。预测2026年总营收达430亿元（同比增长16%）。</p>
+      <div class="news-link"><a href="https://xueqiu.com/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">新文创老贾聊IP-IP圈昨天发生了啥？</div>
+  <div>由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+  <div class="date">2026-05-01</div>
+</footer>
+
+</div>
+
+</body>
+</html>
