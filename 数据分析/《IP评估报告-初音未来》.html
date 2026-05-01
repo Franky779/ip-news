@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP授权价值评估报告 · 初音未来</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 20mm 22mm 24mm 22mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: oklch(97% 0.006 70);
+            --paper: oklch(98.5% 0.004 70);
+            --surface: oklch(100% 0.003 70);
+            --ink: oklch(20% 0.018 50);
+            --ink-2: oklch(38% 0.022 50);
+            --ink-3: oklch(55% 0.018 60);
+            --ink-4: oklch(72% 0.012 65);
+            --rule: oklch(88% 0.012 70);
+            --rule-soft: oklch(92% 0.008 70);
+            --accent: oklch(38% 0.17 28);
+            --accent-2: oklch(52% 0.18 28);
+            --accent-tint: oklch(94% 0.025 28);
+            --accent-deep: oklch(28% 0.10 28);
+            --warn: oklch(56% 0.18 30);
+            --hold: oklch(58% 0.13 75);
+            --pass: oklch(48% 0.13 145);
+            --halftone: oklch(95% 0.008 70);
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-7: 3rem;
+            --space-8: 4rem;
+            --space-9: 6rem;
+            --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+            --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            --latin: "EB Garamond", "Noto Serif SC", serif;
+        }
+
+        body {
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.78;
+            color: var(--ink);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "palt" 1;
+        }
+        .report {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 1px 2px oklch(20% 0.01 60 / 0.04), 0 24px 60px oklch(20% 0.01 60 / 0.08);
+        }
+        .page { padding: var(--space-7) var(--space-8) var(--space-8); page-break-after: always; position: relative; }
+        .page:last-child { page-break-after: auto; }
+
+        /* ========== 封面 ========== */
+        .cover {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 297mm;
+            padding: var(--space-7) var(--space-8) var(--space-8);
+            background:
+                radial-gradient(circle at 88% 8%, oklch(94% 0.04 28 / 0.55) 0, transparent 38%),
+                radial-gradient(circle at 6% 96%, oklch(96% 0.03 60 / 0.6) 0, transparent 42%),
+                var(--paper);
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: "";
+            position: absolute;
+            inset: var(--space-7) var(--space-8);
+            border: 1px solid var(--rule);
+            pointer-events: none;
+        }
+        .cover-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--latin);
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            padding: var(--space-3) var(--space-4) var(--space-5);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-topbar-brand { color: var(--accent); font-weight: 500; }
+        .cover-topbar-docid { color: var(--ink-3); font-feature-settings: "tnum" 1; letter-spacing: 0.18em; }
+
+        .cover-body {
+            display: grid;
+            align-content: center;
+            justify-items: start;
+            padding: 0 var(--space-5);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            margin-bottom: var(--space-4);
+        }
+        .cover-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .cover-ip-name {
+            font-family: var(--serif);
+            font-size: clamp(3.25rem, 7vw, 4.75rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: var(--space-3);
+        }
+        .cover-ip-en {
+            font-family: var(--latin);
+            font-size: 16px;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: var(--space-7);
+            font-weight: 500;
+        }
+        .cover-title {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: var(--space-2);
+        }
+        .cover-subtitle {
+            font-size: 13px;
+            color: var(--ink-3);
+            margin-bottom: var(--space-7);
+            font-feature-settings: "tnum" 1;
+        }
+        .cover-verdict {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            padding: var(--space-5) var(--space-6);
+            max-width: 540px;
+            position: relative;
+        }
+        .cover-verdict::before {
+            content: "「";
+            position: absolute;
+            top: -0.3em;
+            left: -0.1em;
+            font-family: var(--serif);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--accent);
+            opacity: 0.18;
+        }
+        .cover-verdict-label {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.32em;
+            margin-bottom: var(--space-3);
+        }
+        .cover-verdict-text {
+            font-family: var(--serif);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.85;
+        }
+        .cover-verdict-text strong { font-weight: 700; color: var(--accent-deep); }
+
+        .cover-stamp {
+            position: absolute;
+            top: 50%;
+            right: var(--space-7);
+            transform: translateY(-50%) rotate(-12deg);
+            width: 132px;
+            height: 132px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: var(--accent);
+            font-family: var(--latin);
+            opacity: 0.62;
+            z-index: 0;
+        }
+        .cover-stamp::before {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+        }
+        .cover-stamp-text {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .cover-stamp-num {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 4px 0 2px;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: var(--space-5) var(--space-4) var(--space-3);
+            border-top: 1px solid var(--rule);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-meta {
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--ink-3);
+            line-height: 1.85;
+        }
+        .cover-meta p { margin: 1px 0; }
+        .cover-meta .label { font-family: var(--latin); font-size: 9px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 2px; }
+        .cover-confidential {
+            font-family: var(--latin);
+            font-size: 10px;
+            color: var(--ink-3);
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            text-align: right;
+        }
+
+        /* ========== 页眉 ========== */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--latin);
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            padding-bottom: var(--space-3);
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: var(--space-7);
+        }
+        .page-header-brand { color: var(--accent); font-weight: 700; }
+        .page-header-meta { color: var(--ink-3); font-feature-settings: "tnum" 1; letter-spacing: 0.18em; }
+
+        /* ========== 章节标题 ========== */
+        .section-title {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: end;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--ink);
+        }
+        .section-title .num {
+            font-family: var(--latin);
+            font-size: 3rem;
+            font-weight: 500;
+            line-height: 0.85;
+            color: var(--accent);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .section-title .title-text {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+        .section-title .title-en {
+            display: block;
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 12px;
+            color: var(--ink-3);
+            letter-spacing: 0.04em;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* ========== 执行摘要 ========== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-bottom: var(--space-6);
+            border: 1px solid var(--rule);
+        }
+        .summary-card {
+            padding: var(--space-5) var(--space-4);
+            border-right: 1px solid var(--rule);
+            background: var(--surface);
+            position: relative;
+        }
+        .summary-card:last-child { border-right: none; }
+        .summary-card-label {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3);
+        }
+        .summary-card-value {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+        .summary-card-value.high { color: var(--warn); }
+        .summary-card-value.medium { color: var(--accent); }
+        .summary-card-value.low { color: var(--pass); }
+        .summary-card-note {
+            font-size: 11px;
+            color: var(--ink-3);
+            margin-top: 6px;
+        }
+
+        .verdict-box {
+            position: relative;
+            background: var(--accent-tint);
+            padding: var(--space-5) var(--space-6);
+            margin-bottom: var(--space-6);
+            border: 1px solid oklch(88% 0.025 28);
+        }
+        .verdict-box::before {
+            content: "VERDICT";
+            position: absolute;
+            top: -10px;
+            left: var(--space-6);
+            background: var(--paper);
+            padding: 0 var(--space-3);
+            font-family: var(--latin);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.32em;
+            color: var(--accent);
+        }
+        .verdict-box h4 {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.04em;
+        }
+        .verdict-box p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.92;
+        }
+        .verdict-box .highlight {
+            background: oklch(88% 0.06 28 / 0.5);
+            padding: 0 4px;
+            font-weight: 600;
+            color: var(--accent-deep);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .section-eyebrow {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        .section-eyebrow::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4) var(--space-5);
+        }
+        .key-point {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            border-top: 1px solid var(--rule);
+        }
+        .key-point-num {
+            font-family: var(--latin);
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .key-point-text h5 {
+            font-family: var(--serif);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .key-point-text p {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        /* ========== IP画像 ========== */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: var(--space-5);
+            border: 1px solid var(--rule);
+        }
+        .profile-block {
+            padding: var(--space-5);
+            background: var(--surface);
+            border-right: 1px solid var(--rule);
+        }
+        .profile-block:last-child { border-right: none; }
+        .profile-grid .profile-block:nth-child(2) { border-right: none; }
+        .profile-block.full {
+            grid-column: 1 / -1;
+            border-right: none;
+            border-top: 1px solid var(--rule);
+        }
+        .profile-block h4 {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+        .profile-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        .profile-block li {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.78;
+            padding: var(--space-2) 0;
+            border-bottom: 1px dashed var(--rule-soft);
+            display: grid;
+            grid-template-columns: 6em 1fr;
+            gap: var(--space-3);
+        }
+        .profile-block li:last-child { border-bottom: none; }
+        .profile-block li::before {
+            content: attr(data-label);
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding-top: 4px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--sans);
+            font-size: 11.5px;
+            padding: 4px 12px;
+            background: oklch(96% 0.008 60);
+            color: var(--ink-2);
+            border: 1px solid var(--rule);
+            border-radius: 100px;
+            font-weight: 500;
+        }
+        .tag.hot {
+            background: var(--accent);
+            color: var(--paper);
+            border-color: var(--accent);
+        }
+
+        .rate-bar {
+            margin-top: var(--space-5);
+            padding: var(--space-5);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+        }
+        .rate-bar-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--space-3);
+        }
+        .rate-bar-label {
+            font-size: 12px;
+            color: var(--ink-2);
+            font-weight: 600;
+        }
+        .rate-bar-value {
+            font-family: var(--latin);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .rate-bar-track {
+            height: 4px;
+            background: var(--rule);
+            position: relative;
+            overflow: hidden;
+        }
+        .rate-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            position: relative;
+        }
+        .rate-bar-fill::after {
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: -4px;
+            width: 6px;
+            height: 12px;
+            background: var(--accent);
+        }
+        .rate-bar-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-2);
+            font-family: var(--latin);
+            font-size: 10px;
+            color: var(--ink-3);
+            font-feature-settings: "tnum" 1;
+        }
+        .rate-bar-note {
+            font-size: 11.5px;
+            color: var(--ink-3);
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px dashed var(--rule);
+        }
+
+        /* ========== 品类饱和度 ========== */
+        .sat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-6);
+            font-size: 13px;
+            border-top: 2px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+        .sat-table th {
+            text-align: left;
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: var(--space-3) var(--space-3);
+            border-bottom: 1px solid var(--ink-3);
+        }
+        .sat-table td {
+            padding: var(--space-3) var(--space-3);
+            border-bottom: 1px solid var(--rule);
+            vertical-align: top;
+            color: var(--ink-2);
+        }
+        .sat-table tr:last-child td { border-bottom: none; }
+        .sat-table td strong {
+            font-family: var(--serif);
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .sat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px 3px 6px;
+            font-family: var(--sans);
+        }
+        .sat-badge.red { color: var(--warn); background: oklch(96% 0.04 30); }
+        .sat-badge.yellow { color: var(--hold); background: oklch(96% 0.04 75); }
+        .sat-badge.green { color: var(--pass); background: oklch(95% 0.04 145); }
+        .sat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sat-badge.red .sat-dot { background: var(--warn); }
+        .sat-badge.yellow .sat-dot { background: var(--hold); }
+        .sat-badge.green .sat-dot { background: var(--pass); }
+        .sat-reason { font-size: 12px; color: var(--ink-3); line-height: 1.65; }
+
+        .warning-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-top: 3px double var(--accent);
+            padding: var(--space-5) var(--space-6);
+        }
+        .warning-box h4 {
+            font-family: var(--serif);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        .warning-box h4::before {
+            content: "§";
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 1.4em;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .warning-box p {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.85;
+        }
+        .warning-box strong {
+            color: var(--ink);
+            background: linear-gradient(transparent 60%, oklch(88% 0.06 28 / 0.5) 60%);
+            padding: 0 2px;
+        }
+
+        /* ========== 风险清单 ========== */
+        .risk-list {
+            display: flex;
+            flex-direction: column;
+            counter-reset: risk;
+        }
+        .risk-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: var(--space-5);
+            padding: var(--space-5) 0;
+            border-bottom: 1px solid var(--rule);
+            counter-increment: risk;
+        }
+        .risk-item:first-child { padding-top: 0; }
+        .risk-level {
+            text-align: left;
+            position: relative;
+        }
+        .risk-level::before {
+            content: counter(risk, decimal-leading-zero);
+            font-family: var(--latin);
+            font-size: 2.6rem;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 0.9;
+            display: block;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .risk-level-tag {
+            display: inline-block;
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: var(--space-2);
+            padding: 3px 8px;
+            border: 1px solid currentColor;
+        }
+        .risk-item.lvl-high .risk-level::before { color: var(--warn); }
+        .risk-item.lvl-high .risk-level-tag { color: var(--warn); }
+        .risk-item.lvl-mid-high .risk-level::before { color: oklch(50% 0.16 50); }
+        .risk-item.lvl-mid-high .risk-level-tag { color: oklch(50% 0.16 50); }
+        .risk-item.lvl-mid .risk-level::before { color: var(--hold); }
+        .risk-item.lvl-mid .risk-level-tag { color: var(--hold); }
+        .risk-item.lvl-low .risk-level::before { color: var(--pass); }
+        .risk-item.lvl-low .risk-level-tag { color: var(--pass); }
+        .risk-content h4 {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: var(--space-3);
+            line-height: 1.35;
+        }
+        .risk-content p {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.78;
+        }
+        .risk-content .solution {
+            margin-top: var(--space-3);
+            font-size: 12.5px;
+            color: var(--ink-2);
+            background: oklch(96% 0.012 145);
+            border: 1px solid oklch(88% 0.04 145);
+            padding: var(--space-3) var(--space-4);
+            line-height: 1.7;
+        }
+        .risk-content .solution strong {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--pass);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .alternative-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: var(--space-5) var(--space-6);
+            margin-top: var(--space-7);
+            position: relative;
+        }
+        .alternative-box::before {
+            content: "ALT";
+            position: absolute;
+            top: -10px;
+            left: var(--space-6);
+            background: var(--paper);
+            padding: 0 var(--space-3);
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.32em;
+            color: var(--ink-3);
+        }
+        .alternative-box h4 {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: var(--space-4);
+        }
+        .alt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--space-4);
+        }
+        .alt-card {
+            border-top: 2px solid var(--ink);
+            padding-top: var(--space-3);
+        }
+        .alt-card .alt-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-1);
+        }
+        .alt-card .alt-rate {
+            font-family: var(--latin);
+            font-size: 11px;
+            color: var(--ink-3);
+            letter-spacing: 0.12em;
+            margin-bottom: var(--space-3);
+            font-feature-settings: "tnum" 1;
+        }
+        .alt-card p {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            line-height: 1.72;
+        }
+
+        /* ========== 案例附录表格 ========== */
+        .case-intro {
+            font-size: 12px;
+            color: var(--ink-3);
+            margin-bottom: var(--space-5);
+            padding: var(--space-3) 0;
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-style: italic;
+            font-family: var(--latin), var(--sans);
+        }
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11.5px;
+            margin-bottom: var(--space-6);
+            border-top: 2px solid var(--ink);
+        }
+        .case-table th {
+            text-align: left;
+            font-family: var(--latin);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 10px 10px;
+            border-bottom: 1px solid var(--ink-3);
+            background: var(--surface);
+        }
+        .case-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 11.5px;
+            color: var(--ink-2);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+        .case-table tr:nth-child(even) td { background: oklch(98% 0.005 60); }
+        .case-table tr:last-child td { border-bottom: 2px solid var(--ink); }
+        .case-table td.title strong {
+            font-family: var(--serif);
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .case-table td.desc {
+            font-size: 11px;
+            color: var(--ink-3);
+            line-height: 1.55;
+        }
+        .case-table td.idx {
+            font-family: var(--latin);
+            font-size: 11px;
+            color: var(--ink-3);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .case-table td.offline {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            font-family: var(--latin);
+            text-transform: uppercase;
+        }
+        .case-table td.online {
+            color: var(--ink-3);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            font-family: var(--latin);
+            text-transform: uppercase;
+        }
+        .case-table td.date {
+            font-family: var(--latin);
+            font-feature-settings: "tnum" 1;
+            color: var(--ink-3);
+            white-space: nowrap;
+        }
+
+        /* ========== 数据完整度 ========== */
+        .integrity-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: var(--space-5);
+            margin-top: var(--space-6);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-6);
+        }
+        .integrity-stat-block {
+            border-right: 1px solid var(--rule);
+            padding-right: var(--space-5);
+            text-align: center;
+        }
+        .integrity-box h4 {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+        .integrity-box .integrity-stat {
+            font-family: var(--latin);
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .integrity-box .integrity-pct {
+            font-family: var(--latin);
+            font-size: 12px;
+            color: var(--ink-3);
+            margin-top: var(--space-2);
+            letter-spacing: 0.12em;
+        }
+        .integrity-box ul {
+            list-style: none;
+            padding: 0;
+            font-size: 12px;
+            color: var(--ink-2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px var(--space-4);
+        }
+        .integrity-box li {
+            padding: 3px 0;
+            line-height: 1.6;
+            font-size: 11.5px;
+        }
+        .integrity-box .ok::before {
+            content: "✓";
+            color: var(--pass);
+            font-family: var(--latin);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .integrity-box .miss::before {
+            content: "─";
+            color: var(--ink-4);
+            font-family: var(--latin);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .integrity-foot {
+            grid-column: 1 / -1;
+            font-size: 11px;
+            color: var(--ink-3);
+            line-height: 1.65;
+            padding-top: var(--space-4);
+            border-top: 1px dashed var(--rule);
+            font-style: italic;
+            font-family: var(--latin), var(--sans);
+        }
+
+        /* ========== 报告页脚 ========== */
+        .report-footer {
+            text-align: center;
+            padding: var(--space-7) var(--space-8);
+            border-top: 2px solid var(--ink);
+            background: var(--surface);
+        }
+        .report-footer .footer-mark {
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: var(--space-2);
+        }
+        .report-footer p {
+            font-size: 11.5px;
+            color: var(--ink-3);
+            line-height: 1.85;
+        }
+        .report-footer p.brand {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: var(--space-2);
+        }
+        .report-footer p.source {
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--rule);
+            font-family: var(--latin), var(--sans);
+            font-style: italic;
+            font-size: 11px;
+        }
+
+        /* 打印优化 */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .report { box-shadow: none; max-width: none; }
+            .page { padding: 22mm 22mm; }
+            .cover { padding: 28mm 22mm; }
+        }
+    </style>
+</head>
+<body>
+<div class="report">
+
+<!-- ========== 封面 ========== -->
+<div class="cover">
+    <div class="cover-topbar">
+        <span class="cover-topbar-brand">IP Authorization Value Assessment</span>
+        <span class="cover-topbar-docid">No. IPDE-2026-MIKU-0501</span>
+    </div>
+    <div class="cover-body">
+        <div class="cover-eyebrow">Vol. 01 — Virtual Idol Series</div>
+        <h1 class="cover-ip-name">初音未来</h1>
+        <div class="cover-ip-en">Hatsune Miku · piapro characters</div>
+        <div class="cover-title">IP 授权价值评估报告</div>
+        <div class="cover-subtitle">评估日期 / 2026.05.01 · 有效期 90 天</div>
+        <div class="cover-verdict">
+            <div class="cover-verdict-label">Verdict</div>
+            <div class="cover-verdict-text">
+                全球长青虚拟偶像 IP,授权金率高、谈判难度大,毛绒/谷子/服装赛道已严重饱和。<br>
+                <strong>50—200 万预算下,聚焦"机会窗口"品类(美瞳/数码/主题餐饮快闪)做差异化切入,而非追逐红海毛绒/谷子。</strong>
+            </div>
+        </div>
+        <div class="cover-stamp" aria-hidden="true">
+            <div>
+                <div class="cover-stamp-text">Risk<br>Rating</div>
+                <div class="cover-stamp-num">B+</div>
+                <div class="cover-stamp-text">Mid-High</div>
+            </div>
+        </div>
+    </div>
+    <div class="cover-footer">
+        <div class="cover-meta">
+            <span class="label">Issued by</span>
+            <p>【新文创老贾聊IP】公众号</p>
+            <p style="margin-top:6px;font-size:11px;">报告基于公开数据与行业体感整理,仅供参考,不构成投资决策建议</p>
+        </div>
+        <div class="cover-confidential">Confidential / Internal</div>
+    </div>
+</div>
+
+<!-- ========== 第1页:执行摘要 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-MIKU-0501 · 2026.05.01</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">01</span>
+        <span class="title-text">执行摘要<span class="title-en">Executive Summary</span></span>
+    </h2>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-card-label">整体风险等级</div>
+            <div class="summary-card-value medium">中高风险</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">授权金率区间</div>
+            <div class="summary-card-value">12%-18%</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">参考保证金区间</div>
+            <div class="summary-card-value">较高</div>
+            <div class="summary-card-note">视品类协商</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">建议决策周期</div>
+            <div class="summary-card-value high">60-90天</div>
+        </div>
+    </div>
+
+    <div class="verdict-box">
+        <h4>一句话判断</h4>
+        <p>初音未来是日系硬核ACG长青IP,二创生态强但<span class="highlight">毛绒/谷子/服装赛道已严重饱和</span>;以50-200万预算想拿到差异化机会,应该选择尚未被密集合作的<span class="highlight">美妆护肤、数码电竞、主题餐饮快闪</span>等品类切入,而不是与18+合作伙伴同台抢已饱和的毛绒玩偶赛道。</p>
+    </div>
+
+    <div class="section-eyebrow">Four Key Takeaways · 四个关键结论</div>
+    <div class="key-points">
+        <div class="key-point">
+            <span class="key-point-num">01</span>
+            <div class="key-point-text">
+                <h5>长青 IP 无生命周期风险</h5>
+                <p>2007 年至今全球认知度持续,B 站二创生态成熟,几乎无下行风险,可作长线品牌资产配置。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">02</span>
+            <div class="key-point-text">
+                <h5>高授权门槛与长监修周期</h5>
+                <p>日系头部IP由国内独家总代运营,授权谈判周期长(60—90天)、监修严格(≥60天),需提前预留时间窗口。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">03</span>
+            <div class="key-point-text">
+                <h5>红海赛道警示</h5>
+                <p>23 条真实案例显示毛绒 / 谷子 / 服装已被 18+ 品牌覆盖,新进入者无价格空间且面临内部内卷。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">04</span>
+            <div class="key-point-text">
+                <h5>蓝海机会窗口仍在</h5>
+                <p>美瞳(仅 1 案例)、数码电竞(0 案例)、主题餐饮快闪(限上海)、二三线快闪城市仍有空白。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第2页:IP基础画像 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-MIKU-0501 · 2026.05.01</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">02</span>
+        <span class="title-text">IP 基础画像<span class="title-en">Foundation Profile</span></span>
+    </h2>
+
+    <div class="profile-grid">
+        <div class="profile-block">
+            <h4>基本信息 / Profile</h4>
+            <ul>
+                <li data-label="Origin">日本 Crypton Future Media,2007 年 8 月 31 日发售 VOCALOID2 软件</li>
+                <li data-label="Form">虚拟歌手 + 演唱会(Magical Mirai) + 二创(B 站 MMD / 同人) + 游戏(Project DIVA)</li>
+                <li data-label="Agent">国内独家总代运营,日系头部IP授权门槛高、监修周期长</li>
+                <li data-label="Channel">B 站(二创核心阵地)、微博、网易云音乐、QQ 音乐</li>
+            </ul>
+        </div>
+        <div class="profile-block">
+            <h4>用户画像 / Audience</h4>
+            <ul>
+                <li data-label="Age">18—32 岁男女均衡(略偏男性),一线 + 新一线为主</li>
+                <li data-label="Trait">硬核 ACG 收藏向,愿为限定版 / 演唱会周边付高溢价</li>
+                <li data-label="Price">价格敏感度低,为情绪与收藏价值买单</li>
+                <li data-label="Repeat">复购率高,收藏属性极强,周边集邮型消费</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="profile-block full">
+        <h4>标签体系 / Tag System</h4>
+        <div class="tag-cloud">
+            <span class="tag hot">全球认知</span>
+            <span class="tag hot">长青 IP</span>
+            <span class="tag">二次元硬核</span>
+            <span class="tag">二创生态强</span>
+            <span class="tag">演唱会经济</span>
+            <span class="tag">限定品溢价高</span>
+            <span class="tag">多角色矩阵</span>
+            <span class="tag">男女通吃</span>
+            <span class="tag">跨语言文化符号</span>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        <div class="profile-block">
+            <h4>授权模式 / Licensing</h4>
+            <ul>
+                <li data-label="Type">商品 + 演唱会周边 + 游戏内联动 + 主题快闪</li>
+                <li data-label="Rate">12% — 18%(日系 IP 偏高位)</li>
+                <li data-label="Deposit">视品类协商,日系总代单品最低保证金通常较高</li>
+                <li data-label="Term">1—2 年常见;演唱会 IP 合作多为单次活动制</li>
+                <li data-label="MOQ">部分品类有最低销量要求</li>
+            </ul>
+        </div>
+        <div class="profile-block">
+            <h4>竞争格局 / Competition</h4>
+            <ul>
+                <li data-label="Direct">镜音双子(同公司)、巡音流歌、洛天依(国产 VOCALOID)</li>
+                <li data-label="Threat">中等。国内有洛天依 / 星尘等本土 VOCALOID 替代</li>
+                <li data-label="Channel">名创已铺基础周边;ACG 专门店(谷子店 / B 站会员店)是主战场</li>
+                <li data-label="Pricing">限定品无价格战;基础品(钥匙扣 / 谷子)价格已下沉</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="rate-bar">
+        <div class="rate-bar-head">
+            <span class="rate-bar-label">授权谈判难度</span>
+            <span class="rate-bar-value">80%</span>
+        </div>
+        <div class="rate-bar-track">
+            <div class="rate-bar-fill" style="width: 80%;"></div>
+        </div>
+        <div class="rate-bar-scale">
+            <span>EASY</span>
+            <span>50</span>
+            <span>75</span>
+            <span>HARD</span>
+        </div>
+        <div class="rate-bar-note">参考基线:国产 IP 平均 45% · 韩系 IP 平均 65—75% · 日系头部 IP 平均 80—90%</div>
+    </div>
+</div>
+
+<!-- ========== 第3页:品类饱和度分析 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-MIKU-0501 · 2026.05.01</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">03</span>
+        <span class="title-text">品类饱和度分析<span class="title-en">Category Saturation Analysis</span></span>
+    </h2>
+
+    <table class="sat-table">
+        <thead>
+            <tr>
+                <th style="width:18%">品类</th>
+                <th style="width:14%">饱和度</th>
+                <th style="width:28%">已授权品牌/渠道</th>
+                <th>判断依据</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>毛绒玩偶/挂件</strong></td>
+                <td><span class="sat-badge red"><span class="sat-dot"></span>严重饱和</span></td>
+                <td>萌羽moeyu / bilibiliGoods / 官方旗舰店 / 灵动创想</td>
+                <td class="sat-reason">23条案例中9条为毛绒,4家品牌反复合作,款式同质化(40cm坐姿/迷你披肩/盲盒)严重</td>
+            </tr>
+            <tr>
+                <td><strong>谷子周边(徽章/亚克力)</strong></td>
+                <td><span class="sat-badge red"><span class="sat-dot"></span>严重饱和</span></td>
+                <td>bilibiliGoods / SEGA / 官方旗舰店</td>
+                <td class="sat-reason">徽章/拍立得/亚克力等长期高频上新,B站会员购+天猫旗舰店双线占据,设计同质化</td>
+            </tr>
+            <tr>
+                <td><strong>服装穿搭</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>萌羽moeyu(多次主导)</td>
+                <td class="sat-reason">单一头部品牌持续输出3条系列,新进入者价格空间窄;但联名设计师款仍有溢价空间</td>
+            </tr>
+            <tr>
+                <td><strong>数字平台/工具</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>网易云音乐 / QQ音乐 / 哈啰骑行 / 摩点</td>
+                <td class="sat-reason">主要数字平台已联名,新进入者仅余支付/出行/教育垂类</td>
+            </tr>
+            <tr>
+                <td><strong>插画/设计师联名</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>SS杂志 / SEGA第五届 / 摩点造物</td>
+                <td class="sat-reason">头部赛事已被锁定,但小型品牌定制设计师款仍可切入</td>
+            </tr>
+            <tr>
+                <td><strong>美瞳</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>弥生MIUSOU(2026年4月首推)</td>
+                <td class="sat-reason">仅1个案例,且为该IP美瞳类首次合作,后续可拓展彩瞳/定轴新花色</td>
+            </tr>
+            <tr>
+                <td><strong>线下快闪/主题餐饮</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>百联ZX / 第一百货 / FUN4YEAH(均上海)</td>
+                <td class="sat-reason">5条案例全集中上海,二三线城市渠道空白,演唱会衍生快闪潜力大</td>
+            </tr>
+            <tr>
+                <td><strong>可动人偶/手办</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>TinyFox(4分MJD)</td>
+                <td class="sat-reason">仅1个案例,中高端潮玩供应链未被深度合作</td>
+            </tr>
+            <tr>
+                <td><strong>美妆护肤(除美瞳)</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">23条记录中仅美瞳1类,口红/护肤/面膜等仍空白,IP+美妆是2024-2026年增长赛道</td>
+            </tr>
+            <tr>
+                <td><strong>食品饮料(包装)</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">主题餐饮已铺,包装食品/茶饮(瑞幸/喜茶级别)未见联名</td>
+            </tr>
+            <tr>
+                <td><strong>数码电竞</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">23条记录无键盘/鼠标/耳机案例,雷蛇/罗技G合作路径可探</td>
+            </tr>
+            <tr>
+                <td><strong>文具办公</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">晨光/得力等大厂未见合作,学生人群与IP受众高度重合</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning-box">
+        <h4>品类选择建议(基于品牌方所在品类:全品类)</h4>
+        <p>预算50-200万属于中等档位。在初音未来IP上,这个预算层级最容易踩坑的是"想覆盖多品类反而都做不深"。<strong>建议聚焦1-2个机会窗口品类做透,而不是分散下注。</strong><br><br>
+        <strong>首选(高ROI):</strong>主题餐饮快闪 — 50-150万可承担一线商场中庭3周项目,上海以外二三线城市仍有空白,客单价高+社交传播强,演唱会衍生快闪已有验证案例。<br>
+        <strong>次选(高溢价):</strong>美瞳/彩瞳定制 — 弥生已验证可行,可寻找剩余次头部品牌(SeeingMe/Eyeplay等)做差异化定轴款。<br>
+        <strong>避坑:</strong>不要进入毛绒/谷子/服装赛道 — 18+品牌已锁定,新进入者无设计差异化空间且面临价格内卷。</p>
+    </div>
+</div>
+
+<!-- ========== 第4页:风险点清单 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-MIKU-0501 · 2026.05.01</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">04</span>
+        <span class="title-text">风险点清单<span class="title-en">Risk Inventory</span></span>
+    </h2>
+
+    <div class="risk-list">
+        <div class="risk-item lvl-high">
+            <div class="risk-level">
+                <span class="risk-level-tag">HIGH</span>
+            </div>
+            <div class="risk-content">
+                <h4>同品类内部细分授权竞争</h4>
+                <p>23 条案例显示毛绒赛道内已有萌羽 moeyu / bilibiliGoods / 官方旗舰店 / 灵动创想 4 家持续输出。同一品类被多品牌密集占位,新进入者面临激烈的外部竞争,差异化空间被挤压。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    拿授权前先要授权方提供该品类已签厂商列表,避免重叠;如毛绒已饱和,转向差异化质感(羊毛毡 / 编织手作 / 陶瓷摆件)或非主流品类。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-high">
+            <div class="risk-level">
+                <span class="risk-level-tag">HIGH</span>
+            </div>
+            <div class="risk-content">
+                <h4>产品同质化与价格战</h4>
+                <p>毛绒玩偶款式集中在 40cm 坐姿玩偶 / 迷你披肩挂件 / 盲盒三种主流形态。B 站会员购和萌羽出厂价已逼近成本线;1688 搜索"初音未来 毛绒"供应商数量大,盗版冲击强。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    拿到授权后必须有"独家设计能力"(限定材质 / 特殊工艺) + "独占渠道"(自营品牌店或连锁超市自营),否则不要进入此赛道。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-mid-high">
+            <div class="risk-level">
+                <span class="risk-level-tag">MID-HIGH</span>
+            </div>
+            <div class="risk-content">
+                <h4>热度见顶与替代 IP 崛起</h4>
+                <p>初音未来 IP 热度自 2007 年起持续 18 年,粉丝群已稳定但未必扩张。国内有洛天依 / 星尘等 VOCALOID 替代,授权金率比初音低 30—50%,品牌方 ROI 压力会被对比放大。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    短期合作(1—2 年)选初音保安全;长期布局可考虑洛天依(同品类授权金低) + 绝版限定款溢价策略,降低单 IP 依赖。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-mid">
+            <div class="risk-level">
+                <span class="risk-level-tag">MID</span>
+            </div>
+            <div class="risk-content">
+                <h4>最低销量保底条款</h4>
+                <p>日系 IP 总代单品最低保证金通常较高,且部分品类有最低销量要求。若品牌方实际动销低于保底,差额需补足,可能造成产品砸手里 + 保底款重复支付。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    谈判时争取阶梯式保证金(首批后按动销追加);要求样品市场测试期(1—2 个月)再确定保底量;签订前要求看版权方近 2 年同品类合作的实际销量数据。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-low">
+            <div class="risk-level">
+                <span class="risk-level-tag">LOW</span>
+            </div>
+            <div class="risk-content">
+                <h4>盗版与渠道乱价</h4>
+                <p>初音未来全球认知度高 + 硬核粉丝群,谷子 / 毛绒类盗版极猖獗,1688 供应商和闲鱼水货严重拉低正版价格。但相比纯粉丝向 IP,初音的硬核粉丝群对正版认证敏感度较高。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    必须配合版权方维权(发律师函 + 电商下架);避免单 SKU 依赖,做体系化产品矩阵分散风险;入驻官方授权专卖店标识体系。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alternative-box">
+        <h4>竞品IP / Competitor IPs</h4>
+        <div class="alt-grid">
+            <div class="alt-card">
+                <div class="alt-name">chiikawa(吉伊卡哇)</div>
+                <div class="alt-rate">RATE 10—15% · 监修偏长</div>
+                <p>同样 18—28 岁女性受众,角色羁绊与故事性更强,谷子 / 潮玩变现强。授权金率略低于初音,但监修周期较长。</p>
+            </div>
+            <div class="alt-card">
+                <div class="alt-name">洛天依</div>
+                <div class="alt-rate">RATE 8—12% · 监修 ≤30 天</div>
+                <p>国产 VOCALOID,同赛道但授权金率大幅低于初音,沟通顺畅、监修周期短。缺点是国际认知度低,适合纯国内市场。</p>
+            </div>
+            <div class="alt-card">
+                <div class="alt-name">库洛米</div>
+                <div class="alt-rate">RATE 15—20% · 全品类铺货强</div>
+                <p>三丽鸥系暗黑萌,18—30 岁女性,2024—2026 年热度持续上升;授权金率与初音相当但全品类铺货能力更强,适合全品类品牌。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第5页:授权案例附录(基于飞书"IP授权案例"多维表格23条真实数据) ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-MIKU-0501 · 2026.05.01</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">05</span>
+        <span class="title-text">授权案例附录<span class="title-en">Licensing Case Appendix</span></span>
+    </h2>
+
+    <div class="case-intro">本案例库基于公开渠道采集的 23 条初音未来授权项目信息整理(2026.01—2026.04)。</div>
+
+    <div style="overflow-x:auto;">
+        <table class="case-table">
+            <thead>
+                <tr>
+                    <th style="width:4%">No.</th>
+                    <th style="width:22%">案例标题</th>
+                    <th style="width:11%">授权品类</th>
+                    <th style="width:13%">合作品牌</th>
+                    <th style="width:9%">授权方式</th>
+                    <th style="width:8%">线下活动</th>
+                    <th style="width:10%">发布时间</th>
+                    <th>用户互动 / 销售描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="idx">01</td>
+                    <td class="title"><strong>「弥生 MIUSOU × 初音未来」未来之瞳系列美瞳联名</strong></td>
+                    <td>美瞳</td>
+                    <td>弥生 MIUSOU</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.04.30</td>
+                    <td class="desc">点赞 1257 / 收藏 131 / 评论 36;5 月 10 日上市,首推未来之瞳定轴花色</td>
+                </tr>
+                <tr>
+                    <td class="idx">02</td>
+                    <td class="title"><strong>哈啰骑行 × 初音未来「做情绪自由的大人」语录联名</strong></td>
+                    <td>出行 / 数字</td>
+                    <td>哈啰骑行</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.04.28</td>
+                    <td class="desc">点赞 1085 / 收藏 91 / 评论 38;7 则独家语录,4.27—5.10 活动</td>
+                </tr>
+                <tr>
+                    <td class="idx">03</td>
+                    <td class="title"><strong>樱花未来「粉樱幻舞」主题餐厅</strong></td>
+                    <td>主题餐饮</td>
+                    <td>第一百货商业中心</td>
+                    <td>主题授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.04.28</td>
+                    <td class="desc">城市:上海 · 时间 4.28—6.15 · 主题餐饮快闪 · 虚拟偶像 / 日本</td>
+                </tr>
+                <tr>
+                    <td class="idx">04</td>
+                    <td class="title"><strong>迷你披肩系列毛绒挂件 CP32 展会首发</strong></td>
+                    <td>毛绒挂件</td>
+                    <td>官方旗舰店</td>
+                    <td>联名授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.04.25</td>
+                    <td class="desc">点赞 427 / 收藏 39 / 评论 14;5.1—5.5 杭州大会展 7A 馆 CPA08</td>
+                </tr>
+                <tr>
+                    <td class="idx">05</td>
+                    <td class="title"><strong>骑士幻想系列毛绒上新</strong></td>
+                    <td>毛绒玩偶</td>
+                    <td>官方旗舰店</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.04.22</td>
+                    <td class="desc">点赞 360 / 收藏 24 / 评论 19;40cm 坐姿 + 磁吸趴趴挂件</td>
+                </tr>
+                <tr>
+                    <td class="idx">06</td>
+                    <td class="title"><strong>迷你披肩盲盒(萌羽 moeyu)</strong></td>
+                    <td>盲盒 / 毛绒</td>
+                    <td>萌羽 moeyu</td>
+                    <td>联名授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.04.21</td>
+                    <td class="desc">点赞 622 / 收藏 61 / 评论 34;CP32 首发,69 元 / 个,常规 1/6 + 隐藏 1/72</td>
+                </tr>
+                <tr>
+                    <td class="idx">07</td>
+                    <td class="title"><strong>SEGA 第五届服装 & 插画征稿大赛</strong></td>
+                    <td>插画大赛</td>
+                    <td>SEGA × bilibili 会员购</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.27</td>
+                    <td class="desc">点赞 1552 / 收藏 966 / 评论 33;万元奖金 + S-FIRE 手办 + 三月八日老师设计款</td>
+                </tr>
+                <tr>
+                    <td class="idx">08</td>
+                    <td class="title"><strong>TinyFox V4C 1/4 MJD 可动人偶</strong></td>
+                    <td>可动人偶</td>
+                    <td>TinyFox</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.27</td>
+                    <td class="desc">点赞 1577 / 收藏 194 / 评论 59;限时 20 天预售(3.27—4.15)</td>
+                </tr>
+                <tr>
+                    <td class="idx">09</td>
+                    <td class="title"><strong>摇滚未来系列穿搭 LOOK</strong></td>
+                    <td>服装穿搭</td>
+                    <td>萌羽 moeyu</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.13</td>
+                    <td class="desc">点赞 373 / 收藏 36 / 评论 14;上衣 + 下装 + 配饰全套</td>
+                </tr>
+                <tr>
+                    <td class="idx">10</td>
+                    <td class="title"><strong>「未来有你 2025 演唱会」周边</strong></td>
+                    <td>演唱会周边</td>
+                    <td>官方旗舰店</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.12</td>
+                    <td class="desc">点赞 451 / 收藏 38 / 评论 17;3 月温暖上市</td>
+                </tr>
+                <tr>
+                    <td class="idx">11</td>
+                    <td class="title"><strong>霓虹电子乐系列春夏穿搭(10 款)</strong></td>
+                    <td>服装穿搭</td>
+                    <td>萌羽 moeyu</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.11</td>
+                    <td class="desc">点赞 539 / 收藏 43 / 评论 34;黑蓝撞色 + 赛博霓虹元素</td>
+                </tr>
+                <tr>
+                    <td class="idx">12</td>
+                    <td class="title"><strong>piapro UWA 系列吃饱饱毛绒玩偶(B 站)</strong></td>
+                    <td>毛绒玩偶</td>
+                    <td>bilibiliGoods</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.10</td>
+                    <td class="desc">点赞 408 / 收藏 27 / 评论 26;6 人全员款,掌心尺寸</td>
+                </tr>
+                <tr>
+                    <td class="idx">13</td>
+                    <td class="title"><strong>QQ 音乐入驻 × 限定勋章 / 歌词卡</strong></td>
+                    <td>数字平台</td>
+                    <td>QQ 音乐</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.09</td>
+                    <td class="desc">点赞 1055 / 收藏 77 / 评论 32;3.9 MIKU 入驻 · 卡游 / Keep 联动周边</td>
+                </tr>
+                <tr>
+                    <td class="idx">14</td>
+                    <td class="title"><strong>摩点造物计划众筹</strong></td>
+                    <td>众筹 / 设计师</td>
+                    <td>摩点众筹</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.09</td>
+                    <td class="desc">点赞 294 / 收藏 29 / 评论 15;39 感谢日二创征集 + 设计师招募</td>
+                </tr>
+                <tr>
+                    <td class="idx">15</td>
+                    <td class="title"><strong>piapro UWA 吃饱饱玩偶预售</strong></td>
+                    <td>毛绒玩偶</td>
+                    <td>bilibiliGoods</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.03.08</td>
+                    <td class="desc">点赞 454 / 收藏 26 / 评论 25;3.8 抢先加车,3.9 正式预售</td>
+                </tr>
+                <tr>
+                    <td class="idx">16</td>
+                    <td class="title"><strong>灵动创想 yummybox 毛绒盲盒(演唱会联动)</strong></td>
+                    <td>盲盒 / 毛绒</td>
+                    <td>灵动创想</td>
+                    <td>联名授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.03.04</td>
+                    <td class="desc">点赞 752 / 收藏 69 / 评论 34;魔法使主题 + 未来有你 2025 演唱会联动</td>
+                </tr>
+                <tr>
+                    <td class="idx">17</td>
+                    <td class="title"><strong>Racing Miku 主题快闪</strong></td>
+                    <td>主题快闪</td>
+                    <td>百联 ZX 造趣场</td>
+                    <td>主题授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.02.25</td>
+                    <td class="desc">城市:上海 · 时间 9.30—10.8 · 虚拟偶像 / 日本</td>
+                </tr>
+                <tr>
+                    <td class="idx">18</td>
+                    <td class="title"><strong>猫猫咖啡厅春节快闪(放肆耶)</strong></td>
+                    <td>主题餐饮</td>
+                    <td>百联 ZX 创趣场</td>
+                    <td>联名授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.02.14</td>
+                    <td class="desc">点赞 476 / 收藏 49 / 评论 69;南京东路 340 号 L2,2.10—3.8</td>
+                </tr>
+                <tr>
+                    <td class="idx">19</td>
+                    <td class="title"><strong>放肆耶春节快闪</strong></td>
+                    <td>主题快闪</td>
+                    <td>百联 ZX 创趣场</td>
+                    <td>主题授权</td>
+                    <td class="offline">Offline</td>
+                    <td class="date">2026.02.13</td>
+                    <td class="desc">城市:上海 · 时间 2.13—3.08 · 多类型多国别 IP</td>
+                </tr>
+                <tr>
+                    <td class="idx">20</td>
+                    <td class="title"><strong>piapro 初心蜜语徽章周边系列</strong></td>
+                    <td>谷子周边</td>
+                    <td>bilibiliGoods</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.02.13</td>
+                    <td class="desc">点赞 1535 / 收藏 180 / 评论 71;徽章 / 亚克力 / 拍立得 + 满赠特典</td>
+                </tr>
+                <tr>
+                    <td class="idx">21</td>
+                    <td class="title"><strong>「星耀之声」网易云音乐播放器背景</strong></td>
+                    <td>数字平台</td>
+                    <td>网易云音乐</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.02.01</td>
+                    <td class="desc">点赞 246 / 收藏 46 / 评论 21;经典黑胶自定义播放器皮肤</td>
+                </tr>
+                <tr>
+                    <td class="idx">22</td>
+                    <td class="title"><strong>「潮汐之歌」毛绒系列(弥生 MIUSOU)</strong></td>
+                    <td>毛绒挂件</td>
+                    <td>弥生 MIUSOU</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.01.26</td>
+                    <td class="desc">点赞 181 / 收藏 22 / 评论 22;1 月 30 日发售,蓝白航海服 + 努努挂件</td>
+                </tr>
+                <tr>
+                    <td class="idx">23</td>
+                    <td class="title"><strong>「初音未来 × SS 杂志」插画大赛获奖名单</strong></td>
+                    <td>插画大赛</td>
+                    <td>SS 杂志</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">2026.01.21</td>
+                    <td class="desc">点赞 1164 / 收藏 107 / 评论 137;优秀作品刊载日本《SS》第 84 期</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ========== 报告页脚 ========== -->
+<div class="report-footer">
+    <p class="footer-mark">— End of Report —</p>
+    <p class="brand">【新文创老贾聊IP】公众号</p>
+    <p>报告基于公开数据与行业体感整理,仅供参考,不构成投资决策建议。</p>
+    <p class="source">Source — 公开渠道采集 + 行业公开资讯整理 · Updated 2026.05.01</p>
+</div>
+
+</div>
+</body>
+</html>
