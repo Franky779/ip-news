@@ -4,188 +4,287 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP授权价值评估报告 · 线条小狗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        @page { size: A4; margin: 2cm; }
+        @page { size: A4; margin: 20mm 22mm 24mm 22mm; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: oklch(97.5% 0.008 75);
+            --surface: oklch(100% 0.005 75);
+            --text: oklch(22% 0.02 60);
+            --text-secondary: oklch(45% 0.03 60);
+            --text-muted: oklch(60% 0.02 60);
+            --accent: oklch(45% 0.14 45);
+            --accent-light: oklch(92% 0.04 45);
+            --border: oklch(85% 0.015 75);
+            --border-light: oklch(90% 0.01 75);
+            --space-xs: 0.25rem; --space-sm: 0.5rem; --space-md: 1rem;
+            --space-lg: 1.5rem; --space-xl: 2.5rem; --space-2xl: 4rem;
+        }
+
         body {
             font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
             font-size: 14px;
-            line-height: 1.7;
-            color: #1a1a1a;
-            background: #f5f3f0;
-            padding: 40px 0;
+            line-height: 1.75;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
         .report {
             max-width: 210mm;
             margin: 0 auto;
-            background: #fff;
+            background: var(--surface);
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
         .page {
-            padding: 48px 56px;
+            padding: 0 var(--space-xl);
             page-break-after: always;
         }
         .page:last-child { page-break-after: auto; }
-        .page + .page { border-top: 1px dashed #e5e0da; }
+        .page + .page { border-top: 1px solid var(--border-light); }
 
         /* 封面 */
         .cover {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            justify-content: space-between;
             min-height: 297mm;
-            padding: 48px 56px;
-            background: linear-gradient(180deg, #fff 0%, #faf8f5 100%);
+            padding: var(--space-xl) var(--space-2xl);
+            background: linear-gradient(180deg, var(--surface) 0%, oklch(98% 0.005 75) 100%);
+            text-align: center;
         }
-        .cover-badge {
-            font-size: 11px;
+        .cover-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .cover-topbar-brand {
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.15em;
-            color: #c45c3e;
-            border: 1px solid #c45c3e;
-            padding: 6px 20px;
-            margin-bottom: 40px;
+            color: var(--accent);
+        }
+        .cover-topbar-docid {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+        .cover-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .cover-category {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: var(--space-lg);
         }
         .cover-ip-name {
             font-family: "Noto Serif SC", serif;
-            font-size: 42px;
+            font-size: clamp(2rem, 5vw, 2.75rem);
             font-weight: 900;
-            color: #1a1a1a;
-            margin-bottom: 12px;
+            color: var(--text);
+            margin-bottom: var(--space-sm);
         }
         .cover-ip-en {
             font-size: 13px;
-            color: #999;
-            letter-spacing: 0.1em;
-            margin-bottom: 48px;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-2xl);
+        }
+        .cover-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-bottom: var(--space-xl);
         }
         .cover-title {
             font-family: "Noto Serif SC", serif;
-            font-size: 22px;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 8px;
+            color: var(--text);
+            margin-bottom: var(--space-sm);
         }
         .cover-subtitle {
             font-size: 13px;
-            color: #888;
-            margin-bottom: 60px;
+            color: var(--text-muted);
+            margin-bottom: var(--space-2xl);
         }
         .cover-verdict {
-            background: #fff8f0;
-            border-left: 4px solid #c45c3e;
-            padding: 24px 32px;
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: var(--space-lg) var(--space-xl);
             text-align: left;
-            max-width: 480px;
+            max-width: 520px;
             width: 100%;
         }
         .cover-verdict-label {
             font-size: 11px;
             font-weight: 600;
-            color: #c45c3e;
+            color: var(--accent);
             letter-spacing: 0.1em;
-            margin-bottom: 8px;
+            margin-bottom: var(--space-sm);
         }
         .cover-verdict-text {
             font-family: "Noto Serif SC", serif;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--text);
             line-height: 1.6;
         }
-        .cover-meta {
-            margin-top: 60px;
-            font-size: 12px;
-            color: #aaa;
+        .cover-footer {
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
-        .cover-meta p { margin: 4px 0; }
+        .cover-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            text-align: left;
+        }
+        .cover-meta p { margin: 2px 0; }
+        .cover-confidential {
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+        }
 
-        /* 内页通用 */
+        /* 页眉 */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: var(--space-xl);
+        }
+        .page-header-brand {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+        }
+        .page-header-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* 章节标题 */
         .section-title {
             font-family: "Noto Serif SC", serif;
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 700;
-            color: #1a1a1a;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #c45c3e;
-            margin-bottom: 28px;
+            color: var(--text);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: var(--space-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
         }
         .section-title .num {
-            font-family: "Noto Sans SC", sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            color: #c45c3e;
-            margin-right: 8px;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         /* 执行摘要 */
         .summary-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
         }
         .summary-card {
-            background: #faf8f5;
-            border-radius: 8px;
-            padding: 20px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            text-align: center;
         }
         .summary-card-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
-            color: #888;
+            color: var(--text-muted);
             letter-spacing: 0.08em;
-            margin-bottom: 8px;
+            margin-bottom: var(--space-sm);
         }
         .summary-card-value {
             font-family: "Noto Serif SC", serif;
-            font-size: 18px;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--text);
         }
-        .summary-card-value.medium { color: #c45c3e; }
+        .summary-card-value.medium { color: var(--accent); }
         .summary-card-value.low { color: #5a8f5a; }
+        .summary-card-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
 
         .verdict-box {
-            background: #fff5f0;
-            border-radius: 8px;
-            padding: 24px 28px;
-            margin-bottom: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg) var(--space-xl);
+            margin-bottom: var(--space-xl);
         }
         .verdict-box h4 {
             font-family: "Noto Serif SC", serif;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            color: #c45c3e;
-            margin-bottom: 12px;
+            color: var(--accent);
+            margin-bottom: var(--space-md);
         }
         .verdict-box p {
             font-size: 14px;
-            color: #444;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
         .verdict-box .highlight {
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--text);
+            background: var(--accent-light);
+            padding: 1px 4px;
+            border-radius: 3px;
         }
 
         .key-points {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: var(--space-md);
         }
         .key-point {
             display: flex;
-            gap: 12px;
+            gap: var(--space-md);
             align-items: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-md) var(--space-lg);
         }
         .key-point-icon {
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: #c45c3e;
+            background: var(--accent);
             color: #fff;
             font-size: 12px;
             font-weight: 700;
@@ -198,12 +297,12 @@
         .key-point-text h5 {
             font-size: 13px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--text);
             margin-bottom: 4px;
         }
         .key-point-text p {
             font-size: 12px;
-            color: #777;
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
@@ -211,30 +310,30 @@
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
         }
         .profile-block {
-            background: #faf8f5;
-            border-radius: 8px;
-            padding: 20px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg);
         }
         .profile-block h4 {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            color: #888;
+            color: var(--text-muted);
             letter-spacing: 0.08em;
-            margin-bottom: 12px;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border-light);
         }
         .profile-block p, .profile-block li {
             font-size: 13px;
-            color: #444;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
-        .profile-block ul {
-            list-style: none;
-            padding: 0;
-        }
+        .profile-block ul { list-style: none; padding: 0; }
         .profile-block li {
             padding-left: 16px;
             position: relative;
@@ -247,42 +346,46 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #c45c3e;
+            background: var(--accent);
         }
         .tag {
             display: inline-block;
             font-size: 11px;
             padding: 3px 10px;
             border-radius: 100px;
-            background: #f0ebe5;
-            color: #666;
+            background: oklch(96% 0.01 75);
+            color: var(--text-secondary);
             margin-right: 6px;
             margin-bottom: 6px;
         }
-        .tag.hot { background: #fff0e8; color: #c45c3e; }
+        .tag.hot { background: var(--accent-light); color: var(--accent); }
 
         .rate-bar {
-            margin-top: 16px;
+            margin-top: var(--space-lg);
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg);
         }
         .rate-bar-label {
             font-size: 12px;
-            color: #666;
-            margin-bottom: 6px;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
         }
         .rate-bar-track {
             height: 8px;
-            background: #eee;
+            background: var(--border-light);
             border-radius: 4px;
             overflow: hidden;
         }
         .rate-bar-fill {
             height: 100%;
-            background: #c45c3e;
+            background: var(--accent);
             border-radius: 4px;
         }
         .rate-bar-note {
             font-size: 11px;
-            color: #999;
+            color: var(--text-muted);
             margin-top: 4px;
         }
 
@@ -290,25 +393,26 @@
         .sat-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 28px;
+            margin-bottom: var(--space-xl);
+            font-size: 13px;
         }
         .sat-table th {
             text-align: left;
             font-size: 11px;
             font-weight: 600;
-            color: #888;
-            letter-spacing: 0.08em;
-            padding: 12px 16px;
-            border-bottom: 2px solid #e5e0da;
-            background: #faf8f5;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 2px solid var(--accent);
+            background: var(--surface);
         }
         .sat-table td {
-            padding: 16px;
-            border-bottom: 1px solid #f0ebe5;
-            font-size: 13px;
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--border-light);
             vertical-align: top;
+            color: var(--text-secondary);
         }
-        .sat-table tr:hover td { background: #fdfcfa; }
+        .sat-table tr:hover td { background: oklch(98.5% 0.003 75); }
 
         .sat-badge {
             display: inline-flex;
@@ -316,51 +420,34 @@
             gap: 6px;
             font-size: 12px;
             font-weight: 600;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 100px;
         }
-        .sat-badge.red {
-            background: #fff0f0;
-            color: #c44;
-        }
-        .sat-badge.yellow {
-            background: #fff8e8;
-            color: #a67c00;
-        }
-        .sat-badge.green {
-            background: #f0f8f0;
-            color: #4a8a4a;
-        }
-        .sat-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
+        .sat-badge.red { background: #fff0f0; color: #c44; }
+        .sat-badge.yellow { background: #fff8e8; color: #a67c00; }
+        .sat-badge.green { background: #f0f8f0; color: #4a8a4a; }
+        .sat-dot { width: 8px; height: 8px; border-radius: 50%; }
         .sat-badge.red .sat-dot { background: #c44; }
         .sat-badge.yellow .sat-dot { background: #d4a017; }
         .sat-badge.green .sat-dot { background: #5a8f5a; }
-
-        .sat-reason {
-            font-size: 12px;
-            color: #777;
-            line-height: 1.6;
-        }
+        .sat-reason { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
         .warning-box {
-            background: #fff8f0;
-            border: 1px solid #f0dcc8;
-            border-radius: 8px;
-            padding: 20px 24px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg) var(--space-xl);
         }
         .warning-box h4 {
+            font-family: "Noto Serif SC", serif;
             font-size: 13px;
-            font-weight: 600;
-            color: #a67c00;
-            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
         }
         .warning-box p {
             font-size: 13px;
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
@@ -368,16 +455,22 @@
         .risk-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: var(--space-md);
         }
         .risk-item {
             display: flex;
-            gap: 16px;
-            padding: 20px 24px;
-            background: #faf8f5;
-            border-radius: 8px;
-            border-left: 3px solid #c45c3e;
+            gap: var(--space-md);
+            padding: var(--space-lg);
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            border-left: 3px solid var(--accent);
         }
+        .risk-item:nth-child(1) { border-left-color: #c44; }
+        .risk-item:nth-child(2) { border-left-color: #c47020; }
+        .risk-item:nth-child(3) { border-left-color: #d4a017; }
+        .risk-item:nth-child(4) { border-left-color: #d4a017; }
+        .risk-item:nth-child(5) { border-left-color: #5a8f5a; }
         .risk-level {
             flex-shrink: 0;
             width: 48px;
@@ -385,73 +478,78 @@
         }
         .risk-level-num {
             font-family: "Noto Serif SC", serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
-            color: #c45c3e;
+            color: var(--text);
             line-height: 1;
         }
         .risk-level-label {
             font-size: 10px;
-            color: #c45c3e;
+            color: var(--text-muted);
             letter-spacing: 0.05em;
             margin-top: 2px;
         }
         .risk-content h4 {
             font-size: 14px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: var(--text);
             margin-bottom: 6px;
         }
         .risk-content p {
             font-size: 13px;
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
         .risk-content .solution {
-            margin-top: 8px;
+            margin-top: var(--space-sm);
             font-size: 12px;
             color: #5a7a5a;
             background: #f0f7f0;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 8px;
         }
 
         .alternative-box {
-            background: #f5f8fa;
-            border-radius: 8px;
-            padding: 24px 28px;
-            margin-top: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: var(--space-lg) var(--space-xl);
+            margin-top: var(--space-xl);
         }
         .alternative-box h4 {
             font-family: "Noto Serif SC", serif;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            color: #4a6a8a;
-            margin-bottom: 12px;
+            color: var(--text);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border-light);
         }
         .alternative-box p {
             font-size: 13px;
-            color: #555;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
+        .alternative-box strong { color: var(--text); font-weight: 600; }
 
-        /* 页脚 */
+        /* 报告页脚 */
         .report-footer {
             text-align: center;
-            padding: 32px 56px;
-            border-top: 1px solid #f0ebe5;
+            padding: var(--space-xl) var(--space-2xl);
+            border-top: 1px solid var(--border-light);
         }
         .report-footer p {
-            font-size: 11px;
-            color: #bbb;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
         /* 打印优化 */
         @media print {
             body { background: #fff; padding: 0; }
             .report { box-shadow: none; max-width: none; }
-            .page { min-height: 297mm; padding: 0; margin-bottom: 20px; border-top: none; }
-            .cover { min-height: 297mm; padding: 40px; }
+            .page { min-height: 297mm; padding: 0 22mm; border-top: none; }
+            .cover { min-height: 297mm; padding: 40px 22mm; }
         }
     </style>
 </head>
@@ -460,30 +558,43 @@
 
 <!-- ========== 封面 ========== -->
 <div class="cover">
-    <div class="cover-badge">IP AUTHORIZATION VALUE ASSESSMENT</div>
-    <div class="cover-ip-name">线条小狗</div>
-    <div class="cover-ip-en">Maltese / 韩国插画IP · 2020年问世</div>
-    <div class="cover-title">IP授权价值评估报告</div>
-    <div class="cover-subtitle">评估日期：2026年4月27日 · 有效期90天</div>
+    <div class="cover-topbar">
+        <div class="cover-topbar-brand">IP AUTHORIZATION VALUE ASSESSMENT</div>
+        <div class="cover-topbar-docid">IP-VAL-2026-0427-001</div>
+    </div>
+    <div class="cover-body">
+        <div class="cover-category">IP 授权价值评估</div>
+        <div class="cover-ip-name">线条小狗</div>
+        <div class="cover-ip-en">Maltese / 韩国插画IP · 2020年问世</div>
+        <div class="cover-divider"></div>
+        <div class="cover-title">IP授权价值评估报告</div>
+        <div class="cover-subtitle">评估日期：2026年4月27日 · 有效期90天</div>
 
-    <div class="cover-verdict">
-        <div class="cover-verdict-label">核心判断</div>
-        <div class="cover-verdict-text">
-            线条小狗热度高位运行，但毛绒/谷子品类已高度饱和。<br>
-            <strong>建议新入局者优先考虑家居用品、办公文创及线下空间授权；<br>
-            毛绒和盲盒品类不建议2026年新进入。</strong>
+        <div class="cover-verdict">
+            <div class="cover-verdict-label">核心判断</div>
+            <div class="cover-verdict-text">
+                线条小狗热度高位运行，但毛绒/谷子品类已高度饱和。<br>
+                <strong>建议新入局者优先考虑家居用品、办公文创及线下空间授权；<br>
+                毛绒和盲盒品类不建议2026年新进入。</strong>
+            </div>
         </div>
     </div>
-
-    <div class="cover-meta">
-        <p>出品：老贾聊IP授权评估</p>
-        <p>深圳市版权协会监事 · 授权专委会主任</p>
-        <p>报告基于公开数据+行业体感，不构成投资决策建议</p>
+    <div class="cover-footer">
+        <div class="cover-meta">
+            <p>出品：老贾聊IP授权评估</p>
+            <p>深圳市版权协会监事 · 授权专委会主任</p>
+            <p>报告基于公开数据+行业体感，不构成投资决策建议</p>
+        </div>
+        <div class="cover-confidential">Confidential</div>
     </div>
 </div>
 
 <!-- ========== 第1页：执行摘要 ========== -->
 <div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">老贾聊IP授权评估</div>
+        <div class="page-header-meta">IP-VAL-2026-0427-001 · 2026年4月</div>
+    </div>
     <h2 class="section-title"><span class="num">01</span>执行摘要</h2>
 
     <div class="summary-grid">
@@ -493,15 +604,16 @@
         </div>
         <div class="summary-card">
             <div class="summary-card-label">授权金率区间</div>
-            <div class="summary-card-value">8%-14%</div>
+            <div class="summary-card-value">8% — 14%</div>
         </div>
         <div class="summary-card">
             <div class="summary-card-label">参考保证金区间</div>
             <div class="summary-card-value">视品类洽谈</div>
+            <div class="summary-card-note">需根据品类与渠道具体协商</div>
         </div>
         <div class="summary-card">
             <div class="summary-card-label">建议决策周期</div>
-            <div class="summary-card-value low">2-4周内</div>
+            <div class="summary-card-value low">2 — 4 周</div>
         </div>
     </div>
 
@@ -512,7 +624,7 @@
         </p>
     </div>
 
-    <h3 style="font-size: 14px; font-weight: 600; color: #333; margin-bottom: 16px;">四个关键结论</h3>
+    <h3 style="font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.08em; margin-bottom: var(--space-md);">四个关键结论</h3>
     <div class="key-points">
         <div class="key-point">
             <div class="key-point-icon">1</div>
@@ -547,6 +659,10 @@
 
 <!-- ========== 第2页：IP基础画像 ========== -->
 <div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">老贾聊IP授权评估</div>
+        <div class="page-header-meta">IP-VAL-2026-0427-001 · 2026年4月</div>
+    </div>
     <h2 class="section-title"><span class="num">02</span>IP基础画像</h2>
 
     <div class="profile-grid">
@@ -570,7 +686,7 @@
         </div>
     </div>
 
-    <div class="profile-block" style="margin-bottom: 24px;">
+    <div class="profile-block" style="margin-bottom: var(--space-lg);">
         <h4>标签体系</h4>
         <span class="tag hot">情绪价值</span>
         <span class="tag hot">社交媒体爆款</span>
@@ -615,6 +731,10 @@
 
 <!-- ========== 第3页：品类饱和度分析 ========== -->
 <div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">老贾聊IP授权评估</div>
+        <div class="page-header-meta">IP-VAL-2026-0427-001 · 2026年4月</div>
+    </div>
     <h2 class="section-title"><span class="num">03</span>品类饱和度分析</h2>
 
     <table class="sat-table">
@@ -695,6 +815,10 @@
 
 <!-- ========== 第4页：风险点清单 ========== -->
 <div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">老贾聊IP授权评估</div>
+        <div class="page-header-meta">IP-VAL-2026-0427-001 · 2026年4月</div>
+    </div>
     <h2 class="section-title"><span class="num">04</span>风险点清单</h2>
 
     <div class="risk-list">
@@ -773,11 +897,282 @@
     </div>
 </div>
 
+<!-- ========== 第5页：授权案例附录 ========== -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-brand">老贾聊IP授权评估</div>
+    <div class="page-header-meta">IP-VAL-2026-0427-001 · 2026年4月</div>
+  </div>
+  <h2 class="section-title"><span class="num">05</span>授权案例附录</h2>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:var(--space-xl);">
+      <thead>
+        <tr>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:22%;">笔记标题</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:10%;">授权品类</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:12%;">合作品牌</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:10%;">授权方式</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:9%;">线下活动</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);width:10%;">开始时间</th>
+          <th style="text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.06em;padding:10px 12px;border-bottom:2px solid var(--accent);background:var(--surface);">销售成绩描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×雀巢中国 咖啡联名</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">食品</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">雀巢中国</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">京东雀巢咖啡搜索量同比增长超8倍，聚焦Z世代15分钟自我疗愈</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×奥利奥 联名礼盒</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">食品</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">奥利奥</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名礼盒，社交媒体热度高</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×小奥汀 彩妆礼盒</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">美妆护肤</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">小奥汀</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">截至3月11日礼盒淘宝超5万单，全系列联名产品爆卖超100万单</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×百雀羚 联名</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">美妆护肤</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">百雀羚</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名产品（具体待进一步确认）</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×倍思 数码配件</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">3C消费品</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">倍思</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2024-07-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名鼠标、手写笔、电容笔等数码配件，联动2次</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×维达 生活用品</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">杯壶/餐饮用具</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">维达</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2024-07-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名纸巾、洗脸巾、湿厕纸、手帕纸等，淘宝官店累计超500万单</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×玩乐主义 盲盒盲袋</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">玩乐主义Funsim</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">趣趴趴系列盲袋、浪漫樱花系列盲盒、快乐贴贴系列盲盒</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×卡宝文创 卡牌</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">卡牌</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">卡宝文创</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">汪汪日记之线条小狗变装篇系列卡牌第一弹，含织唛、压纹皮料、裸眼3D等工艺</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×TOi图益 亚克力拼插</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">TOi图益</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">翻转世界-小狗寻宝藏亚克力拼插，宝箱造型可开合设计，CTE展会N1D51展位</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×PLZDOT 盲盒</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">PLZDOT</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">欢乐郊游系列盲盒、夏日冰激凌系列迷你盲盒</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×冉红饰品 挂件</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">冉红饰品</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">挂件系列-酷爽夏日磁吸板，清凉夏日元素设计，钢珠画板可随意创作</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×X11 毛绒盲袋</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">X11</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">好运兜兜系列毛绒盲袋，X11独家首发，火爆全网首款盲盒</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×名创优品 盲盒挂件</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">潮玩</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">名创优品MINISO</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">线条小狗Maltese的日常生活系列盲盒、侦探挂件天使挂件，正版联名现货</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×NASA 联名服饰</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">鞋类/服饰</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">NASA</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名服饰，圣诞危机系列视频官方周边服饰范畴</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×乐町 服饰联名</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">服饰</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">乐町LEDIN</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2024-07-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名情侣睡衣、家居服、联名系列冬款，社交媒体热度高</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×SPAO 服饰联名</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">鞋类/服饰</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">SPAO</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名服饰（待进一步确认具体产品）</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×TOUTOU 联名</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">箱包</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">TOUTOU</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">商品授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">联名产品（具体品类待进一步确认）</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×上海静安大悦城 快闪店</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题展</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">上海静安大悦城</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;" style="color:#c44;font-weight:600;">线下活动</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-09-28</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">线条小狗上海首家快闪店，9.28-10.29，小狗度假村主题，新品首发+超值福利</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×北京合生汇 快闪店</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题展</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">北京合生汇</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;" style="color:#c44;font-weight:600;">线下活动</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2024-07-13</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">线条小狗北京快闪店，首日客流火爆，北京限量款式</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×杭州大悦城 快闪店</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题展</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">杭州大悦城</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;" style="color:#c44;font-weight:600;">线下活动</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">线条小狗杭州快闪店</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗×重庆 快闪店</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题展</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">重庆</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">主题授权</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;" style="color:#c44;font-weight:600;">线下活动</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">2025-01-01</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">线条小狗重庆快闪店</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">瑞幸咖啡×线条小狗联动萌趣来袭！</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">瑞幸咖啡</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;" style="color:#c44;font-weight:600;">线下活动</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">王者荣耀✖️线条小狗 联动小兵内容来啦！</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">王者荣耀</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">中国银行  × 线条小狗 联名信用卡</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">中国银行</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗奇境汪奖牌✨闯入童话茶会啦</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">keep</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">线条小狗 × 剪映 ｜春日限定小狗贴纸已上线！</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">剪映</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;"><strong style="color:var(--text);">畅轻小奶壶 ✖️ 线条小狗 春日萌动上新啦</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">畅轻</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">无</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:12px;color:var(--text-secondary);vertical-align:top;">-</td>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--border-light);font-size:11px;color:var(--text-muted);vertical-align:top;line-height:1.5;">-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
 <!-- ========== 报告页脚 ========== -->
 <div class="report-footer">
     <p>本报告由老贾聊IP授权评估出品 · 深圳市版权协会监事 · 授权专委会主任</p>
     <p>报告基于公开数据与行业体感整理，仅供参考，不构成投资决策建议</p>
-    <p style="margin-top: 8px;">数据来源：电商平台公开数据、行业访谈、展会调研 · 更新时间：2026年4月</p>
+    <p style="margin-top: 6px;">数据来源：电商平台公开数据、行业访谈、展会调研 · 更新时间：2026年4月</p>
 </div>
 
 </div>
