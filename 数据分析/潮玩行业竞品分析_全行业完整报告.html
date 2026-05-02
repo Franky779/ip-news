@@ -40,10 +40,14 @@ hr{border:none;border-top:1px solid #334155;margin:40px 0}
 .toc li{margin:6px 0}
 .toc a{color:#94a3b8}
 .toc a:hover{color:#38bdf8}
-@media print{body{background:#fff;color:#000}.nav,.back-to-top{display:none}h1,h2,h3{color:#000}}
+.back-to-list{position:fixed;top:16px;left:16px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(30,41,59,0.95);border:1px solid #475569;border-radius:999px;font-size:13px;color:#e2e8f0;text-decoration:none;backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(0,0,0,0.3);transition:all .2s ease;font-family:-apple-system,"Noto Sans SC",sans-serif}
+.back-to-list:hover{color:#38bdf8;border-color:#38bdf8;transform:translateX(-2px);text-decoration:none}
+@media print{body{background:#fff;color:#000}.nav,.back-to-top,.back-to-list{display:none}h1,h2,h3{color:#000}}
 </style>
 </head>
 <body>
+<a href="../ip-database.html" class="back-to-list" aria-label="返回案例盘点">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回</a>
 <div class="nav"><div class="nav-inner">
 <a href="#top">顶部</a>
 <a href="#toc">目录</a>
