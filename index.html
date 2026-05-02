@@ -908,7 +908,7 @@
             <div class="data-grid-divider"></div>
 
             <div class="data-grid">
-                <div class="data-cell">
+                <div class="data-cell" id="cell-report-count">
                     <div class="data-number" data-target="2"><span class="counter">0</span></div>
                     <div class="data-label">已出 IP 商业合作评估报告</div>
                     <div class="data-desc">深度行业调研 × 商业机会分析</div>
@@ -1111,6 +1111,11 @@
             const total = htmlFiles.length;
             const displayFiles = htmlFiles.slice(0, 5);
             if (countEl) countEl.textContent = `${total} 篇`;
+
+            if (folder === '数据分析') {
+                const reportCell = document.querySelector('#cell-report-count .data-number');
+                if (reportCell) reportCell.dataset.target = total;
+            }
 
             if (total === 0) {
                 listEl.innerHTML = '<li class="empty">暂无内容</li>';
