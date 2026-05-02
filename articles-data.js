@@ -1,5 +1,10 @@
 const ARTICLES = [
     {
+        title: "【盘点】五一期间上新的IP授权案例",
+        date: "2026-05-01",
+        url: "https://mp.weixin.qq.com/s/xvVBZ8MS97gxRYeHmFm9Fw"
+    },
+    {
         title: "【深度盘点分析】哆啦A梦2026年IP授权联名案例。这世上根本就没有\"新IP红利\"！",
         date: "2026-04-28",
         url: "https://mp.weixin.qq.com/s/4ldB2hyuWNgx2WAp6RiI6g"
