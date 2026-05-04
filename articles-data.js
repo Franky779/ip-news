@@ -1,5 +1,10 @@
 const ARTICLES = [
     {
+        title: "笑死！那个拿下哪吒1亿订单的工厂，现在要倒闭了....真相远比你想的残酷",
+        date: "2026-04-19",
+        url: "https://mp.weixin.qq.com/s/qaS1yz2OTUxx0JgaUGyRsA"
+    },
+    {
         title: "【盘点】五一期间上新的IP授权案例",
         date: "2026-05-01",
         url: "https://mp.weixin.qq.com/s/xvVBZ8MS97gxRYeHmFm9Fw"
@@ -18,11 +23,6 @@ const ARTICLES = [
         title: "凌晨2点，那个做了7年IP授权的朋友说要去卖保险了..",
         date: "2026-04-24",
         url: "https://mp.weixin.qq.com/s/z8lYek77Mzh8b1d8REnR3A"
-    },
-    {
-        title: "笑死！那个拿下哪吒1亿订单的工厂，现在要倒闭了....真相远比你想的残酷",
-        date: "2026-04-19",
-        url: "https://mp.weixin.qq.com/s/qaS1yz2OTUxx0JgaUGyRsA"
     },
     {
         title: "我算了一笔账，然后放弃了AI漫剧——这个行业正在活埋老实人",
