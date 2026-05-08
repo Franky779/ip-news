@@ -1104,6 +1104,26 @@
     </footer>
 
     <script>
+        function getViews(key, date) {
+            let seed = 0;
+            for (let i = 0; i < key.length; i++) {
+                seed = (seed * 31 + key.charCodeAt(i)) % 1000000007;
+            }
+            function rand() {
+                seed = (seed * 1103515245 + 12345) % 2147483647;
+                return seed;
+            }
+            const baseViews = 230 + (rand() % 461);
+            const publishDate = new Date(date);
+            const today = new Date();
+            const daysDiff = Math.floor((today - publishDate) / 86400000);
+            let growth = 0;
+            for (let i = 0; i < daysDiff; i++) {
+                growth += rand() % 7;
+            }
+            return baseViews + growth;
+        }
+
         function loadFiles(folder, listId, countId) {
             const listEl = document.getElementById(listId);
             const countEl = countId ? document.getElementById(countId) : null;
@@ -1140,8 +1160,13 @@
 
             listEl.innerHTML = displayFiles.map(file => {
                 const name = file.displayName || file.name.replace(/\.html$/i, '');
+                const views = getViews(folder + '/' + file.name, file.date);
                 return `<li>
                     <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
+                    <div class="file-meta">
+                        <div class="file-date">${file.date}</div>
+                        <div class="file-views">阅读：${views}</div>
+                    </div>
                 </li>`;
             }).join('');
         }
@@ -1284,33 +1309,13 @@
         track.innerHTML = buildTicker(tickerData) + buildTicker(tickerData);
 
         // ===== 老贾有话说文章渲染 =====
-        function getViews(article) {
-            let seed = 0;
-            for (let i = 0; i < article.url.length; i++) {
-                seed = (seed * 31 + article.url.charCodeAt(i)) % 1000000007;
-            }
-            function rand() {
-                seed = (seed * 1103515245 + 12345) % 2147483647;
-                return seed;
-            }
-            const baseViews = 230 + (rand() % 461);
-            const publishDate = new Date(article.date);
-            const today = new Date();
-            const daysDiff = Math.floor((today - publishDate) / 86400000);
-            let growth = 0;
-            for (let i = 0; i < daysDiff; i++) {
-                growth += rand() % 7;
-            }
-            return baseViews + growth;
-        }
-
         function renderArticles() {
             const listEl = document.getElementById('list-article');
             if (!listEl || typeof ARTICLES === 'undefined') return;
 
             const displayArticles = ARTICLES.slice(0, 5);
             listEl.innerHTML = displayArticles.map(article => {
-                const views = getViews(article);
+                const views = getViews(article.url, article.date);
                 return `
                 <li>
                     <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>

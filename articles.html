@@ -187,17 +187,17 @@
 
     <script src="articles-data.js"></script>
     <script>
-        function getViews(article) {
+        function getViews(key, date) {
             let seed = 0;
-            for (let i = 0; i < article.url.length; i++) {
-                seed = (seed * 31 + article.url.charCodeAt(i)) % 1000000007;
+            for (let i = 0; i < key.length; i++) {
+                seed = (seed * 31 + key.charCodeAt(i)) % 1000000007;
             }
             function rand() {
                 seed = (seed * 1103515245 + 12345) % 2147483647;
                 return seed;
             }
             const baseViews = 230 + (rand() % 461);
-            const publishDate = new Date(article.date);
+            const publishDate = new Date(date);
             const today = new Date();
             const daysDiff = Math.floor((today - publishDate) / 86400000);
             let growth = 0;
@@ -220,7 +220,7 @@
             }
 
             listEl.innerHTML = ARTICLES.map(article => {
-                const views = getViews(article);
+                const views = getViews(article.url, article.date);
                 return `
                 <li>
                     <a href="${article.url}" class="article-item" target="_blank" rel="noopener">
