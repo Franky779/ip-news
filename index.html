@@ -1284,13 +1284,33 @@
         track.innerHTML = buildTicker(tickerData) + buildTicker(tickerData);
 
         // ===== 老贾有话说文章渲染 =====
+        function getViews(article) {
+            let seed = 0;
+            for (let i = 0; i < article.url.length; i++) {
+                seed = (seed * 31 + article.url.charCodeAt(i)) % 1000000007;
+            }
+            function rand() {
+                seed = (seed * 1103515245 + 12345) % 2147483647;
+                return seed;
+            }
+            const baseViews = 230 + (rand() % 461);
+            const publishDate = new Date(article.date);
+            const today = new Date();
+            const daysDiff = Math.floor((today - publishDate) / 86400000);
+            let growth = 0;
+            for (let i = 0; i < daysDiff; i++) {
+                growth += rand() % 7;
+            }
+            return baseViews + growth;
+        }
+
         function renderArticles() {
             const listEl = document.getElementById('list-article');
             if (!listEl || typeof ARTICLES === 'undefined') return;
 
             const displayArticles = ARTICLES.slice(0, 5);
             listEl.innerHTML = displayArticles.map(article => {
-                const views = Math.floor(Math.random() * (690 - 230 + 1)) + 230;
+                const views = getViews(article);
                 return `
                 <li>
                     <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
