@@ -198,7 +198,22 @@
         .file-date {
             font-size: 0.75rem;
             color: var(--text-muted);
+        }
+
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 2px;
+        }
+
+        .file-views {
+            font-size: 0.75rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 1px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
         }
 
         .loading {
@@ -1274,12 +1289,17 @@
             if (!listEl || typeof ARTICLES === 'undefined') return;
 
             const displayArticles = ARTICLES.slice(0, 5);
-            listEl.innerHTML = displayArticles.map(article => `
+            listEl.innerHTML = displayArticles.map(article => {
+                const views = Math.floor(Math.random() * (690 - 230 + 1)) + 230;
+                return `
                 <li>
                     <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
-                    <div class="file-date">${article.date}</div>
+                    <div class="file-meta">
+                        <div class="file-date">${article.date}</div>
+                        <div class="file-views">阅读：${views}</div>
+                    </div>
                 </li>
-            `).join('');
+            `}).join('');
         }
         renderArticles();
 

@@ -132,6 +132,22 @@
             color: var(--text-muted);
         }
 
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .article-views {
+            font-size: 0.75rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 1px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
         .footer {
             max-width: 900px;
             margin: 0 auto;
@@ -183,14 +199,19 @@
                 return;
             }
 
-            listEl.innerHTML = ARTICLES.map(article => `
+            listEl.innerHTML = ARTICLES.map(article => {
+                const views = Math.floor(Math.random() * (690 - 230 + 1)) + 230;
+                return `
                 <li>
                     <a href="${article.url}" class="article-item" target="_blank" rel="noopener">
                         <div class="article-title">${article.title}</div>
-                        <div class="article-date">${article.date}</div>
+                        <div class="article-meta">
+                            <div class="article-date">${article.date}</div>
+                            <div class="article-views">阅读：${views}</div>
+                        </div>
                     </a>
                 </li>
-            `).join('');
+            `}).join('');
         }
         renderArticles();
     </script>
