@@ -193,6 +193,13 @@
             padding: var(--space-xs) 0;
             transition: color 0.2s ease;
             overflow-wrap: break-word;
+            width: 100%;
+        }
+
+        /* flex 容器中的标题需要能正确收缩 */
+        .dynamic-left a {
+            flex: 1;
+            min-width: 0;
         }
 
         .file-list a:hover {
