@@ -25,12 +25,7 @@ const FILE_LISTS = {
         },
         {
             "name": "《IP评估报告-初音未来》.html",
-            "displayName": "《《IP评估报告-初音未来》》",
-            "date": ""
-        },
-        {
-            "name": "潮玩手机挂饰赛道调研_报告仪表盘.html",
-            "displayName": "《潮玩手机挂饰赛道调研_报告仪表盘》",
+            "displayName": "《IP评估报告-初音未来》",
             "date": ""
         },
         {
@@ -39,18 +34,8 @@ const FILE_LISTS = {
             "date": ""
         },
         {
-            "name": "事业规划深度分析.html",
-            "displayName": "《事业规划深度分析》",
-            "date": ""
-        },
-        {
             "name": "线条小狗-IP评估报告.html",
             "displayName": "《线条小狗-IP评估报告》",
-            "date": ""
-        },
-        {
-            "name": "小蘑菇秃秃深度分析报告.html",
-            "displayName": "《小蘑菇秃秃深度分析报告》",
             "date": ""
         }
     ]
