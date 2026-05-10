@@ -22,6 +22,36 @@ const FILE_LISTS = {
             "name": "盲盒赛道深度调研报告_2026-05-08.html",
             "displayName": "《盲盒赛道深度调研报告》",
             "date": "2026-05-08"
+        },
+        {
+            "name": "《IP评估报告-初音未来》.html",
+            "displayName": "《《IP评估报告-初音未来》》",
+            "date": ""
+        },
+        {
+            "name": "潮玩手机挂饰赛道调研_报告仪表盘.html",
+            "displayName": "《潮玩手机挂饰赛道调研_报告仪表盘》",
+            "date": ""
+        },
+        {
+            "name": "潮玩行业竞品分析_全行业完整报告.html",
+            "displayName": "《潮玩行业竞品分析_全行业完整报告》",
+            "date": ""
+        },
+        {
+            "name": "事业规划深度分析.html",
+            "displayName": "《事业规划深度分析》",
+            "date": ""
+        },
+        {
+            "name": "线条小狗-IP评估报告.html",
+            "displayName": "《线条小狗-IP评估报告》",
+            "date": ""
+        },
+        {
+            "name": "小蘑菇秃秃深度分析报告.html",
+            "displayName": "《小蘑菇秃秃深度分析报告》",
+            "date": ""
         }
     ]
 };

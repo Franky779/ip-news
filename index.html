@@ -1151,7 +1151,12 @@
             const files = FILE_LISTS[folder] || [];
             const htmlFiles = files
                 .filter(f => f.name.endsWith('.html'))
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    if (a.date && b.date) return new Date(b.date) - new Date(a.date);
+                    if (a.date) return -1;
+                    if (b.date) return 1;
+                    return a.name.localeCompare(b.name);
+                });
 
             const total = htmlFiles.length;
             const displayFiles = htmlFiles.slice(0, 5);

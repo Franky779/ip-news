@@ -164,20 +164,22 @@
         <p>IP行业内容导航 | 内容由新文创商学院老贾聊IP搜集整理</p>
     </footer>
 
+    <script src="files-data.js"></script>
     <script>
         function loadFiles() {
             const listEl = document.getElementById('list-data');
             const subEl = document.getElementById('pageSub');
 
-            const files = [
-                { name: '线条小狗-IP评估报告.html', displayName: '《IP评估报告-线条小狗》', date: '2026-04-27' },
-                { name: '潮玩行业竞品分析_全行业完整报告.html', displayName: '《潮玩行业品牌深度分析》', date: '2026-04-23' },
-                { name: '《IP评估报告-初音未来》.html', displayName: '《IP评估报告-初音未来》', date: '2026-05-02' }
-            ];
+            const files = (typeof FILE_LISTS !== 'undefined' ? FILE_LISTS['数据分析'] : []) || [];
 
             const htmlFiles = files
                 .filter(f => f.name.endsWith('.html'))
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    if (a.date && b.date) return new Date(b.date) - new Date(a.date);
+                    if (a.date) return -1;
+                    if (b.date) return 1;
+                    return a.name.localeCompare(b.name);
+                });
 
             subEl.textContent = `共 ${htmlFiles.length} 篇`;
 

@@ -97,13 +97,18 @@ function rebuildFileLists() {
 
         const list = files
             .filter(f => f.endsWith('.html'))
+            .filter(f => !BLACKLIST.includes(f.toLowerCase()))
             .map(f => {
                 const date = extractDate(f);
                 const displayName = makeDisplayName(f);
                 return { name: f, displayName, date };
             })
-            .filter(f => f.date) // 只保留能提取到日期的
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
+            .sort((a, b) => {
+                if (a.date && b.date) return new Date(b.date) - new Date(a.date);
+                if (a.date) return -1;
+                if (b.date) return 1;
+                return a.name.localeCompare(b.name);
+            });
 
         FILE_LISTS[folder] = list;
     }
@@ -134,17 +139,26 @@ console.log('=== 自动发布脚本 ===\n');
 
 const newFiles = scanNewFiles();
 
-if (newFiles.length === 0) {
-    console.log('没有新文件需要发布。');
-    process.exit(0);
+if (newFiles.length > 0) {
+    console.log(`发现 ${newFiles.length} 个新文件:`);
+    newFiles.forEach(f => console.log(`  · ${f.name}`));
+    console.log('');
+    copyFiles(newFiles);
+} else {
+    console.log('没有新文件需要复制。');
 }
 
-console.log(`发现 ${newFiles.length} 个新文件:`);
-newFiles.forEach(f => console.log(`  · ${f.name}`));
-console.log('');
-
-copyFiles(newFiles);
 rebuildFileLists();
-pushToGitHub(newFiles);
+
+// 检查 files-data.js 是否有变化（简单比较：和上次的推送内容对比太复杂，直接总是推送）
+const today = new Date().toISOString().slice(0, 10);
+if (newFiles.length > 0) {
+    pushToGitHub(newFiles);
+} else {
+    // 没有新文件但更新列表: 只推送 files-data.js
+    execSync(`node _push_via_api.mjs "auto: 同步文件列表 (${today})" "files-data.js"`, {
+        cwd: REPO_ROOT, stdio: 'inherit'
+    });
+}
 
 console.log('\n=== 完成 ===');
