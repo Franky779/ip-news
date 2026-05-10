@@ -216,6 +216,25 @@
             white-space: nowrap;
         }
 
+        /* 动态板块: 标题+日期一行, 阅读量在右 */
+        .dynamic-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .dynamic-left {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .dynamic-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
         .loading {
             text-align: center;
             color: var(--text-muted);
@@ -1151,6 +1170,15 @@
             listEl.innerHTML = displayFiles.map(file => {
                 const name = file.displayName || file.name.replace(/\.html$/i, '');
                 const views = getViews(folder + '/' + file.name, file.date);
+                if (folder === '动态') {
+                    return `<li class="dynamic-row">
+                        <div class="dynamic-left">
+                            <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
+                            <span class="dynamic-date">${file.date}</span>
+                        </div>
+                        <div class="file-views">阅读：${views}</div>
+                    </li>`;
+                }
                 return `<li>
                     <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
                     <div class="file-meta">
