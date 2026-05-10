@@ -1176,14 +1176,12 @@
                             <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
                             <span class="dynamic-date">${file.date}</span>
                         </div>
-                        <div class="file-views">阅读：${views}</div>
                     </li>`;
                 }
                 return `<li>
                     <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
                     <div class="file-meta">
                         <div class="file-date">${file.date}</div>
-                        <div class="file-views">阅读：${views}</div>
                     </div>
                 </li>`;
             }).join('');
