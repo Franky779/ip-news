@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上周 IP 行业资讯周报 · 2026年5月3日—5月9日</title>
+<style>
+:root {
+  --bg: #f7f6f4;
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #737373;
+  --border: #e0ddd8;
+  --border-light: #f0eeeb;
+  --accent: #8b5a2b;
+  --accent-bg: #faf6f1;
+  --accent-border: #e8ddd0;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ========== 报告封面头 ========== */
+h1:first-of-type {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 3px double var(--text-primary);
+  margin-bottom: 16px;
+}
+
+/* 报告期信息紧跟标题 */
+h1:first-of-type + p {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.03em;
+  margin-bottom: 20px;
+}
+
+/* 导语引用块 */
+h1:first-of-type + p + blockquote {
+  background: none;
+  border: none;
+  border-left: 3px solid var(--accent);
+  padding: 12px 0 12px 24px;
+  margin: 24px 0 32px;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.9;
+  border-radius: 0;
+}
+
+/* ========== 章节标题 ========== */
+hr + h2,
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 40px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--text-primary);
+}
+
+/* ========== 正文段落 ========== */
+p {
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+}
+a:hover { border-bottom-style: solid; }
+
+/* ========== 引用块（主线摘要） ========== */
+blockquote {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin: 14px 0 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+blockquote p { margin-bottom: 6px; }
+blockquote p:last-child { margin-bottom: 0; }
+/* 引用块内第一个段落做摘要高亮 */
+blockquote > p:first-child:only-child,
+blockquote > p:first-child {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ========== 列表 ========== */
+ul, ol {
+  margin: 10px 0 18px 24px;
+}
+li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+li::marker { color: var(--text-tertiary); }
+
+/* ========== 表格（核心视觉元素） ========== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 18px 0 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+thead {
+  background: #f5f3f0;
+}
+
+th, td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #fcfbfa; }
+
+/* 表格中的强调数据 */
+td strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 居中列（排名、序号、趋势箭头） */
+td[align="center"],
+th[align="center"] {
+  text-align: center;
+}
+
+/* 表格第一列禁止换行，防止标签类文字被挤成竖排 */
+table td:first-child,
+table th:first-child {
+  white-space: nowrap;
+}
+
+/* ========== 分割线 ========== */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+/* ========== 主题分组分割线 ========== */
+h3 + hr,
+p + hr {
+  margin: 24px 0;
+}
+
+/* ========== 代码/标签样式 ========== */
+code {
+  background: var(--border-light);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ========== 页脚 ========== */
+hr + p em,
+p:last-child em {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+  font-style: normal;
+}
+
+/* ========== 打印适配 ========== */
+@media print {
+  body { background: #fff; }
+  .wrap { padding: 24px 32px; max-width: 100%; }
+  table { box-shadow: none; }
+  a { color: var(--text-primary); border-bottom: none; }
+}
+
+/* ========== 移动端 ========== */
+@media (max-width: 640px) {
+  .wrap { padding: 24px 16px; }
+  h1:first-of-type { font-size: 22px; }
+  h2 { font-size: 16px; }
+  h3 { font-size: 14.5px; }
+  table { font-size: 13px; }
+  th, td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>上周 IP 行业资讯周报</h1>
+<p><strong>报告期</strong>:2026年5月3日 — 2026年5月9日 · <strong>整理时间</strong>:2026年5月10日</p>
+<blockquote>
+<p>五一假期收官的第一周。我看了将近五十条资讯,挑出来 49 条按时间窗筛进来的有效信息。这一周最值得说的不是某个单点新闻,而是三条同时成立的主线:潮玩跨界耐用品撞了一次墙,二次元在线下商场成了真正的招商工具,文博和文创市集开始往&quot;国家级编排&quot;的方向走。</p>
+</blockquote>
+<hr>
+<h2>📊 一周快览</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>📰 资讯总数</td>
+<td><strong>49</strong> 条(国内 46 / 海外 3)</td>
+</tr>
+<tr>
+<td>🎯 涉及 IP</td>
+<td><strong>25+</strong> 个(头部 IP:Labubu、故宫、国博、小黄人、小黄人、暗黑破坏神、星际争霸、永劫无间、钟馗、绿绿星球)</td>
+</tr>
+<tr>
+<td>🏙️ 涉及城市</td>
+<td><strong>12+</strong> 个(北京、上海、杭州、武汉、成都、苏州、无锡、西安、南京、广州、福州、济南)</td>
+</tr>
+<tr>
+<td>📅 重大档期</td>
+<td><strong>7</strong> 个(从 5月13日 到 7月3日)</td>
+</tr>
+<tr>
+<td>🏷️ 关键词</td>
+<td><code>#青春经济</code> <code>#IP冰箱</code> <code>#二次元主流化</code> <code>#文博市集</code> <code>#情绪经济</code> <code>#五一收官</code> <code>#国家级文创</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🏆 上周热度 TOP 10</h2>
+<table>
+<thead>
+<tr>
+<th align="center">排名</th>
+<th>事件</th>
+<th>关键词</th>
+<th>热度信号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>Labubu 冰箱二手溢价从 9 万跌到接近清零</td>
+<td>潮玩 / 家电跨界 / 泡沫破裂</td>
+<td>多家财经媒体追踪报道</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>五一全国二次元朝圣上海六大主战场</td>
+<td>二次元 / 谷子 / 城市消费</td>
+<td>静安大悦城客流销售双增长</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>北京&quot;首届中国新文创市集&quot;5月15日启幕</td>
+<td>文创 / 故宫 / 国博 / 老字号</td>
+<td>央广、千龙、东财同步发布</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>上博 × 百联&quot;美洲文明&quot;沉浸式主题店落地南京路</td>
+<td>博物馆 / 商业地产</td>
+<td>上博与百联首次品牌联动</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>江苏 5·18 国际博物馆日主会场无锡启动</td>
+<td>文博 / 国博日</td>
+<td>全省 200 项活动联动</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>杭州五一商圈客流飙升 140%</td>
+<td>情绪消费之城</td>
+<td>第三方观察报告</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td>暴雪《暗黑破坏神:不朽》× 《星际争霸》联动 5月13日</td>
+<td>游戏 / 海外IP</td>
+<td>双经典 IP 互导</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td>网易《永劫无间》西安电竞嘉年华</td>
+<td>游戏 / 城市文旅</td>
+<td>首落西北</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td>国漫《钟馗》定档 5月30日</td>
+<td>国漫 / 六一档</td>
+<td>合家欢主力</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td>《小黄人与大怪兽》定档 7月3日</td>
+<td>海外IP / 暑期档</td>
+<td>衍生品已铺货</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎯 三大行业主线</h2>
+<h3>🥶 主线一:潮玩跨界家电&quot;急刹车&quot;</h3>
+<blockquote>
+<p>9 万元 → 接近清零,一周时间。</p>
+</blockquote>
+<p>Labubu 联名美的的&quot;潮玩冰箱&quot;把潮玩跨界耐用品的玩法做到了一个极致,然后立刻被市场否决。5月6日新浪财经的报道还在用&quot;炒到 9 万&quot;做标题,5月8日中国青年网的口径已经变成&quot;二手溢价几乎清零&quot;。</p>
+<p>把这件事说穿了不复杂:盲盒可以靠惊喜和收藏属性撑起 300% 溢价,冰箱不行。一台冰箱要在家里用十年,这十年里&quot;它是 Labubu&quot;这件事不会持续给用户带来情绪奖励。所以泡泡玛特这种&quot;以小博大&quot;的 IP 商业化,试图把&quot;小盲盒玩法&quot;复制到大件家电上,撞墙是迟早的事。</p>
+<p>这件事对所有想做 IP+耐用消费品的品牌都有警示意义。</p>
+<table>
+<thead>
+<tr>
+<th align="center">时间</th>
+<th>事件</th>
+<th align="center">二手溢价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">5月6日</td>
+<td>联名冰箱发售,二手平台报价高位</td>
+<td align="center"><strong>¥90,000+</strong></td>
+</tr>
+<tr>
+<td align="center">5月8日</td>
+<td>黄牛抛货,溢价回落</td>
+<td align="center"><strong>接近 ¥0</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3>🛒 主线二:二次元成为商场招商硬通货</h3>
+<blockquote>
+<p>杭州 +140% / 上海六大主战场 / 武汉老百货改造</p>
+</blockquote>
+<p>我以前一直觉得二次元和谷子经济还是个亚文化,这一周看下来基本可以认定它进入了主流商业逻辑。看几个数据点:</p>
+<ul>
+<li><strong>上海静安大悦城</strong>:五一期间客流销售双增长,官方数据中&quot;快闪+二次元&quot;业态被单独列为业态拉动力。这是头部商场首次公开把二次元当成业态指标。</li>
+<li><strong>杭州</strong>:五一商圈客流同比飙升 140%,被红商网概括为&quot;情绪消费之城&quot;。</li>
+<li><strong>武汉</strong>:武商 MALL 完成&quot;二次元主题商场&quot;改造,老百货向 ACG 业态转型。</li>
+<li><strong>湖北全省</strong>:老厂房+主题茶馆、商场+XR 装置等跨界组合在二三线城市落地。</li>
+</ul>
+<p>但同一时间也出现了一个反信号。成都某家长投诉商场&quot;二次元区域毒害孩子&quot;,街道办要求商场设消费提示。这说明这个赛道开始从亚文化进入主流监管视野,<strong>所有想布局二次元业态的购物中心,需要提前准备应对方案,而不是等舆情来了再被动处置</strong>。</p>
+<p>行业角度看,这是任何亚文化主流化都会经历的&quot;价值观摩擦期&quot;。</p>
+<hr>
+<h3>🏛️ 主线三:文博/文创市集走向&quot;国家级编排&quot;</h3>
+<blockquote>
+<p>5月15日北京 / 5月15日无锡 / 5月18日陕西</p>
+</blockquote>
+<p>这一周让我有点意外的是,文博和文创领域在 5月8-9日两天里集中放出了一组联动公告。这种密度在过去一年都不太常见:</p>
+<table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th>活动</th>
+<th>主办 / 主场</th>
+<th align="center">规模</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">5月15日</td>
+<td>首届中国新文创市集暨潮玩游园会</td>
+<td>北京朝阳公园</td>
+<td align="center">故宫 / 国博 / 北京礼物 / 百家老字号</td>
+</tr>
+<tr>
+<td align="center">5月15日</td>
+<td>2026 国际博物馆日江苏主会场</td>
+<td>江苏无锡</td>
+<td align="center">全省 200 项活动联动</td>
+</tr>
+<tr>
+<td align="center">5月18日</td>
+<td>国际博物馆日陕西主会场</td>
+<td>陕西历史博物馆</td>
+<td align="center">主题展&quot;陕耀中华&quot;</td>
+</tr>
+<tr>
+<td align="center">5月内</td>
+<td>上博 × 百联&quot;美洲文明&quot;沉浸式主题店</td>
+<td>上海南京路</td>
+<td align="center">玛雅 / 印加场景复原 + AR + 主题文创餐饮</td>
+</tr>
+</tbody></table>
+<p>把这几条放在一起看,文博 IP 在 2026 年的新打法已经成型:<strong>展柜 → 商业空间 → 沉浸式体验 → 城市消费场景</strong>。蔡志忠在 5月9日发起&quot;文博共同体&quot;倡议,可以视为这一新打法的方向性宣言。</p>
+<p>新华网 5月4日发的&quot;释放青春经济活力&quot;和上观新闻 5月5日的评论员文章&quot;培育青春经济释放巨大潜力&quot;,在 3 天内构成同主题的双源背书。这一周&quot;青春经济&quot;四个字大概率会进入今年下半年的政策语境。</p>
+<hr>
+<h2>🌟 一周精选(按主题分组)</h2>
+<h3>🎁 潮玩 &amp; IP 跨界</h3>
+<p><strong>1. 拉布布冰箱二手溢价几乎清零</strong> · 2026-05-08 · 中国青年网
+此前刷屏的&quot;Labubu 联名冰箱&quot;在二手平台溢价从 9 万元高位回落到接近清零,黄牛大量抛货。文章分析潮玩 IP 的情绪溢价在大件家电上无法持续,这件事把潮玩+耐用消费品跨界的玩法直接打回冷静期。
+<a href="http://youxi.youth.cn/yw/202605/t20260508_16648430.htm">阅读原文</a></p>
+<p><strong>2. LABUBU 冰箱炒到 9 万,泡泡玛特对家电下手了</strong> · 2026-05-06 · 新浪财经
+Labubu 联名美的家电的&quot;潮玩冰箱&quot;在二手平台被炒到 9 万元天价。文章探讨泡泡玛特从&quot;小盲盒&quot;向&quot;大件家电&quot;延伸的 IP 商业化新路径。这条和上面 5月8日那条形成完整的&quot;上涨-下跌&quot;叙事弧线。
+<a href="https://baijiahao.baidu.com/s?id=1864430945678150798">阅读原文</a></p>
+<hr>
+<h3>🎭 二次元 &amp; 商场新业态</h3>
+<p><strong>3. 五一全国各地二次元奔赴上海&quot;过年&quot;</strong> · 2026-05-08 · 新闻晨报
+五一期间上海以&quot;二次元六大主战场&quot;(静安大悦城、百联 ZX 创趣场、徐家汇等)吸引全国二次元玩家集中朝圣,假期结束后出现了集体&quot;戒断反应&quot;。这条文章是上海二次元线下经济的深度复盘,上海已经成为中国二次元的&quot;圣地巡礼&quot;目的地。
+<a href="https://baijiahao.baidu.com/s?id=1864629188245473103">阅读原文</a></p>
+<p><strong>4. 上海静安大悦城&quot;五一&quot;客流销售双增长</strong> · 2026-05-09 · 同花顺财经
+静安大悦城官方披露五一客流和销售双增长数据,&quot;快闪+二次元&quot;业态成为最大亮点。头部商场首次在公开数据中把二次元单独列为业态拉动力。
+<a href="http://news.10jqka.com.cn/20260509/c676564622.shtml">阅读原文</a></p>
+<p><strong>5. 商圈客流飙升 140%,杭州转舵&quot;情绪消费之城&quot;?</strong> · 2026-05-09 · 红商网
+杭州五一商圈客流同比飙升 140%。文章把杭州的转型概括为&quot;情绪消费之城&quot;,底层是二次元、谷子、IP 沉浸式空间的合力。城市定位与 IP 产业绑定的代表性叙事。
+<a href="http://www.redsh.com/pinpai/20260509/115044.shtml">阅读原文</a></p>
+<p><strong>6. 老百货 × 二次元,湖北消费市场玩跨界</strong> · 2026-05-03 · 湖北日报
+湖北日报披露五一假期跨界亮点:武商 MALL 改造为二次元主题商场,老厂房做主题茶馆,商场上 XR 装置。非一线城市开始大规模引入&quot;二次元+IP+科技&quot;的招商组合。
+<a href="https://baijiahao.baidu.com/s?id=1864161725575422789">阅读原文</a></p>
+<p><strong>7. 成都家长指二次元&quot;毒害&quot;孩子,街道办要求商场设消费提示</strong> · 2026-05-09 · 搜狐网
+成都某家长投诉二次元商场,当地街道办要求商场在二次元区域设置消费提示。二次元主流化进程中&quot;价值观摩擦&quot;的代表性事件,所有想做二次元业态的购物中心需要提前预案。
+<a href="https://learning.sohu.com/a/1020245738_120388781">阅读原文</a></p>
+<hr>
+<h3>🏛️ 文博 &amp; 文创市集</h3>
+<p><strong>8. 全国首个国家级文创市集 5月15日亮相北京</strong> · 2026-05-09 · 浙江日报
+首届&quot;中国新文创市集暨潮玩游园会&quot;5月15日在北京朝阳公园启幕。号称全国首个&quot;国家级&quot;文创市集,故宫文创、国博文创、地方非遗文创和潮玩品牌集中亮相。对标&quot;博物馆日&quot;的城市级 IP 消费场景。
+<a href="https://baijiahao.baidu.com/s?id=1864719317658354767">阅读原文</a></p>
+<p><strong>9. 北京首届新文创市集:百家餐饮老字号呈现&quot;美食+非遗+文创&quot;盛宴</strong> · 2026-05-09 · 同花顺财经
+同上市集的另一个报道角度,聚焦&quot;百家餐饮老字号&quot;也将参与。透露出官方对市集的期待是&quot;人货场全要素&quot;,而不是只卖文创周边。这是文创市集 2.0 的玩法。
+<a href="http://news.10jqka.com.cn/20260509/c676572031.shtml">阅读原文</a></p>
+<p><strong>10. 上博与百联合作 南京路落地&quot;美洲文明&quot;沉浸式主题店</strong> · 2026-05-09 · 同花顺财经
+上博和百联集团合作,把馆内&quot;美洲文明大展&quot;以沉浸式主题店形式落地南京路。博物馆 IP 从展品走向沉浸式消费的标杆案例。
+<a href="http://news.10jqka.com.cn/20260509/c676569835.shtml">阅读原文</a></p>
+<p><strong>11. &quot;美洲文明大展&quot;南京路也能体验玛雅、印加</strong> · 2026-05-09 · 澎湃新闻
+澎湃角度的同主题报道,详细介绍沉浸式主题店内复原玛雅金字塔、印加帝国宫殿等场景,提供 AR 互动+主题文创+主题餐饮。
+<a href="http://baijiahao.baidu.com/s?id=1864712704509566416">阅读原文</a></p>
+<p><strong>12. 当故宫国博遇上凤城鱼皮角,这场市集太好逛了</strong> · 2026-05-09 · 金羊网
+顺德举办的文创市集,故宫、国博、本地&quot;凤城鱼皮角&quot;等多家文博和非遗 IP 集中亮相。地方文创市集&quot;高规格联动&quot;的样本。
+<a href="https://news.ycwb.com/ikimvkntkb/content_54109745.htm">阅读原文</a></p>
+<p><strong>13. 蔡志忠发起&quot;文博共同体&quot;倡议</strong> · 2026-05-09 · 中国新闻网
+漫画家蔡志忠在公开活动中发起&quot;文博共同体&quot;倡议,呼吁两岸文博机构和文创从业者共建 IP 生态。行业层面的方向性宣言,对 2026 下半年文博联动有指引意义。
+<a href="https://baijiahao.baidu.com/s?id=1864718466187787512">阅读原文</a></p>
+<hr>
+<h3>🍵 非遗 &amp; 跨界联名</h3>
+<p><strong>14. 把湖北非遗喝进奶茶:爷爷不泡茶让一杯茶成为一座城的传播名片</strong> · 2026-05-09 · 新闻晨报
+新茶饮&quot;爷爷不泡茶&quot;和湖北非遗联合推出&quot;非遗茶饮系列&quot;,把恩施玉露、武当道茶、宜红等做进新品。新茶饮+非遗联名走向&quot;地方文化代言&quot;路线,而不只是包装贴纸。
+<a href="https://baijiahao.baidu.com/s?id=1864709504327677428">阅读原文</a></p>
+<p><strong>15. 京津冀残疾人非遗文创交流活动</strong> · 2026-05-09 · 中国科技网
+北京老门框举办京津冀三地残疾人非遗文创作品交流展,涉及景泰蓝、绒花、彩雕等非遗品类。非遗+公益+文创的代表性活动。
+<a href="https://www.stdaily.com/web/gdxw/2026-05/09/content_513932.html">阅读原文</a></p>
+<hr>
+<h3>🎬 影视 &amp; 动画档期</h3>
+<p><strong>16. 国漫《钟馗》定档 5月30日,主打六一档合家欢</strong> · 2026-05-09 · 北青网
+国漫电影《钟馗》定档 5月30日(六一档前一天),主打合家欢和奇幻捉妖。2026 年六一档国漫主力之一。
+<a href="https://ent.ynet.com/2026/05/09/4007980t1254_10.html">阅读原文</a></p>
+<p><strong>17. 《小黄人与大怪兽》定档 7月3日内地上映</strong> · 2026-05-08 · 齐鲁壹点
+环球影业宣布《小黄人与大怪兽》(系列第三部)定档 2026年7月3日内地上映,衍生品和联名将提前 2 个月铺货。
+<a href="https://baijiahao.baidu.com/s?id=1864603679681698548">阅读原文</a></p>
+<p><strong>18. 《绿绿星球》动画电影携百款潮玩文创&quot;杀青即破圈&quot;</strong> · 2026-05-08 · MBA 中国网
+国产动画电影《绿绿星球》在杀青阶段就同步发布百款潮玩文创产品,主打&quot;内容+衍生品&quot;同步放量。国漫电影&quot;上映前先做成 IP 生态&quot;的样本。
+<a href="https://www.mbachina.com/html/cjzx/202605/647700.html">阅读原文</a></p>
+<p><strong>19. 北影节闪耀怀柔&quot;中国影都&quot;</strong> · 2026-05-09 · 澎湃新闻
+第十五届北京国际电影节闭幕,怀柔&quot;中国影都&quot;作为主战场承接大量影视 IP 发布、动画首映、衍生品授权签约。上周影视产业最大的官方信息密度集中点。
+<a href="https://m.thepaper.cn/newsDetail_forward_33127718">阅读原文</a></p>
+<hr>
+<h3>🎮 游戏联动</h3>
+<p><strong>20. 《暗黑破坏神:不朽》× 《星际争霸》联动 5月13日开启</strong> · 2026-05-08 · 游侠网
+暴雪宣布两大经典 IP 联动,推出星际主题装备、限定皮肤等。头部欧美 IP 在中国手游市场的一次重磅 IP 联动。
+<a href="https://www.ali213.net/news/html/2026-5/1010377.html">阅读原文</a></p>
+<p><strong>21. 网易《永劫无间》西安电竞嘉年华激活西安 IP 消费</strong> · 2026-05-08 · 极目新闻
+网易《永劫无间》把官方嘉年华和电竞总决赛首次落地西北(西安),与城市文旅深度绑定。游戏 IP × 城市文旅的标杆案例。
+<a href="https://baijiahao.baidu.com/s?id=1864616765477015318">阅读原文</a></p>
+<hr>
+<h3>🎪 漫展 &amp; 活动</h3>
+<p><strong>22. 长滩潮&quot;邮&quot;嘉年华:2026 上海邮轮文化旅游季</strong> · 2026-05-04 · 新闻晨报
+上海长滩&quot;潮邮嘉年华&quot;在五一假期成为上海文旅消费的爆款产品,把潮玩、邮轮、文化主题打包,做出&quot;潮+文+旅&quot;的复合体验。
+<a href="https://baijiahao.baidu.com/s?id=1864215180817254621">阅读原文</a></p>
+<p><strong>23. 中国国际动漫节 COSPLAY 超级盛典四川赛区</strong> · 2026-05-09 · 红星新闻
+中国国际动漫节(杭州)的 COSPLAY 超级盛典首次设立四川赛区。头部动漫展会下沉到二线城市分赛区的典型动作。
+<a href="https://baijiahao.baidu.com/s?id=1864669110049958564">阅读原文</a></p>
+<p><strong>24. 济南 5月逛展日历:动漫、宠物、AI、茶博会</strong> · 2026-05-03 · 大众日报
+济南整个 5月的展会日历,动漫展是头部品类。北方城市的&quot;展会经济&quot;在 2026 年继续向 ACG 倾斜。
+<a href="https://baijiahao.baidu.com/s?id=1864141317886967393">阅读原文</a></p>
+<hr>
+<h3>🌍 海外动态</h3>
+<p><strong>25. 索尼财报:动漫板块增长抵消 Pixomondo 关停损失</strong> · 2026-05-08 · Cartoon Brew
+索尼最新财报显示,旗下动漫业务(Crunchyroll 流媒体+衍生品)的增长部分抵消了 VFX 子公司 Pixomondo 关停以及游戏部门 Bungie 持续亏损带来的整体损失。2026 年海外内容公司&quot;动漫成为主增长引擎&quot;的标志性数据点。
+<a href="https://www.cartoonbrew.com/business/sony-earnings-crunchyroll-pixomondo-bungie-260682.html">阅读原文</a></p>
+<p><strong>26. 吉卜力工作室获西班牙阿斯图里亚斯公主奖</strong> · 2026-05-07 · Cartoon Brew
+吉卜力成为首个获得西班牙&quot;阿斯图里亚斯公主奖&quot;(欧洲文化领域最高荣誉之一)的动漫工作室。颁奖词强调吉卜力作品对全球动画艺术与跨文化交流的影响。对吉卜力 IP 在欧洲市场的衍生品授权将形成长期增量。
+<a href="https://www.cartoonbrew.com/awards/studio-ghibli-spain-princess-of-asturias-award-260664.html">阅读原文</a></p>
+<p><strong>27. 奥斯卡设立全新视效与 AI 使用规则</strong> · 2026-05-05 · Cartoon Brew
+美国电影艺术与科学学院公布第 99 届奥斯卡新规:VFX 评委必须观看 Bake-Off 完整素材,动画长片提交截止日改为 11月12日,且学院保留对作品中 AI 使用情况进行问询的权力。首次将&quot;AI 使用&quot;写入奥斯卡评审流程。对动漫与动画长片的 AI 辅助制作流程、海外授权竞标都会产生连锁效应。
+<a href="https://www.cartoonbrew.com/awards/oscars-new-rules-vfx-ai-writing-260541.html">阅读原文</a></p>
+<hr>
+<h2>📰 央地权威媒体动态</h2>
+<table>
+<thead>
+<tr>
+<th align="center">序</th>
+<th>标题</th>
+<th>来源</th>
+<th align="center">日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">28</td>
+<td>漫展透视:&quot;创意经济&quot;向&quot;体验经济&quot;转换</td>
+<td>人民网财经</td>
+<td align="center">5月6日</td>
+</tr>
+<tr>
+<td align="center">29</td>
+<td>释放&quot;青春经济&quot;活力</td>
+<td>新华网</td>
+<td align="center">5月4日</td>
+</tr>
+<tr>
+<td align="center">30</td>
+<td>培育&quot;青春经济&quot;释放巨大潜力(评论员)</td>
+<td>上观新闻 / 解放日报</td>
+<td align="center">5月5日</td>
+</tr>
+<tr>
+<td align="center">31</td>
+<td>中国参加 2026 拉巴特国际书展</td>
+<td>新华网</td>
+<td align="center">5月9日</td>
+</tr>
+<tr>
+<td align="center">32</td>
+<td>哈尔滨极地公园斩获虎啸奖数字化大奖</td>
+<td>新华网黑龙江频道</td>
+<td align="center">5月7日</td>
+</tr>
+<tr>
+<td align="center">33</td>
+<td>泉州池店:多元场景点亮商圈活力</td>
+<td>新华网福建频道</td>
+<td align="center">5月6日</td>
+</tr>
+<tr>
+<td align="center">34</td>
+<td>浙江:赶海入地穿越,&quot;浙里超会玩&quot;</td>
+<td>新华网浙江频道</td>
+<td align="center">5月3日</td>
+</tr>
+<tr>
+<td align="center">35</td>
+<td>江苏:洪泽沿湖漫游成新宠</td>
+<td>新华网江苏频道</td>
+<td align="center">5月3日</td>
+</tr>
+<tr>
+<td align="center">36</td>
+<td>广博股份 2025 年净利润增长 8% 加速文创与潮玩业务升级</td>
+<td>同花顺财经</td>
+<td align="center">5月8日</td>
+</tr>
+<tr>
+<td align="center">37</td>
+<td>祥源文旅文创玩偶燃爆五一</td>
+<td>同花顺财经</td>
+<td align="center">5月6日</td>
+</tr>
+<tr>
+<td align="center">38</td>
+<td>&quot;抚州文礼&quot;文创品牌火爆文旅博览会</td>
+<td>同花顺财经</td>
+<td align="center">5月4日</td>
+</tr>
+<tr>
+<td align="center">39</td>
+<td>从&quot;IP SHANGHAI&quot;看中国品牌价值出海</td>
+<td>东方财富网 / 上海证券报</td>
+<td align="center">5月9日</td>
+</tr>
+<tr>
+<td align="center">40</td>
+<td>一群&quot;机甲玩家&quot;,做出一门全球生意</td>
+<td>东方财富网</td>
+<td align="center">5月7日</td>
+</tr>
+<tr>
+<td align="center">41</td>
+<td>为快乐买单,情绪经济如何点燃消费市场</td>
+<td>东方财富网</td>
+<td align="center">5月6日</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>央媒视角对本周三大主线的&quot;权威背书&quot;:人民网把漫展定义为&quot;创意经济向体验经济转换&quot;,新华网+上观新闻在 3 天内连发 3 条同主题文章,把&quot;青春经济&quot;推上政策语境;同花顺财经从 A 股财报视角验证文创/潮玩成为传统文具/文旅企业的新增长极;东方财富网用三条专题(IP SHANGHAI 出海、机甲玩家全球生意、情绪经济专题)承接上海作为城市级 IP 出海地的叙事。</p>
+</blockquote>
+<hr>
+<h2>🎪 上周展览活动回顾</h2>
+<table>
+<thead>
+<tr>
+<th>活动</th>
+<th align="center">时间</th>
+<th>地点</th>
+<th>内容亮点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>五一二次元主题季(上海六大场)</td>
+<td align="center">5月1日 - 5月5日</td>
+<td>静安大悦城 / ZX 创趣场 / 徐家汇</td>
+<td>头部二次元 IP 集中快闪,客流销售双增长</td>
+</tr>
+<tr>
+<td>长滩潮&quot;邮&quot;嘉年华(上海邮轮季)</td>
+<td align="center">5月3日 - 5月5日</td>
+<td>上海邮轮城</td>
+<td>潮玩+邮轮+文旅复合主题嘉年华</td>
+</tr>
+<tr>
+<td>武商 MALL 二次元主题改造</td>
+<td align="center">5月1日 - 5月5日</td>
+<td>武汉武商 MALL</td>
+<td>老百货首次大规模引入二次元业态</td>
+</tr>
+<tr>
+<td>萤火虫漫展五一专场</td>
+<td align="center">5月1日 - 5月3日</td>
+<td>广州</td>
+<td>头部漫展 ACG 综合性活动</td>
+</tr>
+<tr>
+<td>京津冀非遗文创交流展</td>
+<td align="center">5月9日</td>
+<td>北京老门框</td>
+<td>京津冀三地残疾人非遗文创作品</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🔮 下周到下月重点关注</h2>
+<table>
+<thead>
+<tr>
+<th align="center">时间</th>
+<th>事件</th>
+<th>地点</th>
+<th>关键看点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>5月13日</strong></td>
+<td>暴雪《暗黑:不朽》× 《星际争霸》联动</td>
+<td>全平台</td>
+<td>双经典 IP 互导,星际主题装备/坐骑</td>
+</tr>
+<tr>
+<td align="center"><strong>5月15日</strong></td>
+<td>首届中国新文创市集暨潮玩游园会</td>
+<td>北京朝阳公园</td>
+<td>全国首个&quot;国家级&quot;文创市集</td>
+</tr>
+<tr>
+<td align="center"><strong>5月15日</strong></td>
+<td>2026 国际博物馆日江苏主会场</td>
+<td>江苏无锡</td>
+<td>全省 200 项文博活动联动</td>
+</tr>
+<tr>
+<td align="center"><strong>5月内</strong></td>
+<td>上博&quot;美洲文明&quot;沉浸式主题店</td>
+<td>上海南京路 × 百联</td>
+<td>玛雅 / 印加场景沉浸式复原</td>
+</tr>
+<tr>
+<td align="center"><strong>5月18日</strong></td>
+<td>国际博物馆日陕西主会场</td>
+<td>陕西历史博物馆</td>
+<td>主题展&quot;陕耀中华&quot;</td>
+</tr>
+<tr>
+<td align="center"><strong>5月30日</strong></td>
+<td>国漫《钟馗》上映</td>
+<td>全国院线</td>
+<td>六一档合家欢国漫主力</td>
+</tr>
+<tr>
+<td align="center"><strong>暑期档</strong></td>
+<td>《绿绿星球》动画电影</td>
+<td>全国院线</td>
+<td>已发百款潮玩文创</td>
+</tr>
+<tr>
+<td align="center"><strong>7月3日</strong></td>
+<td>《小黄人与大怪兽》上映</td>
+<td>全国院线</td>
+<td>全球 IP 衍生品中国市场新一轮铺货</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎯 IP 动态趋势(按 IP 分类)</h2>
+<table>
+<thead>
+<tr>
+<th>IP / 品牌</th>
+<th align="center">趋势</th>
+<th>关键事件</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>泡泡玛特 / Labubu</strong></td>
+<td align="center">↓</td>
+<td>联名冰箱二手溢价从 9 万跌至 0</td>
+<td>IP 跨家电赛道遭市场理性回归</td>
+</tr>
+<tr>
+<td><strong>故宫 / 国博</strong></td>
+<td align="center">↑</td>
+<td>5月15日北京新文创市集集中亮相</td>
+<td>文博 IP 从展柜走向商业空间</td>
+</tr>
+<tr>
+<td><strong>上博</strong></td>
+<td align="center">↑</td>
+<td>联手百联落地南京路沉浸式主题店</td>
+<td>博物馆 IP 沉浸化新打法</td>
+</tr>
+<tr>
+<td><strong>国漫(钟馗 / 绿绿星球)</strong></td>
+<td align="center">↑</td>
+<td>钟馗 5月30日定档,绿绿星球已发百款衍生品</td>
+<td>&quot;上映前先做成 IP 生态&quot;成为新打法</td>
+</tr>
+<tr>
+<td><strong>小黄人</strong></td>
+<td align="center">↑</td>
+<td>7月3日上映,衍生品提前铺货</td>
+<td>海外 IP 中国市场常规打法</td>
+</tr>
+<tr>
+<td><strong>暗黑破坏神 / 星际争霸</strong></td>
+<td align="center">↑</td>
+<td>5月13日双经典 IP 联动</td>
+<td>海外头部 IP 在中国手游市场重磅联动</td>
+</tr>
+<tr>
+<td><strong>永劫无间</strong></td>
+<td align="center">↑</td>
+<td>西安电竞嘉年华首落西北</td>
+<td>游戏 IP × 城市文旅深度绑定</td>
+</tr>
+<tr>
+<td><strong>二次元 / 谷子经济</strong></td>
+<td align="center">↑↑</td>
+<td>上海六大主战场、杭州 +140%、湖北跨界</td>
+<td>主流化 + 监管摩擦同步出现</td>
+</tr>
+<tr>
+<td><strong>吉卜力(海外)</strong></td>
+<td align="center">↑</td>
+<td>获西班牙阿斯图里亚斯公主奖</td>
+<td>欧洲软实力升级</td>
+</tr>
+<tr>
+<td><strong>湖北非遗 / 京津冀非遗</strong></td>
+<td align="center">↑</td>
+<td>茶饮联名 / 公益文创交流</td>
+<td>非遗多线落地</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>📌 整理说明</h2>
+<p>本报告时间范围 <strong>2026年5月3日 — 2026年5月9日</strong>:</p>
+<ul>
+<li>仅保留发布日期在范围内的资讯</li>
+<li>5月10日及之后发布的&quot;国际博物馆日&quot;等大量资讯不在时间窗内,仅作为&quot;前瞻预告&quot;在对应章节提示</li>
+</ul>
+<hr>
+<p><em>本报告由 微信公众号【新文创商学院老贾聊IP】整理,版权所有,转载请联系微信【franky_chia77】</em></p>
+
+</div>
+</body>
+</html>
