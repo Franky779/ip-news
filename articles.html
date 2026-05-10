@@ -121,10 +121,16 @@
         }
 
         .article-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 4px;
             transition: color 0.2s ease;
+            overflow-wrap: break-word;
         }
 
         .article-date {
@@ -223,7 +229,7 @@
                 const views = getViews(article.url, article.date);
                 return `
                 <li>
-                    <a href="${article.url}" class="article-item" target="_blank" rel="noopener">
+                    <a href="${article.url}" class="article-item" target="_blank" rel="noopener" title="${article.title.replace(/"/g, '&quot;')}">
                         <div class="article-title">${article.title}</div>
                         <div class="article-meta">
                             <div class="article-date">${article.date}</div>

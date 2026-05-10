@@ -181,14 +181,18 @@
         }
 
         .file-list a {
-            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
             text-decoration: none;
             color: var(--text);
             font-size: 0.9375rem;
             line-height: 1.6;
             padding: var(--space-xs) 0;
             transition: color 0.2s ease;
-            word-break: break-all;
+            overflow-wrap: break-word;
         }
 
         .file-list a:hover {
@@ -1178,13 +1182,13 @@
                 if (folder === '动态') {
                     return `<li class="dynamic-row">
                         <div class="dynamic-left">
-                            <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
+                            <a href="${folder}/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a>
                             <span class="dynamic-date">${file.date}</span>
                         </div>
                     </li>`;
                 }
                 return `<li>
-                    <a href="${folder}/${encodeURIComponent(file.name)}">${name}</a>
+                    <a href="${folder}/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a>
                     <div class="file-meta">
                         <div class="file-date">${file.date}</div>
                     </div>
@@ -1339,7 +1343,7 @@
                 const views = getViews(article.url, article.date);
                 return `
                 <li>
-                    <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                    <a href="${article.url}" target="_blank" rel="noopener" title="${article.title.replace(/"/g, '&quot;')}">${article.title}</a>
                     <div class="file-meta">
                         <div class="file-date">${article.date}</div>
                     </div>

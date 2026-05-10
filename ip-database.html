@@ -105,12 +105,17 @@
         }
 
         .file-list a {
-            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
             text-decoration: none;
             color: var(--text);
             font-size: 1rem;
             padding: var(--space-md) var(--space-lg);
             transition: all 0.2s ease;
+            overflow-wrap: break-word;
         }
 
         .file-list a:hover {
@@ -190,7 +195,7 @@
 
             listEl.innerHTML = htmlFiles.map(file => {
                 const name = file.displayName || file.name.replace(/\.html$/i, '');
-                return `<li><a href="数据分析/${encodeURIComponent(file.name)}">${name}</a></li>`;
+                return `<li><a href="数据分析/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a></li>`;
             }).join('');
         }
 
