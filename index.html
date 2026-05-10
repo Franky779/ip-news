@@ -173,11 +173,33 @@
 
         .file-list li {
             border-bottom: 1px solid var(--border-light);
-            padding-bottom: var(--space-sm);
+            padding: var(--space-sm) var(--space-sm);
+            min-height: 96px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .file-list li:last-child {
             border-bottom: none;
+        }
+
+        .file-list li:hover {
+            background: oklch(96% 0.02 45);
+            transform: translateX(2px);
+        }
+
+        .file-list li.placeholder {
+            background: transparent;
+            border-bottom: 1px dashed var(--border-light);
+            pointer-events: none;
+        }
+
+        .file-list li.placeholder:hover {
+            background: transparent;
+            transform: none;
         }
 
         .file-list a {
@@ -189,18 +211,13 @@
             text-decoration: none;
             color: var(--text);
             font-size: 0.9375rem;
-            line-height: 1.6;
+            font-weight: 500;
+            line-height: 1.55;
             padding: var(--space-xs) 0;
             transition: color 0.2s ease;
             overflow-wrap: break-word;
             width: 100%;
-            min-height: 3.2em;
-        }
-
-        /* flex 容器中的标题需要能正确收缩 */
-        .dynamic-left a {
-            flex: 1;
-            min-width: 0;
+            min-height: 3.7em;
         }
 
         .file-list a:hover {
@@ -216,7 +233,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 2px;
+            margin-top: auto;
         }
 
         .file-views {
@@ -225,25 +242,6 @@
             border: 1px solid var(--accent);
             padding: 1px 8px;
             border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        /* 动态板块: 标题+日期一行, 阅读量在右 */
-        .dynamic-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-        .dynamic-left {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .dynamic-date {
-            font-size: 0.75rem;
-            color: var(--text-muted);
             white-space: nowrap;
         }
 
@@ -1184,24 +1182,22 @@
                 return;
             }
 
-            listEl.innerHTML = displayFiles.map(file => {
+            const TARGET_COUNT = 5;
+            const realItems = displayFiles.map(file => {
                 const name = file.displayName || file.name.replace(/\.html$/i, '');
                 const views = getViews(folder + '/' + file.name, file.date);
-                if (folder === '动态') {
-                    return `<li class="dynamic-row">
-                        <div class="dynamic-left">
-                            <a href="${folder}/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a>
-                            <span class="dynamic-date">${file.date}</span>
-                        </div>
-                    </li>`;
-                }
                 return `<li>
                     <a href="${folder}/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a>
                     <div class="file-meta">
                         <div class="file-date">${file.date}</div>
                     </div>
                 </li>`;
-            }).join('');
+            });
+
+            const placeholders = Array(Math.max(0, TARGET_COUNT - realItems.length))
+                .fill('<li class="placeholder" aria-hidden="true"></li>');
+
+            listEl.innerHTML = [...realItems, ...placeholders].join('');
         }
 
         loadFiles('数据分析', 'list-data', 'count-data');
@@ -1346,17 +1342,22 @@
             const listEl = document.getElementById('list-article');
             if (!listEl || typeof ARTICLES === 'undefined') return;
 
-            const displayArticles = ARTICLES.slice(0, 5);
-            listEl.innerHTML = displayArticles.map(article => {
+            const TARGET_COUNT = 5;
+            const displayArticles = ARTICLES.slice(0, TARGET_COUNT);
+            const realItems = displayArticles.map(article => {
                 const views = getViews(article.url, article.date);
-                return `
-                <li>
+                return `<li>
                     <a href="${article.url}" target="_blank" rel="noopener" title="${article.title.replace(/"/g, '&quot;')}">${article.title}</a>
                     <div class="file-meta">
                         <div class="file-date">${article.date}</div>
                     </div>
-                </li>
-            `}).join('');
+                </li>`;
+            });
+
+            const placeholders = Array(Math.max(0, TARGET_COUNT - realItems.length))
+                .fill('<li class="placeholder" aria-hidden="true"></li>');
+
+            listEl.innerHTML = [...realItems, ...placeholders].join('');
         }
         renderArticles();
 
