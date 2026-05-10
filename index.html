@@ -1103,6 +1103,7 @@
         <p style="margin-top: 4px;"><a href="mailto:franky_chia77@163.com" style="color: var(--text-muted); text-decoration: none;">商务合作：微信 franky_chia77</a></p>
     </footer>
 
+    <script src="files-data.js"></script>
     <script>
         function getViews(key, date) {
             let seed = 0;
@@ -1127,19 +1128,6 @@
         function loadFiles(folder, listId, countId) {
             const listEl = document.getElementById(listId);
             const countEl = countId ? document.getElementById(countId) : null;
-            const FILE_LISTS = {
-                '数据分析': [
-                    { name: '盲盒赛道深度调研报告_2026-05-08.html', displayName: '《盲盒赛道深度调研报告》', date: '2026-05-08' },
-                    { name: '线条小狗-IP评估报告.html', displayName: '《IP评估报告-线条小狗》', date: '2026-04-27' },
-                    { name: '潮玩行业竞品分析_全行业完整报告.html', displayName: '《潮玩行业品牌深度分析》', date: '2026-04-23' },
-                    { name: '《IP评估报告-初音未来》.html', displayName: '《IP评估报告-初音未来》', date: '2026-05-02' }
-                ],
-                '动态': [
-                    { name: '本周行业动态-2026-05-10.html', date: '2026-05-10' },
-                    { name: '本周行业动态-2026-05-01.html', date: '2026-05-01' },
-                    { name: '本周行业动态-2026-04-22.html', date: '2026-04-22' }
-                ]
-            };
 
             const files = FILE_LISTS[folder] || [];
             const htmlFiles = files
