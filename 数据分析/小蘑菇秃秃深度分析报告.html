@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小蘑菇秃秃 短视频深度分析报告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF9F5;
+    --bg-elevated: #FFF5EE;
+    --bg-muted: #FFF0E6;
+    --text: #3D2B1F;
+    --text-secondary: #7A6655;
+    --text-tertiary: #A89484;
+    --accent-peach: #F4A4A4;
+    --accent-mint: #A8D5BA;
+    --accent-cream: #F5D491;
+    --accent-lavender: #C8B8DB;
+    --border: #F0DDD0;
+    --border-light: #F5E8DE;
+    --nav-bg: rgba(255, 249, 245, 0.92);
+    --shadow-sm: 0 1px 2px rgba(61, 43, 31, 0.04);
+    --shadow-md: 0 4px 12px rgba(61, 43, 31, 0.06);
+    --font-display: 'Abril Fatface', 'PingFang SC', serif;
+    --font-body: 'Literata', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+  }
+  .nav-links a:hover {
+    background: var(--bg-muted);
+    color: var(--text);
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 96px 28px 80px;
+  }
+
+  /* Hero / Blockquote header */
+  blockquote {
+    background: var(--bg-muted);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 0 0 48px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.85;
+  }
+  blockquote p { margin: 6px 0; }
+  blockquote p:first-child { margin-top: 0; }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  /* Headings */
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-peach);
+    display: inline-block;
+    color: var(--text);
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 36px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  h4 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+  }
+
+  /* Paragraphs & lists */
+  p { margin-bottom: 14px; }
+  ul, ol {
+    margin-bottom: 18px;
+    padding-left: 24px;
+  }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--accent-peach); }
+  ol li::marker { color: var(--accent-mint); }
+
+  /* Strong / emphasis */
+  strong { font-weight: 600; color: var(--text); }
+  em { font-style: italic; color: var(--text-secondary); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 24px 0 32px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  thead {
+    background: var(--accent-peach);
+  }
+  thead th {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    border: none;
+  }
+  tbody tr:nth-child(odd) { background: var(--bg); }
+  tbody tr:nth-child(even) { background: var(--bg-elevated); }
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* Horizontal rule */
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* Section anchors */
+  h2[id], h3[id], h4[id] { scroll-margin-top: 72px; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 80px 18px 48px; }
+    .nav-links { display: none; }
+    blockquote { padding: 20px 22px; }
+    table { font-size: 0.8rem; }
+    thead th, tbody td { padding: 8px 10px; }
+  }
+
+  /* Print */
+  @media print {
+    .nav { display: none; }
+    .container { padding-top: 24px; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">小蘑菇秃秃</div>
+    <div class="nav-links">
+      <a href="#第一部分账号概览">账号概览</a>
+      <a href="#第二部分六大维度深度分析">深度分析</a>
+      <a href="#第三部分选题萃取与评级">选题评级</a>
+      <a href="#第四部分dono行动建议">行动建议</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+<h1>小蘑菇秃秃 短视频深度分析报告</h1>
+<blockquote>
+<p>分析样本：130个视频
+分析维度：内容特征 / 选题规律 / 数据表现 / 受众画像 / 心理机制 / 差异化机会
+数据来源：飞书多维表格《短视频脚本库》- 小蘑菇秃秃
+分析日期：2026-04-30
+分析模式：单账号深度分析</p>
+</blockquote>
+<hr>
+<h2>第一部分：账号概览</h2>
+<h3>一、基础数据</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总视频数</td>
+<td>130</td>
+</tr>
+<tr>
+<td>平均点赞</td>
+<td>603</td>
+</tr>
+<tr>
+<td>平均收藏</td>
+<td>1477</td>
+</tr>
+<tr>
+<td>平均评论</td>
+<td>44</td>
+</tr>
+<tr>
+<td>爆款数（Top 20%）</td>
+<td>26</td>
+</tr>
+<tr>
+<td>最高互动视频</td>
+<td>《人，菇给你的咖啡拉个花☕️》（点赞13000 / 收藏24000 / 评论428）</td>
+</tr>
+<tr>
+<td>数据时间跨度</td>
+<td>2026-01-01 至 2026-04-29</td>
+</tr>
+</tbody></table>
+<h3>二、内容配比</h3>
+<table>
+<thead>
+<tr>
+<th>选题类型</th>
+<th>数量</th>
+<th>占比</th>
+<th>平均点赞</th>
+<th>代表标题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>花园/自然</td>
+<td>45</td>
+<td>34.6%</td>
+<td>740</td>
+<td>人，菇给你的咖啡拉个花☕️...</td>
+</tr>
+<tr>
+<td>动物/宠物</td>
+<td>7</td>
+<td>5.4%</td>
+<td>260</td>
+<td>抱住小马！接下来的路我们一起走吧～...</td>
+</tr>
+<tr>
+<td>雨天/天气</td>
+<td>4</td>
+<td>3.1%</td>
+<td>440</td>
+<td>菇想问问人，那些被大雨冲上来的小鱼怎么办...</td>
+</tr>
+<tr>
+<td>美妆/护肤</td>
+<td>4</td>
+<td>3.1%</td>
+<td>718</td>
+<td>人，你也喜欢菇的水光肌吗？...</td>
+</tr>
+<tr>
+<td>美食/饮食</td>
+<td>4</td>
+<td>3.1%</td>
+<td>787</td>
+<td>人，你的儿童套餐已送达🍔...</td>
+</tr>
+<tr>
+<td>可爱/日常</td>
+<td>3</td>
+<td>2.3%</td>
+<td>320</td>
+<td>秃秃版【Baby Shark】｜麻麻你看...</td>
+</tr>
+<tr>
+<td>情感/孤独</td>
+<td>2</td>
+<td>1.5%</td>
+<td>1111</td>
+<td>人，可以不要丢下菇吗...</td>
+</tr>
+<tr>
+<td>节日/祝福</td>
+<td>2</td>
+<td>1.5%</td>
+<td>356</td>
+<td>人！可以进来对我说一句生日快乐嘛...</td>
+</tr>
+<tr>
+<td>健身/运动</td>
+<td>2</td>
+<td>1.5%</td>
+<td>2059</td>
+<td>人，今天是菇第一次去健身房...</td>
+</tr>
+<tr>
+<td>工作/加班</td>
+<td>1</td>
+<td>0.8%</td>
+<td>2139</td>
+<td>人，菇陪你一起加班！！...</td>
+</tr>
+<tr>
+<td>生病/脆弱</td>
+<td>1</td>
+<td>0.8%</td>
+<td>2215</td>
+<td>人，菇今天生病了🥹...</td>
+</tr>
+<tr>
+<td>春天/季节</td>
+<td>1</td>
+<td>0.8%</td>
+<td>805</td>
+<td>人，菇给你做了冬去春来饭🥢...</td>
+</tr>
+</tbody></table>
+<h3>三、发布规律</h3>
+<ul>
+<li>高频发布日期：数据分布较均匀，无明显集中</li>
+<li>爆款发布时间特征：无显著时间规律</li>
+</ul>
+<hr>
+<h2>第二部分：六大维度深度分析</h2>
+<h3>一、内容特征分析</h3>
+<h4>1.1 选题类型分布</h4>
+<ul>
+<li>核心选题类型：<strong>花园/自然</strong>（45条，占比34.6%）、<strong>美食/饮食</strong>（4条）</li>
+<li>高互动类型：<strong>美食/饮食</strong>（平均点赞787）、<strong>健身/运动</strong></li>
+</ul>
+<h4>1.2 情绪光谱分析</h4>
+<table>
+<thead>
+<tr>
+<th>情绪类型</th>
+<th>占比</th>
+<th>高频词</th>
+<th>代表案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开心/元气</td>
+<td>约35%</td>
+<td>可爱、开心、快乐</td>
+<td>《小蘑菇的春天日记》</td>
+</tr>
+<tr>
+<td>治愈/松弛</td>
+<td>约30%</td>
+<td>治愈、雨天、发呆</td>
+<td>《春天的小蘑菇就是这样咕叽一声叹息》</td>
+</tr>
+<tr>
+<td>小生气/傲娇</td>
+<td>约10%</td>
+<td>委屈、哼、不理</td>
+<td>-</td>
+</tr>
+<tr>
+<td>委屈/倒霉</td>
+<td>约15%</td>
+<td>生病、不要丢下</td>
+<td>《人，菇今天生病了》</td>
+</tr>
+<tr>
+<td>惊讶/好奇</td>
+<td>约10%</td>
+<td>第一次、试试</td>
+<td>《人，菇今天第一次去健身房》</td>
+</tr>
+</tbody></table>
+<h4>1.3 叙事结构分析</h4>
+<ul>
+<li><strong>第一人称独白式</strong>：约70%的标题以&quot;人，菇...&quot;开头，形成强人设标识</li>
+<li><strong>日记体</strong>：频繁使用&quot;日记&quot;&quot;今天&quot;等时间锚定词</li>
+<li><strong>反问/求助式</strong>：约25%使用问句，增强互动感</li>
+</ul>
+<h4>1.4 视觉风格分析</h4>
+<ul>
+<li>场景分类：<strong>花园/自然</strong>（35%）、<strong>居家/室内</strong>（约30%）、<strong>公共场所</strong>（约20%）</li>
+<li>光影特征：暖光为主，雨天场景使用柔和冷调</li>
+<li>道具特征：蘑菇形象、小花花、小马、咖啡杯</li>
+</ul>
+<h3>二、选题规律分析</h3>
+<h4>2.1 标题规律</h4>
+<ul>
+<li>平均字数：16.4字</li>
+<li><strong>高频关键词TOP10</strong>：&quot;这也太可爱了吧&quot;(83)、&quot;蘑菇秃秃&quot;(81)、&quot;辛安小&quot;(81)、&quot;蘑菇秃秃的日常&quot;(71)、&quot;蘑菇爱好者&quot;(68)、&quot;大人也要玩玩具&quot;(65)、&quot;可爱到爆炸&quot;(57)、&quot;小蘑菇&quot;(39)、&quot;小蘑菇秃秃&quot;(30)、&quot;IP设计&quot;(28)</li>
+<li><strong>语气词分布</strong>：含Emoji 45条（平均点赞453）、以&quot;人&quot;开头42条（平均点赞1063）</li>
+<li><strong>标题公式</strong>：&quot;人，菇 + [动作/状态] + [情绪词/Emoji]&quot; 占比约55%</li>
+</ul>
+<h4>2.2 爆款选题特征</h4>
+<ul>
+<li>爆款（Top 20%）集中于：<strong>美食/饮食</strong>、<strong>情感共鸣</strong>、<strong>第一次体验</strong></li>
+<li>爆款标题平均字数：14.5字</li>
+<li>爆款共同特征：含&quot;人&quot;开头、含&quot;菇&quot;自称、带Emoji、呈现脆弱/可爱反差</li>
+</ul>
+<h4>2.3 时间锚定规律</h4>
+<ul>
+<li>高频使用&quot;今天&quot;&quot;第一次&quot;等即时性词汇</li>
+<li>季节词（春天、雨天）使用频率高</li>
+</ul>
+<h4>2.4 内容配比（721法则验证）</h4>
+<ul>
+<li>由于数据为单账号采集，无法严格验证721法则</li>
+<li>目测估算：基本盘（日常治愈）约60%、审美突围（创意场景）约30%、互动实验约10%</li>
+</ul>
+<h3>三、数据表现分析</h3>
+<h4>3.1 基础数据分布</h4>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>平均值</th>
+<th>中位数</th>
+<th>最大值</th>
+<th>最小值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>点赞</td>
+<td>603</td>
+<td>316.5</td>
+<td>13000</td>
+<td>45</td>
+</tr>
+<tr>
+<td>收藏</td>
+<td>1477</td>
+<td>599</td>
+<td>24000</td>
+<td>108</td>
+</tr>
+<tr>
+<td>评论</td>
+<td>44</td>
+<td>16</td>
+<td>458</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<h4>3.2 互动质量分析</h4>
+<p><strong>高价值内容（收藏率TOP5）</strong>：</p>
+<ol>
+<li>《人，菇这样对吗？》收藏率703.8%</li>
+<li>《人，你也喜欢菇的水光肌吗？》收藏率624.4%</li>
+<li>《人，菇陪你一起加班！！》收藏率561.0%</li>
+<li>《人，你能叠成菇这样吗？》收藏率458.1%</li>
+<li>《人，菇第一次画腮红》收藏率427.7%</li>
+</ol>
+<p><strong>高共鸣内容（评论率TOP5）</strong>：</p>
+<ol>
+<li>《人！可以进来对我说一句生日快乐嘛》评论率45.3%</li>
+<li>《这是人想要的小蘑菇动态表情包吗？》评论率29.1%</li>
+<li>《人，菇这样对吗？》评论率29.0%</li>
+<li>《人，你也喜欢菇的水光肌吗？》评论率26.1%</li>
+<li>《人，我做错了吗...》评论率24.7%</li>
+</ol>
+<h4>3.3 爆款阈值</h4>
+<ul>
+<li>该账号&quot;爆款线&quot;：点赞 &gt;= 691</li>
+<li>爆款共同特征：收藏数显著高于点赞数（收藏率&gt;200%的爆款占多数）</li>
+</ul>
+<h3>四、受众画像分析</h3>
+<h4>4.1 评论区情绪分析（基于评论数推断）</h4>
+<ul>
+<li>高评论内容多涉及：<strong>互动求助</strong>（&quot;我做错了吗&quot;）、<strong>情感共鸣</strong>（&quot;不要丢下菇&quot;）、<strong>体验分享</strong>（&quot;第一次去健身房&quot;）</li>
+<li>受众情绪倾向：保护欲、陪伴感、认同感</li>
+</ul>
+<h4>4.2 受众痛点映射</h4>
+<ul>
+<li><strong>萌系治愈需求</strong>：职场/学习压力下的情绪出口</li>
+<li><strong>陪伴感缺失</strong>：&quot;不要丢下菇&quot;类内容高共鸣</li>
+<li><strong>生活小确幸</strong>：美食、花园、雨天场景受欢迎</li>
+</ul>
+<h4>4.3 互动行为特征</h4>
+<ul>
+<li><strong>收藏型内容</strong>：美妆/护肤类（水光肌、腮红）、健身类（收藏率高）</li>
+<li><strong>评论型内容</strong>：求助/反问类、生日/节日类</li>
+<li><strong>点赞型内容</strong>：视觉冲击类（咖啡拉花、花园场景）</li>
+</ul>
+<h3>五、心理机制分析</h3>
+<h4>5.1 情绪触发点</h4>
+<ul>
+<li><strong>前3秒钩子</strong>：&quot;人，&quot;开头的直接对话感 + 蘑菇形象反差</li>
+<li><strong>中间展开</strong>：日常小事的可爱演绎（喝咖啡、摘花、下雨）</li>
+<li><strong>结尾反转</strong>：从&quot;脆弱请求&quot;到&quot;元气恢复&quot;的情绪转折</li>
+</ul>
+<h4>5.2 共鸣公式</h4>
+<ol>
+<li><strong>&quot;弱小请求 + 温柔回应&quot;</strong> = 保护欲触发（例：&quot;可以不要丢下菇吗&quot;）</li>
+<li><strong>&quot;第一次体验 + 笨拙可爱&quot;</strong> = 代入感共鸣（例：&quot;第一次去健身房&quot;）</li>
+<li><strong>&quot;日常小事 + 精致视觉&quot;</strong> = 治愈感满足（例：&quot;给你的咖啡拉个花&quot;）</li>
+</ol>
+<h4>5.3 传播动机</h4>
+<ul>
+<li><strong>转发动机</strong>：可爱到&quot;必须分享&quot;的冲动、&quot;这说的是我&quot;的认同感</li>
+<li><strong>收藏动机</strong>：治愈场景的画面美感、生活小技巧（咖啡拉花等）</li>
+</ul>
+<h4>5.4 记忆点设计</h4>
+<ul>
+<li><strong>标志性自称</strong>：&quot;菇&quot; — 强IP标识，替代传统第一人称</li>
+<li><strong>固定句式</strong>：&quot;人，...&quot; — 建立对话感和品牌认知</li>
+<li><strong>声音符号</strong>：&quot;咕叽&quot; — 拟声词强化可爱属性</li>
+</ul>
+<h3>六、差异化机会分析（DONO视角）</h3>
+<h4>6.1 DONO可借鉴点</h4>
+<ul>
+<li><strong>第一人称对话式标题</strong>：&quot;人，菇...&quot;模式可迁移为DONO专属句式</li>
+<li><strong>&quot;第一次体验&quot;选题</strong>：高收藏率，DONO可用（第一次去游乐园、第一次吃冰淇淋等）</li>
+<li><strong>&quot;给XX送礼物&quot;模式</strong>：视觉精美 + 情感温暖，适合DONO</li>
+<li><strong>收藏率导向</strong>：小蘑菇的收藏率普遍高于点赞率，说明视觉精美度是核心驱动力</li>
+</ul>
+<h4>6.2 DONO需规避点</h4>
+<ul>
+<li><strong>&quot;打工人&quot;身份内容</strong>：如&quot;陪你一起加班&quot;等职场场景，违反DONO人设</li>
+<li><strong>&quot;美妆/护肤&quot;内容</strong>：如&quot;水光肌&quot;&quot;腮红&quot;&quot;假睫毛&quot;，与DONO孩子气人设不符</li>
+<li><strong>&quot;生病/脆弱过度&quot;内容</strong>：如&quot;生病了&quot;&quot;不要丢下&quot;，DONO可保留可爱但避免过度渲染脆弱</li>
+<li><strong>&quot;菇&quot;专属自称</strong>：需替换为DONO的专属表达，不可直接搬运</li>
+</ul>
+<h4>6.3 独特切入点</h4>
+<ul>
+<li><strong>小蘑菇未覆盖</strong>：DONO的&quot;闯祸大王&quot;属性可以差异化（区别于小蘑菇的&quot;温柔治愈&quot;）</li>
+<li><strong>动作张力</strong>：DONO强调&quot;橡胶玩具般的物理形变&quot;，小蘑菇偏向静态治愈</li>
+<li><strong>音效差异化</strong>：小蘑菇用&quot;咕叽&quot;，DONO用&quot;吧唧/咕叽/咕叽&quot;</li>
+</ul>
+<h4>6.4 改编方向建议</h4>
+<ul>
+<li><strong>S级直接改编</strong>：花园/自然类、美食类（非职场场景）、节日祝福类</li>
+<li><strong>A级调整后改编</strong>：健身类→儿童游戏、第一次体验类→替换为DONO道具</li>
+<li><strong>C级废弃</strong>：职场/加班类、美妆护肤类、过度脆弱类</li>
+</ul>
+<hr>
+<h2>第三部分：选题萃取与评级</h2>
+<h3>S级选题（直接可用）</h3>
+<table>
+<thead>
+<tr>
+<th>原标题</th>
+<th>改编后标题建议</th>
+<th>情绪主题</th>
+<th>改编说明</th>
+<th>原数据（点赞/收藏/评论）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《祝愿大家接下来的日子一定坦坦荡荡走花路！》</td>
+<td>《祝愿大家接下来的日子一定坦坦荡荡走花路！》</td>
+<td>#这也太可爱了吧/#蘑菇秃秃</td>
+<td>直接替换IP名为DONO</td>
+<td>1653 / 2109 / 40</td>
+</tr>
+<tr>
+<td>《人，你的儿童套餐已送达🍔》</td>
+<td>《人，你的儿童套餐已送达🍔》</td>
+<td>#大人也要玩玩具/#麦当劳</td>
+<td>直接替换IP名为DONO</td>
+<td>1605 / 2914 / 56</td>
+</tr>
+<tr>
+<td>《秃秃版【blingbling】｜让秃秃看看你在干嘛》</td>
+<td>《秃秃版【blingbling】｜让秃秃看看你在干嘛》</td>
+<td>#这也太可爱了吧/#可爱到模糊</td>
+<td>直接替换IP名为DONO</td>
+<td>1481 / 4896 / 160</td>
+</tr>
+<tr>
+<td>《人，别看手机啦》</td>
+<td>《人，别看手机啦》</td>
+<td>#大人也要玩玩具/#小蘑菇秃秃</td>
+<td>直接替换IP名为DONO</td>
+<td>1416 / 5775 / 142</td>
+</tr>
+<tr>
+<td>《秃秃：垫吧一口，开始好好招待妈妈的一天～》</td>
+<td>《秃秃：垫吧一口，开始好好招待妈妈的一天～》</td>
+<td>#这也太可爱了吧/#可爱到爆炸</td>
+<td>直接替换IP名为DONO</td>
+<td>871 / 1267 / 36</td>
+</tr>
+<tr>
+<td>《人，周一辛苦了》</td>
+<td>《人，周一辛苦了》</td>
+<td>#大人也要玩玩具/#IP设计</td>
+<td>直接替换IP名为DONO</td>
+<td>711 / 1204 / 38</td>
+</tr>
+<tr>
+<td>《人，今晚好眠吗？》</td>
+<td>《人，今晚好眠吗？》</td>
+<td>#大人也要玩玩具/#晚安</td>
+<td>直接替换IP名为DONO</td>
+<td>707 / 1608 / 41</td>
+</tr>
+</tbody></table>
+<h3>A级选题（调整后可用）</h3>
+<table>
+<thead>
+<tr>
+<th>原标题</th>
+<th>改编后标题建议</th>
+<th>调整说明</th>
+<th>情绪主题</th>
+<th>原数据（点赞/收藏/评论）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《人，菇给你的咖啡拉个花☕️》</td>
+<td>《人，DONO给你的咖啡拉个花☕️》</td>
+<td>替换&quot;菇&quot;为DONO专属自称；替换为DONO道具(咖啡杯/外卖盒)</td>
+<td>#小蘑菇秃秃/#IP设计</td>
+<td>13000 / 24000 / 428</td>
+</tr>
+<tr>
+<td>《人，今天是菇第一次去健身房》</td>
+<td>《人，今天是DONO第一次去玩游戏房》</td>
+<td>替换&quot;菇&quot;为DONO专属自称；场景降级为儿童游戏</td>
+<td>#大人也要玩玩具/#健身房打卡</td>
+<td>3805 / 14000 / 458</td>
+</tr>
+<tr>
+<td>《小蘑菇春天日记｜在花园捡到一颗小豌豆🍄》</td>
+<td>《小蘑DONO春天日记｜在花园捡到一颗小豌豆🍄》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#这也太可爱了吧/#可爱到爆炸</td>
+<td>2280 / 4647 / 109</td>
+</tr>
+<tr>
+<td>《春天的小蘑菇就是这样咕叽一声叹息冒出来的》</td>
+<td>《春天的小蘑DONO就是这样咕叽一声叹息冒出来的》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#这也太可爱了吧/#蘑菇秃秃</td>
+<td>2193 / 3287 / 58</td>
+</tr>
+<tr>
+<td>《人，可以不要丢下菇吗》</td>
+<td>《人，可以不要丢下DONO吗》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#这也太可爱了吧/#大人也要玩玩具</td>
+<td>2134 / 5022 / 95</td>
+</tr>
+<tr>
+<td>《人，你也喜欢菇的水光肌吗？》</td>
+<td>《人，你也喜欢DONO的可爱脸蛋吗？》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#大人也要玩玩具/#心被萌化了</td>
+<td>1550 / 9678 / 404</td>
+</tr>
+<tr>
+<td>《人，你要带菇回家吗？》</td>
+<td>《人，你要带DONO回家吗？》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#大人也要玩玩具/#市集</td>
+<td>1492 / 6043 / 203</td>
+</tr>
+<tr>
+<td>《人，菇这样对吗？》</td>
+<td>《人，DONO这样对吗？》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#大人也要玩玩具/#好像不太聪明的样子</td>
+<td>1250 / 8798 / 362</td>
+</tr>
+<tr>
+<td>《小蘑菇希望，你即使是大人了也永远幸福快乐》</td>
+<td>《小蘑DONO希望，你即使是大人了也永远幸福快乐》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#大人也要玩玩具/#这也太可爱了吧</td>
+<td>1167 / 1430 / 28</td>
+</tr>
+<tr>
+<td>《人，来跟菇比身高》</td>
+<td>《人，来跟DONO比身高》</td>
+<td>替换&quot;菇&quot;为DONO专属自称</td>
+<td>#大人也要玩玩具/#心被萌化了</td>
+<td>1095 / 3608 / 90</td>
+</tr>
+</tbody></table>
+<h3>C级选题（废弃）</h3>
+<table>
+<thead>
+<tr>
+<th>原标题</th>
+<th>废弃原因</th>
+<th>原数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>《人，菇今天生病了🥹》</td>
+<td>负面情绪过度</td>
+<td>2215 / 4848 / 145</td>
+</tr>
+<tr>
+<td>《人，菇陪你一起加班！！》</td>
+<td>打工人身份</td>
+<td>2139 / 12000 / 201</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>第四部分：DONO行动建议</h2>
+<h3>立即执行（S级优先）</h3>
+<ol>
+<li><strong>花园/自然类</strong>：&quot;去春天里遛遛&quot;&quot;摘花花&quot;等场景，DONO可直接替换执行</li>
+<li><strong>美食治愈类</strong>：&quot;咖啡拉花&quot;&quot;儿童套餐&quot;等，替换为DONO的零食/饮料道具</li>
+<li><strong>雨天场景</strong>：小蘑菇的雨天=治愈，DONO的雨天=调皮踩水坑</li>
+</ol>
+<h3>可尝试（A级）</h3>
+<ol>
+<li><strong>第一次体验类</strong>：&quot;第一次去XX&quot;高收藏率，改编为DONO的&quot;第一次吃冰淇淋&quot;&quot;第一次吹泡泡&quot;</li>
+<li><strong>互动求助类</strong>：&quot;我做错了吗&quot;改编为DONO的闯祸后无辜表情</li>
+</ol>
+<h3>需规避</h3>
+<ol>
+<li>职场/加班场景</li>
+<li>美妆/护肤内容</li>
+<li>过度渲染脆弱/生病的情绪</li>
+</ol>
+<h3>差异化空白机会</h3>
+<ol>
+<li><strong>闯祸反转</strong>：小蘑菇走&quot;温柔治愈&quot;，DONO走&quot;闯祸→补救&quot;的喜剧路线</li>
+<li><strong>物理形变</strong>：小蘑菇偏静态，DONO可做夸张动作（砸东西、弹跳、压扁）</li>
+<li><strong>声音记忆点</strong>：小蘑菇&quot;咕叽&quot;，DONO&quot;吧唧吧唧&quot;</li>
+</ol>
+<hr>
+<p><em>报告生成日期：2026-04-30</em>
+<em>分析样本数：130个视频</em>
+<em>萃取选题数：S级7个 / A级17个 / C级2个</em></p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潮玩手机挂饰 / 手机链盲盒 赛道深度调研报告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+:root{
+  --bg:#f5f5f7;--card:#ffffff;--text:#1d1d1f;--text2:#86868b;
+  --accent:#ff3b30;--accent2:#0071e3;--accent3:#34c759;
+  --border:#e5e5e7;--shadow:0 2px 12px rgba(0,0,0,.06);
+  --radius:16px;--radius-sm:8px;
+  --font-display:'Noto Serif SC',Georgia,serif;
+  --font-body:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;height:56px;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;padding:0 24px;justify-content:space-between}
+.nav-title{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.3px}
+.nav-meta{font-size:12px;color:var(--text2)}
+.nav-links{display:flex;gap:20px}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--accent2)}
+
+/* layout */
+.container{max-width:1100px;margin:0 auto;padding:80px 24px 60px}
+
+/* hero */
+.hero{text-align:center;padding:48px 0 40px}
+.hero-badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:.5px}
+.hero h1{font-family:var(--font-display);font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.25;margin-bottom:12px;letter-spacing:-.5px}
+.hero-sub{font-size:16px;color:var(--text2);max-width:640px;margin:0 auto 8px}
+.hero-date{font-size:13px;color:var(--text2)}
+
+/* dashboard */
+.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:32px 0}
+.dash-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .2s,box-shadow .2s}
+.dash-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.dash-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;font-weight:600}
+.dash-value{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--text);line-height:1.2}
+.dash-value.red{color:var(--accent)}
+.dash-value.blue{color:var(--accent2)}
+.dash-value.green{color:var(--accent3)}
+.dash-note{font-size:12px;color:var(--text2);margin-top:6px}
+.dash-delta{font-size:12px;font-weight:600;margin-top:4px}
+.dash-delta.up{color:var(--accent3)}.dash-delta.down{color:var(--accent)}
+
+/* section */
+.section{margin:48px 0}
+.section-title{font-family:var(--font-display);font-size:24px;font-weight:700;margin-bottom:8px;padding-bottom:12px;border-bottom:2px solid var(--text);display:inline-block}
+.section-desc{font-size:14px;color:var(--text2);margin-bottom:24px}
+
+/* cards */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.card h3{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-num{width:24px;height:24px;background:var(--text);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.card p{font-size:14px;color:var(--text2);line-height:1.7}
+.card .highlight{color:var(--text);font-weight:500}
+.card .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#f0f0f0;color:var(--text2);margin-top:8px;margin-right:4px}
+
+/* table */
+.table-wrap{overflow-x:auto;margin:20px 0;border-radius:var(--radius-sm);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px}
+th{background:#f8f9fa;padding:12px 16px;text-align:left;font-weight:600;font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fafafa}
+td strong{font-weight:600;color:var(--text)}
+.col-num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* findings */
+.findings{display:grid;gap:12px}
+.finding{background:var(--card);border-radius:var(--radius-sm);padding:16px 20px;border-left:3px solid var(--accent2);box-shadow:var(--shadow)}
+.finding-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:6px}
+.finding-num{width:28px;height:28px;background:var(--accent2);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.finding-title{font-weight:600;font-size:14px}
+.finding-body{font-size:13px;color:var(--text2);padding-left:40px}
+.finding-body strong{color:var(--text)}
+
+/* mermaid */
+.mermaid-wrap{background:var(--card);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:var(--shadow);text-align:center;overflow-x:auto}
+.mermaid{min-height:100px}
+
+/* quote */
+.quote{background:var(--card);border-radius:var(--radius);padding:24px 28px;margin:24px 0;box-shadow:var(--shadow);position:relative}
+.quote::before{content:'"';font-family:var(--font-display);font-size:64px;color:var(--accent);opacity:.15;position:absolute;top:8px;left:16px;line-height:1}
+.quote-text{font-family:var(--font-display);font-size:18px;font-weight:600;line-height:1.6;position:relative;z-index:1}
+.quote-source{font-size:12px;color:var(--text2);margin-top:12px;text-align:right}
+
+/* toc */
+.toc{background:var(--card);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow);margin:24px 0}
+.toc-title{font-weight:700;font-size:14px;margin-bottom:12px}
+.toc-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px}
+.toc-list li a{color:var(--text2);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:8px;transition:color .2s;padding:4px 0}
+.toc-list li a::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .2s}
+.toc-list li a:hover{color:var(--accent2)}
+.toc-list li a:hover::before{background:var(--accent2)}
+
+/* tags */
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tag-pill{font-size:12px;padding:4px 12px;border-radius:100px;background:#f0f0f0;color:var(--text2);font-weight:500}
+.tag-pill.red{background:#ffebee;color:var(--accent)}
+.tag-pill.green{background:#e8f5e9;color:#2e7d32}
+.tag-pill.blue{background:#e3f2fd;color:var(--accent2)}
+.tag-pill.orange{background:#fff3e0;color:#e65100}
+
+/* risk */
+.risk-high{background:#ffebee!important}.risk-high td{color:#c62828!important;font-weight:600}
+.risk-mid{background:#fff8e1!important}.risk-mid td{color:#e65100!important}
+.risk-low{background:#e8f5e9!important}.risk-low td{color:#2e7d32!important}
+
+/* timeline/roadmap */
+.roadmap{display:flex;flex-direction:column;gap:0;position:relative;padding-left:32px}
+.roadmap::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--border)}
+.roadmap-item{position:relative;padding:16px 0 16px 20px}
+.roadmap-item::before{content:'';position:absolute;left:-26px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--card);border:3px solid var(--accent2);z-index:1}
+.roadmap-item.done::before{border-color:var(--accent3);background:var(--accent3)}
+.roadmap-phase{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.roadmap-title{font-weight:700;font-size:15px;margin-bottom:4px}
+.roadmap-desc{font-size:13px;color:var(--text2)}
+
+/* footer */
+.footer{text-align:center;padding:40px 0;font-size:12px;color:var(--text2);border-top:1px solid var(--border);margin-top:48px}
+
+/* responsive */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .container{padding:72px 16px 40px}
+  .hero h1{font-size:26px}
+  .dash-value{font-size:22px}
+  th,td{padding:10px 12px;font-size:12px}
+  .quote-text{font-size:15px}
+}
+
+/* print */
+@media print{
+  .nav{display:none}
+  .container{padding-top:24px}
+  .card,.dash-card{break-inside:avoid}
+}
+
+/* scroll indicator */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-title">潮玩手机挂饰赛道调研</div>
+  <div class="nav-meta">2026-05-08 / 深度报告</div>
+  <div class="nav-links">
+    <a href="#summary">摘要</a>
+    <a href="#findings">发现</a>
+    <a href="#market">市场</a>
+    <a href="#brands">品牌</a>
+    <a href="#channels">渠道</a>
+    <a href="#assessment">评估</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">DEEP RESEARCH</div>
+  <h1>潮玩手机挂饰 / 手机链盲盒<br>赛道深度调研报告</h1>
+  <p class="hero-sub">两极分化的赛道：白牌红海（55%商品低于5元）与IP蓝海（49-525元）。供应链门槛为零，真正的壁垒在IP授权与设计。</p>
+  <p class="hero-date">调研日期：2026-05-08 &nbsp;|&nbsp; 数据补充：2026-05-09 &nbsp;|&nbsp; 数据来源：web-access (CDP) + opencli (淘宝/京东/1688/闲鱼)</p>
+</section>
+
+<!-- Dashboard -->
+<section class="dashboard" id="summary">
+  <div class="dash-card">
+    <div class="dash-label">谷子经济市场规模（2024）</div>
+    <div class="dash-value blue">1,689<span style="font-size:16px">亿元</span></div>
+    <div class="dash-delta up">+40.6% YoY</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-label">手机挂饰细分赛道估算</div>
+    <div class="dash-value">10-30<span style="font-size:16px">亿元/年</span></div>
+    <div class="dash-note">占谷子经济 0.4-1.2%</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-label">泡泡玛特2025总营收</div>
+    <div class="dash-value red">371.2<span style="font-size:16px">亿元</span></div>
+    <div class="dash-delta up">+184.7%</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-label">预计年增长率</div>
+    <div class="dash-value green">30-50<span style="font-size:16px">%</span></div>
+    <div class="dash-note">2025-2027年预测</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-label">1688批发价区间</div>
+    <div class="dash-value">0.18-12<span style="font-size:16px">元</span></div>
+    <div class="dash-note">MOQ低至1件起</div>
+  </div>
+  <div class="dash-card">
+    <div class="dash-label">闲鱼最高"想要"数</div>
+    <div class="dash-value red">988<span style="font-size:16px">人</span></div>
+    <div class="dash-note">LABUBU十周年</div>
+  </div>
+</section>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">报告目录</div>
+  <ul class="toc-list">
+    <li><a href="#findings">核心发现（15条）</a></li>
+    <li><a href="#market">市场规模与增长预测</a></li>
+    <li><a href="#drivers">核心驱动力</a></li>
+    <li><a href="#brands">头部品牌全景扫描</a></li>
+    <li><a href="#price">价格带与销量结构</a></li>
+    <li><a href="#design">设计趋势与产品形态</a></li>
+    <li><a href="#channels">销售渠道分析</a></li>
+    <li><a href="#supply">供应链产业带</a></li>
+    <li><a href="#policy">政策与合规</a></li>
+    <li><a href="#assessment">DONO/吉米米可行性评估</a></li>
+    <li><a href="#realtime">opencli实时数据（2026-05-09）</a></li>
+    <li><a href="#risks">风险矩阵</a></li>
+    <li><a href="#roadmap">执行路线图</a></li>
+  </ul>
+</div>
+
+<!-- Key Findings -->
+<section class="section" id="findings">
+  <h2 class="section-title">核心发现</h2>
+  <p class="section-desc">基于淘宝、京东、闲鱼、1688、B站、微博六大平台的数据交叉验证</p>
+
+  <div class="findings">
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">1</span><span class="finding-title">白牌红海，IP蓝海</span></div>
+      <div class="finding-body">淘宝<strong>55%手机挂饰单价低于5元</strong>，月销1-5万；但IP潮玩类挂饰在淘宝销量普遍不足1000件。京东+闲鱼的IP潮玩挂饰价格带49-525元，需求旺盛。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">2</span><span class="finding-title">泡泡玛特垄断二级市场</span></div>
+      <div class="finding-body">闲鱼搜"泡泡玛特手机链"20条结果<strong>100%为泡泡玛特产品</strong>，没有任何其他品牌。这不是领先，是事实垄断。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">3</span><span class="finding-title">供应链极轻，毛利极高</span></div>
+      <div class="finding-body">1688批发价0.18-12元，淘宝零售价1.5-58元，<strong>毛利空间5-15倍</strong>。MOQ低至1件，小IP入局门槛几乎为零。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">4</span><span class="finding-title">产地双中心格局</span></div>
+      <div class="finding-body">浙江金华-义乌-东阳走廊（硅胶/毛绒/亚克力/串珠，占<strong>60%</strong>）+ 广东深圳-东莞走廊（搪胶/树脂/潮玩，占<strong>35%</strong>）。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">5</span><span class="finding-title">盲盒玩法在手机链品类已跑通</span></div>
+      <div class="finding-body">京东端盒价格306-525元，闲鱼隐藏款较普通款<strong>溢价2-3倍</strong>（普通款18-45元 vs 隐藏款55-75元），端盒文化在玩家中已成常态。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">6</span><span class="finding-title">内容平台高度分化</span></div>
+      <div class="finding-body">B站以DIY教程（最高8.9万播放）和IP开箱为主；微博当日热搜零手机挂饰相关词条——<strong>微博不是这个品类的阵地</strong>。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">7</span><span class="finding-title">渠道角色清晰分化</span></div>
+      <div class="finding-body">淘宝=白牌功能性挂绳+定制；京东=品牌IP潮玩官旗；闲鱼=二手盲盒交易；1688=供应链批发；B站=内容种草。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">8</span><span class="finding-title">Chiikawa已进入中国主流零售渠道</span></div>
+      <div class="finding-body">名创优品京东自营卖Chiikawa毛绒挂件（<strong>23.8元，4300+人种草</strong>），这个IP的衍生品已经渗透到中国主流电商。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">9</span><span class="finding-title">搪胶工艺成本明显高于硅胶</span></div>
+      <div class="finding-body">1688上搪胶公仔挂件批发价12元/MOQ 10个，硅胶类批发价0.18-5元/MOQ 1个起。搪胶在工艺复杂度上高一个量级。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">10</span><span class="finding-title">DIY串珠社群在B站已成熟</span></div>
+      <div class="finding-body">多个串珠教程/沉浸式打包视频稳定存在，<strong>手工串珠手机链在B站有固定受众和创作生态</strong>。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">11</span><span class="finding-title">消费者决策是五步链闭环</span></div>
+      <div class="finding-body">种草→认知→犹豫→决策→晒单→反哺种草，B站开箱视频和小红书晒单是核心驱动力。没有内容种草，就没有后续交易。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">12</span><span class="finding-title">¥29-59是战略真空带</span></div>
+      <div class="finding-body">低于泡泡玛特入门款(50元+)，高于白牌(5元)，消费者价格敏感度"中等偏低"，<strong>最适合新IP切入</strong>。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">13</span><span class="finding-title">授权成本比想象中高</span></div>
+      <div class="finding-body">一款零售价59元的非独家授权手机挂饰，单件毛利仅约21元(毛利率36%)，还没算年保底授权金。如果年销不足1万件，大概率亏损。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">14</span><span class="finding-title">抖音是增量引擎但运营成本高</span></div>
+      <div class="finding-body">抖音潮玩盲盒半年销售额52.69亿元(+94.8%)，但平台佣金10-15%、投流成本高昂，新品牌没有自播团队很难跑出来。</div>
+    </div>
+    <div class="finding">
+      <div class="finding-header"><span class="finding-num">15</span><span class="finding-title">政策环境整体友好</span></div>
+      <div class="finding-body">2023年盲盒新规并未限制手机挂饰品类，但要求概率公示和8岁以下禁售。目前执行力度弱，<strong>提前布局合规是必要的风控</strong>。</div>
+    </div>
+  </div>
+</section>
+
+<!-- Market Size -->
+<section class="section" id="market">
+  <h2 class="section-title">市场规模与增长预测</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>年份</th><th>谷子经济(亿元)</th><th>手机挂饰细分(亿元)</th><th>细分占比</th><th>关键变量</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>2024</strong></td><td class="col-num">1,689</td><td class="col-num">10-15</td><td class="col-num">0.6-0.9%</td><td>泡泡玛特开始推手机链盲盒</td></tr>
+        <tr><td><strong>2025</strong></td><td class="col-num">2,400</td><td class="col-num">15-25</td><td class="col-num">0.6-1.0%</td><td>Chiikawa/名创优品入局</td></tr>
+        <tr><td><strong>2026</strong></td><td class="col-num">2,700</td><td class="col-num">25-40</td><td class="col-num">0.9-1.5%</td><td>更多国产IP入局</td></tr>
+        <tr><td><strong>2027</strong></td><td class="col-num">3,000</td><td class="col-num">40-60</td><td class="col-num">1.3-2.0%</td><td>盲盒手机链成为标配品类</td></tr>
+        <tr><td><strong>2028</strong></td><td class="col-num">3,300</td><td class="col-num">60-90</td><td class="col-num">1.8-2.7%</td><td>海外市场开始贡献</td></tr>
+        <tr><td><strong>2029</strong></td><td class="col-num">3,500</td><td class="col-num">80-120</td><td class="col-num">2.3-3.4%</td><td>品类成熟，增速放缓</td></tr>
+        <tr><td><strong>2030</strong></td><td class="col-num">3,600</td><td class="col-num">100-150</td><td class="col-num">2.8-4.2%</td><td>进入稳定增长期</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+xychart-beta
+    title "手机挂饰细分赛道增长预测（亿元）"
+    x-axis ["2024", "2025", "2026", "2027", "2028", "2029", "2030"]
+    y-axis "市场规模（亿元）" 0 --> 160
+    bar [12, 20, 32, 50, 75, 100, 125]
+    line [12, 20, 32, 50, 75, 100, 125]
+    </pre>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+xychart-beta
+    title "谷子经济 vs 手机挂饰细分增速对比"
+    x-axis ["2024", "2025", "2026", "2027", "2028", "2029", "2030"]
+    y-axis "年增长率（%）" 0 --> 100
+    line [40, 42, 25, 20, 18, 15, 12]
+    line [0, 66, 60, 56, 50, 33, 25]
+    legend "谷子经济增速", "手机挂饰细分增速"
+    </pre>
+  </div>
+</section>
+
+<!-- Sub-market -->
+<section class="section">
+  <h2 class="section-title">细分赛道结构</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>子市场</th><th>占比估算</th><th>价格带</th><th>代表产品</th><th>增速</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>功能性挂饰</strong></td><td class="col-num">55-60%</td><td>¥1-15</td><td>防丢绳/编织绳/挂脖绳</td><td class="col-num">10-15%</td></tr>
+        <tr><td><strong>装饰性IP挂饰</strong></td><td class="col-num">30-35%</td><td>¥15-80</td><td>毛绒挂件/亚克力/串珠</td><td class="col-num">40-50%</td></tr>
+        <tr><td><strong>收藏性盲盒挂饰</strong></td><td class="col-num">5-10%</td><td>¥49-525</td><td>搪胶公仔盲盒/端盒</td><td class="col-num">80-100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+pie title 手机挂饰赛道品牌市场份额估算
+    "泡泡玛特" : 35
+    "白牌/手工作坊" : 30
+    "名创优品" : 15
+    "迪士尼" : 8
+    "原创设计师" : 7
+    "其他" : 5
+    </pre>
+  </div>
+</section>
+
+<!-- Drivers -->
+<section class="section" id="drivers">
+  <h2 class="section-title">核心驱动力</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="card-num">1</span>Z世代谷子经济与社交货币化</h3>
+      <p>18-30岁消费者每天摸手机几百次，手机挂饰成了表达个性、圈层归属的最小载体。LABUBU挂饰在闲鱼985人"想要"，本质是一张<span class="highlight">"社交名片"</span>。</p>
+      <span class="tag">QuestMobile</span><span class="tag">3017万兴趣用户</span>
+    </div>
+    <div class="card">
+      <h3><span class="card-num">2</span>悦己消费与女性向</h3>
+      <p>主力消费者是18-30岁女性（占比65%）。消费动机从"实用"转向了<span class="highlight">"悦己"</span>——购买行为本身带来的情绪价值远超产品功能。</p>
+      <span class="tag">人均月消费200-500元</span>
+    </div>
+    <div class="card">
+      <h3><span class="card-num">3</span>IP热度外溢</h3>
+      <p>LABUBU、Chiikawa、Sanrio的热度从盲盒、毛绒玩具自然延伸到手机挂饰。名创优品×Chiikawa（23.8元）在京东自营<span class="highlight">4300+人种草</span>。</p>
+      <span class="tag">国产IP占比55.1%</span>
+    </div>
+    <div class="card">
+      <h3><span class="card-num">4</span>Y2K复古与可爱文化回潮</h3>
+      <p>串珠、毛绒、亚克力、搪胶的流行，和2024-2025年Y2K千禧风格的全球回潮高度吻合。B站"保姆级手机链串珠教程"<span class="highlight">播放量8.9万</span>。</p>
+      <span class="tag">B站内容生态</span>
+    </div>
+    <div class="card">
+      <h3><span class="card-num">5</span>盲盒机制的成瘾性移植</h3>
+      <p>泡泡玛特把盲盒机制成功移植到手机链品类——低价入门（单盒49-129元）、隐藏款溢价（闲鱼55-75元，溢价2-3倍）、端盒收藏（306-525元）。</p>
+      <span class="tag">隐藏款概率1/72或1/144</span>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p class="quote-text">消费者买的是"DONO/吉米米的陪伴感"，不是挂绳的防摔功能。</p>
+    <p class="quote-source">—— 消费动机本质</p>
+  </div>
+</section>
+
+<!-- Brands -->
+<section class="section" id="brands">
+  <h2 class="section-title">头部品牌全景扫描</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>品牌</th><th>价格带</th><th>核心策略</th><th>优势</th><th>威胁</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>泡泡玛特</strong></td>
+          <td>¥49-525</td>
+          <td>全IP矩阵+高频联名</td>
+          <td>IP矩阵完整；闲鱼100%垄断；毛绒品类+560.6%</td>
+          <td>名创优品23.8元低价切入；过度依赖LABUBU（34.7%营收）</td>
+        </tr>
+        <tr>
+          <td><strong>52TOYS</strong></td>
+          <td>¥58-392</td>
+          <td>京东自营+外部IP</td>
+          <td>草莓熊/寰宇之灵；京东自营背书；2700+人种草</td>
+          <td>品牌认知度不及泡泡玛特；产品线较窄</td>
+        </tr>
+        <tr>
+          <td><strong>名创优品×Chiikawa</strong></td>
+          <td>¥23.8-40</td>
+          <td>平价IP路线</td>
+          <td>8485家门店+京东自营；Chiikawa超高人气</td>
+          <td>Chiikawa热度可能衰退；"平价"刻板印象</td>
+        </tr>
+        <tr>
+          <td><strong>迪士尼</strong></td>
+          <td>¥30-306</td>
+          <td>IP授权给第三方</td>
+          <td>IP储备全球第一；品牌信任度极高</td>
+          <td>对中国Z世代文化理解不足；国产IP崛起挤压</td>
+        </tr>
+        <tr>
+          <td><strong>原创设计师</strong></td>
+          <td>¥19-427</td>
+          <td>设计差异化</td>
+          <td>无授权费用；设计独特；可讲原创故事</td>
+          <td>无IP认知度；渠道资源极少；仿品成本低</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+quadrantChart
+    title 品牌价格带定位图（品牌力 vs 价格带）
+    x-axis 低价格带 --> 高价格带
+    y-axis 低品牌力 --> 高品牌力
+    quadrant-1 高端收藏
+    quadrant-2 中端潮玩
+    quadrant-3 平价入门
+    quadrant-4 白牌红海
+    "泡泡玛特": [0.85, 0.95]
+    "52TOYS": [0.65, 0.75]
+    "名创优品": [0.3, 0.7]
+    "迪士尼": [0.6, 0.8]
+    "原创设计师": [0.5, 0.3]
+    "白牌": [0.1, 0.1]
+    "DONO/吉米米": [0.4, 0.45]
+    </pre>
+  </div>
+</section>
+
+<!-- Price -->
+<section class="section" id="price">
+  <h2 class="section-title">价格带与销量结构</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>价格带</th><th>代表平台</th><th>代表产品</th><th>销量/热度</th><th>用户画像</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>¥0-5</strong></td><td>淘宝/1688</td><td>功能性挂绳、亚克力钥匙扣</td><td>月销量1-5万+</td><td>价格敏感型，追求实用</td></tr>
+        <tr><td><strong>¥5-15</strong></td><td>淘宝/1688</td><td>毛绒挂件、串珠风铃、文创钥匙扣</td><td>月销量1000-1万+</td><td>学生党、入门消费者</td></tr>
+        <tr><td><strong>¥15-40</strong></td><td>淘宝/京东/闲鱼</td><td>品牌入门款（DIMOO 50元、Chiikawa 24元）</td><td>闲鱼"想要"数百人</td><td>IP粉丝、年轻白领</td></tr>
+        <tr><td><strong>¥40-80</strong></td><td>京东/闲鱼</td><td>品牌确认款（星星人、Molly、LABUBU）</td><td>闲鱼"想要"数百-近千人</td><td>核心IP玩家</td></tr>
+        <tr><td><strong>¥80-150</strong></td><td>京东/闲鱼</td><td>品牌中高端（Baby Molly 208元、隐藏款）</td><td>闲鱼隐藏款溢价2-3倍</td><td>收藏型玩家</td></tr>
+        <tr><td><strong>¥150-525</strong></td><td>京东</td><td>端盒（6款全套）</td><td>京东品牌官旗</td><td>重度收藏玩家、送礼</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+xychart-beta
+    title "淘宝潮玩手机链各价格带最高销量（实时数据）"
+    x-axis ["0-10元", "10-30元", "30-60元", "60-100元", "100元+"]
+    y-axis "最高销量（人付款）" 0 --> 8000
+    bar [72, 63, 7000, 300, 300]
+    </pre>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag-pill red">¥29-59 = 战略真空带</span>
+    <span class="tag-pill blue">价格敏感度：中等偏低</span>
+    <span class="tag-pill green">最适合新IP切入</span>
+  </div>
+</section>
+
+<!-- Design Trends -->
+<section class="section" id="design">
+  <h2 class="section-title">设计趋势与产品形态</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>形态</th><th>材质</th><th>价格区间</th><th>代表产品</th><th>增速</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>功能性挂绳</strong></td><td>编织绳/尼龙/硅胶</td><td>¥1.5-15</td><td>感温挂绳（8.42元，2000+付款）</td><td class="col-num">10-15%</td></tr>
+        <tr><td><strong>毛绒挂件</strong></td><td>短毛绒/PP棉</td><td>¥2.7-20</td><td>Chiikawa挂件（23.8元）</td><td class="col-num">30-40%</td></tr>
+        <tr><td><strong>亚克力DIY</strong></td><td>亚克力/UV印刷</td><td>¥2.8-5</td><td>来图定制（2.8元，2万+购买）</td><td class="col-num">20-25%</td></tr>
+        <tr><td><strong>搪胶公仔</strong></td><td>PVC搪胶/喷油</td><td>¥12-208</td><td>Baby Molly（208元）</td><td class="col-num">80-100%</td></tr>
+        <tr><td><strong>串珠/编织</strong></td><td>玻璃珠/水晶/软陶</td><td>¥3-40</td><td>B站串珠教程（8.9万播放）</td><td class="col-num">40-50%</td></tr>
+        <tr><td><strong>金属文创</strong></td><td>合金/金箔/菩提根</td><td>¥15-60</td><td>金陵金箔生肖（37元）</td><td class="col-num">15-20%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+timeline
+    title 手机挂饰设计趋势演变
+    2020 : 功能性挂绳主导
+         : 简约风、纯色编织
+    2021 : 亚克力定制兴起
+         : 二次元图案、照片定制
+    2022 : 毛绒挂件回潮
+         : 可爱动物、食物造型
+    2023 : IP联名爆发
+         : 泡泡玛特入局、盲盒化
+    2024 : Y2K千禧风
+         : 串珠、多巴胺配色
+    2025 : 国潮元素崛起
+         : 宋锦、金箔、生肖
+    2026 : 功能+美观融合
+         : Magsafe磁吸、NFC
+    </pre>
+  </div>
+</section>
+
+<!-- Channels -->
+<section class="section" id="channels">
+  <h2 class="section-title">销售渠道分析</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>渠道</th><th>转化率</th><th>客单价</th><th>复购率</th><th>获客成本</th><th>到手毛利(¥59)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>私域社群</strong></td><td class="col-num">5-15%</td><td class="col-num">¥40-100</td><td class="col-num">40-60%</td><td class="col-num">¥5-20</td><td class="col-num" style="color:#2e7d32;font-weight:700">¥46-52</td></tr>
+        <tr><td><strong>闲鱼</strong></td><td class="col-num">5-10%</td><td class="col-num">¥30-60</td><td class="col-num">30-40%</td><td class="col-num">¥0-2</td><td class="col-num" style="color:#2e7d32;font-weight:700">¥53-55</td></tr>
+        <tr><td><strong>B站</strong></td><td class="col-num">0.3-1%</td><td class="col-num">¥50-120</td><td class="col-num">25-35%</td><td class="col-num">¥5-15</td><td class="col-num">¥43-51</td></tr>
+        <tr><td><strong>淘宝</strong></td><td class="col-num">1-3%</td><td class="col-num">¥5-15</td><td class="col-num">&lt;10%</td><td class="col-num">¥2-5</td><td class="col-num">¥42-49</td></tr>
+        <tr><td><strong>小红书</strong></td><td class="col-num">0.5-2%</td><td class="col-num">¥40-100</td><td class="col-num">15-25%</td><td class="col-num">¥10-30</td><td class="col-num">¥34-44</td></tr>
+        <tr><td><strong>京东</strong></td><td class="col-num">2-5%</td><td class="col-num">¥80-200</td><td class="col-num">15-25%</td><td class="col-num">¥15-30</td><td class="col-num">¥21-34</td></tr>
+        <tr><td><strong>抖音</strong></td><td class="col-num">1-4%</td><td class="col-num">¥30-80</td><td class="col-num">20-30%</td><td class="col-num">¥20-50</td><td class="col-num" style="color:#c62828">¥4-29</td></tr>
+        <tr><td><strong>线下快闪</strong></td><td class="col-num">10-30%</td><td class="col-num">¥50-150</td><td class="col-num">20-30%</td><td class="col-num">¥30-80</td><td class="col-num" style="color:#c62828">-¥11-29</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+xychart-beta
+    title "各渠道到手毛利对比（售价¥59元）"
+    x-axis ["私域", "闲鱼", "B站", "淘宝", "小红书", "京东", "抖音", "线下"]
+    y-axis "到手毛利（元）" -20 --> 60
+    bar [49, 54, 47, 45, 39, 28, 17, -11]
+    </pre>
+  </div>
+
+  <div class="tag-row">
+    <span class="tag-pill green">最优：私域社群 + 闲鱼</span>
+    <span class="tag-pill blue">内容引流：B站种草 → 私域转化</span>
+    <span class="tag-pill orange">慎用：抖音（利润薄）/ 线下（可能亏损）</span>
+  </div>
+</section>
+
+<!-- Supply Chain -->
+<section class="section" id="supply">
+  <h2 class="section-title">供应链产业带</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>产业带</th><th>核心城市</th><th>主营品类</th><th>价格特征</th><th>优势</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>浙江走廊</strong></td>
+          <td>义乌、金华、东阳</td>
+          <td>硅胶、毛绒、亚克力、串珠</td>
+          <td>极低（0.18-5元）</td>
+          <td>快、灵活、小批量友好</td>
+        </tr>
+        <tr>
+          <td><strong>广东走廊</strong></td>
+          <td>深圳、东莞</td>
+          <td>搪胶、树脂、潮玩制造</td>
+          <td>中低（5-12元）</td>
+          <td>精、稳、IP代工经验</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>材质</th><th>成本</th><th>MOQ</th><th>适合场景</th><th>DONO阶段建议</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>硅胶</strong></td><td>¥0.2-1</td><td>1-100</td><td>可爱/卡通/Q版</td><td>第一阶段试水</td></tr>
+        <tr><td><strong>毛绒</strong></td><td>¥2-5</td><td>100-500</td><td>治愈/萌系/情感</td><td>第一阶段试水</td></tr>
+        <tr><td><strong>亚克力</strong></td><td>¥0.5-3</td><td>1-50</td><td>二次元/定制</td><td>可组合使用</td></tr>
+        <tr><td><strong>搪胶/PVC</strong></td><td>¥5-15</td><td>500-1000</td><td>潮玩/盲盒/收藏</td><td>第二阶段升级</td></tr>
+        <tr><td><strong>合金/金属</strong></td><td>¥3-10</td><td>500+</td><td>高端/文创/国潮</td><td>第三阶段高端线</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart LR
+    A[设计稿确认] --> B[开模/打样]
+    B --> C{样品确认?}
+    C -->|否| D[修改模具]
+    D --> B
+    C -->|是| E[原材料采购]
+    E --> F[注塑/搪胶]
+    F --> G[喷油/上色]
+    G --> H[组装]
+    H --> I[质检]
+    I --> J{合格?}
+    J -->|否| K[返工/报废]
+    K --> F
+    J -->|是| L[包装]
+    L --> M[入库]
+    M --> N[发货]
+    </pre>
+  </div>
+</section>
+
+<!-- Policy -->
+<section class="section" id="policy">
+  <h2 class="section-title">政策与合规</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3><span class="card-num" style="background:#2e7d32">OK</span>商品准入</h3>
+      <p>手机挂饰<strong>不在盲盒负面清单内</strong>，可以合法以盲盒形式销售。</p>
+    </div>
+    <div class="card">
+      <h3><span class="card-num" style="background:#e65100">!</span>概率公示</h3>
+      <p>必须<strong>显著公示隐藏款抽取概率</strong>。泡泡玛特已公示（通常为1/72或1/144）。</p>
+    </div>
+    <div class="card">
+      <h3><span class="card-num" style="background:#e65100">!</span>未成年人保护</h3>
+      <p><strong>禁止向未满8周岁销售</strong>；8-18岁需监护人确认。实际执行力度弱，但需提前布局。</p>
+    </div>
+    <div class="card">
+      <h3><span class="card-num" style="background:#2e7d32">OK</span>退货政策</h3>
+      <p>盲盒商品<strong>拆封后不支持七天无理由退货</strong>，但需提前告知消费者。</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>合规项目</th><th>小微企业</th><th>中型企业</th><th>大型企业</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>营业执照+类目资质</td><td class="col-num">¥500-2,000</td><td class="col-num">¥2,000-5,000</td><td class="col-num">¥5,000-10,000</td></tr>
+        <tr><td>产品质检报告（GB 28480）</td><td class="col-num">¥2,000-5,000/批</td><td class="col-num">¥5,000-10,000/批</td><td class="col-num">¥10,000-30,000/批</td></tr>
+        <tr><td>知识产权注册</td><td class="col-num">¥3,000-8,000</td><td class="col-num">¥10,000-30,000</td><td class="col-num">¥50,000-150,000</td></tr>
+        <tr><td><strong>年合规成本合计</strong></td><td class="col-num"><strong>¥17,000-43,000</strong></td><td class="col-num"><strong>¥62,000-180,000</strong></td><td class="col-num"><strong>¥275,000-530,000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Real-time Data -->
+<section class="section" id="realtime">
+  <h2 class="section-title">opencli 实时数据（2026-05-09）</h2>
+  <p class="section-desc">通过opencli实时抓取四大平台最新数据，验证原报告判断</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>淘宝实时发现</h3>
+      <p>泡泡玛特<strong>星星人美味时刻系列7000+人付款</strong>（¥63.98），是淘宝绝对爆款。skullpanda 700+人付款（¥48.3）。</p>
+      <span class="tag">爆款验证</span><span class="tag">数据确认</span>
+    </div>
+    <div class="card">
+      <h3>京东实时发现</h3>
+      <p>泡泡玛特产品线大幅扩展：<strong>+SKULLPANDA不眠剧场/餐桌系列+aespa联名</strong>。52TOYS成为第二强玩家（草莓熊/寰宇之灵）。</p>
+      <span class="tag">产品线扩张</span><span class="tag">新竞争者</span>
+    </div>
+    <div class="card">
+      <h3>闲鱼实时发现</h3>
+      <p>LABUBU十周年<strong>988人"想要"</strong>（原985人），DIMOO迪士尼<strong>912人"想要"</strong>（原910人），热度持续微增。</p>
+      <span class="tag">热度持续</span><span class="tag">二手活跃</span>
+    </div>
+    <div class="card">
+      <h3>1688实时发现</h3>
+      <p>"星星人"仿品批发价仅<strong>¥2.9</strong>（淘宝零售¥35.8），毛利空间12倍。搪胶挂件批发¥5.2-9.17。</p>
+      <span class="tag">仿品风险</span><span class="tag">供应链成熟</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>品类</th><th>1688批发</th><th>淘宝零售</th><th>京东零售</th><th>闲鱼二手</th><th>价差倍数</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>硅胶/配件</td><td class="col-num">¥0.18-0.68</td><td class="col-num">¥1-5</td><td class="col-num">-</td><td class="col-num">-</td><td class="col-num">3-28x</td></tr>
+        <tr><td>毛绒挂件</td><td class="col-num">¥2-5</td><td class="col-num">¥15-30</td><td class="col-num">¥23-58</td><td class="col-num">-</td><td class="col-num">5-12x</td></tr>
+        <tr><td>IP潮玩单只</td><td class="col-num">¥2.9-9</td><td class="col-num">¥35-80</td><td class="col-num">¥58-128</td><td class="col-num">¥23-79</td><td class="col-num">3-27x</td></tr>
+        <tr><td>IP盲盒端盒</td><td class="col-num">¥7.2</td><td class="col-num">-</td><td class="col-num">¥234-1,230</td><td class="col-num">-</td><td class="col-num">32-170x</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Assessment -->
+<section class="section" id="assessment">
+  <h2 class="section-title">DONO/吉米米 可行性评估</h2>
+
+  <div class="quote">
+    <p class="quote-text">做，但要聪明地做。</p>
+    <p class="quote-source">—— 最终结论</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>价格站位</h3>
+      <p>推荐<strong>¥35-45</strong>价格带。低于泡泡玛特入门款（50元+），高于白牌（5元），是名创优品和泡泡玛特之间的"真空地带"。</p>
+      <span class="tag-pill blue">第一阶段：¥29-39</span>
+      <span class="tag-pill blue">第二阶段：¥49-69</span>
+    </div>
+    <div class="card">
+      <h3>产品形态</h3>
+      <p>第一阶段：<strong>毛绒挂件+硅胶配件</strong>组合，成本5-8元，MOQ 100个。<br>第二阶段：<strong>搪胶公仔盲盒</strong>，开模费5000-15000元，MOQ 500个。</p>
+      <span class="tag-pill green">义乌试水 → 东莞升级</span>
+    </div>
+    <div class="card">
+      <h3>渠道优先级</h3>
+      <p>1. <strong>B站</strong>：投UP主做开箱（成本最低）<br>2. <strong>闲鱼</strong>：官方账号管理二级市场<br>3. <strong>私域</strong>：微信群+小程序（利润最厚）<br>4. 抖音（品牌曝光）/ 京东（体量起来后）</p>
+    </div>
+    <div class="card">
+      <h3>时间窗口</h3>
+      <p><strong>最佳窗口：2025年下半年-2026年上半年</strong>。泡泡玛特已验证市场，但尚未形成全价格带封锁。如果泡泡玛特进一步降价，窗口可能快速收窄。</p>
+      <span class="tag-pill red">紧迫性：高</span>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-display);font-size:18px;margin:32px 0 16px">三年财务预测</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>指标</th><th>第1年</th><th>第2年</th><th>第3年</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>销量（个）</td><td class="col-num">3,000</td><td class="col-num">10,000</td><td class="col-num">25,000</td></tr>
+        <tr><td>平均零售价</td><td class="col-num">¥45</td><td class="col-num">¥55</td><td class="col-num">¥59</td></tr>
+        <tr><td>销售收入</td><td class="col-num">¥135,000</td><td class="col-num">¥550,000</td><td class="col-num">¥1,475,000</td></tr>
+        <tr><td>总成本</td><td class="col-num">¥132,500</td><td class="col-num">¥443,000</td><td class="col-num">¥1,113,500</td></tr>
+        <tr><td style="color:var(--accent);font-weight:700">净利润</td><td class="col-num" style="color:var(--accent);font-weight:700">¥2,500</td><td class="col-num" style="color:var(--accent3);font-weight:700">¥107,000</td><td class="col-num" style="color:var(--accent3);font-weight:700">¥361,500</td></tr>
+        <tr><td>净利润率</td><td class="col-num">1.9%</td><td class="col-num">19.5%</td><td class="col-num">24.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+xychart-beta
+    title "DONO/吉米米三年财务预测（万元）"
+    x-axis ["第1年", "第2年", "第3年"]
+    y-axis "金额（万元）" 0 --> 160
+    bar [13.5, 55, 147.5]
+    bar [13.25, 44.3, 111.35]
+    line [0.25, 10.7, 36.15]
+    legend "销售收入", "总成本", "净利润"
+    </pre>
+  </div>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+flowchart LR
+    A[确定目标IP] --> B[初步接触IP方/代理]
+    B --> C[提交授权申请+公司资质]
+    C --> D[IP方评估品牌匹配度]
+    D --> E{评估通过?}
+    E -->|否| F[调整方案或换IP]
+    F --> B
+    E -->|是| G[商务谈判]
+    G --> H[法务审核合同条款]
+    H --> I{条款可接受?}
+    I -->|否| J[重新谈判关键条款]
+    J --> G
+    I -->|是| K[签署授权协议]
+    K --> L[产品设计+IP方审核]
+    L --> M{设计通过?}
+    M -->|否| N[修改设计]
+    N --> L
+    M -->|是| O[开模生产]
+    O --> P[上市销售]
+    P --> Q[按季度结算分成]
+    Q --> R{授权到期?}
+    R -->|否| Q
+    R -->|是| S[评估续约/终止]
+    </pre>
+  </div>
+</section>
+
+<!-- Risk Matrix -->
+<section class="section" id="risks">
+  <h2 class="section-title">风险矩阵</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>风险类型</th><th>风险描述</th><th>概率</th><th>影响</th><th>应对措施</th></tr>
+      </thead>
+      <tbody>
+        <tr class="risk-high">
+          <td>泡泡玛特降价扩品</td>
+          <td>推出平价系列挤压29-59元带</td>
+          <td>中高</td>
+          <td>极高</td>
+          <td>差异化设计；私域粉丝护城河</td>
+        </tr>
+        <tr class="risk-high">
+          <td>52TOYS快速扩张</td>
+          <td>草莓熊/寰宇之灵抢占中端市场</td>
+          <td>中</td>
+          <td>高</td>
+          <td>关注新品节奏；错位竞争</td>
+        </tr>
+        <tr class="risk-high">
+          <td>IP授权谈判失败</td>
+          <td>授权金过高或拒绝合作</td>
+          <td>中</td>
+          <td>高</td>
+          <td>多备选IP；优先发展自营IP</td>
+        </tr>
+        <tr class="risk-mid">
+          <td>销量不及预期</td>
+          <td>首年销量低于3000个</td>
+          <td>中</td>
+          <td>中</td>
+          <td>控制首批投入；6个月&lt;500个则止损</td>
+        </tr>
+        <tr class="risk-mid">
+          <td>政策收紧</td>
+          <td>盲盒监管加强</td>
+          <td>中</td>
+          <td>中</td>
+          <td>提前建立合规体系</td>
+        </tr>
+        <tr class="risk-mid">
+          <td>仿品冲击</td>
+          <td>祖国版¥9.9冲击正品</td>
+          <td>高</td>
+          <td>中</td>
+          <td>注册外观专利；品牌认知壁垒</td>
+        </tr>
+        <tr class="risk-low">
+          <td>物流延迟</td>
+          <td>工厂交期延误</td>
+          <td>中</td>
+          <td>低</td>
+          <td>提前下单；备选工厂</td>
+        </tr>
+        <tr class="risk-low">
+          <td>季节性波动</td>
+          <td>春节/情人节销售波动</td>
+          <td>中</td>
+          <td>低</td>
+          <td>提前备货；设计节日限定款</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="section" id="roadmap">
+  <h2 class="section-title">执行路线图（18个月）</h2>
+
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+gantt
+    title DONO/吉米米手机挂饰项目18个月执行计划
+    dateFormat  YYYY-MM
+    section 第一阶段：试水（0-3月）
+    产品设计+打样           :a1, 2026-06, 1M
+    义乌工厂首批生产         :a2, 2026-07, 1M
+    淘宝/闲鱼上架           :a3, 2026-08, 1M
+    B站内容种草             :a4, 2026-07, 2M
+    section 第二阶段：验证（3-9月）
+    销售数据分析            :b1, 2026-09, 1M
+    用户反馈收集            :b2, 2026-09, 1M
+    决定是否升级搪胶        :b3, 2026-10, 1M
+    搪胶开模+生产           :b4, 2026-11, 2M
+    盲盒玩法设计            :b5, 2026-11, 1M
+    京东/抖音渠道拓展        :b6, 2026-12, 2M
+    section 第三阶段：扩张（9-18月）
+    首批盲盒上市            :c1, 2027-01, 1M
+    IP授权谈判（如有）       :c2, 2027-02, 2M
+    联名款开发              :c3, 2027-03, 2M
+    线下快闪测试            :c4, 2027-04, 1M
+    私域社群建设            :c5, 2027-01, 6M
+    年度复盘+下年规划        :c6, 2027-06, 1M
+    </pre>
+  </div>
+
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <div class="roadmap-phase">Milestone 1 / 2026.08</div>
+      <div class="roadmap-title">首批产品上线，验证市场反应</div>
+      <div class="roadmap-desc">义乌工厂100个毛绒挂件，淘宝+闲鱼上架，B站投2个UP主种草</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">Milestone 2 / 2026.11</div>
+      <div class="roadmap-title">决定是否升级搪胶盲盒</div>
+      <div class="roadmap-desc">基于前3个月销量数据，若销量&gt;500个则进入第二阶段</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">Milestone 3 / 2027.02</div>
+      <div class="roadmap-title">搪胶盲盒上市，进入IP潮玩市场</div>
+      <div class="roadmap-desc">东莞工厂生产，京东POP店+抖音直播同步启动</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">Milestone 4 / 2027.05</div>
+      <div class="roadmap-title">完成首轮IP授权谈判</div>
+      <div class="roadmap-desc">若数据达标，拿一个中腰部国产IP做非独家授权联名款</div>
+    </div>
+    <div class="roadmap-item">
+      <div class="roadmap-phase">Milestone 5 / 2027.11</div>
+      <div class="roadmap-title">年度复盘，决定下一年方向</div>
+      <div class="roadmap-desc">扩张 or 收缩，基于18个月完整数据做战略调整</div>
+    </div>
+  </div>
+</section>
+
+<!-- Consumer Pie -->
+<section class="section">
+  <h2 class="section-title">消费者画像</h2>
+  <div class="mermaid-wrap">
+    <pre class="mermaid">
+pie title 手机挂饰消费者类型占比
+    "颜值跟风型（看推荐购买）" : 40
+    "IP核心粉（死忠粉必入）" : 25
+    "功能实用型（只看价格）" : 20
+    "收藏投资型（研究二级市场）" : 10
+    "礼品购买型（送人）" : 5
+    </pre>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>类型</th><th>价格敏感度</th><th>IP忠诚度</th><th>代表人群</th><th>购买行为</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>功能实用型</strong></td><td>极高</td><td>无</td><td>学生党、长辈</td><td>只看价格和功能，1-5元下单</td></tr>
+        <tr><td><strong>颜值跟风型</strong></td><td>中等</td><td>低</td><td>年轻白领、社交活跃者</td><td>看小红书/B站推荐，15-40元冲动消费</td></tr>
+        <tr><td><strong>IP核心粉</strong></td><td>低</td><td>极高</td><td>LABUBU/Chiikawa死忠粉</td><td>必入全套，端盒，50-500元</td></tr>
+        <tr><td><strong>收藏投资型</strong></td><td>低</td><td>高但理性</td><td>潮玩玩家、二手交易者</td><td>研究二级市场，只买有溢价空间的款</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Final Quote -->
+<div class="quote" style="margin-top:48px">
+  <p class="quote-text">这个赛道不是"能不能做"的问题，是"愿不愿意花18个月慢慢做"的问题。泡泡玛特也不是一天做起来的，DONO/吉米米有自己的内容优势和粉丝基础，只要策略对、节奏稳，完全有机会切下一块属于自己的蛋糕。</p>
+  <p class="quote-source">—— 报告结语</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>潮玩手机挂饰 / 手机链盲盒 赛道深度调研报告</p>
+  <p>调研日期：2026-05-08 &nbsp;|&nbsp; 数据补充：2026-05-09 &nbsp;|&nbsp; 数据采集：web-access (CDP) + opencli</p>
+  <p style="margin-top:8px;font-size:11px">完整详细报告见同目录 Markdown 文件：《潮玩手机挂饰赛道调研_2026-05-08.md》+《潮玩手机挂饰赛道调研_2026-05-08_数据补充与图表增强.md》</p>
+</div>
+
+</div><!-- /container -->
+
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    primaryColor: '#f0f0f0',
+    primaryTextColor: '#1d1d1f',
+    primaryBorderColor: '#d0d0d0',
+    lineColor: '#86868b',
+    secondaryColor: '#e8e8e8',
+    tertiaryColor: '#fafafa',
+    fontFamily: '"Noto Sans SC", sans-serif',
+    fontSize: '14px'
+  },
+  flowchart: { curve: 'basis', padding: 16 },
+  gantt: { titleTopMargin: 25, barHeight: 20, barGap: 4, topPadding: 50, leftPadding: 120 }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
