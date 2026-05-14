@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP授权价值评估报告 · 水豚噜噜</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @page { size: A4; margin: 20mm 22mm 24mm 22mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: oklch(97% 0.006 70);
+            --paper: oklch(98.5% 0.004 70);
+            --surface: oklch(100% 0.003 70);
+            --ink: oklch(20% 0.018 50);
+            --ink-2: oklch(38% 0.022 50);
+            --ink-3: oklch(55% 0.018 60);
+            --ink-4: oklch(72% 0.012 65);
+            --rule: oklch(88% 0.012 70);
+            --rule-soft: oklch(92% 0.008 70);
+            --accent: oklch(38% 0.17 28);
+            --accent-2: oklch(52% 0.18 28);
+            --accent-tint: oklch(94% 0.025 28);
+            --accent-deep: oklch(28% 0.10 28);
+            --warn: oklch(56% 0.18 30);
+            --hold: oklch(58% 0.13 75);
+            --pass: oklch(48% 0.13 145);
+            --halftone: oklch(95% 0.008 70);
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-7: 3rem;
+            --space-8: 4rem;
+            --space-9: 6rem;
+            --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+            --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            --latin: "EB Garamond", "Noto Serif SC", serif;
+        }
+
+        body {
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.78;
+            color: var(--ink);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "palt" 1;
+        }
+        .report {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: var(--paper);
+            box-shadow: 0 1px 2px oklch(20% 0.01 60 / 0.04), 0 24px 60px oklch(20% 0.01 60 / 0.08);
+        }
+        .page { padding: var(--space-7) var(--space-8) var(--space-8); page-break-after: always; position: relative; }
+        .page:last-child { page-break-after: auto; }
+
+        /* ========== 封面 ========== */
+        .cover {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            min-height: 297mm;
+            padding: var(--space-7) var(--space-8) var(--space-8);
+            background:
+                radial-gradient(circle at 88% 8%, oklch(94% 0.04 28 / 0.55) 0, transparent 38%),
+                radial-gradient(circle at 6% 96%, oklch(96% 0.03 60 / 0.6) 0, transparent 42%),
+                var(--paper);
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: "";
+            position: absolute;
+            inset: var(--space-7) var(--space-8);
+            border: 1px solid var(--rule);
+            pointer-events: none;
+        }
+        .cover-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--latin);
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            padding: var(--space-3) var(--space-4) var(--space-5);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-topbar-brand { color: var(--accent); font-weight: 500; }
+        .cover-topbar-docid { color: var(--ink-3); font-feature-settings: "tnum" 1; letter-spacing: 0.18em; }
+
+        .cover-body {
+            display: grid;
+            align-content: center;
+            justify-items: start;
+            padding: 0 var(--space-5);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            margin-bottom: var(--space-4);
+        }
+        .cover-eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .cover-ip-name {
+            font-family: var(--serif);
+            font-size: clamp(3.25rem, 7vw, 4.75rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: var(--space-3);
+        }
+        .cover-ip-en {
+            font-family: var(--latin);
+            font-size: 16px;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: var(--space-7);
+            font-weight: 500;
+        }
+        .cover-title {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: var(--space-2);
+        }
+        .cover-subtitle {
+            font-size: 13px;
+            color: var(--ink-3);
+            margin-bottom: var(--space-7);
+            font-feature-settings: "tnum" 1;
+        }
+        .cover-verdict {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            padding: var(--space-5) var(--space-6);
+            max-width: 540px;
+            position: relative;
+        }
+        .cover-verdict::before {
+            content: "\300C";
+            position: absolute;
+            top: -0.3em;
+            left: -0.1em;
+            font-family: var(--serif);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--accent);
+            opacity: 0.18;
+        }
+        .cover-verdict-label {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.32em;
+            margin-bottom: var(--space-3);
+        }
+        .cover-verdict-text {
+            font-family: var(--serif);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.85;
+        }
+        .cover-verdict-text strong { font-weight: 700; color: var(--accent-deep); }
+
+        .cover-stamp {
+            position: absolute;
+            top: 50%;
+            right: var(--space-7);
+            transform: translateY(-50%) rotate(-12deg);
+            width: 132px;
+            height: 132px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: var(--accent);
+            font-family: var(--latin);
+            opacity: 0.62;
+            z-index: 0;
+        }
+        .cover-stamp::before {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+        }
+        .cover-stamp-text {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .cover-stamp-num {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1;
+            margin: 4px 0 2px;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: var(--space-5) var(--space-4) var(--space-3);
+            border-top: 1px solid var(--rule);
+            position: relative;
+            z-index: 1;
+        }
+        .cover-meta {
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--ink-3);
+            line-height: 1.85;
+        }
+        .cover-meta p { margin: 1px 0; }
+        .cover-meta .label { font-family: var(--latin); font-size: 9px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 2px; }
+        .cover-confidential {
+            font-family: var(--latin);
+            font-size: 10px;
+            color: var(--ink-3);
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            text-align: right;
+        }
+
+        /* ========== 页眉 ========== */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--latin);
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            padding-bottom: var(--space-3);
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: var(--space-7);
+        }
+        .page-header-brand { color: var(--accent); font-weight: 700; }
+        .page-header-meta { color: var(--ink-3); font-feature-settings: "tnum" 1; letter-spacing: 0.18em; }
+
+        /* ========== 章节标题 ========== */
+        .section-title {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: end;
+            gap: var(--space-5);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--ink);
+        }
+        .section-title .num {
+            font-family: var(--latin);
+            font-size: 3rem;
+            font-weight: 500;
+            line-height: 0.85;
+            color: var(--accent);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .section-title .title-text {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+        .section-title .title-en {
+            display: block;
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 12px;
+            color: var(--ink-3);
+            letter-spacing: 0.04em;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* ========== 执行摘要 ========== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-bottom: var(--space-6);
+            border: 1px solid var(--rule);
+        }
+        .summary-card {
+            padding: var(--space-5) var(--space-4);
+            border-right: 1px solid var(--rule);
+            background: var(--surface);
+            position: relative;
+        }
+        .summary-card:last-child { border-right: none; }
+        .summary-card-label {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-3);
+        }
+        .summary-card-value {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+        .summary-card-value.high { color: var(--warn); }
+        .summary-card-value.medium { color: var(--accent); }
+        .summary-card-value.low { color: var(--pass); }
+        .summary-card-note {
+            font-size: 11px;
+            color: var(--ink-3);
+            margin-top: 6px;
+        }
+
+        .verdict-box {
+            position: relative;
+            background: var(--accent-tint);
+            padding: var(--space-5) var(--space-6);
+            margin-bottom: var(--space-6);
+            border: 1px solid oklch(88% 0.025 28);
+        }
+        .verdict-box::before {
+            content: "VERDICT";
+            position: absolute;
+            top: -10px;
+            left: var(--space-6);
+            background: var(--paper);
+            padding: 0 var(--space-3);
+            font-family: var(--latin);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.32em;
+            color: var(--accent);
+        }
+        .verdict-box h4 {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.04em;
+        }
+        .verdict-box p {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.92;
+        }
+        .verdict-box .highlight {
+            background: oklch(88% 0.06 28 / 0.5);
+            padding: 0 4px;
+            font-weight: 600;
+            color: var(--accent-deep);
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        .section-eyebrow {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        .section-eyebrow::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4) var(--space-5);
+        }
+        .key-point {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            border-top: 1px solid var(--rule);
+        }
+        .key-point-num {
+            font-family: var(--latin);
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .key-point-text h5 {
+            font-family: var(--serif);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .key-point-text p {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        /* ========== IP画像 ========== */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: var(--space-5);
+            border: 1px solid var(--rule);
+        }
+        .profile-block {
+            padding: var(--space-5);
+            background: var(--surface);
+            border-right: 1px solid var(--rule);
+        }
+        .profile-block:last-child { border-right: none; }
+        .profile-grid .profile-block:nth-child(2) { border-right: none; }
+        .profile-block.full {
+            grid-column: 1 / -1;
+            border-right: none;
+            border-top: 1px solid var(--rule);
+        }
+        .profile-block h4 {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+        .profile-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        .profile-block li {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.78;
+            padding: var(--space-2) 0;
+            border-bottom: 1px dashed var(--rule-soft);
+            display: grid;
+            grid-template-columns: 6em 1fr;
+            gap: var(--space-3);
+        }
+        .profile-block li:last-child { border-bottom: none; }
+        .profile-block li::before {
+            content: attr(data-label);
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding-top: 4px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--sans);
+            font-size: 11.5px;
+            padding: 4px 12px;
+            background: oklch(96% 0.008 60);
+            color: var(--ink-2);
+            border: 1px solid var(--rule);
+            border-radius: 100px;
+            font-weight: 500;
+        }
+        .tag.hot {
+            background: var(--accent);
+            color: var(--paper);
+            border-color: var(--accent);
+        }
+
+        .rate-bar {
+            margin-top: var(--space-5);
+            padding: var(--space-5);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+        }
+        .rate-bar-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--space-3);
+        }
+        .rate-bar-label {
+            font-size: 12px;
+            color: var(--ink-2);
+            font-weight: 600;
+        }
+        .rate-bar-value {
+            font-family: var(--latin);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .rate-bar-track {
+            height: 4px;
+            background: var(--rule);
+            position: relative;
+            overflow: hidden;
+        }
+        .rate-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            position: relative;
+        }
+        .rate-bar-fill::after {
+            content: "";
+            position: absolute;
+            right: -3px;
+            top: -4px;
+            width: 6px;
+            height: 12px;
+            background: var(--accent);
+        }
+        .rate-bar-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-2);
+            font-family: var(--latin);
+            font-size: 10px;
+            color: var(--ink-3);
+            font-feature-settings: "tnum" 1;
+        }
+        .rate-bar-note {
+            font-size: 11.5px;
+            color: var(--ink-3);
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px dashed var(--rule);
+        }
+
+        /* ========== 品类饱和度 ========== */
+        .sat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--space-6);
+            font-size: 13px;
+            border-top: 2px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+        .sat-table th {
+            text-align: left;
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: var(--space-3) var(--space-3);
+            border-bottom: 1px solid var(--ink-3);
+        }
+        .sat-table td {
+            padding: var(--space-3) var(--space-3);
+            border-bottom: 1px solid var(--rule);
+            vertical-align: top;
+            color: var(--ink-2);
+        }
+        .sat-table tr:last-child td { border-bottom: none; }
+        .sat-table td strong {
+            font-family: var(--serif);
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .sat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px 3px 6px;
+            font-family: var(--sans);
+        }
+        .sat-badge.red { color: var(--warn); background: oklch(96% 0.04 30); }
+        .sat-badge.yellow { color: var(--hold); background: oklch(96% 0.04 75); }
+        .sat-badge.green { color: var(--pass); background: oklch(95% 0.04 145); }
+        .sat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sat-badge.red .sat-dot { background: var(--warn); }
+        .sat-badge.yellow .sat-dot { background: var(--hold); }
+        .sat-badge.green .sat-dot { background: var(--pass); }
+        .sat-reason { font-size: 12px; color: var(--ink-3); line-height: 1.65; }
+
+        .warning-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-top: 3px double var(--accent);
+            padding: var(--space-5) var(--space-6);
+        }
+        .warning-box h4 {
+            font-family: var(--serif);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        .warning-box h4::before {
+            content: "\00A7";
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 1.4em;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .warning-box p {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.85;
+        }
+        .warning-box strong {
+            color: var(--ink);
+            background: linear-gradient(transparent 60%, oklch(88% 0.06 28 / 0.5) 60%);
+            padding: 0 2px;
+        }
+
+        /* ========== 风险清单 ========== */
+        .risk-list {
+            display: flex;
+            flex-direction: column;
+            counter-reset: risk;
+        }
+        .risk-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: var(--space-5);
+            padding: var(--space-5) 0;
+            border-bottom: 1px solid var(--rule);
+            counter-increment: risk;
+        }
+        .risk-item:first-child { padding-top: 0; }
+        .risk-level {
+            text-align: left;
+            position: relative;
+        }
+        .risk-level::before {
+            content: counter(risk, decimal-leading-zero);
+            font-family: var(--latin);
+            font-size: 2.6rem;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 0.9;
+            display: block;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .risk-level-tag {
+            display: inline-block;
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-top: var(--space-2);
+            padding: 3px 8px;
+            border: 1px solid currentColor;
+        }
+        .risk-item.lvl-high .risk-level::before { color: var(--warn); }
+        .risk-item.lvl-high .risk-level-tag { color: var(--warn); }
+        .risk-item.lvl-mid-high .risk-level::before { color: oklch(50% 0.16 50); }
+        .risk-item.lvl-mid-high .risk-level-tag { color: oklch(50% 0.16 50); }
+        .risk-item.lvl-mid .risk-level::before { color: var(--hold); }
+        .risk-item.lvl-mid .risk-level-tag { color: var(--hold); }
+        .risk-item.lvl-low .risk-level::before { color: var(--pass); }
+        .risk-item.lvl-low .risk-level-tag { color: var(--pass); }
+        .risk-content h4 {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: var(--space-3);
+            line-height: 1.35;
+        }
+        .risk-content p {
+            font-size: 13px;
+            color: var(--ink-2);
+            line-height: 1.78;
+        }
+        .risk-content .solution {
+            margin-top: var(--space-3);
+            font-size: 12.5px;
+            color: var(--ink-2);
+            background: oklch(96% 0.012 145);
+            border: 1px solid oklch(88% 0.04 145);
+            padding: var(--space-3) var(--space-4);
+            line-height: 1.7;
+        }
+        .risk-content .solution strong {
+            font-family: var(--latin);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--pass);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .alternative-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: var(--space-5) var(--space-6);
+            margin-top: var(--space-7);
+            position: relative;
+        }
+        .alternative-box::before {
+            content: "ALT";
+            position: absolute;
+            top: -10px;
+            left: var(--space-6);
+            background: var(--paper);
+            padding: 0 var(--space-3);
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.32em;
+            color: var(--ink-3);
+        }
+        .alternative-box h4 {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: var(--space-4);
+        }
+        .alt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--space-4);
+        }
+        .alt-card {
+            border-top: 2px solid var(--ink);
+            padding-top: var(--space-3);
+        }
+        .alt-card .alt-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-1);
+        }
+        .alt-card .alt-rate {
+            font-family: var(--latin);
+            font-size: 11px;
+            color: var(--ink-3);
+            letter-spacing: 0.12em;
+            margin-bottom: var(--space-3);
+            font-feature-settings: "tnum" 1;
+        }
+        .alt-card p {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            line-height: 1.72;
+        }
+
+        /* ========== 案例附录表格 ========== */
+        .case-intro {
+            font-size: 12px;
+            color: var(--ink-3);
+            margin-bottom: var(--space-5);
+            padding: var(--space-3) 0;
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-style: italic;
+            font-family: var(--latin), var(--sans);
+        }
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11.5px;
+            margin-bottom: var(--space-6);
+            border-top: 2px solid var(--ink);
+        }
+        .case-table th {
+            text-align: left;
+            font-family: var(--latin);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 10px 10px;
+            border-bottom: 1px solid var(--ink-3);
+            background: var(--surface);
+        }
+        .case-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 11.5px;
+            color: var(--ink-2);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+        .case-table tr:nth-child(even) td { background: oklch(98% 0.005 60); }
+        .case-table tr:last-child td { border-bottom: 2px solid var(--ink); }
+        .case-table td.title strong {
+            font-family: var(--serif);
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .case-table td.desc {
+            font-size: 11px;
+            color: var(--ink-3);
+            line-height: 1.55;
+        }
+        .case-table td.idx {
+            font-family: var(--latin);
+            font-size: 11px;
+            color: var(--ink-3);
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .case-table td.offline {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            font-family: var(--latin);
+            text-transform: uppercase;
+        }
+        .case-table td.online {
+            color: var(--ink-3);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            font-family: var(--latin);
+            text-transform: uppercase;
+        }
+        .case-table td.date {
+            font-family: var(--latin);
+            font-feature-settings: "tnum" 1;
+            color: var(--ink-3);
+            white-space: nowrap;
+        }
+
+        /* ========== 数据完整度 ========== */
+        .integrity-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: var(--space-5);
+            margin-top: var(--space-6);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-6);
+        }
+        .integrity-stat-block {
+            border-right: 1px solid var(--rule);
+            padding-right: var(--space-5);
+            text-align: center;
+        }
+        .integrity-box h4 {
+            font-family: var(--latin);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--ink-3);
+            margin-bottom: var(--space-3);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+        }
+        .integrity-box .integrity-stat {
+            font-family: var(--latin);
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1;
+            font-feature-settings: "lnum" 1, "tnum" 1;
+        }
+        .integrity-box .integrity-pct {
+            font-family: var(--latin);
+            font-size: 12px;
+            color: var(--ink-3);
+            margin-top: var(--space-2);
+            letter-spacing: 0.12em;
+        }
+        .integrity-box ul {
+            list-style: none;
+            padding: 0;
+            font-size: 12px;
+            color: var(--ink-2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px var(--space-4);
+        }
+        .integrity-box li {
+            padding: 3px 0;
+            line-height: 1.6;
+            font-size: 11.5px;
+        }
+        .integrity-box .ok::before {
+            content: "\2713";
+            color: var(--pass);
+            font-family: var(--latin);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .integrity-box .miss::before {
+            content: "\2014";
+            color: var(--ink-4);
+            font-family: var(--latin);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .integrity-foot {
+            grid-column: 1 / -1;
+            font-size: 11px;
+            color: var(--ink-3);
+            line-height: 1.65;
+            padding-top: var(--space-4);
+            border-top: 1px dashed var(--rule);
+            font-style: italic;
+            font-family: var(--latin), var(--sans);
+        }
+
+        /* ========== 报告页脚 ========== */
+        .report-footer {
+            text-align: center;
+            padding: var(--space-7) var(--space-8);
+            border-top: 2px solid var(--ink);
+            background: var(--surface);
+        }
+        .report-footer .footer-mark {
+            font-family: var(--latin);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: var(--space-2);
+        }
+        .report-footer p {
+            font-size: 11.5px;
+            color: var(--ink-3);
+            line-height: 1.85;
+        }
+        .report-footer p.brand {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: var(--space-2);
+        }
+        .report-footer p.source {
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--rule);
+            font-family: var(--latin), var(--sans);
+            font-style: italic;
+            font-size: 11px;
+        }
+
+        /* ========== 新增：详细内容区块样式 ========== */
+        .detail-section h3 {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--rule);
+        }
+        .detail-section h4 {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-2);
+        }
+        .detail-section p {
+            font-size: 13.5px;
+            color: var(--ink-2);
+            line-height: 1.85;
+            margin-bottom: var(--space-3);
+            text-align: justify;
+        }
+        .detail-section ul, .detail-section ol {
+            margin: var(--space-2) 0 var(--space-3) var(--space-5);
+            font-size: 13.5px;
+            color: var(--ink-2);
+            line-height: 1.85;
+        }
+        .detail-section li { margin-bottom: var(--space-1); }
+        .detail-section strong { color: var(--accent-deep); font-weight: 700; }
+        .detail-section em {
+            font-style: italic;
+            font-family: var(--latin);
+            color: var(--ink-3);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-3) 0 var(--space-5) 0;
+            font-size: 12.5px;
+            border-top: 2px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+        .data-table th {
+            text-align: left;
+            font-family: var(--latin);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--ink-3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--ink-3);
+            background: var(--surface);
+        }
+        .data-table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid var(--rule);
+            color: var(--ink-2);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+        .data-table tr:nth-child(even) td { background: oklch(98% 0.005 60); }
+        .data-table td strong { color: var(--ink); font-weight: 600; }
+
+        .persona-box {
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            padding: var(--space-4) var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+        .persona-box h5 {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: var(--space-2);
+        }
+        .persona-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .persona-box li {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            line-height: 1.75;
+            padding: 2px 0;
+        }
+
+        .rating-p0 { color: oklch(55% 0.18 25); font-weight: 700; }
+        .rating-p1 { color: oklch(65% 0.14 75); font-weight: 700; }
+        .rating-p2 { color: oklch(60% 0.1 145); font-weight: 700; }
+
+        /* ========== 图表容器 ========== */
+        .chart-container {
+            position: relative;
+            margin: var(--space-5) 0;
+            padding: var(--space-4);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+        }
+        .chart-container h4 {
+            font-family: var(--serif);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-deep);
+            margin-bottom: var(--space-3);
+            text-align: center;
+        }
+        .chart-container .chart-note {
+            font-size: 11.5px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: var(--space-3);
+            font-style: italic;
+            font-family: var(--latin), var(--sans);
+        }
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin: var(--space-4) 0;
+        }
+        .chart-row .chart-container { margin: 0; min-height: 420px; }
+        .chart-container canvas {
+            width: 100% !important;
+            height: 220px !important;
+            display: block;
+        }
+        .chart-container:has(#radarChart) canvas,
+        .chart-container:has(#socialChart) canvas { height: 240px !important; }
+        .chart-container:has(#matrixChart) canvas { height: 300px !important; }
+
+        /* 打印优化 */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .report { box-shadow: none; max-width: none; }
+            .page { padding: 22mm 22mm; }
+            .cover { padding: 28mm 22mm; }
+            .chart-container { break-inside: avoid; page-break-inside: avoid; }
+            canvas { width: 100% !important; height: auto !important; max-height: 260px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="report">
+
+<!-- ========== 封面 ========== -->
+<div class="cover">
+    <div class="cover-topbar">
+        <span class="cover-topbar-brand">IP Authorization Value Assessment</span>
+        <span class="cover-topbar-docid">No. IPDE-2026-LULU-0514</span>
+    </div>
+    <div class="cover-body">
+        <div class="cover-eyebrow">Vol. 02 &mdash; Healing Animal Series</div>
+        <h1 class="cover-ip-name">水豚噜噜</h1>
+        <div class="cover-ip-en">Shuitun Lulu &middot; Pingtouge Animation</div>
+        <div class="cover-title">IP 授权价值评估报告</div>
+        <div class="cover-subtitle">评估日期 / 2026.05.14 &middot; 有效期 90 天</div>
+        <div class="cover-verdict">
+            <div class="cover-verdict-label">Verdict</div>
+            <div class="cover-verdict-text">
+                佛系治愈系动画角色IP，处于授权上升期，适合情绪营销导向的轻量级联名。<br>
+                <strong>10-30万预算下，聚焦食品饮料、轻服饰、家居生活等低饱和品类做快闪联名，不建议作为核心IP投入重资源。</strong>
+            </div>
+        </div>
+        <div class="cover-stamp" aria-hidden="true">
+            <div>
+                <div class="cover-stamp-text">Risk<br>Rating</div>
+                <div class="cover-stamp-num">B</div>
+                <div class="cover-stamp-text">Mid</div>
+            </div>
+        </div>
+    </div>
+    <div class="cover-footer">
+        <div class="cover-meta">
+            <span class="label">Issued by</span>
+            <p>【新文创老贾聊IP】公众号</p>
+            <p style="margin-top:6px;font-size:11px;">报告基于公开数据与行业体感整理，仅供参考，不构成投资决策建议</p>
+        </div>
+        <div class="cover-confidential">Confidential / Internal</div>
+    </div>
+</div>
+
+<!-- ========== 第1页:执行摘要 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">01</span>
+        <span class="title-text">执行摘要<span class="title-en">Executive Summary</span></span>
+    </h2>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-card-label">整体风险等级</div>
+            <div class="summary-card-value medium">中等风险</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">授权金率区间</div>
+            <div class="summary-card-value">5%-10%</div>
+            <div class="summary-card-note">二三线动画IP偏低</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">参考保证金区间</div>
+            <div class="summary-card-value low">较低</div>
+            <div class="summary-card-note">视品类协商</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-card-label">建议决策周期</div>
+            <div class="summary-card-value low">30-45天</div>
+        </div>
+    </div>
+
+    <div class="verdict-box">
+        <h4>一句话判断</h4>
+        <p>水豚噜噜是处于<span class="highlight">上升期的佛系治愈系IP</span>，表情包传播广泛但商业转化有限；面临卡皮巴拉泛概念的强竞争挤压，正版授权产品的差异化壁垒不足。以10-30万预算做轻量级联名试水情绪营销是合理选择，但不建议作为核心IP投入重资源。</p>
+    </div>
+
+    <div class="section-eyebrow">Four Key Takeaways &middot; 四个关键结论</div>
+    <div class="key-points">
+        <div class="key-point">
+            <span class="key-point-num">01</span>
+            <div class="key-point-text">
+                <h5>情绪标签契合当下消费趋势</h5>
+                <p>"情绪稳定""佛系""治愈"精准踩中当代年轻人情绪痛点，与食品饮料、轻服饰、家居生活等品类高度匹配。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">02</span>
+            <div class="key-point-text">
+                <h5>卡皮巴拉泛概念挤压严重</h5>
+                <p>水豚/卡皮巴拉动物形象不受版权保护，市场上大量无授权低价产品直接挤压正版授权空间。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">03</span>
+            <div class="key-point-text">
+                <h5>低价产品销量可观，溢价能力有限</h5>
+                <p>29元挂件破万，但59元以上产品销量仅200+，IP尚未建立支撑中高价位的产品力。</p>
+            </div>
+        </div>
+        <div class="key-point">
+            <span class="key-point-num">04</span>
+            <div class="key-point-text">
+                <h5>机会品类仍存在空白</h5>
+                <p>食品饮料、轻服饰、家居生活三大品类尚无明确授权案例，是最佳的切入窗口。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第2页:IP基础画像 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">02</span>
+        <span class="title-text">IP 基础画像<span class="title-en">Foundation Profile</span></span>
+    </h2>
+
+    <div class="profile-grid">
+        <div class="profile-block">
+            <h4>基本信息 / Profile</h4>
+            <ul>
+                <li data-label="Origin">动画片《平头哥》中的角色，平头哥的智囊团好友</li>
+                <li data-label="Form">动画角色 + 表情包UGC + 游戏联动(《西普大陆》) + 二创生态</li>
+                <li data-label="Agent">未公开独立运营公司，依托动画出品方进行授权管理</li>
+                <li data-label="Channel">小红书(主阵地)、微博、哔哩哔哩、百度贴吧、腾讯频道</li>
+            </ul>
+        </div>
+        <div class="profile-block">
+            <h4>用户画像 / Audience</h4>
+            <ul>
+                <li data-label="Age">18-30岁年轻女性为主，25-28岁为黄金区间</li>
+                <li data-label="Trait">学生党、都市白领解压人群，表情包高频使用者</li>
+                <li data-label="Price">月可支配收入3000-8000元，50元以下决策快</li>
+                <li data-label="Repeat">复购率中等，为情绪价值而非收藏价值买单</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="profile-block full">
+        <h4>标签体系 / Tag System</h4>
+        <div class="tag-cloud">
+            <span class="tag hot">佛系治愈</span>
+            <span class="tag hot">情绪稳定</span>
+            <span class="tag hot">慢生活</span>
+            <span class="tag">萌系代表</span>
+            <span class="tag">反内卷</span>
+            <span class="tag">表情包驱动</span>
+            <span class="tag">授权上升期</span>
+            <span class="tag">轻消费</span>
+            <span class="tag">年轻女性</span>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        <div class="profile-block">
+            <h4>授权模式 / Licensing</h4>
+            <ul>
+                <li data-label="Type">商品联名 + 包装授权</li>
+                <li data-label="Rate">5% &mdash; 10%(二三线动画IP偏低)</li>
+                <li data-label="Deposit">视品类协商，单品最低保证金较低</li>
+                <li data-label="Term">1年常见</li>
+                <li data-label="MOQ">部分品类有最低销量要求</li>
+            </ul>
+        </div>
+        <div class="profile-block">
+            <h4>竞争格局 / Competition</h4>
+            <ul>
+                <li data-label="Direct">卡皮巴拉泛概念(无版权壁垒)、Jellycat水豚(高端)</li>
+                <li data-label="Threat">高。卡皮巴拉概念无授权成本，海量低价产品</li>
+                <li data-label="Channel">电商平台为主，直播带货驱动销量</li>
+                <li data-label="Pricing">29-80元区间，面临无授权产品价格战</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="profile-block full">
+        <h4>社媒矩阵 / Social Media</h4>
+        <ul>
+            <li data-label="XHS">"小水豚噜噜" &mdash; 14.8万粉丝（主账号，日常分享、产品种草）</li>
+            <li data-label="XHS2">"水豚噜噜Capylulu" &mdash; 1.4万粉丝（副账号，表情包、互动内容）</li>
+            <li data-label="Weibo">超话社区 &mdash; 中活跃度，表情包传播、动画讨论</li>
+            <li data-label="Bilibili">多账号 &mdash; plush展示、授权落地、二创视频</li>
+            <li data-label="Tieba">"水豚噜噜吧" &mdash; 中低活跃度，表情包下载、角色讨论</li>
+            <li data-label="QQ">腾讯频道表情包社区 &mdash; 中活跃度，表情包分享</li>
+        </ul>
+    </div>
+
+    <div class="rate-bar">
+        <div class="rate-bar-head">
+            <span class="rate-bar-label">授权谈判难度</span>
+            <span class="rate-bar-value">45%</span>
+        </div>
+        <div class="rate-bar-track">
+            <div class="rate-bar-fill" style="width: 45%;"></div>
+        </div>
+        <div class="rate-bar-scale">
+            <span>EASY</span>
+            <span>50</span>
+            <span>75</span>
+            <span>HARD</span>
+        </div>
+        <div class="rate-bar-note">参考基线:国产头部IP平均60-75% &middot; 日系IP平均80-90% &middot; 二三线国产IP平均35-50%</div>
+    </div>
+</div>
+
+<!-- ========== 第3页:品类饱和度分析 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">03</span>
+        <span class="title-text">品类饱和度分析<span class="title-en">Category Saturation Analysis</span></span>
+    </h2>
+
+    <table class="sat-table">
+        <thead>
+            <tr>
+                <th style="width:16%">品类</th>
+                <th style="width:14%">饱和度</th>
+                <th style="width:26%">已授权品牌/渠道</th>
+                <th>判断依据</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>毛绒玩具</strong></td>
+                <td><span class="sat-badge red"><span class="sat-dot"></span>严重饱和</span></td>
+                <td>多爱(联名大公仔)、官方旗舰店</td>
+                <td class="sat-reason">多品牌已进入，且面临无授权卡皮巴拉产品激烈竞争，29元挂件与9.9元无品牌产品直接对标</td>
+            </tr>
+            <tr>
+                <td><strong>美妆护肤</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>羽素YOUPURE(痘痘贴)</td>
+                <td class="sat-reason">单一案例验证品类可行性，但尚未形成规模，可扩展至面膜、护手霜等细分</td>
+            </tr>
+            <tr>
+                <td><strong>文具</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>得力(联名毛绒文具)</td>
+                <td class="sat-reason">学生客群匹配度好，但基础文具利润薄，授权收益有限</td>
+            </tr>
+            <tr>
+                <td><strong>饰品</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>dkx(联名手链)</td>
+                <td class="sat-reason">客单价低(29-59元)，适合轻量级联名，但品牌声量较小</td>
+            </tr>
+            <tr>
+                <td><strong>日化</strong></td>
+                <td><span class="sat-badge yellow"><span class="sat-dot"></span>趋于饱和</span></td>
+                <td>噜噜生产基地(牙膏)</td>
+                <td class="sat-reason">初步尝试，复购率高但品牌知名度有限，可能为IP方自有品牌</td>
+            </tr>
+            <tr>
+                <td><strong>食品饮料</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">"佛系吃货"人设天然契合零食、奶茶、咖啡联名，万亿级市场，尚无明确案例</td>
+            </tr>
+            <tr>
+                <td><strong>轻服饰</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">治愈系图案T恤、睡衣、袜子等与年轻女性客群高度匹配，图案授权门槛低</td>
+            </tr>
+            <tr>
+                <td><strong>家居生活</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">抱枕、地毯、收纳盒等契合"慢生活"标签，场景化空间大</td>
+            </tr>
+            <tr>
+                <td><strong>数码配件</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">手机壳、耳机壳、鼠标垫等适合表情包图案授权，年轻客群匹配</td>
+            </tr>
+            <tr>
+                <td><strong>母婴用品</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">圆润无害形象适合母婴，但需验证安全认证，属于中长期机会</td>
+            </tr>
+            <tr>
+                <td><strong>宠物用品</strong></td>
+                <td><span class="sat-badge green"><span class="sat-dot"></span>机会窗口</span></td>
+                <td>暂无可信公开数据</td>
+                <td class="sat-reason">宠物衣服、食盆、窝等，"宠物+萌宠IP"叠加效应，市场增长快</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warning-box">
+        <h4>品类选择建议(基于品牌方所在品类:全品类)</h4>
+        <p>预算10-30万属于轻量档位。在水豚噜噜IP上，这个预算层级最容易踩坑的是"想覆盖多品类反而都做不深"。<strong>建议聚焦1-2个机会窗口品类做透，而不是分散下注。</strong><br><br>
+        <strong>首选(高ROI):</strong>食品饮料联名 &mdash; 10-20万可承担包装/图案授权+限量款生产，"佛系奶茶""淡定零食"等概念社交传播强，且该品类尚无竞品占位。<br>
+        <strong>次选(高转化):</strong>轻服饰(家居服/袜子) &mdash; 图案授权门槛低，年轻女性客群精准匹配，可与电商平台直播联动快速起量。<br>
+        <strong>避坑:</strong>不要进入毛绒玩具赛道 &mdash; 已有多爱等品牌占位，且面临海量无授权卡皮巴拉产品的价格挤压，新进入者无差异化空间。</p>
+    </div>
+</div>
+
+<!-- ========== 第4页:数据可视化 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">04</span>
+        <span class="title-text">数据可视化<span class="title-en">Data Visualization</span></span>
+    </h2>
+
+    <div class="chart-row">
+        <div class="chart-container">
+            <h4>受众画像年龄分布</h4>
+            <canvas id="ageChart" style="width:100%;height:320px;"></canvas>
+            <div class="chart-note">核心受众集中在18-28岁年轻女性，占整体粉丝约65%</div>
+        </div>
+        <div class="chart-container">
+            <h4>购买动机占比</h4>
+            <canvas id="motiveChart" style="width:100%;height:320px;"></canvas>
+            <div class="chart-note">情绪价值是核心购买驱动力，占比超过四成</div>
+        </div>
+    </div>
+
+    <div class="chart-row">
+        <div class="chart-container">
+            <h4>品类饱和度对比</h4>
+            <canvas id="satChart" style="width:100%;height:320px;"></canvas>
+            <div class="chart-note">毛绒玩具严重饱和，食品饮料、轻服饰、家居生活为机会窗口</div>
+        </div>
+        <div class="chart-container">
+            <h4>价格带销量分布</h4>
+            <canvas id="priceChart" style="width:100%;height:320px;"></canvas>
+            <div class="chart-note">29元以下低价产品贡献主要销量，中高价位转化率有限</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第5页:数据可视化(续) ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">05</span>
+        <span class="title-text">数据可视化(续)<span class="title-en">Data Visualization Cont.</span></span>
+    </h2>
+
+    <div class="chart-row">
+        <div class="chart-container">
+            <h4>竞品对比雷达图</h4>
+            <canvas id="radarChart" style="width:100%;height:340px;"></canvas>
+            <div class="chart-note">噜噜在差异化维度有优势，但知名度和版权壁垒弱于Jellycat</div>
+        </div>
+        <div class="chart-container">
+            <h4>社媒平台活跃度</h4>
+            <canvas id="socialChart" style="width:100%;height:340px;"></canvas>
+            <div class="chart-note">小红书为主阵地，微博和B站为辅助，贴吧热度相对较低</div>
+        </div>
+    </div>
+
+    <div class="chart-container" style="max-width: 600px; margin: var(--space-5) auto;">
+        <h4>授权品类机会矩阵</h4>
+        <canvas id="matrixChart" style="width:100%;height:400px;"></canvas>
+        <div class="chart-note">右上象限为最佳切入点：食品饮料、轻服饰、家居生活匹配度高且饱和度低</div>
+    </div>
+</div>
+
+<!-- ========== 第6页:竞争格局分析 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">06</span>
+        <span class="title-text">竞争格局分析<span class="title-en">Competitive Landscape</span></span>
+    </h2>
+
+    <div class="profile-grid">
+        <div class="profile-block">
+            <h4>直接竞品 / Direct Competition</h4>
+            <ul>
+                <li data-label="Name">卡皮巴拉泛概念IP</li>
+                <li data-label="Threat">极高。动物形象不受版权保护，任何品牌均可推出卡皮巴拉产品</li>
+                <li data-label="Price">9.9-39.9元，无授权成本</li>
+                <li data-label="Volume">销量10万+，远超噜噜正版</li>
+            </ul>
+        </div>
+        <div class="profile-block">
+            <h4>间接竞品 / Indirect Competition</h4>
+            <ul>
+                <li data-label="Jellycat">高端毛绒，200-400元，品牌溢价极强</li>
+                <li data-label="Line">表情包IP标杆，生态成熟</li>
+                <li data-label="Molly">潮玩渠道强势，收藏家群体稳定</li>
+                <li data-label="B.Duck">生活方式IP，授权体系成熟</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="profile-block full">
+        <h4>竞品对比矩阵 / Comparison Matrix</h4>
+        <table class="sat-table" style="margin-bottom:0;">
+            <thead>
+                <tr>
+                    <th>对比维度</th>
+                    <th>水豚噜噜</th>
+                    <th>卡皮巴拉泛概念</th>
+                    <th>Jellycat水豚</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>IP属性</strong></td>
+                    <td>具体角色IP(动画绑定)</td>
+                    <td>动物形象公共概念</td>
+                    <td>高端毛绒品牌</td>
+                </tr>
+                <tr>
+                    <td><strong>知名度</strong></td>
+                    <td>中低</td>
+                    <td>极高(现象级)</td>
+                    <td>高(高端圈层)</td>
+                </tr>
+                <tr>
+                    <td><strong>版权壁垒</strong></td>
+                    <td>有</td>
+                    <td>无</td>
+                    <td>强(品牌商标)</td>
+                </tr>
+                <tr>
+                    <td><strong>价格带</strong></td>
+                    <td>29-80元</td>
+                    <td>9.9-39.9元</td>
+                    <td>200-400元</td>
+                </tr>
+                <tr>
+                    <td><strong>差异化</strong></td>
+                    <td>角色故事+情绪标签</td>
+                    <td>同质化严重</td>
+                    <td>材质+设计+品牌</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="rate-bar" style="margin-top:var(--space-6);">
+        <div class="rate-bar-head">
+            <span class="rate-bar-label">竞争壁垒强度</span>
+            <span class="rate-bar-value">35%</span>
+        </div>
+        <div class="rate-bar-track">
+            <div class="rate-bar-fill" style="width: 35%;"></div>
+        </div>
+        <div class="rate-bar-scale">
+            <span>WEAK</span>
+            <span>50</span>
+            <span>75</span>
+            <span>STRONG</span>
+        </div>
+        <div class="rate-bar-note">核心矛盾：噜噜的差异化卖点与卡皮巴拉泛概念的市场热度之间存在错位</div>
+    </div>
+</div>
+
+<!-- ========== 第7页:风险点清单 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">07</span>
+        <span class="title-text">风险点清单<span class="title-en">Risk Inventory</span></span>
+    </h2>
+
+    <div class="risk-list">
+        <div class="risk-item lvl-high">
+            <div class="risk-level">
+                <span class="risk-level-tag">HIGH</span>
+            </div>
+            <div class="risk-content">
+                <h4>卡皮巴拉泛概念挤压</h4>
+                <p>无版权壁垒的卡皮巴拉产品大量存在，正版授权产品面临价格战压力。电商平台搜索"水豚/卡皮巴拉"时，正版与山寨产品混杂，消费者难以区分。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    强化角色辨识度(突出"佛系""情绪稳定"人设)；建立正品识别机制(防伪标识、官方渠道认证)；将"购买正版=支持情绪价值"传递给消费者。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-high">
+            <div class="risk-level">
+                <span class="risk-level-tag">HIGH</span>
+            </div>
+            <div class="risk-content">
+                <h4>IP知名度天花板</h4>
+                <p>水豚噜噜知名度受限于《平头哥》动画本身，未形成独立破圈效应。动画非头部作品，噜噜的热度更多来自表情包二创而非动画内容直接转化。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    加大社媒投入(小红书种草、KOC覆盖)；寻求现象级联名(与头部品牌合作提升IP声量)；推动独立IP运营(降低对动画的依赖)。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-mid">
+            <div class="risk-level">
+                <span class="risk-level-tag">MID</span>
+            </div>
+            <div class="risk-content">
+                <h4>表情包传播不等于商业转化</h4>
+                <p>表情包UGC传播广泛，但电商数据显示中高价位产品转化率有限。大量用户通过表情包认识IP，但转化为深度消费者比例低。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    设计低门槛转化路径(低价挂件、联名包装)；优化产品定价策略(主力款集中在29-49元)；配合直播等强刺激渠道推动转化。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-mid">
+            <div class="risk-level">
+                <span class="risk-level-tag">MID</span>
+            </div>
+            <div class="risk-content">
+                <h4>授权体系成熟度未知</h4>
+                <p>未见IP方公开授权手册或标准合作流程，合作效率存疑。授权案例虽多但体系化程度待观察，被授权商决策信息不对称。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    合作前充分沟通、明确权责；参考已有被授权商(羽素、得力)的合作经验；合同中设置明确的监修周期和保底条款。
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-item lvl-low">
+            <div class="risk-level">
+                <span class="risk-level-tag">LOW</span>
+            </div>
+            <div class="risk-content">
+                <h4>动画内容依赖风险</h4>
+                <p>若《平头哥》动画停更或热度下滑，IP生命力可能受影响。但目前表情包热度可维持一段时间，短期内风险可控。</p>
+                <div class="solution">
+                    <strong>Mitigation</strong>
+                    短期合作(1年内)风险低；长期布局需观察动画更新节奏；IP方可考虑推出独立短视频内容降低动画依赖。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alternative-box">
+        <h4>竞品IP / Competitor IPs</h4>
+        <div class="alt-grid">
+            <div class="alt-card">
+                <div class="alt-name">卡皮巴拉(泛概念)</div>
+                <div class="alt-rate">RATE 0% &middot; 无授权成本</div>
+                <p>动物形象公共概念，任何品牌均可使用。无差异化壁垒但成本极低，适合预算有限且不需要正版背书的品牌。</p>
+            </div>
+            <div class="alt-card">
+                <div class="alt-name">Jellycat水豚</div>
+                <div class="alt-rate">RATE 无 &middot; 品牌自有IP</div>
+                <p>高端毛绒品牌，200-400元价格带，品牌溢价极强。适合追求品质感和礼品属性的品牌，但无法获得授权。</p>
+            </div>
+            <div class="alt-card">
+                <div class="alt-name">B.Duck小黄鸭</div>
+                <div class="alt-rate">RATE 8-15% &middot; 成熟体系</div>
+                <p>国产生活方式IP标杆，授权体系成熟，品类覆盖广。授权金率略高于噜噜，但品牌认知度和体系化程度更高。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第8页:消费者画像与行为分析 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">08</span>
+        <span class="title-text">消费者画像与行为分析<span class="title-en">Consumer Profile & Behavior</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>核心消费者画像</h3>
+
+        <div class="persona-box">
+            <h5>Persona 1：都市解压白领（占比约35%）</h5>
+            <ul>
+                <li><strong>画像</strong>：25-30岁，一二线城市，互联网/金融/广告等行业，工作压力大</li>
+                <li><strong>消费场景</strong>：办公桌摆件、通勤包挂件、午休陪伴玩偶</li>
+                <li><strong>购买动机</strong>："看着噜噜就觉得 calm down"</li>
+                <li><strong>价格敏感度</strong>：中等，50元以内可冲动消费</li>
+                <li><strong>触媒习惯</strong>：小红书种草 &rarr; 淘宝比价 &rarr; 下单</li>
+            </ul>
+        </div>
+
+        <div class="persona-box">
+            <h5>Persona 2：学生党（占比约30%）</h5>
+            <ul>
+                <li><strong>画像</strong>：18-24岁，大学生或研究生，生活费有限但社交活跃</li>
+                <li><strong>消费场景</strong>：宿舍装饰、礼物互赠、社交媒体分享</li>
+                <li><strong>购买动机</strong>："可爱""便宜""可以和室友一起买"</li>
+                <li><strong>价格敏感度</strong>：高，30元以内才考虑</li>
+                <li><strong>触媒习惯</strong>：抖音/小红书刷到 &rarr; 拼多多比价 &rarr; 下单</li>
+            </ul>
+        </div>
+
+        <div class="persona-box">
+            <h5>Persona 3：IP收藏爱好者（占比约15%）</h5>
+            <ul>
+                <li><strong>画像</strong>：22-28岁，有一定可支配收入，喜欢收集萌系IP周边</li>
+                <li><strong>消费场景</strong>：系统化收藏、限量款追逐、二手交易</li>
+                <li><strong>购买动机</strong>："集齐全套""限量必入"</li>
+                <li><strong>价格敏感度</strong>：低，愿意为稀缺性支付溢价</li>
+                <li><strong>触媒习惯</strong>：B站/微博关注动态 &rarr; 蹲点抢购</li>
+            </ul>
+        </div>
+
+        <div class="persona-box">
+            <h5>Persona 4：礼品购买者（占比约20%）</h5>
+            <ul>
+                <li><strong>画像</strong>：各年龄段，购买目的是送人</li>
+                <li><strong>消费场景</strong>：生日礼物、节日礼物、安慰礼物</li>
+                <li><strong>购买动机</strong>："适合送给压力大的朋友"</li>
+                <li><strong>价格敏感度</strong>：中等，看重包装和仪式感</li>
+                <li><strong>触媒习惯</strong>：小红书搜索"礼物推荐" &rarr; 筛选 &rarr; 下单</li>
+            </ul>
+        </div>
+
+        <h3>消费行为路径</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>阶段</th><th>关键行为</th><th>流失风险</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>认知</strong></td><td>看到表情包/内容</td><td>低（零成本）</td></tr>
+                <tr><td><strong>兴趣</strong></td><td>搜索了解更多</td><td>中（竞品分散注意力）</td></tr>
+                <tr><td><strong>考虑</strong></td><td>比价、看评价</td><td><strong>高（正品vs山寨混淆）</strong></td></tr>
+                <tr><td><strong>购买</strong></td><td>下单支付</td><td>中（价格敏感度）</td></tr>
+                <tr><td><strong>分享</strong></td><td>晒单、推荐</td><td>低（粉丝乐于分享）</td></tr>
+            </tbody>
+        </table>
+
+        <h3>消费者需求洞察</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>需求层次</th><th>具体表现</th><th>产品映射</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>功能需求</strong></td><td>实用、质量好</td><td>文具、日用品</td></tr>
+                <tr><td><strong>情感需求</strong></td><td>治愈、陪伴</td><td>毛绒玩具、抱枕</td></tr>
+                <tr><td><strong>社交需求</strong></td><td>展示品味、话题</td><td>联名服饰、包袋</td></tr>
+                <tr><td><strong>身份需求</strong></td><td>收藏、稀缺</td><td>限量款、隐藏款</td></tr>
+            </tbody>
+        </table>
+        <p>噜噜目前的产品主要满足<strong>功能需求</strong>和<strong>情感需求</strong>，社交需求和身份需求的产品开发不足，这是未来的增长空间。</p>
+    </div>
+</div>
+
+<!-- ========== 第9页:渠道与价格策略 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">09</span>
+        <span class="title-text">渠道与价格策略<span class="title-en">Channel & Pricing Strategy</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>线上渠道分析</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>渠道</th><th>优势</th><th>劣势</th><th>适合产品</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>淘宝/天猫</strong></td><td>流量大、用户习惯成熟</td><td>竞争激烈、获客成本高</td><td>全品类</td></tr>
+                <tr><td><strong>抖音电商</strong></td><td>内容+交易闭环、冲动消费</td><td>需要内容运营能力</td><td>低价爆款、直播专属款</td></tr>
+                <tr><td><strong>小红书电商</strong></td><td>种草转化一体化</td><td>流量相对小</td><td>颜值型产品、礼品</td></tr>
+                <tr><td><strong>拼多多</strong></td><td>下沉市场、价格敏感用户</td><td>品牌调性低</td><td>低价引流款</td></tr>
+                <tr><td><strong>京东</strong></td><td>物流快、3C数码强</td><td>潮玩/萌系非主阵地</td><td>数码配件、礼盒</td></tr>
+            </tbody>
+        </table>
+
+        <h3>线下渠道分析</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>渠道</th><th>优势</th><th>劣势</th><th>适合产品</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>文创集合店</strong></td><td>精准客群、调性匹配</td><td>覆盖面有限</td><td>文具、小饰品</td></tr>
+                <tr><td><strong>潮玩店</strong></td><td>收藏家客群</td><td>进店门槛高</td><td>潮玩、限量款</td></tr>
+                <tr><td><strong>便利店</strong></td><td>高频触达</td><td>陈列空间有限</td><td>小零食、小挂件</td></tr>
+                <tr><td><strong>礼品店</strong></td><td>送礼场景</td><td>季节性波动</td><td>礼盒、组合装</td></tr>
+            </tbody>
+        </table>
+
+        <h3>价格策略分析</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>价格带</th><th>产品类型</th><th>定位</th><th>策略</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>9.9-19.9元</strong></td><td>贴纸、小挂件、文具</td><td>引流款</td><td>低价获客，扩大认知</td></tr>
+                <tr><td><strong>29-49元</strong></td><td>挂件玩偶、小饰品、文具套装</td><td>主力款</td><td>利润款，承担主要销售</td></tr>
+                <tr><td><strong>59-99元</strong></td><td>中号玩偶、礼盒、服饰</td><td>升级款</td><td>提升客单价</td></tr>
+                <tr><td><strong>100-200元</strong></td><td>大号玩偶、限量款、收藏品</td><td>形象款</td><td>品牌调性，非走量</td></tr>
+            </tbody>
+        </table>
+        <p><strong>关键发现</strong>：噜噜正卡在"上不去、下不来"的尴尬位置——比无品牌卡皮巴拉贵，但比Jellycat等高端品牌便宜得多，却没能像后者那样建立品牌溢价。29元挂件破万 vs 59元玩偶仅200+，说明消费者对噜噜的价格敏感度远超预期。</p>
+    </div>
+</div>
+
+<!-- ========== 第10页:营销传播与授权策略 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">10</span>
+        <span class="title-text">营销传播与授权策略<span class="title-en">Marketing & Licensing Strategy</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>现有营销手段评估</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>手段</th><th>应用情况</th><th>效果</th><th>建议</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>小红书种草</strong></td><td>活跃</td><td>四星</td><td>持续投入，扩大KOC覆盖</td></tr>
+                <tr><td><strong>直播带货</strong></td><td>部分</td><td>三星</td><td>加强与头部主播合作</td></tr>
+                <tr><td><strong>表情包传播</strong></td><td>活跃</td><td>五星</td><td>持续更新，创造新系列</td></tr>
+                <tr><td><strong>联名营销</strong></td><td>进行中</td><td>三星</td><td>选择更匹配的品牌，提升联名声量</td></tr>
+                <tr><td><strong>动画内容</strong></td><td>基础</td><td>二星</td><td>需要新内容持续输血</td></tr>
+            </tbody>
+        </table>
+
+        <h3>核心传播主题</h3>
+        <p style="font-size:15px; font-weight:600; color:var(--accent); text-align:center; padding:var(--space-3); background:var(--accent-tint); border:1px solid var(--rule); margin:var(--space-3) 0;">"情绪稳定，从噜噜开始"</p>
+
+        <h3>适合授权的品类（推荐）</h3>
+        <p><strong>第一梯队：高匹配、低饱和</strong></p>
+        <ul>
+            <li><strong>食品饮料</strong>：水豚"佛系吃货"人设与零食、奶茶、咖啡联名高度契合，建议优先开发</li>
+            <li><strong>轻服饰（T恤/睡衣/袜子）</strong>：年轻女性客群匹配度高，图案授权门槛低</li>
+            <li><strong>家居生活用品</strong>：抱枕、地垫、收纳等，契合"慢生活"定位</li>
+        </ul>
+
+        <p><strong>第二梯队：已验证、可扩展</strong></p>
+        <ul>
+            <li><strong>美妆护肤</strong>：羽素痘痘贴验证了可行性，可扩展至面膜、护手霜、化妆工具等</li>
+            <li><strong>文具</strong>：得力联名已验证学生市场，可扩展至手账本、贴纸、笔袋等</li>
+            <li><strong>饰品</strong>：手链、钥匙扣、发饰等轻饰品，适合低门槛联名</li>
+        </ul>
+
+        <h3>不适合授权的品类（谨慎）</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>品类</th><th>原因</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>高端毛绒玩具</td><td>Jellycat等强势品牌已占据高端市场，水豚噜噜溢价能力不足</td></tr>
+                <tr><td>3C数码主产品</td><td>IP调性与科技产品不符，联名效果存疑</td></tr>
+                <tr><td>汽车/房产</td><td>IP轻量治愈属性与重决策消费场景不匹配</td></tr>
+                <tr><td>医药保健</td><td>监管严格，且与IP调性不符</td></tr>
+                <tr><td>金融保险</td><td>与治愈系IP调性冲突</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ========== 第11页:财务预测与行动计划 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">11</span>
+        <span class="title-text">财务预测与行动计划<span class="title-en">Financial Forecast & Action Plan</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>授权合作投入产出估算</h3>
+        <p><strong>轻量级联名模式（推荐）</strong></p>
+        <table class="data-table">
+            <thead>
+                <tr><th>项目</th><th>费用（万元）</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>授权费</td><td>3-8</td><td>根据品类和期限</td></tr>
+                <tr><td>产品设计</td><td>2-5</td><td>包装/图案设计</td></tr>
+                <tr><td>首批生产</td><td>5-15</td><td>视产品类型</td></tr>
+                <tr><td>营销推广</td><td>3-10</td><td>社媒种草、KOC</td></tr>
+                <tr><td><strong>总投入</strong></td><td><strong>13-38万</strong></td><td></td></tr>
+                <tr><td>预期销售额</td><td>50-150万</td><td>取决于渠道和营销</td></tr>
+                <tr><td>预期ROI</td><td>1.5-3x</td><td></td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>深度联名模式</strong></p>
+        <table class="data-table">
+            <thead>
+                <tr><th>项目</th><th>费用（万元）</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>授权费</td><td>10-30</td><td>深度合作溢价</td></tr>
+                <tr><td>产品共创</td><td>10-20</td><td>深度设计开发</td></tr>
+                <tr><td>生产</td><td>20-50</td><td>较大批量</td></tr>
+                <tr><td>营销</td><td>15-40</td><td>全渠道推广</td></tr>
+                <tr><td><strong>总投入</strong></td><td><strong>55-140万</strong></td><td></td></tr>
+                <tr><td>预期销售额</td><td>200-500万</td><td></td></tr>
+                <tr><td>预期ROI</td><td>1.5-3x</td><td>风险更高</td></tr>
+            </tbody>
+        </table>
+
+        <h3>被授权商行动路线图</h3>
+        <p><strong>Phase 1：调研与决策（1-2周）</strong></p>
+        <table class="data-table">
+            <thead>
+                <tr><th>任务</th><th>时间</th><th>负责人</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>联系IP方获取授权手册和报价</td><td>第1周</td><td>商务</td></tr>
+                <tr><td>内部评估品类匹配度和预算</td><td>第1-2周</td><td>产品+市场</td></tr>
+                <tr><td>竞品调研（卡皮巴拉产品市场）</td><td>第1-2周</td><td>市场</td></tr>
+                <tr><td>决策是否合作及合作深度</td><td>第2周末</td><td>管理层</td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Phase 2：合作落地（4-8周）</strong></p>
+        <table class="data-table">
+            <thead>
+                <tr><th>任务</th><th>时间</th><th>负责人</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>签署授权协议</td><td>第3周</td><td>商务+法务</td></tr>
+                <tr><td>产品设计与打样</td><td>第3-6周</td><td>产品+设计</td></tr>
+                <tr><td>生产准备</td><td>第5-8周</td><td>供应链</td></tr>
+                <tr><td>营销方案制定</td><td>第4-6周</td><td>市场</td></tr>
+            </tbody>
+        </table>
+
+        <p><strong>Phase 3：上市与推广（2-4周）</strong></p>
+        <table class="data-table">
+            <thead>
+                <tr><th>任务</th><th>时间</th><th>负责人</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>产品上市</td><td>第9周</td><td>销售</td></tr>
+                <tr><td>社媒种草</td><td>第9-12周</td><td>市场</td></tr>
+                <tr><td>销售数据监测</td><td>持续</td><td>运营</td></tr>
+                <tr><td>效果复盘</td><td>第12周末</td><td>全团队</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ========== 第12页:综合评级与结论 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">12</span>
+        <span class="title-text">综合评级与结论<span class="title-en">Overall Rating & Conclusion</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>综合评级：B（中等推荐，需审慎决策）</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>维度</th><th>评分</th><th>权重</th><th>加权分</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>IP辨识度</td><td>6/10</td><td>20%</td><td>1.2</td><td>有角色设定，但与卡皮巴拉泛概念差异不够突出</td></tr>
+                <tr><td>市场热度</td><td>6/10</td><td>15%</td><td>0.9</td><td>社媒有基础热度，但未形成现象级破圈</td></tr>
+                <tr><td>授权成熟度</td><td>5/10</td><td>15%</td><td>0.75</td><td>已有多个品类案例，但体系化程度待观察</td></tr>
+                <tr><td>品类适配度</td><td>7/10</td><td>20%</td><td>1.4</td><td>治愈系标签与美妆、文具、生活方式等品类匹配良好</td></tr>
+                <tr><td>商业变现力</td><td>5/10</td><td>20%</td><td>1.0</td><td>低价产品销量可观，中高价位溢价能力有限</td></tr>
+                <tr><td>竞争壁垒</td><td>4/10</td><td>10%</td><td>0.4</td><td>面临卡皮巴拉泛概念强竞争，版权保护难度大</td></tr>
+                <tr><td><strong>综合得分</strong></td><td></td><td><strong>100%</strong></td><td><strong>5.65/10</strong></td><td><strong>B级</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h3>最终建议</h3>
+        <p>水豚噜噜是一个<strong>处于上升期、有潜力但存在明显天花板</strong>的IP。对于预算有限、希望以轻量级联名试水情绪营销的被授权商，该IP提供了相对低的合作门槛和明确的受众画像。但对于希望借IP实现品牌升级或销售爆发的被授权商，建议谨慎评估——水豚噜噜的知名度基础和差异化壁垒尚不足以支撑高投入的重度联名。</p>
+
+        <h3>最佳合作模式</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>模式</th><th>投入</th><th>周期</th><th>目标</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>短期快闪联名</td><td>10-30万</td><td>1-3个月</td><td>试水+话题</td></tr>
+                <tr><td>轻量级产品联名</td><td>15-40万</td><td>3-6个月</td><td>销售+品牌</td></tr>
+                <tr><td>包装/图案授权</td><td>5-15万</td><td>1-3个月</td><td>低成本试水</td></tr>
+            </tbody>
+        </table>
+
+        <div class="verdict-box" style="margin-top:var(--space-6);">
+            <h4>核心建议</h4>
+            <p>以水豚噜噜为IP的授权合作，应抱着<span class="highlight">"情绪营销试水"</span>的心态，而非"爆款制造"的期待。在正确的品类（食品饮料、轻服饰、家居）和正确的价格带（15-60元）中，噜噜有潜力创造超出预期的营销效果。但请务必控制投入、设置止损线，并持续监测销售数据。</p>
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第13页:授权案例附录 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">13</span>
+        <span class="title-text">授权案例附录<span class="title-en">Licensing Case Appendix</span></span>
+    </h2>
+
+    <div class="case-intro">本案例库基于公开渠道采集的水豚噜噜授权项目信息整理(2024-2026)。</div>
+
+    <div style="overflow-x:auto;">
+        <table class="case-table">
+            <thead>
+                <tr>
+                    <th style="width:4%">No.</th>
+                    <th style="width:18%">案例标题</th>
+                    <th style="width:11%">授权品类</th>
+                    <th style="width:13%">合作品牌</th>
+                    <th style="width:9%">授权方式</th>
+                    <th style="width:8%">线下活动</th>
+                    <th style="width:10%">价格带</th>
+                    <th>案例说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="idx">01</td>
+                    <td class="title"><strong>羽素YOUPURE &times; 水豚噜噜痘痘贴联名</strong></td>
+                    <td>美妆护肤</td>
+                    <td>羽素YOUPURE</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">19.9-39.9元</td>
+                    <td class="desc">年轻女性高频消费品，情绪共鸣"长痘痘也要佛系"，品类匹配度高</td>
+                </tr>
+                <tr>
+                    <td class="idx">02</td>
+                    <td class="title"><strong>dkx &times; 水豚噜噜联名手链</strong></td>
+                    <td>饰品</td>
+                    <td>dkx</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">29-59元</td>
+                    <td class="desc">小众饰品品牌，客单价低适合轻量级联名，但品牌声量较小</td>
+                </tr>
+                <tr>
+                    <td class="idx">03</td>
+                    <td class="title"><strong>得力 &times; 水豚噜噜毛绒文具联名</strong></td>
+                    <td>文具</td>
+                    <td>得力</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">9.9-39.9元</td>
+                    <td class="desc">国产文具头部品牌，渠道覆盖广，学生客群精准匹配</td>
+                </tr>
+                <tr>
+                    <td class="idx">04</td>
+                    <td class="title"><strong>多爱 &times; 水豚噜噜联名大公仔</strong></td>
+                    <td>毛绒玩具</td>
+                    <td>多爱</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">未标注</td>
+                    <td class="desc">毛绒玩具是IP最自然的衍生品形态，持续销售中</td>
+                </tr>
+                <tr>
+                    <td class="idx">05</td>
+                    <td class="title"><strong>噜噜生产基地 &times; 水豚噜噜牙膏</strong></td>
+                    <td>日化</td>
+                    <td>噜噜生产基地</td>
+                    <td>联名授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">未标注</td>
+                    <td class="desc">小红书有露出，品牌名与IP名重合度高，可能为自有品牌</td>
+                </tr>
+                <tr>
+                    <td class="idx">06</td>
+                    <td class="title"><strong>《西普大陆》手游精灵联动</strong></td>
+                    <td>游戏联动</td>
+                    <td>西普大陆</td>
+                    <td>联动授权</td>
+                    <td class="online">Online</td>
+                    <td class="date">免费获取</td>
+                    <td class="desc">七日签到活动获取，游戏内曝光有助于Z世代认知建立</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="integrity-box">
+        <div class="integrity-stat-block">
+            <h4>Data Integrity</h4>
+            <div class="integrity-stat">6</div>
+            <div class="integrity-pct">条案例 / 100%</div>
+        </div>
+        <ul>
+            <li class="ok">基本信息完备</li>
+            <li class="ok">授权品类记录</li>
+            <li class="ok">合作品牌确认</li>
+            <li class="ok">授权方式标注</li>
+            <li class="ok">线下活动分类</li>
+            <li class="miss">精确销售额数据</li>
+            <li class="miss">授权金率明细</li>
+            <li class="miss">合同期限详情</li>
+        </ul>
+        <div class="integrity-foot">
+            数据说明：电商平台数据为平台公开显示销量，非后台精确数据；社交媒体数据为公开笔记点赞数。部分授权合作信息来源于网络公开报道，授权细节以IP方官方信息为准。
+        </div>
+    </div>
+</div>
+
+<!-- ========== 第14页:附录 ========== -->
+<div class="page">
+    <div class="page-header">
+        <div class="page-header-brand">【新文创老贾聊IP】公众号</div>
+        <div class="page-header-meta">IPDE-2026-LULU-0514 &middot; 2026.05.14</div>
+    </div>
+    <h2 class="section-title">
+        <span class="num">14</span>
+        <span class="title-text">附录<span class="title-en">Appendix</span></span>
+    </h2>
+
+    <div class="detail-section">
+        <h3>术语表</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>术语</th><th>解释</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>IP</strong></td><td>知识产权（Intellectual Property），此处指具有商业开发价值的形象或内容</td></tr>
+                <tr><td><strong>授权</strong></td><td>IP方将IP的使用权授予品牌方，品牌方支付授权费</td></tr>
+                <tr><td><strong>联名</strong></td><td>两个品牌合作推出共同产品</td></tr>
+                <tr><td><strong>卡皮巴拉</strong></td><td>Capybara，水豚的英文，2024-2025年社交媒体爆火的动物概念</td></tr>
+                <tr><td><strong>UGC</strong></td><td>用户生成内容（User Generated Content）</td></tr>
+                <tr><td><strong>KOC</strong></td><td>关键意见消费者（Key Opinion Consumer）</td></tr>
+                <tr><td><strong>ROI</strong></td><td>投资回报率（Return on Investment）</td></tr>
+            </tbody>
+        </table>
+
+        <h3>数据来源说明</h3>
+        <table class="data-table">
+            <thead>
+                <tr><th>来源编号</th><th>来源</th><th>采集时间</th><th>可信度</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>[1]</td><td>百度搜索结果</td><td>2026年5月14日</td><td>中</td></tr>
+                <tr><td>[2]</td><td>小红书搜索结果</td><td>2026年5月14日</td><td>中</td></tr>
+                <tr><td>[3]</td><td>电商平台公开数据</td><td>2026年5月14日</td><td>中</td></tr>
+                <tr><td>[4]</td><td>社交平台公开内容</td><td>2026年5月14日</td><td>中</td></tr>
+            </tbody>
+        </table>
+
+        <h3>联系建议</h3>
+        <p>如需进一步了解水豚噜噜的授权合作详情，建议：</p>
+        <ol>
+            <li>关注小红书"小水豚噜噜"官方账号获取最新动态</li>
+            <li>参考已有被授权商（如羽素、得力）的合作经验</li>
+            <li>通过动画出品方渠道联系IP授权部门</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ========== 报告页脚 ========== -->
+<div class="report-footer">
+    <p class="footer-mark">&mdash; End of Report &mdash;</p>
+    <p class="brand">【新文创老贾聊IP】公众号</p>
+    <p>报告基于公开数据与行业体感整理，仅供参考，不构成投资决策建议。</p>
+    <p class="source">Source &mdash; 公开渠道采集 + 行业公开资讯整理 &middot; Updated 2026.05.14</p>
+</div>
+
+</div>
+
+<script>
+// 暖色调配色
+const warmColors = {
+    primary: ['#8B4513', '#A0522D', '#CD853F', '#D2691E', '#BC8F8F', '#DEB887', '#F4A460', '#DAA520'],
+    accent: '#8B4513',
+    light: ['#F5E6D3', '#F0D5B5', '#E8C9A0', '#DEB887'],
+    red: '#B85450',
+    yellow: '#C4A35A',
+    green: '#6B8E6B'
+};
+
+// a) 受众画像饼图
+new Chart(document.getElementById('ageChart'), {
+    type: 'pie',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            plugins: { legend: { position: 'bottom', labels: { font: { size: 14, family: 'Noto Sans SC' } } } }
+        },
+    data: {
+        labels: ['18-24岁', '25-28岁', '29-30岁', '其他'],
+        datasets: [{
+            data: [30, 35, 20, 15],
+            backgroundColor: ['#8B4513', '#A0522D', '#CD853F', '#DEB887'],
+            borderColor: '#fff',
+            borderWidth: 3
+        }]
+    },
+});
+
+// b) 购买动机饼图
+new Chart(document.getElementById('motiveChart'), {
+    type: 'pie',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            plugins: { legend: { position: 'bottom', labels: { font: { size: 14, family: 'Noto Sans SC' } } } }
+        },
+    data: {
+        labels: ['情绪价值', '社交展示', '收藏爱好', '送礼'],
+        datasets: [{
+            data: [40, 25, 20, 15],
+            backgroundColor: ['#8B4513', '#A0522D', '#CD853F', '#DEB887'],
+            borderColor: '#fff',
+            borderWidth: 3
+        }]
+    },
+});
+
+// c) 品类饱和度柱状图
+new Chart(document.getElementById('satChart'), {
+    type: 'bar',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            scales: { y: { ticks: { font: { size: 13 } } }, x: { ticks: { font: { size: 13 } } } },
+            plugins: { legend: { display: false } }
+        },
+    data: {
+        labels: ['毛绒', '美妆', '文具', '饰品', '日化', '食品', '轻服饰', '家居', '数码'],
+        datasets: [{
+            label: '饱和度指数',
+            data: [95, 55, 50, 45, 40, 15, 15, 15, 12],
+            backgroundColor: ['#B85450', '#C4A35A', '#C4A35A', '#C4A35A', '#C4A35A', '#6B8E6B', '#6B8E6B', '#6B8E6B', '#6B8E6B'],
+            borderColor: '#8B4513',
+            borderWidth: 2
+        }]
+    },
+});
+
+// d) 价格带销量分布柱状图
+new Chart(document.getElementById('priceChart'), {
+    type: 'bar',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            scales: { y: { ticks: { font: { size: 13 } } }, x: { ticks: { font: { size: 13 } } } },
+            plugins: { legend: { display: false } }
+        },
+    data: {
+        labels: ['0-20元', '20-40元', '40-60元', '60-100元', '100元+'],
+        datasets: [{
+            label: '相对销量指数',
+            data: [100, 65, 25, 10, 3],
+            backgroundColor: '#A0522D',
+            borderColor: '#8B4513',
+            borderWidth: 2
+        }]
+    },
+});
+
+// e) 竞品对比雷达图
+new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            scales: { r: { pointLabels: { font: { size: 14 } }, ticks: { font: { size: 12 } } } },
+            plugins: { legend: { labels: { font: { size: 14 } } } }
+        },
+    data: {
+        labels: ['知名度', '版权壁垒', '价格带', '差异化', '受众匹配度'],
+        datasets: [
+            {
+                label: '水豚噜噜',
+                data: [4, 6, 5, 7, 8],
+                backgroundColor: 'rgba(139, 69, 19, 0.2)',
+                borderColor: '#8B4513',
+                pointBackgroundColor: '#8B4513',
+                borderWidth: 3
+            },
+            {
+                label: '卡皮巴拉泛概念',
+                data: [9, 1, 3, 2, 7],
+                backgroundColor: 'rgba(192, 192, 192, 0.2)',
+                borderColor: '#999',
+                pointBackgroundColor: '#999',
+                borderWidth: 3
+            },
+            {
+                label: 'Jellycat',
+                data: [7, 9, 9, 9, 5],
+                backgroundColor: 'rgba(184, 84, 80, 0.2)',
+                borderColor: '#B85450',
+                pointBackgroundColor: '#B85450',
+                borderWidth: 3
+            }
+        ]
+    },
+});
+
+// f) 社媒平台活跃度折线图
+new Chart(document.getElementById('socialChart'), {
+    type: 'line',
+        options: {
+            responsive: false,
+            devicePixelRatio: 2,
+            scales: { y: { ticks: { font: { size: 13 } } }, x: { ticks: { font: { size: 13 } } } },
+            plugins: { legend: { labels: { font: { size: 14 } } } }
+        },
+    data: {
+        labels: ['1月', '2月', '3月', '4月', '5月'],
+        datasets: [
+            {
+                label: '小红书',
+                data: [85, 88, 90, 87, 92],
+                borderColor: '#8B4513',
+                backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: '微博',
+                data: [45, 48, 50, 47, 52],
+                borderColor: '#A0522D',
+                backgroundColor: 'rgba(160, 82, 45, 0.1)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: 'B站',
+                data: [35, 38, 40, 42, 45],
+                borderColor: '#CD853F',
+                backgroundColor: 'rgba(205, 133, 63, 0.1)',
+                fill: true,
+                tension: 0.4
+            },
+            {
+                label: '贴吧',
+                data: [20, 22, 21, 23, 22],
+                borderColor: '#DEB887',
+                backgroundColor: 'rgba(222, 184, 135, 0.1)',
+                fill: true,
+                tension: 0.4
+            }
+        ]
+    },
+});
+
+// g) 授权品类机会矩阵散点图
+new Chart(document.getElementById('matrixChart'), {
+    type: 'scatter',
+    data: {
+        datasets: [
+            {
+                label: '机会窗口',
+                data: [
+                    { x: 15, y: 85, r: 8 },
+                    { x: 15, y: 80, r: 8 },
+                    { x: 15, y: 75, r: 8 },
+                    { x: 12, y: 70, r: 7 },
+                    { x: 15, y: 65, r: 7 },
+                    { x: 12, y: 60, r: 7 }
+                ],
+                backgroundColor: '#6B8E6B',
+                borderColor: '#4A6B4A',
+                borderWidth: 2
+            },
+            {
+                label: '趋于饱和',
+                data: [
+                    { x: 55, y: 55, r: 7 },
+                    { x: 50, y: 50, r: 7 },
+                    { x: 45, y: 45, r: 7 },
+                    { x: 40, y: 40, r: 6 }
+                ],
+                backgroundColor: '#C4A35A',
+                borderColor: '#A08040',
+                borderWidth: 2
+            },
+            {
+                label: '严重饱和',
+                data: [
+                    { x: 95, y: 30, r: 10 }
+                ],
+                backgroundColor: '#B85450',
+                borderColor: '#8B3A3A',
+                borderWidth: 2
+            }
+        ]
+    },
+    options: {
+        responsive: false,
+        devicePixelRatio: 2,
+        scales: {
+            x: { title: { display: true, text: '饱和度', font: { size: 14 } }, ticks: { font: { size: 13 } } },
+            y: { title: { display: true, text: '匹配度', font: { size: 14 } }, ticks: { font: { size: 13 } } }
+        },
+        plugins: {
+            legend: { labels: { font: { size: 14, family: 'Noto Sans SC' } } }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
