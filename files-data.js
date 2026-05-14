@@ -3,7 +3,7 @@ const FILE_LISTS = {
     "动态": [
         {
             "name": "本周行业动态-2026-05-10.html",
-            "displayName": "《本周行业动�؁》",
+            "displayName": "《本周行业动态》",
             "date": "2026-05-10"
         },
         {
@@ -39,8 +39,8 @@ const FILE_LISTS = {
             "date": ""
         },
         {
-            "name": "米帾精粽IP评估报告.html",
-            "displayName": "《汳帾忁浥奥，作牫物神忁重展词敶报告》",
+            "name": "水豚噜噜-IP深度评估报告.html",
+            "displayName": "《水豚噜噜IP深度评估报告》",
             "date": "2026-05-14"
         }
     ]
