@@ -218,12 +218,6 @@ p:last-child em {
 }
 
 /* ========== 打印适配 ========== */
-@media print {
-  body { background: #fff; }
-  .wrap { padding: 24px 32px; max-width: 100%; }
-  table { box-shadow: none; }
-  a { color: var(--text-primary); border-bottom: none; }
-}
 
 /* ========== 返回按钮 ========== */
 .back-to-list {
@@ -235,46 +229,36 @@ p:last-child em {
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: rgba(61, 40, 24, 0.92);
-  border: 1px solid rgba(139, 90, 43, 0.5);
+  background: oklch(30% 0.06 28 / 0.92);
+  border: 1px solid oklch(45% 0.10 28 / 0.5);
   border-radius: 999px;
   font-size: 13px;
-  color: #f5f0ea;
+  color: oklch(96% 0.01 70);
   text-decoration: none;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(43, 26, 12, 0.25);
+  box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
   transition: all .2s ease;
   letter-spacing: 0.02em;
 }
 .back-to-list:hover {
-  color: #faf7f3;
-  border-color: rgba(154, 101, 53, 0.7);
+  color: oklch(98% 0.02 70);
+  border-color: oklch(55% 0.14 28 / 0.7);
   transform: translateX(-2px);
-  background: rgba(54, 31, 16, 0.95);
+  background: oklch(28% 0.08 28 / 0.95);
   text-decoration: none;
 }
 .back-to-list svg {
   flex-shrink: 0;
 }
 @media print { .back-to-list { display: none; } }
-
-/* ========== 移动端 ========== */
-@media (max-width: 640px) {
-  .wrap { padding: 24px 16px; }
-  h1:first-of-type { font-size: 22px; }
-  h2 { font-size: 16px; }
-  h3 { font-size: 14.5px; }
-  table { font-size: 13px; }
-  th, td { padding: 8px 10px; }
-}
 </style>
 </head>
 <body>
-
-<a href="../weekly-news.html" class="back-to-list">
+<a href="../weekly-news.html" class="back-to-list" aria-label="返回列表">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回
 </a>
+
 
 <div class="wrap">
 

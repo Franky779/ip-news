@@ -374,34 +374,47 @@
             color: var(--text);
         }
 
-        .back-home {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 101;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.5rem 0.875rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            box-shadow: 0 2px 8px oklch(0% 0 0 / 0.06);
-            transition: all 0.2s ease;
-        }
-
-        .back-home:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-    </style>
+        
+/* ========== 返回按钮 ========== */
+.back-to-list {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: oklch(30% 0.06 28 / 0.92);
+  border: 1px solid oklch(45% 0.10 28 / 0.5);
+  border-radius: 999px;
+  font-size: 13px;
+  color: oklch(96% 0.01 70);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+  transition: all .2s ease;
+  letter-spacing: 0.02em;
+}
+.back-to-list:hover {
+  color: oklch(98% 0.02 70);
+  border-color: oklch(55% 0.14 28 / 0.7);
+  transform: translateX(-2px);
+  background: oklch(28% 0.08 28 / 0.95);
+  text-decoration: none;
+}
+.back-to-list svg {
+  flex-shrink: 0;
+}
+@media print { .back-to-list { display: none; } }
+</style>
 </head>
 <body>
-    <a href="../index.html" class="back-home">← 返回首页</a>
+<a href="../weekly-news.html" class="back-to-list" aria-label="返回列表">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回
+</a>
+
     <header class="site-header">
         <div class="header-inner">
             <span class="brand">新文创老贾聊IP</span>
