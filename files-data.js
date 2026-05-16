@@ -2,6 +2,11 @@
 const FILE_LISTS = {
     "动态": [
         {
+            "name": "本周行业动态-2026-05-16.html",
+            "displayName": "《本周行业动态》",
+            "date": "2026-05-16"
+        },
+        {
             "name": "本周行业动态-2026-05-10.html",
             "displayName": "《本周行业动态》",
             "date": "2026-05-10"
