@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP 行业资讯周报 · 2026年5月9日—5月16日</title>
+<style>
+:root {
+  --bg: #f7f6f4;
+  --surface: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-tertiary: #737373;
+  --border: #e0ddd8;
+  --border-light: #f0eeeb;
+  --accent: #8b5a2b;
+  --accent-bg: #faf6f1;
+  --accent-border: #e8ddd0;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ========== 报告封面头 ========== */
+h1:first-of-type {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 3px double var(--text-primary);
+  margin-bottom: 16px;
+}
+
+/* 报告期信息紧跟标题 */
+h1:first-of-type + p {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.03em;
+  margin-bottom: 20px;
+}
+
+/* 导语引用块 */
+h1:first-of-type + p + blockquote {
+  background: none;
+  border: none;
+  border-left: 3px solid var(--accent);
+  padding: 12px 0 12px 24px;
+  margin: 24px 0 32px;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.9;
+  border-radius: 0;
+}
+
+/* ========== 章节标题 ========== */
+hr + h2,
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 40px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--text-primary);
+}
+
+/* ========== 正文段落 ========== */
+p {
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+}
+a:hover { border-bottom-style: solid; }
+
+/* ========== 引用块（主线摘要） ========== */
+blockquote {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin: 14px 0 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+blockquote p { margin-bottom: 6px; }
+blockquote p:last-child { margin-bottom: 0; }
+/* 引用块内第一个段落做摘要高亮 */
+blockquote > p:first-child:only-child,
+blockquote > p:first-child {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ========== 列表 ========== */
+ul, ol {
+  margin: 10px 0 18px 24px;
+}
+li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+li::marker { color: var(--text-tertiary); }
+
+/* ========== 表格（核心视觉元素） ========== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 18px 0 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+thead {
+  background: #f5f3f0;
+}
+
+th, td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #fcfbfa; }
+
+/* 表格中的强调数据 */
+td strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 居中列（排名、序号、趋势箭头） */
+td[align="center"],
+th[align="center"] {
+  text-align: center;
+}
+
+/* 表格第一列禁止换行，防止标签类文字被挤成竖排 */
+table td:first-child,
+table th:first-child {
+  white-space: nowrap;
+}
+
+/* ========== 分割线 ========== */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+/* ========== 主题分组分割线 ========== */
+h3 + hr,
+p + hr {
+  margin: 24px 0;
+}
+
+/* ========== 代码/标签样式 ========== */
+code {
+  background: var(--border-light);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ========== 页脚 ========== */
+hr + p em,
+p:last-child em {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+  font-style: normal;
+}
+
+/* ========== 打印适配 ========== */
+@media print {
+  body { background: #fff; }
+  .wrap { padding: 24px 32px; max-width: 100%; }
+  table { box-shadow: none; }
+  a { color: var(--text-primary); border-bottom: none; }
+}
+
+/* ========== 返回按钮 ========== */
+.back-to-list {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(61, 40, 24, 0.92);
+  border: 1px solid rgba(139, 90, 43, 0.5);
+  border-radius: 999px;
+  font-size: 13px;
+  color: #f5f0ea;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(43, 26, 12, 0.25);
+  transition: all .2s ease;
+  letter-spacing: 0.02em;
+}
+.back-to-list:hover {
+  color: #faf7f3;
+  border-color: rgba(154, 101, 53, 0.7);
+  transform: translateX(-2px);
+  background: rgba(54, 31, 16, 0.95);
+  text-decoration: none;
+}
+.back-to-list svg {
+  flex-shrink: 0;
+}
+@media print { .back-to-list { display: none; } }
+
+/* ========== 移动端 ========== */
+@media (max-width: 640px) {
+  .wrap { padding: 24px 16px; }
+  h1:first-of-type { font-size: 22px; }
+  h2 { font-size: 16px; }
+  h3 { font-size: 14.5px; }
+  table { font-size: 13px; }
+  th, td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+
+<a href="../weekly-news.html" class="back-to-list">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回
+</a>
+
+<div class="wrap">
+
+<h1>IP 行业资讯周报</h1>
+<p><strong>报告期</strong>:2026年5月9日 — 2026年5月16日 · <strong>整理时间</strong>:2026年5月16日</p>
+<blockquote>
+<p>这周圈内挺热闹的。广州搞了上半年华南最大的IP产业交易会，北京首个国家级文创市集开幕，超百个文创潮玩IP集体亮相。潮玩方面Labubu推新不停，谷子经济继续涨，海外授权管理也在升级——LVMH把Marc Jacobs卖了，迪士尼把电影IP授权做到全品类覆盖。</p>
+</blockquote>
+
+<hr>
+
+<h2>📊 一周快览</h2>
+<table>
+<thead>
+<tr><th>维度</th><th>数据</th></tr>
+</thead>
+<tbody>
+<tr><td>📰 资讯总数</td><td><strong>21</strong> 条(国内 13 / 海外 4)</td></tr>
+<tr><td>🎯 涉及 IP</td><td><strong>15+</strong> 个(头部:泡泡玛特、LABUBU、SKULLPANDA、小马宝莉、故宫、国博、凯蒂猫、迪士尼、Crunchyroll)</td></tr>
+<tr><td>🏙️ 涉及城市</td><td><strong>8+</strong> 个(北京、广州、苏州、香港、深圳、厦门、温州、拉斯维加斯)</td></tr>
+<tr><td>📅 重大档期</td><td><strong>5</strong> 个(从 5月21日 到 7月3日)</td></tr>
+<tr><td>🏷️ 关键词</td><td><code>#IP交易</code> <code>#国家级文创市集</code> <code>#谷子经济</code> <code>#全品类授权</code> <code>#品牌管理</code></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>🎯 本周行业主线</h2>
+
+<h3>🎪 主线一:上半年华南最大IP产业交易会落地广州</h3>
+<blockquote>
+<p>2026IP产业合作交易会5月10日在广州广交会展馆开幕，现场汇聚大批优质IP，打造国际化交流交易平台。</p>
+</blockquote>
+<p>这是今年上半年华南地区规模最大的IP产业交易活动。从现场信息看，"IP+实体"的落地转化是核心议题，项目方和渠道方的对接密度较高。对想拓展华南市场的IP方来说，这种区域性交易会比全国级展会更聚焦、效率更高。</p>
+
+<hr>
+
+<h3>🏛️ 主线二:文创市集开始"国家级编排"</h3>
+<blockquote>
+<p>5月15日北京朝阳公园 / 6.6万平方米 / 31个省区市及港澳地区</p>
+</blockquote>
+<p>首届"中国新文创市集暨潮玩游园会"5月15日在北京朝阳公园启幕，主场地总面积约6.6万平方米。来自全国31个省区市及港澳地区的优质文创、非遗老字号、原创IP和潮玩品牌汇聚。东方新美学板块集结故宫博物院、国家博物馆、三星堆博物馆等46家国内顶级文博机构，带来爆款文创产品。</p>
+<p>活动期间还将上演百余场演出，包括ACG交响音乐会等。从定位看，这次市集直接对标"国家级"，覆盖范围和参展规格都很高。文博IP从展柜走向商业空间的趋势，在这里得到了一次集中展示。</p>
+
+<hr>
+
+<h3>🎁 主线三:潮玩推新不停，谷子经济继续涨</h3>
+<blockquote>
+<p>LABUBU下半年有两款新品 / SKULLPANDA×小马宝莉联名 / 海洋堂《忍者龙剑传4》</p>
+</blockquote>
+<p>泡泡玛特在电话会上宣布下半年围绕LABUBU推出两款全新产品，同时SKULLPANDA和小马宝莉的联名毛绒挂件盲盒也引发圈子热议，二手市场已有溢价。海洋堂推出《忍者龙剑传4》隼龙可动人偶，瞄准核心玩家群体。</p>
+<p>谷子经济方面，Z世代消费力还在涨，动漫衍生品市场从小作坊往智能制造转，这个趋势已经很明显。五一档的数据说明，谷子从小圈子爱好慢慢变成了大众消费。</p>
+
+<hr>
+
+<h2>🌟 一周精选(按主题分组)</h2>
+
+<h3>🎁 潮玩 &amp; IP 跨界</h3>
+<p><strong>1. 2026IP产业合作交易会在广州开幕</strong> · 2026-05-10 · 中国新闻网</p>
+<p>2026IP产业合作交易会5月10日在广州广交会展馆拉开帷幕，现场汇聚大批优质IP，打造国际化交流交易平台，推动"IP+实体"落地转化。这是今年上半年华南地区规模最大的IP产业交易活动。</p>
+<p><a href="https://www.chinanews.com/dwq/2026/05-10/10618733.shtml" target="_blank">阅读原文</a></p>
+
+<p><strong>2. 周杰伦IP"周同学"联名温州非遗黄杨木雕</strong> · 2026-05-08 · 温州市文旅局</p>
+<p>5月7日，"周同学遇见非遗·瓯奇刻"联名签约仪式在龙湾南洋公园叶萌春艺术馆举行。中国工艺美术大师叶萌春携黄杨木雕技艺，与巨星传奇集团旗下周杰伦官方二次元IP"周同学"达成跨界合作。明星IP+非遗工艺的组合，给IP授权开辟了新的品类方向。</p>
+<p><a href="https://wl.wenzhou.gov.cn/col/col1642048/art/2026/art_d957b8cc57d941a5a9bf2028b1bc192c.html" target="_blank">阅读原文</a></p>
+
+<p><strong>3. 肯德基×凯蒂猫联名推出六一儿童节玩具</strong> · 2026-05-15 · B站</p>
+<p>肯德基与三丽鸥旗下凯蒂猫(Hello Kitty)联名推出六一儿童节限定玩具，包含卡拉OK蓝牙等互动功能。每年六一前后都是快餐品牌联名玩具的高峰期，肯德基今年继续押注三丽鸥IP。</p>
+<p><a href="https://www.bilibili.com/video/BV1QT5v6xEaD/" target="_blank">阅读原文</a></p>
+
+<p><strong>4. 谷子经济破圈，动漫衍生品市场迎来智能制造转型</strong> · 2026-05-09 · 中国产业信息网</p>
+<p>五一档的数据说明，Z世代买谷子的劲头还在涨。国漫作品多了，IP运营也越来越成熟，谷子从小圈子爱好慢慢变成了大众消费。资本也在往这个方向投，厂家那边则从手工生产转向智能制造，效率和品质都上了一个台阶。</p>
+<p><a href="https://m.chinairn.com/scfx/20260509/171051866.shtml" target="_blank">阅读原文</a></p>
+
+<hr>
+
+<h3>🏛️ 文博 &amp; 文创市集</h3>
+<p><strong>5. 首个国家级文创市集在北京朝阳公园开幕</strong> · 2026-05-15 · 腾讯新闻</p>
+<p>5月15日，首届中国新文创市集暨潮玩游园会在北京朝阳公园启幕。主场地总面积约6.6万平方米，来自全国31个省区市及港澳地区的优质文创、非遗老字号、原创IP和潮玩品牌汇聚。东方新美学板块集结故宫博物院、国家博物馆、三星堆博物馆等46家国内顶级文博机构，带来爆款文创产品。活动期间还将上演百余场演出，包括ACG交响音乐会等。</p>
+<p><a href="https://news.qq.com/rain/a/20260515A0451H00" target="_blank">阅读原文</a></p>
+
+<p><strong>6. 超百个文创潮玩IP齐聚北京</strong> · 2026-05-09 · 中国青年报</p>
+<p>超百个文创潮玩IP、数十家顶流文博单位和全国各省区市及澳门特别行政区的文创"好物"于5月15日齐聚北京。从5月9日的发布会看，这次市集的定位是"国家级"，覆盖范围和参展规格都很高。</p>
+<p><a href="https://news.cyol.com/gb/articles/2026-05/09/content_X54OZ2Tp2d.html" target="_blank">阅读原文</a></p>
+
+<hr>
+
+<h3>🌍 海外动态</h3>
+<p><strong>7. Disney《曼达洛人与格洛古》完整产品矩阵曝光</strong> · 2026-05-15 · License Global</p>
+<p>电影定档5月22日上映，迪士尼消费品部同步发布全品类产品计划。合作品牌包括Hasbro(电动格洛古、手办、盲盒)、Bath &amp; Body Works(香水、蜡烛)、Casetify(手机壳)、Bandai(模型)等，覆盖玩具、美妆、服饰、食品、数码配件全品类。这些产品在Licensing Expo 2026上首次集中亮相。</p>
+<p>迪士尼把一个影视IP的授权矩阵做到全品类覆盖，从2027年的预售排期看，长线规划思维很强。DONO如果做电影/短片，可以参考这种"上映即全渠道铺货"的节奏。</p>
+<p><a href="https://www.licenseglobal.com/movies/disney-consumer-products-reveals-the-mandalorian-and-grogu-licensing-program" target="_blank">阅读原文</a></p>
+
+<p><strong>8. 韩国儿童IP"救援小英雄Poli"加速全球化</strong> · 2026-05-14 · License Global</p>
+<p>韩国EBS电视台出品的儿童动画Robocar POLI宣布与Mattel合作推出北美玩具线，与Sanrio推出限定联名商品。目标市场从中东、拉美扩展到东南亚，强调"角色驱动的全球品牌生态系统"。韩国IP出海的"内容先行+渠道借力"路径值得关注。</p>
+<p>韩国IP出海路径——先做本土内容(动画片)→找国际玩具巨头(Mattel)做渠道→再扩展区域市场。DONO如果要走国际化，这种"内容先行+渠道借力"的链路值得参考。</p>
+<p><a href="https://www.licenseglobal.com/streaming-tv/south-korean-phenomenon-robocar-poli-reinforces-global-strategy" target="_blank">阅读原文</a></p>
+
+<p><strong>9. 恐怖IP"杰森宇宙"从万圣节转向全年运营</strong> · 2026-05-12 · License Global</p>
+<p>Horror Inc.持有《十三号星期五》IP，推出"杰森宇宙"品牌升级计划。新电影重启，与Funko、McFarlane Toys、NECA合作推出高端收藏手办，拓展游戏授权、沉浸式体验店、数字藏品。核心策略：恐怖IP不再只做万圣节季节性生意，转向全年持续运营。</p>
+<p>IP的季节性限制是可以被打破的。杰森从"每年10月卖一波"变成"全年都有新品"，说明品类定位本身可以重新定义。DONO作为可爱系IP，也可以思考：除了日常消费品，能不能切入体验式消费(快闪、主题展)？</p>
+<p><a href="https://www.licenseglobal.com/entertainment/horror-inc-s-jason-universe-accelerates-franchise-growth" target="_blank">阅读原文</a></p>
+
+<p><strong>10. LVMH出售Marc Jacobs给WHP Global</strong> · 2026-05-13 · License Global</p>
+<p>LVMH把Marc Jacobs卖给了WHP Global(这家公司手里还有Vera Wang、rag &amp; bone等品牌)。Marc Jacobs本人还留着创意总监的位置。WHP Global的全球零售额要破95亿美元了。国内很多潮玩和文创IP现在也面临一个问题：创始人是自己管授权，还是找专业机构运营？这笔交易就是一个参照样本。</p>
+<p>LVMH这波操作说白了就是：自己做不来的事情，交给专业的人做。把Marc Jacobs丢给WHP Global运营，自己回去搞顶奢。WHP Global拿了品牌之后，用授权平台+运营能力把生意做大。国内很多潮玩和文创IP现在也在纠结同样的事：创始人自己管授权？还是找代理公司？这笔交易就是一个参考答案。</p>
+<p><a href="https://www.licenseglobal.com/fashion/lvmh-and-whp-global-announce-definitive-agreement-for-the-acquisition-of-marc-jacobs" target="_blank">阅读原文</a></p>
+
+<p><strong>11. Crunchyroll把5月变成"全球动漫月"</strong> · 2026-05-14 · License Global</p>
+<p>Crunchyroll将每年5月打造为"Ani-May"全球动漫庆典月，覆盖流媒体、游戏、零售、线下体验。四大区域同步推进：美国/加拿大(Hot Topic、Bandai零售联动)、欧洲(伦敦沉浸式体验+MCM Comic Con)、拉美(墨西哥Liverpool百货合作+圣保罗地铁站装置)、亚太(澳洲EB Games联名+泰国Anime Festival Asia)。旗下IP包括《咒术回战》、《我独自升级》、《葬送的芙莉莲》等。Crunchyroll VP定位："Crunchyroll是全球动漫IP授权引擎"。</p>
+<p>Crunchyroll的打法是"时间锚点+区域联动+全渠道覆盖"。把5月绑定为"动漫月"，让消费者形成条件反射。DONO是否也可以考虑类似的"年度节点营销"？比如绑定某个节日或纪念日，每年固定做一波大的授权联动。</p>
+<p><a href="https://www.licenseglobal.com/entertainment/inside-ani-may-with-crunchyroll" target="_blank">阅读原文</a></p>
+
+<p><strong>12. Licensing Expo 2026即将在拉斯维加斯开幕</strong> · 2026-05-14 · License Global</p>
+<p>Licensing Expo 2026将于5月19-21日在拉斯维加斯Mandalay Bay Convention Center举办。本届展会将有PepsiCo等新玩家进入品牌授权领域，还将举办游戏品牌如何塑造主流娱乐的专题讨论(CD Projekt Red、Supercell、Ubisoft等参与)。这是全球授权行业的风向标展会，预计汇聚大量IP版权方、被授权商和零售商。</p>
+<p>国内做IP授权的企业如果想了解国际趋势、寻找海外合作伙伴，这个展会值得关注。从参展商结构看，游戏IP在授权领域的权重越来越高。</p>
+<p><a href="https://www.licenseglobal.com/events/licensing-expo-2026" target="_blank">阅读原文</a></p>
+
+<hr>
+
+<h3>🏷️ 重点关注品牌动态</h3>
+<p><strong>13. 泡泡玛特宣布下半年将推出两款LABUBU新品</strong> · 2026-05-13 · DoNews</p>
+<p>5月13日泡泡玛特在电话会上宣布，将于今年下半年围绕热门IP LABUBU推出两款全新产品。LABUBU现在算是泡泡玛特旗下最赚钱的IP之一，推新频率在加快，说明公司对这个IP的押注还在加大。</p>
+<p><a href="https://www.donews.com/news/detail/8/6553545.html" target="_blank">阅读原文</a></p>
+
+<p><strong>14. POP MART IP联名盲盒新品上架</strong> · 2026-05-15 · 1688百科</p>
+<p>2026新款POP MART IP联名盲盒涵盖THE MONSTERS、天线宝宝等热门IP，支持618大促预售、端午节礼盒包装，1688官方正品批发价。</p>
+<p><a href="https://wiki.1688.com/zh/blind-box/WKflritg0s5q80" target="_blank">阅读原文</a></p>
+
+<p><strong>15. POPMART SKULLPANDA × 小马宝莉联名毛绒挂件盲盒</strong> · 2026-05-13 · 淘宝百科</p>
+<p>SKULLPANDA这次和小马宝莉联名出了毛绒挂件盲盒，把两个IP的元素糅在一起。隐藏款设置得比较多，目前圈子里讨论度挺高，二手市场已经有溢价了。</p>
+<p><a href="https://bk.taobao.com/k/chaowanmanghe_16578/a0a6fcc32947a32466f82dabed3c38fa.html" target="_blank">阅读原文</a></p>
+
+<p><strong>16. 海洋堂推出《忍者龙剑传4》隼龙可动人偶</strong> · 2026-05-09 · 模玩迷</p>
+<p>海洋堂宣布推出转轮科技系列《忍者龙剑传4》隼龙可动人偶。游戏IP+可动玩具的组合，瞄准核心玩家和收藏群体。</p>
+<p><a href="http://www.mowanmi.com/date-2026-5-9.html" target="_blank">阅读原文</a></p>
+
+<p><strong>17. 2026春季限量盲盒潮玩发售</strong> · 2026-05-11 · 1688百科</p>
+<p>1688平台精选2026春季限量盲盒潮玩，涵盖五一节前预热款、国潮联名系列及高人气隐藏款，支持线上预售与批量采购。</p>
+<p><a href="https://www.1688.com/wiki/zh/toys/WKfikba7dmd0xs" target="_blank">阅读原文</a></p>
+
+<p><strong>18. 2026香港国际授权展"中国内地馆"收官</strong> · 2026-05-14 · 网易新闻</p>
+<p>4月底在香港办的授权展，内地馆这次来了十几个省市的150家文旅企业，带去了近千个IP项目谈合作。对想出海授权的品牌来说，这个平台还算靠谱，至少能把项目直接摆到国际买家面前。</p>
+<p><a href="https://www.163.com/dy/article/KSTVF7QO055696J3.html" target="_blank">阅读原文</a></p>
+
+<hr>
+
+<h2>🎪 本周展览活动回顾</h2>
+<table>
+<thead>
+<tr><th>活动</th><th align="center">时间</th><th>地点</th><th>内容亮点</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>2026IP产业合作交易会</td>
+<td align="center">5月10日</td>
+<td>广州广交会展馆</td>
+<td>上半年华南最大IP产业交易活动，推动"IP+实体"落地转化</td>
+</tr>
+<tr>
+<td>首届中国新文创市集暨潮玩游园会</td>
+<td align="center">5月15日起</td>
+<td>北京朝阳公园</td>
+<td>全国首个"国家级"文创市集，46家顶级文博机构参与</td>
+</tr>
+<tr>
+<td>2026年"5·18国际博物馆日"厦门主会场</td>
+<td align="center">5月16日启动</td>
+<td>厦门市博物馆</td>
+<td>"我们的特区，我们的创想派"文化遗产IP创新</td>
+</tr>
+<tr>
+<td>2026香港国际授权展"中国内地馆"</td>
+<td align="center">4月27-29日</td>
+<td>香港</td>
+<td>150家文旅企业，近千IP集群出海</td>
+</tr>
+<tr>
+<td>2026中国谷子经济生态产业链博览会(谷博会)</td>
+<td align="center">5月1-3日</td>
+<td>苏州国际博览中心</td>
+<td>ACGN全产业链，覆盖IP授权、智能制造、跨境流通</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>🔮 下周到下月重点关注</h2>
+<table>
+<thead>
+<tr><th align="center">时间</th><th>事件</th><th>地点</th><th>关键看点</th></tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>5月19-21日</strong></td>
+<td>Licensing Expo 2026</td>
+<td>拉斯维加斯</td>
+<td>全球授权行业风向标，PepsiCo等新玩家入场</td>
+</tr>
+<tr>
+<td align="center"><strong>5月21-25日</strong></td>
+<td>第二十二届深圳文博会</td>
+<td>深圳</td>
+<td>国潮文创IP盛宴，超500家海内外品牌</td>
+</tr>
+<tr>
+<td align="center"><strong>5月22日</strong></td>
+<td>《曼达洛人与格洛古》上映</td>
+<td>全球院线</td>
+<td>迪士尼全品类授权矩阵同步铺货</td>
+</tr>
+<tr>
+<td align="center"><strong>5月29-31日</strong></td>
+<td>2026北京IP授权产业博览会</td>
+<td>北京亦创国际会展中心</td>
+<td>"IP赋能·跨界共生"主题，填补北方产业生态空白</td>
+</tr>
+<tr>
+<td align="center"><strong>7月3日</strong></td>
+<td>《小黄人与大怪兽》上映</td>
+<td>全国院线</td>
+<td>全球IP衍生品中国市场新一轮铺货</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>🎯 IP 动态趋势(按 IP 分类)</h2>
+<table>
+<thead>
+<tr><th>IP / 品牌</th><th align="center">趋势</th><th>关键事件</th><th>备注</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>泡泡玛特 / LABUBU</strong></td>
+<td align="center">↑</td>
+<td>下半年两款新品官宣，推新频率加快</td>
+<td>公司最赚钱IP，押注持续加大</td>
+</tr>
+<tr>
+<td><strong>SKULLPANDA / 小马宝莉</strong></td>
+<td align="center">↑</td>
+<td>联名毛绒挂件盲盒，二手市场已有溢价</td>
+<td>双IP元素糅合，隐藏款设计引发讨论</td>
+</tr>
+<tr>
+<td><strong>故宫 / 国博</strong></td>
+<td align="center">↑</td>
+<td>5月15日北京新文创市集集中亮相</td>
+<td>文博IP从展柜走向商业空间</td>
+</tr>
+<tr>
+<td><strong>迪士尼 / 曼达洛人</strong></td>
+<td align="center">↑↑</td>
+<td>全品类授权矩阵曝光，覆盖玩具到美妆到食品</td>
+<td>影视IP全品类化的标杆案例</td>
+</tr>
+<tr>
+<td><strong>Crunchyroll</strong></td>
+<td align="center">↑</td>
+<td>"Ani-May"全球动漫月，四大区域同步推进</td>
+<td>时间锚点+区域联动+全渠道覆盖</td>
+</tr>
+<tr>
+<td><strong>韩国 Robocar POLI</strong></td>
+<td align="center">↑</td>
+<td>与Mattel合作进北美，内容先行+渠道借力</td>
+<td>韩国IP出海的标准路径样本</td>
+</tr>
+<tr>
+<td><strong>海洋堂 / 忍者龙剑传</strong></td>
+<td align="center">→</td>
+<td>推出隼龙可动人偶，瞄准核心玩家</td>
+<td>游戏IP+可动玩具的常规打法</td>
+</tr>
+<tr>
+<td><strong>谷子经济</strong></td>
+<td align="center">↑↑</td>
+<td>Z世代消费力持续上涨，智能制造转型加速</td>
+<td>从小众爱好走向大众消费</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+<p><em>本报告由 微信公众号【新文创商学院老贾聊IP】整理，版权所有，转载请联系微信【franky_chia77】</em></p>
+
+</div>
+</body>
+</html>
