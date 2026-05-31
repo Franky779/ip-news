@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本周行业动态-2026-05-31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.97 0.005 85);
+    --surface: oklch(0.995 0.003 85);
+    --text: oklch(0.22 0.02 260);
+    --text-secondary: oklch(0.45 0.03 260);
+    --accent: oklch(0.55 0.14 45);
+    --accent-light: oklch(0.92 0.06 55);
+    --border: oklch(0.88 0.01 85);
+    --muted: oklch(0.94 0.005 85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header {
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .kicker {
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: "Noto Serif SC", serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-family: "Sora", sans-serif;
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .date-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 6px 16px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .ov-card {
+    background: var(--surface);
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+  }
+
+  .ov-number {
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ov-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .section-header h2 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .section-header .count {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .summary-box {
+    background: var(--surface);
+    padding: 32px;
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .summary-box h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .summary-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .summary-box p + p {
+    margin-top: 12px;
+  }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .news-item {
+    background: var(--surface);
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .news-item:hover {
+    box-shadow: 0 4px 20px oklch(0.8 0.01 85 / 0.15);
+  }
+
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .news-meta .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+  }
+
+  .news-item h3 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .news-item p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  .news-link {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+  }
+
+  .news-link a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .news-link a:hover {
+    text-decoration: underline;
+  }
+
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .event-table th {
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 14px 16px;
+    background: var(--muted);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  .event-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .event-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  footer .brand {
+    font-family: "Noto Serif SC", serif;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  footer .date {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 16px 60px; }
+    .news-item { padding: 20px; }
+    .summary-box { padding: 24px; }
+    .event-table { font-size: 13px; }
+    .event-table th, .event-table td { padding: 10px 12px; }
+  }
+
+/* ========== 返回按钮 ========== */
+.back-to-list svg {
+  flex-shrink: 0;
+}
+.back-to-list {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: oklch(30% 0.06 28 / 0.92);
+  border: 1px solid oklch(45% 0.10 28 / 0.5);
+  border-radius: 999px;
+  font-size: 13px;
+  color: oklch(96% 0.01 70);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+  transition: all .2s ease;
+  letter-spacing: 0.02em;
+}
+.back-to-list:hover {
+  color: oklch(98% 0.02 70);
+  border-color: oklch(55% 0.14 28 / 0.7);
+  transform: translateX(-2px);
+  background: oklch(28% 0.08 28 / 0.95);
+  text-decoration: none;
+}
+@media print { .back-to-list { display: none; } }
+</style>
+</head>
+<body>
+<a href="../weekly-news.html" class="back-to-list" aria-label="返回列表"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回</a>
+
+<div class="container">
+
+<header>
+  <div class="kicker">IP Industry Weekly Briefing</div>
+  <h1>本周行业动态-2026-05-31</h1>
+  <div class="subtitle">动漫 · 潮玩 · 文创 · ACG · 谷子经济</div>
+  <div class="date-badge">2026-05-25 至 2026-05-31</div>
+</header>
+
+<div class="overview">
+  <div class="ov-card">
+    <div class="ov-number">16</div>
+    <div class="ov-label">资讯总数</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">15</div>
+    <div class="ov-label">国内资讯</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">1</div>
+    <div class="ov-label">海外动态</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-number">2</div>
+    <div class="ov-label">展览活动</div>
+  </div>
+</div>
+
+<section>
+  <div class="summary-box">
+    <h3>本周小结</h3>
+    <p><strong>政策与产业成为本周双主线。</strong>北京市朝阳区发布《IP潮玩产业高质量发展三年行动计划（2026-2028）》，目标到2028年产业营收突破500亿元，这是中国一线城市首次专门针对IP潮玩产业出台系统性政策，信号意义极强。广东省也在文博会期间发布文化产业高质量发展"政策包"，动漫影视政策达15条。</p>
+    <p><strong>游戏版号持续放量，IP跨界成新常态。</strong>5月共158款游戏版号获批，腾讯《追逐卡蕾多》等重磅产品过审。SPARK2026腾讯游戏发布会上，腾讯x景德镇推出首款瓷业经营游戏，多款产品官宣与景德镇IP联动，游戏+文旅的跨界融合进一步加深。</p>
+    <p><strong>餐饮IP联名进入"白热化"阶段。</strong>今年1-5月餐饮行业已展开210次IP联名，国产IP存在感越来越强。六一前夕各品牌扎堆推出联名套餐，肯德基与寻找独角兽FARMER BOB联名主题店在18城落地，全网曝光超1亿。</p>
+    <p><strong>谷子经济持续扩容但区域分化明显。</strong>截至2026年5月，我国现存谷子经济相关企业超806万家，华中地区占比最高（38.4%）。预计2026年二次元周边衍生产业市场规模将达1600亿元，商品授权占1300亿元。</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🔥 热门资讯</h2>
+    <span class="count">本周最值得关注的6条动态</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">政策</span>
+        <span>2026-05-25</span>
+        <span>北京市朝阳区人民政府</span>
+      </div>
+      <h3>朝阳区发布促进IP潮玩产业高质量发展三年行动计划</h3>
+      <p>朝阳区正式发布《朝阳区推动IP潮玩产业高质量发展三年行动计划（2026-2028）》及配套《若干措施》。目标到2028年IP潮玩产业营收突破500亿元，孵化爆款潮玩IP不少于10个。计划涵盖原创IP培育、IP交易转化、消费场景布局、品牌出海传播、产业生态服务五大重点工作，并配套专项资金支持。</p>
+      <div class="news-link"><a href="http://www.bjchy.gov.cn/dynamic/zwhd/4028805a9e43a767019e5dc40fde0fae.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">游戏</span>
+        <span>2026-05-26</span>
+        <span>新浪财经 / 国家新闻出版署</span>
+      </div>
+      <h3>2026年5月共158款游戏版号获批</h3>
+      <p>5月26日国家新闻出版署发布2026年5月游戏版号审批信息，共158款游戏获批，其中国产网游154款、进口网游4款。重点产品包括腾讯《追逐卡蕾多》、网易《诡影藏锋》、朝夕光年《托托比亚》、莉莉丝《小冰冰斗蛐蛐》、三七互娱《斗破苍穹：觉醒》等。</p>
+      <div class="news-link"><a href="https://finance.sina.com.cn/" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">ACG</span>
+        <span>2026-05-27</span>
+        <span>什么值得买 / 扬子晚报</span>
+      </div>
+      <h3>SPARK2026腾讯游戏发布会：42款产品亮相，腾讯x景德镇推出首款瓷业经营游戏</h3>
+      <p>5月27日晚腾讯游戏发布会"SPARK2026"举行，涵盖制作、发行、投资三大业务板块，共计42款产品亮相。发布会上宣布与景德镇官方打造首款瓷业经营游戏，以AI+游戏激活千年瓷业文化。《三角洲行动》《英雄联盟手游》等多款产品也官宣了与景德镇的IP联动计划。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=d5J1zoLm0CeTFgkLMOW2CkftV80jj7rddJlIy_YPr6x7Rqvqk4bj3GceWgYMD4IYJ" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">文创联名</span>
+        <span>2026-05-25</span>
+        <span>新浪财经</span>
+      </div>
+      <h3>半年200+联名，餐饮行业用国产IP开"卷"</h3>
+      <p>据文创潮不完全统计，今年1-5月餐饮行业已展开210次IP或品牌联名，频次持续增长且IP选择更跨界多元。游戏、动漫、潮玩等国产IP存在感越来越强，联动方式转向寻求与品牌调性真正契合的深度联合。肯德基与寻找独角兽旗下FARMER BOB、RiCO联名主题店在18城落地，全网曝光超1亿。</p>
+      <div class="news-link"><a href="https://finance.sina.com.cn/wm/2026-05-25/doc-inhzeknu3029575.shtml" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">数据</span>
+        <span>2026-05-27</span>
+        <span>ITBear / 天眼查</span>
+      </div>
+      <h3>盲盒卡牌点燃收藏消费新热情，现存谷子经济相关企业超806万家</h3>
+      <p>天眼查数据显示，截至目前我国现存在业、存续状态的谷子经济相关企业超806.4万家，2026年截至目前新增注册相关企业约91万余家。从区域分布看，湖北省、广东省、海南省位居前列，三个省市数量总和超过311.8万家，占企业总数的38.67%。</p>
+      <div class="news-link"><a href="https://www.itbear.com.cn/html/2026-05/1362502.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">海外</span>
+        <span>2026-05-29</span>
+        <span>日本媒体</span>
+      </div>
+      <h3>85岁宫崎骏新作"全景盒"引热议：手绘退步还是艺术革新？</h3>
+      <p>5月29日据日本媒体报道，85岁动画导演宫崎骏公开全新艺术创作形式——"全景盒"（Panorama Box）。该作品并非传统动画电影，而是一种融合手绘与空间透视的立体装置艺术，观众需从箱体开口向内窥视，才能看到由多层绘制画面构成的纵深场景。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=Yh5Yx4NxDLSkC1sC3XY99plC4YVPsVP0tWllGLEuEsXJB8oLgbNW8ZgKecPJ9qqh" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎯 潮玩品牌动态</h2>
+    <span class="count">新品 · 联名 · 行业活动</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">泡泡玛特</span>
+        <span>2026-05-22</span>
+      </div>
+      <h3>泡泡玛特亮相第二十二届文博会，LABUBU与FIFA联名产品惊艳亮相</h3>
+      <p>泡泡玛特重磅亮相文博会北京展区，带来LABUBU搪胶毛绒系列及THE MONSTERS与FIFA联名系列产品。今年4月发售的FIFA联名系列成为焦点，迷你绿茵场上身穿世界杯球衣、手捧大力神杯的LABUBU成为现场热门打卡点。LABUBU已成为泡泡玛特旗下首个营收破百亿的IP。</p>
+      <div class="news-link"><a href="https://www.sznews.com/news/content/2026-05/22/content_32060184.htm" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🏛️ 文创与联名</h2>
+    <span class="count">博物馆文创 · 餐饮联名 · 跨界合作</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">联名</span>
+        <span>2026-05-28</span>
+        <span>扬子晚报网</span>
+      </div>
+      <h3>腾讯x景德镇首款瓷业经营游戏曝光，多款游戏官宣IP联动计划</h3>
+      <p>5月27日SPARK2026腾讯游戏发布会上，腾讯游戏宣布将推出与景德镇官方打造的首款瓷业经营游戏，助力景德镇瓷业文化在数字时代的传承创新。此外《三角洲行动》《英雄联盟手游》等多款热门产品也官宣了与景德镇的IP联动计划。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=E_cQzh8fxgmlfUJrUw6LY72GIl8_Z5K1RA0HbGpEtCbqKW3jEL3OAVsuJr1UsB1phPYCCvKEubGT_TpnXQKV4q" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">餐饮联名</span>
+        <span>2026-05-27</span>
+        <span>湘声在线 / 三湘都市报</span>
+      </div>
+      <h3>"六一"餐饮IP联名玩具热销，长沙掀起全民"追童趣"热潮</h3>
+      <p>"六一"儿童节前夕，餐饮市场提前掀起消费热潮。各大餐饮品牌扎堆推出重磅IP联名套餐、限定周边与主题场景，从快餐巨头到新式茶饮全域开启"童趣营销大战"。线下门店客流爆满，大小消费者争相打卡，童趣消费正成为餐饮行业新的流量风口。</p>
+      <div class="news-link"><a href="https://m.voc.com.cn/xhn/news/202605/32765220.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">博物馆文创</span>
+        <span>2026-05-18</span>
+        <span>深圳新闻网</span>
+      </div>
+      <h3>多家知名博物馆文创精品亮相文博会</h3>
+      <p>第二十二届文博会博物馆文创展区迎来"文博顶流天团"——国家图书馆、故宫博物院、国家博物馆、中国美术馆、三星堆博物馆等悉数亮相。国家文物局数据显示，2024年全国博物馆文创产品收入突破34.28亿元，同比增长63.7%。"文创里的古代中国"专题展览汇集22家重点博物馆800余件文创精品。</p>
+      <div class="news-link"><a href="https://www.sznews.com/news/content/2026-05/18/content_32053936.htm" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎮 ACG与游戏</h2>
+    <span class="count">版号 · 新游 · 发布会</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">游戏版号</span>
+        <span>2026-05-27</span>
+        <span>游戏媒体</span>
+      </div>
+      <h3>腾讯"麻辣"二游获得版号，2026年5月版号中值得关注的游戏盘点</h3>
+      <p>5月版号中腾讯旗下Fizzglee Studio自研的二次元游戏《追逐卡蕾多》（移动端+客户端）获批引发关注，被业内称为腾讯在"麻辣"二游赛道的新布局。同时网易、朝夕光年、莉莉丝等大厂均有收获。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=vlOlfTmUzAmVZA8Cgse4QIkBOrnwtOYVACEotYpKHjyUdQR_knk3Xg_Od-2suhO80JDHqldBm9ANNrZYnp_lE26Edz0hlbyyfBTedOb_iOW" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">平台动态</span>
+        <span>2026-05-21</span>
+        <span>财经媒体 / 哔哩哔哩财报</span>
+      </div>
+      <h3>B站发布2026年Q1财报：DAU达1.152亿，用户总使用时长同比增长19%</h3>
+      <p>5月19日哔哩哔哩发布2026年第一季度财报：日均活跃用户（DAU）达1.152亿，同比增长8%；月均活跃用户（MAU）达3.76亿；日均使用时长提升至119分钟，同比增加11分钟，用户总使用时长同比增长19%。财务数据稳健，长期主义战略持续验证。</p>
+      <div class="news-link"><a href="http://www.baidu.com/link?url=8vnAKu7EV6g3TGu3-MFzl3Mjp8m2OtAfJD7NxYlk2Ior_82qtbu1PPPIvo7DDr7z2YJCz5niv4V_S0AWVzwU1PbH0itF6wVE4xaiv8ztntO" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>🎪 展览活动</h2>
+    <span class="count">已结束 / 进行中 / 即将开始</span>
+  </div>
+
+  <table class="event-table">
+    <thead>
+      <tr>
+        <th>活动名称</th>
+        <th>时间</th>
+        <th>地点</th>
+        <th>主要内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>第二十二届中国（深圳）国际文化产业博览交易会</td>
+        <td>2026-05-21 至 05-25</td>
+        <td>深圳国际会展中心</td>
+        <td>6312家展商线上线下集结，8大主题展馆、34个细分专业展区、16万平方米展览面积。华为、腾讯、阿里等200余家AI头部企业参展。全球65个国家和地区、310家海外展商参展。</td>
+      </tr>
+      <tr>
+        <td>2026北京博物馆季</td>
+        <td>2026-05-17 启动</td>
+        <td>北京市</td>
+        <td>推出五月文创月、六月展览月、七月研学月、八月科技月四大板块。首都博物馆"玉米·黄金·美洲豹——玛雅与安第斯古代文明大展"汇聚约800件精品。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <h2>📈 行业数据速览</h2>
+    <span class="count">市场规模 · 企业数据 · 趋势报告</span>
+  </div>
+  <div class="news-list">
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">数据</span>
+        <span>2026-05-27</span>
+        <span>中商情报网</span>
+      </div>
+      <h3>谷子经济产业大数据：截至2026年5月我国现存近千万家相关企业</h3>
+      <p>据中商情报网数据，2025年全年注册308.3万家谷子经济相关企业，创近十年新高。截至2026年5月27日，我国现存近千万家谷子经济相关企业，华中地区占比最高（38.4%）。南昌全市已有谷子专门店72家，较2025年初增长26.3%。</p>
+      <div class="news-link"><a href="https://www.huaon.com/channel/trend/1168058.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">报告</span>
+        <span>2026-05-27</span>
+        <span>36氪 / 靠谱二次元</span>
+      </div>
+      <h3>2026年「国产IP联名」趋势报告发布</h3>
+      <p>靠谱二次元出品系统报告，梳理国产IP授权产业发展逻辑。报告从产业宏观概述与产业链深度解读出发，结合市场现状分析，重点拆解100个代表性国产ACGN IP和100家爱做IP联名的消费品牌案例库，凝练未来两年国产IP联名发展趋势洞察。</p>
+      <div class="news-link"><a href="https://www.36kr.com/p/3827274204517256" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">预测</span>
+        <span>近期</span>
+        <span>灼识咨询 / 新浪财经</span>
+      </div>
+      <h3>2026年二次元产业市场规模或达1600亿元</h3>
+      <p>根据灼识咨询预测，预计2026年二次元周边衍生产业市场规模将达1600亿元，其中商品授权占到1300亿元。申万宏源证券指出，谷子行业2022年崛起、2023年爆发，谷子和潮玩均属于精神消费品，为消费者带来悦己、收藏、社交、交易等价值。</p>
+      <div class="news-link"><a href="https://www.163.com/dy/article/JI0D8FBO05568W0A.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+    <article class="news-item">
+      <div class="news-meta">
+        <span class="tag">报告</span>
+        <span>2026-05</span>
+        <span>行业研究机构</span>
+      </div>
+      <h3>2026年中国二次元行业市场动态分析及产业前景研判报告</h3>
+      <p>报告显示2025年中国二次元整体市场规模为3000亿元，同比增长20.0%，涵盖动画、漫画、游戏三大核心内容板块及虚拟偶像、IP授权、线下娱乐等高成长性衍生环节。若扩展至泛二次元范畴，市场规模更为可观。</p>
+      <div class="news-link"><a href="https://wenku.baidu.com/view/362aae112ef90242a8956bec0975f46527d3a730.html" target="_blank">🔗 阅读原文</a></div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="brand">新文创老贾聊IP-IP圈昨天发生了啥？</div>
+  <div>由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+  <div class="date">2026-05-31</div>
+</footer>
+
+</div>
+
+</body>
+</html>
