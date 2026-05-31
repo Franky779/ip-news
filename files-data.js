@@ -2,6 +2,11 @@
 const FILE_LISTS = {
     "数据分析": [
         {
+            "name": "20260531-card-industry-report.html",
+            "displayName": "《中国卡牌行业深度研究报告》",
+            "date": "2026-05-31"
+        },
+        {
             "name": "《IP评估报告-初音未来》.html",
             "displayName": "《IP评估报告-初音未来》",
             "date": "2026-05-29"
