@@ -242,6 +242,10 @@
 <script src="files-data.js"></script>
 <script>
     function categorizeReport(name) {
+        if (/【IP评估报告】/.test(name)) return 'ip';
+        if (/【品牌联名报告】/.test(name)) return 'brand';
+        if (/【品类报告】/.test(name)) return 'category';
+        // Fallback for old naming
         if (/IP[评估深]/i.test(name)) return 'ip';
         if (/联名|授权合作|品牌合作|品牌联名/i.test(name)) return 'brand';
         return 'category';

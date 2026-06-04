@@ -3,42 +3,42 @@ const FILE_LISTS = {
     "数据分析": [
         {
             "name": "AI潮玩深度研究报告_2026-06-04.html",
-            "displayName": "《AI潮玩深度研究报告》",
+            "displayName": "【品类报告】AI潮玩行业深度研究报告",
             "date": "2026-06-04"
         },
         {
             "name": "20260531-card-industry-report.html",
-            "displayName": "《中国卡牌行业深度研究报告》",
+            "displayName": "【品类报告】中国卡牌行业深度研究报告",
             "date": "2026-05-31"
         },
         {
             "name": "《IP评估报告-初音未来》.html",
-            "displayName": "《IP评估报告-初音未来》",
+            "displayName": "【IP评估报告】初音未来",
             "date": "2026-05-29"
         },
         {
             "name": "潮玩行业竞品分析_全行业完整报告.html",
-            "displayName": "《潮玩行业竞品分析_全行业完整报告》",
+            "displayName": "【品类报告】潮玩全行业深度研究报告",
             "date": "2026-05-29"
         },
         {
             "name": "纯毛绒盲盒赛道深度研究报告_2026-05-29.html",
-            "displayName": "《纯毛绒盲盒赛道深度研究报告》",
+            "displayName": "【品类报告】纯毛绒盲盒赛道深度研究报告",
             "date": "2026-05-29"
         },
         {
             "name": "线条小狗-IP评估报告.html",
-            "displayName": "《线条小狗-IP评估报告》",
+            "displayName": "【IP评估报告】线条小狗",
             "date": "2026-05-29"
         },
         {
             "name": "水豚噜噜-IP深度评估报告.html",
-            "displayName": "《水豚噜噜IP深度评估报告》",
+            "displayName": "【IP评估报告】水豚噜噜",
             "date": "2026-05-14"
         },
         {
             "name": "盲盒赛道深度调研报告_2026-05-08.html",
-            "displayName": "《盲盒赛道深度调研报告》",
+            "displayName": "【品类报告】盲盒赛道深度研究报告",
             "date": "2026-05-08"
         }
     ],
