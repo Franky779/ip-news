@@ -54,7 +54,7 @@
         }
 
         .main {
-            max-width: 900px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
         }
@@ -65,20 +65,55 @@
             font-weight: 900;
             color: var(--text);
             margin-bottom: var(--space-xs);
+            text-align: center;
         }
 
         .page-sub {
             font-size: 0.9375rem;
             color: var(--text-muted);
             margin-bottom: var(--space-xl);
+            text-align: center;
         }
 
-        .file-list {
-            list-style: none;
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+
+        @media (max-width: 900px) {
+            .columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .column {
             background: var(--surface);
             border: 1px solid var(--border-light);
             border-radius: 12px;
             overflow: hidden;
+        }
+
+        .column-header {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .column-header h2 {
+            font-family: "Noto Serif SC", serif;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .column-header .count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .file-list {
+            list-style: none;
         }
 
         .file-list li {
@@ -90,20 +125,13 @@
         }
 
         .file-list a {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: block;
             text-decoration: none;
             color: var(--text);
-            font-size: 1rem;
-            padding: var(--space-md) var(--space-lg);
+            font-size: 0.9375rem;
+            padding: var(--space-sm) var(--space-lg);
             transition: all 0.2s ease;
-            overflow-wrap: break-word;
-            width: 100%;
-            line-height: 1.6;
-            min-height: 3.2em;
+            line-height: 1.5;
         }
 
         .file-list a:hover {
@@ -111,17 +139,17 @@
             background: var(--accent-light);
         }
 
-        .loading, .empty, .error {
+        .file-list .empty, .file-list .loading, .file-list .error {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             padding: var(--space-xl) var(--space-lg);
         }
 
         .error { color: #c44; }
 
         .footer {
-            max-width: 900px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: var(--space-xl) var(--space-lg);
             text-align: center;
@@ -132,99 +160,142 @@
             font-size: 0.8125rem;
             color: var(--text-muted);
         }
-    
-/* ========== 返回按钮 ========== */
-.back-to-list svg {
-  flex-shrink: 0;
-}
-@media print { }
 
-/* ========== 返回按钮 ========== */
-.back-to-list {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: oklch(30% 0.06 28 / 0.92);
-  border: 1px solid oklch(45% 0.10 28 / 0.5);
-  border-radius: 999px;
-  font-size: 13px;
-  color: oklch(96% 0.01 70);
-  text-decoration: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
-  transition: all .2s ease;
-  letter-spacing: 0.02em;
-}
-.back-to-list:hover {
-  color: oklch(98% 0.02 70);
-  border-color: oklch(55% 0.14 28 / 0.7);
-  transform: translateX(-2px);
-  background: oklch(28% 0.08 28 / 0.95);
-  text-decoration: none;
-}
-.back-to-list svg {
-  flex-shrink: 0;
-}
-@media print { .back-to-list { display: none; } }
-</style>
+        .back-to-list {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: oklch(30% 0.06 28 / 0.92);
+            border: 1px solid oklch(45% 0.10 28 / 0.5);
+            border-radius: 999px;
+            font-size: 13px;
+            color: oklch(96% 0.01 70);
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+            transition: all .2s ease;
+            letter-spacing: 0.02em;
+        }
+        .back-to-list:hover {
+            color: oklch(98% 0.02 70);
+            border-color: oklch(55% 0.14 28 / 0.7);
+            transform: translateX(-2px);
+            background: oklch(28% 0.08 28 / 0.95);
+            text-decoration: none;
+        }
+        .back-to-list svg { flex-shrink: 0; }
+        @media print { .back-to-list { display: none; } }
+    </style>
 </head>
 <body>
 <a href="index.html" class="back-to-list" aria-label="返回首页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>返回</a>
 
 <header class="site-header">
-        <div class="brand">新文创老贾聊IP</div>
-    </header>
+    <div class="brand">新文创老贾聊IP</div>
+</header>
 
-    <main class="main">
-        <h1 class="page-title">案例盘点&数据分析</h1>
-        <p class="page-sub" id="pageSub">加载中...</p>
+<main class="main">
+    <h1 class="page-title">案例盘点&数据分析</h1>
+    <p class="page-sub" id="pageSub">加载中...</p>
 
-        <ul class="file-list" id="list-data">
-            <li class="loading">正在读取...</li>
-        </ul>
-    </main>
+    <div class="columns">
+        <div class="column">
+            <div class="column-header">
+                <h2>品类深度分析报告</h2>
+                <div class="count" id="count-category">0 篇</div>
+            </div>
+            <ul class="file-list" id="list-category">
+                <li class="loading">正在读取...</li>
+            </ul>
+        </div>
+        <div class="column">
+            <div class="column-header">
+                <h2>IP深度分析报告</h2>
+                <div class="count" id="count-ip">0 篇</div>
+            </div>
+            <ul class="file-list" id="list-ip">
+                <li class="loading">正在读取...</li>
+            </ul>
+        </div>
+        <div class="column">
+            <div class="column-header">
+                <h2>品牌联名/授权合作报告</h2>
+                <div class="count" id="count-brand">0 篇</div>
+            </div>
+            <ul class="file-list" id="list-brand">
+                <li class="loading">正在读取...</li>
+            </ul>
+        </div>
+    </div>
+</main>
 
-    <footer class="footer">
-        <p>IP行业内容导航 | 内容由新文创商学院老贾聊IP搜集整理</p>
-    </footer>
+<footer class="footer">
+    <p>IP行业内容导航 | 内容由新文创商学院老贾聊IP搜集整理</p>
+</footer>
 
-    <script src="files-data.js"></script>
-    <script>
-        function loadFiles() {
-            const listEl = document.getElementById('list-data');
-            const subEl = document.getElementById('pageSub');
+<script src="files-data.js"></script>
+<script>
+    function categorizeReport(name) {
+        if (/IP[评估深]/i.test(name)) return 'ip';
+        if (/联名|授权合作|品牌合作|品牌联名/i.test(name)) return 'brand';
+        return 'category';
+    }
 
-            const files = (typeof FILE_LISTS !== 'undefined' ? FILE_LISTS['数据分析'] : []) || [];
+    function buildLink(file) {
+        var name = file.displayName || file.name.replace(/\.html$/i, '');
+        var encodedName = encodeURIComponent(file.name);
+        return '<li><a href="数据分析/' + encodedName + '" title="' + name.replace(/"/g, '&quot;') + '">' + name + '</a></li>';
+    }
 
-            const htmlFiles = files
-                .filter(f => f.name.endsWith('.html'))
-                .sort((a, b) => {
-                    if (a.date && b.date) return new Date(b.date) - new Date(a.date);
-                    if (a.date) return -1;
-                    if (b.date) return 1;
-                    return a.name.localeCompare(b.name);
-                });
+    function loadFiles() {
+        var files = (typeof FILE_LISTS !== 'undefined' ? FILE_LISTS['数据分析'] : []) || [];
 
-            subEl.textContent = `共 ${htmlFiles.length} 篇`;
+        var htmlFiles = files
+            .filter(function(f) { return f.name.endsWith('.html'); })
+            .sort(function(a, b) {
+                if (a.date && b.date) return new Date(b.date) - new Date(a.date);
+                if (a.date) return -1;
+                if (b.date) return 1;
+                return a.name.localeCompare(b.name);
+            });
 
-            if (htmlFiles.length === 0) {
-                listEl.innerHTML = '<li class="empty">暂无内容</li>';
-                return;
+        var catFiles = [];
+        var ipFiles = [];
+        var brandFiles = [];
+
+        htmlFiles.forEach(function(file) {
+            var name = file.displayName || file.name;
+            var cat = categorizeReport(name);
+            if (cat === 'ip') ipFiles.push(file);
+            else if (cat === 'brand') brandFiles.push(file);
+            else catFiles.push(file);
+        });
+
+        document.getElementById('pageSub').textContent = '共 ' + htmlFiles.length + ' 篇';
+
+        function fillList(listId, countId, files) {
+            var listEl = document.getElementById(listId);
+            var countEl = document.getElementById(countId);
+            countEl.textContent = files.length + ' 篇';
+            if (files.length === 0) {
+                listEl.innerHTML = '<li class="empty">暂无报告</li>';
+            } else {
+                listEl.innerHTML = files.map(buildLink).join('');
             }
-
-            listEl.innerHTML = htmlFiles.map(file => {
-                const name = file.displayName || file.name.replace(/\.html$/i, '');
-                return `<li><a href="数据分析/${encodeURIComponent(file.name)}" title="${name.replace(/"/g, '&quot;')}">${name}</a></li>`;
-            }).join('');
         }
 
-        loadFiles();
-    </script>
+        fillList('list-category', 'count-category', catFiles);
+        fillList('list-ip', 'count-ip', ipFiles);
+        fillList('list-brand', 'count-brand', brandFiles);
+    }
+
+    loadFiles();
+</script>
 </body>
 </html>
