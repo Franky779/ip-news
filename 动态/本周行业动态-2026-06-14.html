@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新文创老贾聊IP-IP圈本周发生了啥？ | 2026-06-08 至 2026-06-13</title>
+<style>
+  @import url('https://chinese-font.netlify.app/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css');
+
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a5a6e;
+    --text-muted: #8a8a9a;
+    --accent: #e85d4a;
+    --accent-light: #fef0ee;
+    --border: #ede8e3;
+    --border-light: #f5f2ee;
+    --tag-bg: #f0ece6;
+    --tag-text: #6b6560;
+    --shadow: 0 1px 3px rgba(26,26,46,0.06), 0 4px 12px rgba(26,26,46,0.04);
+    --shadow-hover: 0 2px 8px rgba(26,26,46,0.08), 0 8px 24px rgba(26,26,46,0.06);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'LXGW WenKai', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  .back-to-list {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: oklch(30% 0.06 28 / 0.92);
+    border: 1px solid oklch(45% 0.10 28 / 0.5);
+    border-radius: 999px;
+    font-size: 13px;
+    color: oklch(96% 0.01 70);
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+    transition: all .2s ease;
+    letter-spacing: 0.02em;
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .back-to-list:hover {
+    color: oklch(98% 0.02 70);
+    border-color: oklch(55% 0.14 28 / 0.7);
+    transform: translateX(-2px);
+    background: oklch(28% 0.08 28 / 0.95);
+    text-decoration: none;
+  }
+  .back-to-list svg { flex-shrink: 0; }
+  @media print { .back-to-list { display: none; } }
+
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .header .date-range {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover { box-shadow: var(--shadow); }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section-icon { font-size: 22px; line-height: 1; }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .summary-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .summary-box p:last-child { margin-bottom: 0; }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .news-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+
+  .news-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+
+  .news-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .news-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    margin-top: 2px;
+  }
+
+  .news-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+  }
+
+  .news-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 500;
+  }
+
+  .news-tag.important {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .news-summary {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: 40px;
+  }
+
+  .news-link {
+    margin-top: 10px;
+    padding-left: 40px;
+  }
+
+  .news-link a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .news-link a:hover { text-decoration: underline; }
+
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+  }
+
+  .event-table th {
+    background: var(--bg);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    vertical-align: top;
+  }
+
+  .event-table tr:last-child td { border-bottom: none; }
+
+  .event-table tr:hover td { background: var(--accent-light); }
+
+  .event-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .event-date {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .footer-brand {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .footer-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .footer-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 20px 16px 40px; }
+    .header { padding: 32px 0 28px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 16px 18px; }
+    .news-meta, .news-summary, .news-link { padding-left: 0; }
+    .news-card-header { gap: 10px; }
+    .event-table { font-size: 12px; }
+    .event-table th, .event-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-list" aria-label="返回首页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>返回</a>
+
+<div class="container">
+
+  <header class="header">
+    <div class="header-badge">IP NEWS Weekly</div>
+    <h1>新文创老贾聊IP<br>IP圈本周发生了啥？</h1>
+    <p class="subtitle">动漫IP · 潮玩 · 文创 · ACG · 二次元</p>
+    <div class="date-range">
+      <span>📅</span>
+      <span>2026-06-08 至 2026-06-13</span>
+    </div>
+  </header>
+
+  <div class="overview">
+    <div class="stat-card">
+      <div class="stat-number">42</div>
+      <div class="stat-label">资讯总条数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">36</div>
+      <div class="stat-label">国内资讯</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">6</div>
+      <div class="stat-label">海外动态</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">19</div>
+      <div class="stat-label">涉及IP/品牌</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12</div>
+      <div class="stat-label">展会活动</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3><span>📝</span> 本周行业小结</h3>
+    <p>
+      6月8日到13日这一周，IP圈最大的事件是<strong>LABUBU登上世界杯开幕式</strong>。这个绿色小怪物身穿球衣亮相美加墨世界杯，被官媒列为开幕式"5个铭记瞬间"之一，联名周边599元被秒空，二级市场溢价超5倍。泡泡玛特借此把"中国潮玩"四个字踢进了全球主流视野。
+    </p>
+    <p>
+      但泡泡玛特本周同时呈现<strong>冰火两重天</strong>。一边是长城证券上调评级、世界杯联名卖爆；另一边是股价再下挫市值蒸发约223亿港元，自研手游《梦想家园》宣布停运，2026 PTS上海潮玩嘉年华取消举办。这说明资本市场对潮玩龙头的估值分歧在加大——故事还能讲多久，取决于IP生命周期和第二曲线能不能撑住。
+    </p>
+    <p>
+      <strong>潮玩IPO赛道出现明显分化</strong>。TOPTOY冲刺港股估值102亿港元，52TOYS赴港IPO讲"玩具收藏第一品牌"的故事，而卡游却被曝港交所上市二度遭拒、对赌期限只剩7个月。同样是谷子经济受益者，资本给出的答案完全不同。
+    </p>
+    <p>
+      文博IP本周也很热闹。故宫、敦煌、三星堆三大顶流齐聚武汉，全国文博IP顶流 also 齐聚盘龙城，文化和自然遗产日带动多地文创市集。这说明博物馆IP化已经从"单个爆款"升级到"城市文旅引擎"。
+    </p>
+    <p>
+      国漫暑期档正式开打。《镖人2》6月11日开播，主创交流会反响热烈；《万人之上》6月9日接棒。观众一边喊"会员不够用"，一边证明国漫续作大年确实来了。
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <h2 class="section-title">热门资讯</h2>
+      <span class="section-count">14 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">LABUBU身穿球衣亮相世界杯开幕式，被官媒列为5个铭记瞬间之一</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">热点</span>
+          <span class="news-tag">泡泡玛特 × FIFA世界杯</span>
+          <span class="news-date">2026-06-11</span>
+        </div>
+        <p class="news-summary">中国原创潮玩LABUBU以FIFA首个官方潮玩IP身份亮相2026美加墨世界杯开幕式，身穿球衣举起大力神杯。官媒将其列为开幕式"5个铭记瞬间"之一，网友戏称"真·中国队首发"。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">LABUBU世界杯联名周边溢价超5倍，599元搪胶毛绒公仔被秒空</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">市场</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">泡泡玛特THE MONSTERS与FIFA世界杯联名系列发售即引爆抢购，售价599元的搪胶毛绒公仔上线被秒空，二级市场溢价超5倍。LABUBU官宣入驻微博，成为世界杯首个官方潮玩观赛搭子。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">泡泡玛特2026 PTS上海潮玩嘉年华取消举办</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">泡泡玛特宣布2026 PTS上海潮玩嘉年华取消举办，具体原因未公布。一边是世界杯联名全球出圈，一边是核心展会活动取消，泡泡玛特的资源配置正在向全球化大事件倾斜。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">泡泡玛特股价再下挫，市值蒸发约223亿港元</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">资本</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-13</span>
+        </div>
+        <p class="news-summary">本周泡泡玛特股价再遭下挫，市值蒸发约223亿港元。同期长城证券上调泡泡玛特评级，券商观点出现分化。资本市场对潮玩龙头的高估值能否持续争论激烈。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">泡泡玛特开甜品店了！全国首店阿那亚开业，从盲盒跨界餐饮</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">跨界</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-08</span>
+        </div>
+        <p class="news-summary">泡泡玛特正式开出全国首家甜品店，选址阿那亚。从盲盒、首饰（POPOP品牌）再到餐饮，泡泡玛特正在以IP为核心向生活方式全品类扩张。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">泡泡玛特Hirono小野联名窦靖童，IP联动真人艺人引发粉丝站队</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">泡泡玛特 × 窦靖童</span>
+          <span class="news-date">2026-06-09</span>
+        </div>
+        <p class="news-summary">泡泡玛特旗下Hirono小野IP官宣与音乐人窦靖童联名，核心粉丝质疑"潮玩IP为什么要联动真人明星"，认为这是稀释角色情绪价值；另一方则认为IP破圈必然要触碰真人合作。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">7</span>
+          <h3 class="news-title">奈雪因"米布布"蹭LABUBU被罚32万，快消联名红线在哪</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">行业</span>
+          <span class="news-tag">奈雪</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">奈雪推出名为"米布布"的毛绒周边，外观与泡泡玛特LABUBU高度相似，被监管部门认定构成不正当竞争，罚款32万元。为快消品牌IP联名的"致敬"与"侵权"边界划下最新判例。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">8</span>
+          <h3 class="news-title">原神×日本肯德基联名6月开抢，须弥双子套餐附赠限定道具</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">原神 × KFC日本</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">原神×日本肯德基推出须弥双子主题套餐，附赠限定游戏道具。此前原神联动脆脆鲨秒空，KFC新套餐与万代周边在6月同步上线，IP商业变现密度持续领跑。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">9</span>
+          <h3 class="news-title">《镖人2》6月11日开播，主创交流会：开篇非常震撼人心</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">动画</span>
+          <span class="news-tag">国漫</span>
+          <span class="news-date">2026-06-11</span>
+        </div>
+        <p class="news-summary">时隔三年，水墨风武侠国漫《镖人》第二季在腾讯视频开播，原漫画作者许先哲出席主创交流会，称赞动画开篇"非常震撼人心"。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">10</span>
+          <h3 class="news-title">TOPTOY冲刺上市估值102亿港元，叶国富的第二个IPO来了</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">资本</span>
+          <span class="news-tag">TOPTOY</span>
+          <span class="news-date">2026-06-09</span>
+        </div>
+        <p class="news-summary">名创优品旗下TOPTOY正式冲刺港股IPO，估值约102亿港元。叶国富继名创优品后打造第二个上市公司，TOPTOY能否成为下一个泡泡玛特成为市场焦点。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">11</span>
+          <h3 class="news-title">卡游港交所上市二度遭拒，对赌期限还剩7个月将何去何从</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">资本</span>
+          <span class="news-tag">卡游</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">卡游被曝港交所上市二度遭拒，对赌期限仅剩7个月。与TOPTOY、52TOYS的上市冲刺形成鲜明对比，谷子经济窗口期虽在，但并非所有玩家都能挤进去。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">12</span>
+          <h3 class="news-title">52TOYS赴港IPO，"玩具收藏第一品牌"的故事能讲通吗</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">资本</span>
+          <span class="news-tag">52TOYS</span>
+          <span class="news-date">2026-06-08</span>
+        </div>
+        <p class="news-summary">52TOYS启动赴港上市，定位从"潮玩第三股"转向"玩具收藏第一品牌"。自有IP CiCiLu、Pouka Pouka近期在潮玩展首秀，但泡泡玛特的暴利模式能否复制仍是核心质疑。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">13</span>
+          <h3 class="news-title">阿里潮玩首店遇冷顾客寥寥，新IP"撞脸"LABUBU被指没有辨识度</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">阿里潮玩</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">阿里旗下潮玩首店开业后顾客寥寥，新IP因"撞脸"LABUBU被吐槽"没有辨识度"。在LABUBU热度碾压下，后来者要么找到差异化人设，要么只能吃尾气。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">14</span>
+          <h3 class="news-title">复盘2026上半年茶饮咖啡269次联名：喜茶刹车，瑞幸翻车</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">联名趋势</span>
+          <span class="news-date">2026-06-13</span>
+        </div>
+        <p class="news-summary">界面新闻报道，2026上半年茶饮咖啡品牌全国至少落地269次联名活动，瑞幸以近60次高居榜首但频繁翻车（Hello Kitty拼写错误、去冰半杯争议），喜茶主动刹车降低联名频率转向品质深耕。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">海外动态</h2>
+      <span class="section-count">6 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">【海外】LABUBU亮相世界杯开幕式，中国潮玩IP全球出圈</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">泡泡玛特 × FIFA</span>
+          <span class="news-date">2026-06-11</span>
+        </div>
+        <p class="news-summary">LABUBU作为FIFA首个官方潮玩IP亮相世界杯开幕式，引发全球消费热潮。599元联名搪胶毛绒公仔秒空，海外市场对中国潮玩IP的认知度大幅提升。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">【海外】拉布布作为FIFA官方授权产品，如何获得国际足联授权</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">IP授权</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">拉布布如何从中国潮玩IP变成FIFA官方授权产品，成为本周海外授权行业关注焦点。这一案例证明中国原创IP已具备与国际顶级赛事IP平等谈判的能力。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">【海外】原神×日本肯德基联名6月开抢，须弥双子套餐上线</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">原神 × KFC</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">《原神》与日本肯德基联动合作正式开启，限定包装"原神联动套餐"在日本上线，附赠限定道具+万代周边，出海IP联名商业能力持续验证。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">【海外】初音未来RACING MIKU 2026 Ver.手办及赛车涂装出炉</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">初音未来</span>
+          <span class="news-date">2026-06-08</span>
+        </div>
+        <p class="news-summary">2026初音未来AMG GT3赛车涂装测试完成，RACING MIKU 2026Ver.手办同步开启预约。GoodSmile超大比例初音未来v4 Chinese手办持续预约至7月29日。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">【海外】蜡笔小新2026剧场版主题曲预告公开</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">蜡笔小新</span>
+          <span class="news-date">2026-06-09</span>
+        </div>
+        <p class="news-summary">蜡笔小新2026年剧场版动画主题曲预告正式公开。同期蜡笔小新×哆啦A梦梦幻联动引发讨论，麦当劳也推出了蜡笔小新店长限定玩具。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">【海外】2026年6月任天堂直面会：时之笛重制版亮相，Switch 2阵容揭晓</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">海外</span>
+          <span class="news-tag">任天堂</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">任天堂6月直面会正式公开《塞尔达传说：时之笛》重制版及Switch 2游戏阵容，宝可梦30周年纪念系列产品同步进入密集发布期。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📌</span>
+      <h2 class="section-title">品牌动态</h2>
+      <span class="section-count">10 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">泡泡玛特发布MEGA ROYAL MOLLY童心2026系列产品</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">泡泡玛特发布MEGA ROYAL MOLLY童心2026系列新品，延续品牌在高端收藏潮玩市场的布局。同时联名九号电动车打造银座胶囊系列，6月10日发售。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">泡泡玛特首饰品牌POPOP引发讨论：盲盒模式能否复制到饰品</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">跨界</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-09</span>
+        </div>
+        <p class="news-summary">泡泡玛特旗下首饰品牌POPOP持续引发消费讨论，从盲盒到饰品再到甜品店，泡泡玛特的IP全品类扩张路径日渐清晰，但每个新品类都面临"IP溢价能否支撑"的拷问。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">泡泡玛特自研手游《梦想家园》发布停运公告</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">游戏</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">泡泡玛特自研模拟经营手游《梦想家园》宣布将于8月停运。这是泡泡玛特在游戏化方向的又一次试错，说明潮玩IP做游戏不是有IP就能成。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">MOLLY二十周年特展登陆北京，潮玩IP与传统艺术跨界合作</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">展览</span>
+          <span class="news-tag">MOLLY</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">MOLLY二十周年特展登陆北京，泡泡玛特以"潮玩IP+传统艺术"的跨界形式强化MOLLY的文化厚度，为这一经典IP寻找新的叙事空间。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">52TOYS自有潮流IP CiCiLu、Pouka Pouka潮玩展首秀</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">52TOYS</span>
+          <span class="news-date">2026-06-08</span>
+        </div>
+        <p class="news-summary">52TOYS在近期的潮玩展上展出全新自有IP CiCiLu和Pouka Pouka，从依赖授权IP向自有IP矩阵转型的信号越来越强。同时52TOYS重磅新品确定亮相8月深圳玩具展&潮玩展。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">合味道×初音未来联名套装国内正式开售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">联名</span>
+          <span class="news-tag">初音未来 × 合味道</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">合味道与初音未来联名套装在中国市场正式开售。初音未来进入2026年后联名动作密集：赛车、手办、食品、游戏多点开花，IP生命周期持续延展。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">7</span>
+          <h3 class="news-title">智慧林AI魔力盒让IP"活起来"，定义消费级AI硬件新品类</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">科技</span>
+          <span class="news-tag">AI硬件</span>
+          <span class="news-date">2026-06-10</span>
+        </div>
+        <p class="news-summary">智慧林推出AI魔力盒，主打让IP"活起来"，试图定义消费级AI硬件新品类。AI与IP的结合正在从概念走向实体产品，这是IP交互形态的新探索。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">8</span>
+          <h3 class="news-title">人形机器人运动会吉祥物智宝与潮玩IP联名亮相</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">联名</span>
+          <span class="news-tag">机器人运动会</span>
+          <span class="news-date">2026-06-13</span>
+        </div>
+        <p class="news-summary">人形机器人运动会吉祥物"智宝"与潮玩IP联名发布，体育赛事IP与潮玩IP的跨界合作再添新案例，目标受众指向科技爱好者与年轻收藏群体。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">9</span>
+          <h3 class="news-title">名创优品挨骂，揭开快消品牌集体押注潮玩的真相</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">名创优品</span>
+          <span class="news-date">2026-06-11</span>
+        </div>
+        <p class="news-summary">名创优品因旗下潮玩产品的IP原创性争议登上热搜。背后是快消品牌集体押注潮玩赛道的大趋势：从名创到酷乐潮玩、X11、阿里潮玩，零售品牌正以不同姿势切入千亿市场。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">10</span>
+          <h3 class="news-title">2026年国产IP联名趋势报告发布</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">IP联名</span>
+          <span class="news-date">2026-06-12</span>
+        </div>
+        <p class="news-summary">2026年国产IP联名趋势报告梳理了游戏/动漫/国潮三大类优质联名IP全貌，指出IP联名正从"流量置换"升级为"产品共创"，深度联名（包装+产品+场景）取代浅层联名（logo叠加）。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🎪</span>
+      <h2 class="section-title">展会活动</h2>
+      <span class="section-count">12 条</span>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;font-weight:600;">📅 已结束/进行中</h3>
+    <table class="event-table" style="margin-bottom:28px;">
+      <thead>
+        <tr>
+          <th>活动名称</th>
+          <th>时间</th>
+          <th>地点</th>
+          <th>主要内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="event-name">2026上海漫夏潮玩季</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>上海</td>
+          <td>二次元+潮玩+文创+Cosplay一站式体验，三大IP联动</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026国家文创实验区发展大会</span></td>
+          <td><span class="event-date">将启幕</span></td>
+          <td>北京</td>
+          <td>数智文化与IP潮玩双轮驱动</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">故宫、敦煌、三星堆文博IP齐聚武汉遗产日市集</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>武汉</td>
+          <td>三大文博顶流+全国文博IP顶流齐聚盘龙城，千元文创口红热卖</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">MOLLY二十周年特展</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>北京</td>
+          <td>潮玩IP与传统艺术跨界合作</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026西安丝绸之路国际旅游博览会</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>西安</td>
+          <td>陕西历史博物馆等文博IP文创亮相</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">50+国家级文博机构齐聚乐山</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>四川乐山</td>
+          <td>文博IP化系统性开发与跨界合作</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026年6月北京动漫展</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>北京</td>
+          <td>北京多场动漫展集中举办</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026年6月长春/吉林动漫展</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>长春/吉林</td>
+          <td>东北地区动漫展密集排期</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;font-weight:600;">🔮 即将开始</h3>
+    <table class="event-table">
+      <thead>
+        <tr>
+          <th>活动名称</th>
+          <th>时间</th>
+          <th>地点</th>
+          <th>期待看点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="event-name">IP文创趋势暨上海交大文创学院论坛</span></td>
+          <td><span class="event-date">6.12</span></td>
+          <td>上海</td>
+          <td>IP运营、场景创新、游戏与文创融合发展</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026成都礼品家居展</span></td>
+          <td><span class="event-date">6.25</span></td>
+          <td>成都</td>
+          <td>IP联名+潮玩盲盒+二次元跨界展区</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026上海国际文创IP授权及潮玩展览会</span></td>
+          <td><span class="event-date">6月</span></td>
+          <td>上海</td>
+          <td>文创IP授权、潮玩新品发布、行业论坛</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">深圳潮玩展</span></td>
+          <td><span class="event-date">8月</span></td>
+          <td>深圳</td>
+          <td>汇聚超3.2万款潮玩新品，52TOYS等品牌参展</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🔭</span>
+      <h2 class="section-title">前瞻预告</h2>
+      <span class="section-count">5 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">【预告】国漫《万人之上》6月9日开播，7部顶流动画集中定档</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">动画</span>
+          <span class="news-tag">国漫</span>
+          <span class="news-date">6月9日</span>
+        </div>
+        <p class="news-summary">6月共有至少7部国漫顶流作品密集定档，涵盖末日、修仙、武侠等多元题材。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">【预告】泡泡玛特×世界杯联名及银座胶囊系列6月10日扎堆发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">6月10日</span>
+        </div>
+        <p class="news-summary">泡泡玛特世界杯主题联名新品全球同步发售，九号电动车联名银座胶囊系列同日国内上市。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">【预告】KFC原神联动套餐6月10日国内发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">联名</span>
+          <span class="news-tag">原神 × KFC</span>
+          <span class="news-date">6月10日</span>
+        </div>
+        <p class="news-summary">KFC原神联动套餐6月10日正式发售。此前联动脆脆鲨秒空，安踏联名鞋款（魈与七七）已开启不限量预售，原神6月联名矩阵覆盖零食、快餐、潮鞋三大品类。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">【预告】名侦探柯南×光之美少女联名拼图7月发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">联名</span>
+          <span class="news-tag">柯南</span>
+          <span class="news-date">7月</span>
+        </div>
+        <p class="news-summary">柯南×光之美少女联动剧集6月6日播出后，联名300片拼图预计7月正式发售，跨IP联动从内容层延伸到商品层。</p>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">【预告】GoodSmile初音未来v4 Chinese手办预约至7月29日截止</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">初音未来</span>
+          <span class="news-date">预约至7.29</span>
+        </div>
+        <p class="news-summary">GoodSmile超大比例初音未来v4 Chinese手办预约进行中，6月新品景品也同步上市，初音未来2026年手办线产品密集发布。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">新文创老贾聊IP-IP圈本周发生了啥？</div>
+    <div class="footer-desc">由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+    <div class="footer-date">2026-06-13</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
