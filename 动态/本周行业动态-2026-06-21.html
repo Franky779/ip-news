@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新文创老贾聊IP-IP圈本周发生了啥？ | 2026-06-15 至 2026-06-21</title>
+<style>
+  @import url('https://chinese-font.netlify.app/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css');
+
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a5a6e;
+    --text-muted: #8a8a9a;
+    --accent: #e85d4a;
+    --accent-light: #fef0ee;
+    --border: #ede8e3;
+    --border-light: #f5f2ee;
+    --tag-bg: #f0ece6;
+    --tag-text: #6b6560;
+    --shadow: 0 1px 3px rgba(26,26,46,0.06), 0 4px 12px rgba(26,26,46,0.04);
+    --shadow-hover: 0 2px 8px rgba(26,26,46,0.08), 0 8px 24px rgba(26,26,46,0.06);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'LXGW WenKai', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  .back-to-list {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: oklch(30% 0.06 28 / 0.92);
+    border: 1px solid oklch(45% 0.10 28 / 0.5);
+    border-radius: 999px;
+    font-size: 13px;
+    color: oklch(96% 0.01 70);
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+    transition: all .2s ease;
+    letter-spacing: 0.02em;
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .back-to-list:hover {
+    color: oklch(98% 0.02 70);
+    border-color: oklch(55% 0.14 28 / 0.7);
+    transform: translateX(-2px);
+    background: oklch(28% 0.08 28 / 0.95);
+    text-decoration: none;
+  }
+  .back-to-list svg { flex-shrink: 0; }
+  @media print { .back-to-list { display: none; } }
+
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .header .date-range {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover { box-shadow: var(--shadow); }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section-icon { font-size: 22px; line-height: 1; }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .summary-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .summary-box p:last-child { margin-bottom: 0; }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .news-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+
+  .news-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+
+  .news-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .news-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    margin-top: 2px;
+  }
+
+  .news-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+  }
+
+  .news-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 500;
+  }
+
+  .news-tag.important {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .news-tag.overseas {
+    background: #e8f4fd;
+    color: #2563eb;
+  }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .news-summary {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: 40px;
+  }
+
+  .news-link {
+    margin-top: 10px;
+    padding-left: 40px;
+  }
+
+  .news-link a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .news-link a:hover { text-decoration: underline; }
+
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+  }
+
+  .event-table th {
+    background: var(--bg);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    vertical-align: top;
+  }
+
+  .event-table tr:last-child td { border-bottom: none; }
+
+  .event-table tr:hover td { background: var(--accent-light); }
+
+  .event-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .event-date {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .footer-brand {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .footer-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .footer-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 20px 16px 40px; }
+    .header { padding: 32px 0 28px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 16px 18px; }
+    .news-meta, .news-summary, .news-link { padding-left: 0; }
+    .news-card-header { gap: 10px; }
+    .event-table { font-size: 12px; }
+    .event-table th, .event-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-list" aria-label="返回首页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>返回</a>
+
+<div class="container">
+
+  <header class="header">
+    <div class="header-badge">IP NEWS Weekly</div>
+    <h1>新文创老贾聊IP<br>IP圈本周发生了啥？</h1>
+    <p class="subtitle">动漫IP · 潮玩 · 文创 · ACG · 二次元</p>
+    <div class="date-range">
+      <span>📅</span>
+      <span>2026-06-15 至 2026-06-21</span>
+    </div>
+  </header>
+
+  <div class="overview">
+    <div class="stat-card">
+      <div class="stat-number">13</div>
+      <div class="stat-label">资讯总条数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10</div>
+      <div class="stat-label">国内资讯</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3</div>
+      <div class="stat-label">海外动态</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">11</div>
+      <div class="stat-label">涉及IP/品牌</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4</div>
+      <div class="stat-label">展会活动</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3><span>📝</span> 本周行业小结</h3>
+    <p>
+      6月15日到21日这一周，IP 行业呈现<strong>「游戏联名降温、潮玩展会调整、授权渠道重构」</strong>三条主线。
+    </p>
+    <p>
+      <strong>游戏IP联名仍是流量抓手</strong>，绿联官宣与《崩坏：星穹铁道》联名、必胜客/肯德基与原神的联动攻略密集放出，说明游戏IP依旧是3C与餐饮品牌撬动年轻用户的核心资产。但与此同时，泡泡玛特取消7月PTS上海潮玩嘉年华、MAPPA全球首店计划生变，让市场对"谷子经济"是否过热出现分歧。
+    </p>
+    <p>
+      <strong>潮玩出海进入高光时刻</strong>，LABUBU以首个官方联名原创IP身份亮相美加墨世界杯开幕式，标志着中国潮玩IP从"产品出海"迈向"IP符号出海"。52TOYS、猫眼等持续以迪士尼、玩具总动员等授权IP填充新品线，国内潮玩供应链的IP运营能力仍在加强。
+    </p>
+    <p>
+      <strong>展会与授权平台方面</strong>，BW2026、CCG EXPO、CICAF 中国国际动漫节在本周集中放票或发布动态，暑期档线下流量争夺战提前打响；KADOKAWA、Seven Seas 等海外版权方也密集公布夏季授权阵容，为下半年商品化铺路。
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <h2 class="section-title">热门资讯</h2>
+      <span class="section-count">10 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">绿联×《崩坏：星穹铁道》活动官宣，IP 联名助推品牌价值升级</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">热点</span>
+          <span class="news-tag">绿联 × 崩坏：星穹铁道</span>
+          <span class="news-date">2026-06-16</span>
+        </div>
+        <p class="news-summary">2026年6月16日，中国科技品牌绿联正式宣布与米哈游旗下《崩坏：星穹铁道》展开联名合作，借助IP联名推动品牌价值升级。</p>
+        <div class="news-link"><a href="https://i.ifeng.com/c/8u1ev8YiqRA" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">BW2026全球190国同步放票，170家展商齐聚</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">展会</span>
+          <span class="news-tag">B站 × BW2026</span>
+          <span class="news-date">2026-06-18</span>
+        </div>
+        <p class="news-summary">哔哩哔哩发布BilibiliWorld 2026售票方案，这场扎根上海的动漫游戏综合展会将面向全球190个国家同步放票，170家展商参展。</p>
+        <div class="news-link"><a href="https://news.qq.com/rain/a/20260618A09G4U00" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">中国潮玩IP LABUBU成为首个官方联名原创IP亮相美加墨世界杯</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">出海</span>
+          <span class="news-tag">泡泡玛特 × FIFA世界杯</span>
+          <span class="news-date">2026-06-15</span>
+        </div>
+        <p class="news-summary">2026年6月12日美加墨世界杯开幕式上，LABUBU作为首个官方联名原创IP登场，两只身着定制球衣的形象出现，被视为中国潮玩IP从"中国制造"走向"中国创造"的标志性事件。</p>
+        <div class="news-link"><a href="https://k.sina.cn/article_7879995911_1d5af320706801y9c4.html" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">泡泡玛特官网/官方渠道最新全量消息（截至2026年6月19日）</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-19</span>
+        </div>
+        <p class="news-summary">雪球用户整理泡泡玛特截至6月19日的官网、港交所公告与官方社媒信息，涵盖新品发售、渠道动态与重要通知，是本周追踪泡泡玛特动态的集中信息源。</p>
+        <div class="news-link"><a href="https://xueqiu.com/1054707264/395686643" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">2026年6月IP联名系列POP MART盲盒全攻略｜618儿童节</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-21</span>
+        </div>
+        <p class="news-summary">聚焦618大促、儿童节与端午节三大节点，精选IP联名系列POP MART盲盒新品、折扣与礼盒装推荐，覆盖官方授权正品信息。</p>
+        <div class="news-link"><a href="https://wiki.1688.com/zh/blind-box/WKfmy7zw52z668" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">三丽鸥家族迷你童鞋凉鞋扭蛋第二弹6月下旬发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">三丽鸥</span>
+          <span class="news-date">2026-06-21</span>
+        </div>
+        <p class="news-summary">以三丽鸥家族角色为设计主题的迷你童鞋凉鞋扭蛋系列第二弹将于2026年6月下旬起在日本各地的扭蛋机中发售。</p>
+        <div class="news-link"><a href="https://www.haveagood-holiday.com/zh-CN/articles/sanrio-characters-mini-kids-sandal-2-capsule-toy" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">7</span>
+          <h3 class="news-title">2026必胜客×原神联动全攻略</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">必胜客 × 原神</span>
+          <span class="news-date">2026-06-15</span>
+        </div>
+        <p class="news-summary">2026年必胜客与原神新一轮联动攻略发布，涵盖限定周边、套餐内容与避坑指南，玩家可从4月起关注官博爆料。</p>
+        <div class="news-link"><a href="https://www.gametl.cn/game-debate/2026bskysldqglqxdzbbkhymwfhz/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">8</span>
+          <h3 class="news-title">宝可梦卡牌高级赛夏季场 6 月 18 日开启</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">赛事</span>
+          <span class="news-tag">宝可梦</span>
+          <span class="news-date">2026-06-18</span>
+        </div>
+        <p class="news-summary">宝可梦中国官网公告，"2026宝可梦卡牌高级赛夏季场"购物小站相关说明于6月18日发布，夏季场赛事同步启动。</p>
+        <div class="news-link"><a href="https://www.pokemon.cn/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">9</span>
+          <h3 class="news-title">CICAF 中国国际动漫节 6 月 18 日发布动态</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">展会</span>
+          <span class="news-tag">中国国际动漫节</span>
+          <span class="news-date">2026-06-18</span>
+        </div>
+        <p class="news-summary">2026年6月18日，中国国际动漫节执委会办公室主办的相关活动信息发布，杭州中国国际动漫节会展有限公司参与执行。</p>
+        <div class="news-link"><a href="https://cicaf.hzxcw.gov.cn/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">10</span>
+          <h3 class="news-title">动漫、影视、游戏、文博、艺术、电竞……各类IP授权去哪找</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业</span>
+          <span class="news-tag">IP授权</span>
+          <span class="news-date">2026-06-15</span>
+        </div>
+        <p class="news-summary">中国版权协会线上平台发布文章，梳理动漫、影视、游戏、文博、艺术、电竞等各类型IP授权的合作入口，为品牌方与制造商提供对接指引。</p>
+        <div class="news-link"><a href="https://www.ccaonline.cn/cjzx/1199930.html" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">海外动态</h2>
+      <span class="section-count">3 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">【海外】Seven Seas 公布 2026 年 6 月新漫画与有声书授权</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag overseas">海外</span>
+          <span class="news-tag">漫画授权</span>
+          <span class="news-date">2026-06-17</span>
+        </div>
+        <p class="news-summary">Seven Seas Entertainment 公布2026年6月新一批漫画与有声书授权，持续扩展其日文作品海外出版阵容。</p>
+        <div class="news-link"><a href="https://a-to-jconnections.com/animemangafilm/seven-seas-announces-new-manga-audiobook-license-acquisitions-june-2026" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">【海外】KADOKAWA 公开 2026 年夏季动画 IP 授权阵容</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag overseas">海外</span>
+          <span class="news-tag">IP授权</span>
+          <span class="news-date">2026-06-19</span>
+        </div>
+        <p class="news-summary">KADOKAWA 更新2026年夏季动画IP授权页面，涵盖角色商品化、联名合作与地域联动等授权方向。</p>
+        <div class="news-link"><a href="https://license.kadokawa.co.jp/anime/2026summer/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">【海外】三丽鸥家族迷你童鞋凉鞋扭蛋第二弹6月下旬发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag overseas">海外</span>
+          <span class="news-tag">三丽鸥</span>
+          <span class="news-date">2026-06-21</span>
+        </div>
+        <p class="news-summary">三丽鸥角色主题迷你童鞋凉鞋扭蛋第二弹将于6月下旬在日本各地扭蛋机发售。</p>
+        <div class="news-link"><a href="https://www.haveagood-holiday.com/zh-CN/articles/sanrio-characters-mini-kids-sandal-2-capsule-toy" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📌</span>
+      <h2 class="section-title">品牌动态</h2>
+      <span class="section-count">6 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">绿联×《崩坏：星穹铁道》联名官宣</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">绿联</span>
+          <span class="news-date">2026-06-16</span>
+        </div>
+        <p class="news-summary">绿联科技品牌与米哈游《崩坏：星穹铁道》联名，借势游戏IP提升品牌在年轻消费群体中的认知。</p>
+        <div class="news-link"><a href="https://i.ifeng.com/c/8u1ev8YiqRA" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">必胜客×原神联动攻略放出</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">必胜客</span>
+          <span class="news-date">2026-06-15</span>
+        </div>
+        <p class="news-summary">2026年必胜客与原神联动活动攻略发布，包含限定周边获取方式与套餐内容。</p>
+        <div class="news-link"><a href="https://www.gametl.cn/game-debate/2026bskysldqglqxdzbbkhymwfhz/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">泡泡玛特官网/官方渠道最新全量消息</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">渠道</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-19</span>
+        </div>
+        <p class="news-summary">雪球整理泡泡玛特截至6月19日的官网、港交所公告与官方社媒信息，涵盖新品发售与渠道动态。</p>
+        <div class="news-link"><a href="https://xueqiu.com/1054707264/395686643" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">2026年6月IP联名系列POP MART盲盒全攻略</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-21</span>
+        </div>
+        <p class="news-summary">1688买家百科整理618、儿童节、端午节节点下的POP MART盲盒联名新品、折扣与礼盒装推荐。</p>
+        <div class="news-link"><a href="https://wiki.1688.com/zh/blind-box/WKfmy7zw52z668" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">三丽鸥迷你童鞋凉鞋扭蛋第二弹即将发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">新品</span>
+          <span class="news-tag">三丽鸥</span>
+          <span class="news-date">2026-06-21</span>
+        </div>
+        <p class="news-summary">三丽鸥角色主题迷你童鞋凉鞋扭蛋第二弹6月下旬在日本发售。</p>
+        <div class="news-link"><a href="https://www.haveagood-holiday.com/zh-CN/articles/sanrio-characters-mini-kids-sandal-2-capsule-toy" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">宝可梦卡牌高级赛夏季场启动</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">赛事</span>
+          <span class="news-tag">宝可梦</span>
+          <span class="news-date">2026-06-18</span>
+        </div>
+        <p class="news-summary">宝可梦卡牌高级赛夏季场于6月18日开启，相关购物小站说明同步发布。</p>
+        <div class="news-link"><a href="https://www.pokemon.cn/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🎪</span>
+      <h2 class="section-title">展会活动</h2>
+      <span class="section-count">4 条</span>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;font-weight:600;">📅 已结束/进行中</h3>
+    <table class="event-table">
+      <thead>
+        <tr>
+          <th>活动名称</th>
+          <th>时间</th>
+          <th>地点</th>
+          <th>主要内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="event-name">BW2026 售票方案发布</span></td>
+          <td><span class="event-date">2026-06-18</span></td>
+          <td>上海</td>
+          <td>全球190国同步放票，170家展商参展</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">CICAF 中国国际动漫节动态发布</span></td>
+          <td><span class="event-date">2026-06-18</span></td>
+          <td>杭州</td>
+          <td>执委会办公室主办，会展公司执行</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">CCG EXPO 2026 上海漫展</span></td>
+          <td><span class="event-date">2026-06-18 信息发布</span></td>
+          <td>上海</td>
+          <td>中国国际动漫游戏博览会展会信息更新</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">宝可梦卡牌高级赛夏季场</span></td>
+          <td><span class="event-date">2026-06-18 开启</span></td>
+          <td>全国</td>
+          <td>卡牌赛事与购物小站活动</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">新文创老贾聊IP-IP圈本周发生了啥？</div>
+    <div class="footer-desc">由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+    <div class="footer-date">2026-06-21</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
