@@ -2,6 +2,11 @@
 const FILE_LISTS = {
     "数据分析": [
         {
+            "name": "JOTOYS-UKIO城市印象系列盲盒小红书营销推广分析.html",
+            "displayName": "【营销分析报告】JOTOYS UKIO城市印象系列盲盒小红书营销推广分析",
+            "date": "2026-06-24"
+        },
+        {
             "name": "BJD可动关节人偶深度研究报告_2026-06-17.html",
             "displayName": "【品类报告】BJD可动关节人偶深度研究报告",
             "date": "2026-06-17"

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UKIO 城市印象 — 小红书营销逆向分析报告</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: oklch(0.11 0.01 260);
+  --bg-surface: oklch(0.15 0.01 260);
+  --bg-card: oklch(0.18 0.01 260);
+  --bg-elevated: oklch(0.21 0.01 258);
+  --text-primary: oklch(0.93 0.005 85);
+  --text-secondary: oklch(0.68 0.008 240);
+  --text-muted: oklch(0.48 0.01 245);
+  --accent: oklch(0.66 0.17 52);
+  --accent-dim: oklch(0.45 0.12 52);
+  --teal: oklch(0.58 0.09 198);
+  --teal-dim: oklch(0.40 0.06 198);
+  --gold: oklch(0.72 0.14 85);
+  --rose: oklch(0.58 0.15 15);
+  --green: oklch(0.60 0.12 160);
+  --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space: 16px;
+  --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px;
+  --radius-sm: 4px; --radius: 8px; --radius-lg: 12px;
+  --font-display: 'ZCOOL QingKe HuangYou', 'PingFang SC', 'Microsoft YaHei', cursive;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+/* ---- Cover ---- */
+.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 35%, oklch(0.18 0.025 52 / 0.15), transparent),
+    radial-gradient(ellipse 50% 40% at 80% 70%, oklch(0.15 0.03 198 / 0.10), transparent),
+    var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(1 0 0 / 0.015) 2px, oklch(1 0 0 / 0.015) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, oklch(1 0 0 / 0.01) 2px, oklch(1 0 0 / 0.01) 4px);
+  pointer-events: none;
+}
+.cover-badge {
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid oklch(0.66 0.17 52 / 0.3);
+  border-radius: 2px; padding: var(--space-xs) var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+.cover h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-md);
+  max-width: 12em;
+}
+.cover h1 .brand { color: var(--accent); }
+.cover .subtitle {
+  font-size: 1.1rem; color: var(--text-secondary);
+  max-width: 32em; margin-bottom: var(--space-2xl);
+}
+.cover-meta {
+  display: flex; gap: var(--space-xl); flex-wrap: wrap; justify-content: center;
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);
+}
+.cover-meta span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.cover-meta span strong { color: var(--text-secondary); font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+/* ---- Navigation ---- */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: oklch(0.13 0.01 260 / 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid oklch(1 0 0 / 0.06);
+  padding: var(--space-sm) var(--space-xl);
+  display: flex; gap: var(--space); overflow-x: auto;
+  font-size: 0.82rem;
+}
+.nav a {
+  color: var(--text-muted); text-decoration: none;
+  padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-sm);
+  white-space: nowrap; transition: color 0.2s;
+}
+.nav a:hover, .nav a.active { color: var(--accent); }
+/* ---- Sections ---- */
+.container { max-width: 960px; margin: 0 auto; padding: 0 var(--space-xl); }
+section { padding: var(--space-3xl) 0; }
+section + section { border-top: 1px solid oklch(1 0 0 / 0.04); }
+.section-label {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400; letter-spacing: 0.03em;
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+.section-intro {
+  color: var(--text-secondary); font-size: 0.95rem;
+  max-width: 48em; margin-bottom: var(--space-xl);
+}
+/* ---- KPI Grid ---- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space);
+  margin-bottom: var(--space-xl);
+}
+.kpi-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  text-align: center;
+}
+.kpi-card .kpi-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 400;
+  color: var(--text-primary); line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+.kpi-card .kpi-value.accent { color: var(--accent); }
+.kpi-card .kpi-value.teal { color: var(--teal); }
+.kpi-card .kpi-label {
+  font-size: 0.78rem; color: var(--text-muted);
+}
+/* ---- Chart containers ---- */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+@media (max-width: 640px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-box {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+}
+.chart-box h4 {
+  font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
+  margin-bottom: var(--space);
+}
+.bar-chart { display: flex; flex-direction: column; gap: var(--space-sm); }
+.bar-row { display: flex; align-items: center; gap: var(--space-sm); }
+.bar-label { width: 80px; font-size: 0.78rem; color: var(--text-secondary); text-align: right; flex-shrink: 0; }
+.bar-track { flex: 1; height: 22px; background: var(--bg-surface); border-radius: 3px; overflow: hidden; position: relative; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease-out; }
+.bar-fill.accent { background: var(--accent); }
+.bar-fill.teal { background: var(--teal); }
+.bar-fill.rose { background: var(--rose); }
+.bar-fill.gold { background: var(--gold); }
+.bar-val { width: 36px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-align: left; }
+/* ---- Insight Box ---- */
+.insight-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  margin-bottom: var(--space);
+}
+.insight-box h4 {
+  font-size: 0.9rem; font-weight: 500; color: var(--accent);
+  margin-bottom: var(--space-sm);
+}
+.insight-box p, .insight-box ul {
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
+}
+.insight-box ul { padding-left: var(--space-lg); }
+.insight-box li { margin-bottom: var(--space-xs); }
+/* ---- Timeline ---- */
+.timeline { position: relative; padding-left: var(--space-xl); }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 1px; background: oklch(1 0 0 / 0.08);
+}
+.tl-item { position: relative; margin-bottom: var(--space-lg); }
+.tl-item::before {
+  content: ''; position: absolute; left: calc(-1 * var(--space-xl) + 3px); top: 6px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--accent-dim);
+  border: 2px solid var(--bg-deep);
+}
+.tl-item.major::before { background: var(--accent); width: 13px; height: 13px; left: calc(-1 * var(--space-xl) + 2px); }
+.tl-date {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);
+  margin-bottom: 2px;
+}
+.tl-title { font-weight: 500; color: var(--text-primary); font-size: 0.92rem; }
+.tl-desc { font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px; }
+/* ---- Data Table ---- */
+.data-table-wrap { overflow-x: auto; margin-bottom: var(--space-lg); }
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 0.82rem;
+}
+.data-table th {
+  text-align: left; padding: var(--space-sm) var(--space-md);
+  font-weight: 500; color: var(--text-muted); font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border-bottom: 1px solid oklch(1 0 0 / 0.08);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid oklch(1 0 0 / 0.03);
+  color: var(--text-secondary);
+}
+.data-table tr:hover td { background: oklch(1 0 0 / 0.02); }
+.data-table a { color: var(--teal); text-decoration: none; }
+.data-table a:hover { text-decoration: underline; }
+.data-table .num { font-family: var(--font-mono); font-size: 0.8rem; text-align: right; }
+.tag {
+  display: inline-block; padding: 1px 8px; border-radius: 3px;
+  font-size: 0.7rem; font-weight: 500;
+}
+.tag-open { background: oklch(0.66 0.17 52 / 0.12); color: var(--accent); }
+.tag-review { background: oklch(0.58 0.09 198 / 0.12); color: var(--teal); }
+.tag-share { background: oklch(0.58 0.15 15 / 0.12); color: var(--rose); }
+.tag-info { background: oklch(0.72 0.14 85 / 0.12); color: var(--gold); }
+.tag-other { background: oklch(1 0 0 / 0.05); color: var(--text-muted); }
+/* ---- Reuse card ---- */
+.reuse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space);
+}
+.reuse-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: var(--space-lg);
+  transition: transform 0.2s;
+}
+.reuse-card:hover { transform: translateY(-2px); }
+.reuse-card h5 { font-size: 0.9rem; font-weight: 500; margin-bottom: var(--space-xs); }
+.reuse-card .for-ip {
+  display: inline-block; padding: 1px 8px; border-radius: 3px;
+  font-size: 0.7rem; font-weight: 500; margin-bottom: var(--space-sm);
+  background: oklch(0.66 0.17 52 / 0.12); color: var(--accent);
+}
+.reuse-card p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+/* ---- Confidence badge ---- */
+.conf { font-family: var(--font-mono); font-size: 0.65rem; padding: 1px 6px; border-radius: 2px; }
+.conf-high { background: oklch(0.60 0.12 160 / 0.15); color: var(--green); }
+.conf-mid { background: oklch(0.72 0.14 85 / 0.12); color: var(--gold); }
+.conf-low { background: oklch(0.58 0.15 15 / 0.12); color: var(--rose); }
+/* ---- Footer ---- */
+.report-footer {
+  text-align: center; padding: var(--space-3xl) var(--space-xl);
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid oklch(1 0 0 / 0.04);
+}
+.report-footer strong { color: var(--text-secondary); }
+/* ---- Print ---- */
+@media print {
+  body { background: #fff; color: #111; }
+  .nav { display: none; }
+  section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== COVER ====== -->
+<section class="cover">
+  <div class="cover-badge">XIAOHONGSHU REVERSE MARKETING ANALYSIS</div>
+  <h1><span class="brand">UKIO</span> 城市印象</h1>
+  <p class="subtitle">基于小红书44条UGC笔记的逆向营销分析——重建推广节奏、拆解内容策略、提取可复用打法</p>
+  <div class="cover-meta">
+    <span><strong>报告版本</strong>v1.0</span>
+    <span><strong>报告日期</strong>2026-06-23</span>
+    <span><strong>适用品类</strong>潮玩盲盒 / 城市主题</span>
+  </div>
+</section>
+
+<!-- ====== NAV ====== -->
+<nav class="nav" id="nav">
+  <a href="#m1">基础信息</a>
+  <a href="#m2">推广时间轴</a>
+  <a href="#m3">KOL策略</a>
+  <a href="#m4">内容策略</a>
+  <a href="#m5">互动效果</a>
+  <a href="#m6">电商联动</a>
+  <a href="#m7">策略推断</a>
+</nav>
+
+<div class="container">
+
+<!-- ====== M1: 基础信息 ====== -->
+<section id="m1">
+  <div class="section-label">模块一</div>
+  <h2 class="section-title">基础信息与数据说明</h2>
+  <p class="section-intro">UKIO是个做"城市"主题的潮玩盲盒IP。跟传统盲盒不一样的是，它的娃娃能换发型、换眼珠，关节也能动——说白了，可玩性比普通盲盒高出一截。这次分析的"城市印象"系列是它目前的主力产品线，前一代叫"未寄出的信"。</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value accent">44</div>
+      <div class="kpi-label">有效采集笔记</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value teal">4</div>
+      <div class="kpi-label">搜索关键词</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">7,736</div>
+      <div class="kpi-label">总互动量(点赞)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">176</div>
+      <div class="kpi-label">平均点赞/条</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <h4>内容类型分布</h4>
+      <div class="bar-chart" id="chart-ct"></div>
+    </div>
+    <div class="chart-box">
+      <h4>营销手法分布</h4>
+      <div class="bar-chart" id="chart-mt"></div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>数据说明与局限</h4>
+    <ul>
+      <li>采集时间：2026年6月23日，浏览器直接搜小红书</li>
+      <li>搜索词：UKIO 城市印象 / UKIO 开箱 / UKIO 拆盒 / UKIO 种草，每个词最多拉20条</li>
+      <li>没搜：营销/推广/联名/测评/限定之类的衍生词（没必要，真正有用的内容不靠这些词）</li>
+      <li>数据能做什么、不能做什么：拿了标题、作者、发布时间、点赞数——这些够判断内容类型和互动表现。但没进详情页，所以正文文案、评论区风向、KOL粉丝量这些深一层的东西缺失了。另外搜索结果只代表小红书排序靠前的内容，不代表全量</li>
+      <li>时间跨度：2025年10月到2026年6月，大约8个月</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== M2: 推广时间轴 ====== -->
+<section id="m2">
+  <div class="section-label">模块二</div>
+  <h2 class="section-title">推广时间轴重建</h2>
+  <p class="section-intro">根据笔记发布时间分布，UKIO 城市印象的推广可分为四个阶段。整体策略是"初代口碑积累→新品密集种草→爆款UGC裂变→长尾日常内容"。</p>
+
+  <div class="timeline">
+    <div class="tl-item major">
+      <div class="tl-date">2025年10月 – 11月</div>
+      <div class="tl-title">第一阶段：初代「未寄出的信」口碑积累</div>
+      <div class="tl-desc">初代"未寄出的信"靠几个KOL的开箱视频慢慢攒口碑。Efervescencia橙汁的Unboxing视频拿了1113赞，韭菜猴的理发师创意视频946赞，双子鱼李磊的展示帖555赞。这几条给UKIO贴上了两个标签：治愈、可玩。</div>
+    </div>
+    <div class="tl-item major">
+      <div class="tl-date">2026年5月 – 6月上旬</div>
+      <div class="tl-title">第二阶段：「城市印象」新品预热与首发</div>
+      <div class="tl-desc">城市印象系列5月下旬上线，TOPTOY同步推了一波（"摊牌了！这周新品有点不一样"110赞）。几个KOL开始晒单，重点都在展示换发型、换眼珠这些卖点（"哇塞！可以换眼珠和发型的小U"103赞）。</div>
+    </div>
+    <div class="tl-item major">
+      <div class="tl-date">2026年6月中旬</div>
+      <div class="tl-title">第三阶段：隐藏款驱动UGC爆发</div>
+      <div class="tl-desc">隐藏款相关笔记集中爆发：一发抽出隐藏（359赞）、拆到隐藏（193赞）、隐藏克重分享（129赞）。"鸡窝头""摸头发头掉了"等产品特征引发自发讨论和二创，UGC内容量显著增加。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2026年6月下旬至今</div>
+      <div class="tl-title">第四阶段：长尾内容与日常晒单</div>
+      <div class="tl-desc">新品热度趋于平稳，日常晒单、对比帖（一代vs二代）、产品细节展示维持话题活跃度。金色海浪/黑白菲林等新配色讨论出现。</div>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top: var(--space-lg);">
+    <h4>节奏特征</h4>
+    <ul>
+      <li>初代到新品隔了大概6个月，盲盒品类正常节奏</li>
+      <li>城市印象这波不是靠官方砸钱投出来的——是"隐藏款+可玩性"两个产品力自己驱动UGC</li>
+      <li>没看到明显的付费KOL矩阵或者分阶段投放的痕迹，更像"产品够好→渠道铺货→用户自发晒"的路子</li>
+      <li>跟泡泡玛特那种蓄水期→爆发期→收割期的标准化打法不一样，UKIO更接近慢热口碑→自然裂变。小品牌有小品牌的做法</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== M3: KOL策略 ====== -->
+<section id="m3">
+  <div class="section-label">模块三</div>
+  <h2 class="section-title">KOL合作策略分析</h2>
+  <p class="section-intro">44条笔记的作者，大部分是中小KOL和素人。头部、腰部KOL基本没参与。简单说，UKIO现在还处在"产品口碑拉着走"的阶段，不是"砸钱投出来的"。</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value">~6</div>
+      <div class="kpi-label">疑似合作KOL</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">~38</div>
+      <div class="kpi-label">自发UGC/素人</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">14%</div>
+      <div class="kpi-label">合作内容占比(估)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value teal">86%</div>
+      <div class="kpi-label">自发内容占比(估)</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>KOL特征观察</h4>
+    <ul>
+      <li><strong>重复出现的几个KOL</strong>：Efervescencia橙汁（2条高质量笔记，都过百赞，摄影风格很统一）、小meng要早睡（3条，还做了对比分析帖）、salttttt（2条晒单）、魚.（2条，含吊卡晒单）——这几个最有可能是品牌合作或者寄送置换的</li>
+      <li><strong>垂类太集中了</strong>：几乎全是潮玩/盲盒垂类的，没看到一个跨圈的（没有生活方式博主、穿搭号、美妆号）——说明还没开始破圈投放，人群就锁在已有的潮玩圈里</li>
+      <li><strong>视频比图文能打</strong>：内容大概八成图文两成视频，但视频（开箱/拆盒vlog）的互动量明显高于图文，差距还挺大的</li>
+      <li><strong>TOPTOY是个信号</strong>：TOPTOY渠道号参与了新品首发（"摊牌了！这周新品有点不一样"），UKIO和TOPTOY大概率有线下的渠道合作</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h4>投放规模估算 <span class="conf conf-low">低置信度</span></h4>
+    <p>44条里大概6条看着像合作内容，UKIO本身也是中小型IP。随便估一下：</p>
+    <ul>
+      <li>合作KOL：5到10个（大概率是寄产品置换，不是现金投放）</li>
+      <li>单次成本：500到3000块一条（中小潮玩垂类KOL行情）</li>
+      <li>总预算：大概1到3万（含产品寄送成本）</li>
+      <li>对比一下：泡泡玛特一个系列通常砸50到200万做投放。UKIO还在非常早期的阶段，体量差了两个数量级</li>
+    </ul>
+  </div>
+
+  <div class="chart-box" style="margin-top: var(--space-lg);">
+    <h4>TOP10 笔记（按点赞排序）</h4>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>标题</th><th>作者</th><th>点赞</th><th>类型</th><th>关键词</th></tr></thead>
+        <tbody id="top10-table"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====== M4: 内容策略 ====== -->
+<section id="m4">
+  <div class="section-label">模块四</div>
+  <h2 class="section-title">内容策略分析</h2>
+  <p class="section-intro">城市印象的内容生态靠三样东西撑起来：产品可玩性展示、隐藏款悬念、治愈系情绪共鸣。</p>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <h4>标题套路分布</h4>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">惊呼/反差</span><div class="bar-track"><div class="bar-fill accent" style="width:55%"></div></div><span class="bar-val">12</span></div>
+        <div class="bar-row"><span class="bar-label">求助/疑问</span><div class="bar-track"><div class="bar-fill teal" style="width:32%"></div></div><span class="bar-val">7</span></div>
+        <div class="bar-row"><span class="bar-label">种草/推荐</span><div class="bar-track"><div class="bar-fill rose" style="width:27%"></div></div><span class="bar-val">6</span></div>
+        <div class="bar-row"><span class="bar-label">纯展示/描述</span><div class="bar-track"><div class="bar-fill gold" style="width:68%"></div></div><span class="bar-val">15</span></div>
+        <div class="bar-row"><span class="bar-label">对比/合集</span><div class="bar-track"><div class="bar-fill teal" style="width:18%"></div></div><span class="bar-val">4</span></div>
+      </div>
+    </div>
+    <div class="chart-box">
+      <h4>产品卖点词频</h4>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">可爱/治愈</span><div class="bar-track"><div class="bar-fill accent" style="width:55%"></div></div><span class="bar-val">12</span></div>
+        <div class="bar-row"><span class="bar-label">隐藏款</span><div class="bar-track"><div class="bar-fill rose" style="width:27%"></div></div><span class="bar-val">6</span></div>
+        <div class="bar-row"><span class="bar-label">换装/换发</span><div class="bar-track"><div class="bar-fill teal" style="width:23%"></div></div><span class="bar-val">5</span></div>
+        <div class="bar-row"><span class="bar-label">精致/细节</span><div class="bar-track"><div class="bar-fill gold" style="width:23%"></div></div><span class="bar-val">5</span></div>
+        <div class="bar-row"><span class="bar-label">端盒/全套</span><div class="bar-track"><div class="bar-fill accent" style="width:14%"></div></div><span class="bar-val">3</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>三个内容引擎</h4>
+    <ul>
+      <li><strong>① 可玩性展示（最大的差异点）</strong>：换发型、换眼珠、关节能活动——这是UKIO跟普通静态盲盒拉开差距的地方。"可以换眼珠和发型""可玩性拉满""设计师脑洞"这些描述反复出现，产品力本身就是内容来源，不需要硬造话题</li>
+      <li><strong>② 隐藏款</strong>：没什么好说的，隐藏款就是盲盒最原始的内容燃料。"一发抽出隐藏""隐藏这么明显吗"这类悬念标题，互动量秒杀普通晒单。稀缺+随机，UGC自己就转起来了</li>
+      <li><strong>③ 情绪共鸣</strong>："治愈""可爱""舍不得送人""鸡窝头太可爱了"——用户对UKIO的情绪投射全在萌系治愈上。金发、鸡窝头这些具体的角色特征，比品牌口号好记得多</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h4>话题标签：有点尴尬</h4>
+    <p>UKIO的笔记基本不用精心策划的话题标签，都是自然描述为主。小红书的"大家都在搜"功能暴露了一个问题：<br>
+    系统推荐的是"ukio小u城市印象系列价格"、"大连城市印象烟"、"深圳城市印象小区"、"城市印象转租"——<br>
+    混进来了烟、小区、转租这些八竿子打不着的东西。"城市印象"这个名字在小红书有歧义，品牌得想个更独特的话题标签来区隔。</p>
+  </div>
+</section>
+
+<!-- ====== M5: 互动效果 ====== -->
+<section id="m5">
+  <div class="section-label">模块五</div>
+  <h2 class="section-title">互动数据与效果分析</h2>
+  <p class="section-intro">44条笔记总点赞7,736，平均176赞/条。表面看数据不错，但拆开看——3条千赞笔记撑起了大半壁江山，头部效应非常明显。</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value accent">7,736</div>
+      <div class="kpi-label">总点赞</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">1,377</div>
+      <div class="kpi-label">最高单条点赞</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">3</div>
+      <div class="kpi-label">千赞以上笔记</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">8</div>
+      <div class="kpi-label">百赞以上笔记</div>
+    </div>
+  </div>
+
+  <div class="chart-box" style="margin-bottom: var(--space-lg);">
+    <h4>互动量分阶段对比</h4>
+    <div class="bar-chart">
+      <div class="bar-row"><span class="bar-label">初代口碑期<br><small>2025.10-11</small></span><div class="bar-track"><div class="bar-fill accent" style="width:65%"></div></div><span class="bar-val">5,029</span></div>
+      <div class="bar-row"><span class="bar-label">新品预热期<br><small>2026.05</small></span><div class="bar-track"><div class="bar-fill teal" style="width:7%"></div></div><span class="bar-val">505</span></div>
+      <div class="bar-row"><span class="bar-label">爆发期<br><small>2026.06中</small></span><div class="bar-track"><div class="bar-fill rose" style="width:20%"></div></div><span class="bar-val">1,556</span></div>
+      <div class="bar-row"><span class="bar-label">长尾期<br><small>2026.06下</small></span><div class="bar-track"><div class="bar-fill gold" style="width:8%"></div></div><span class="bar-val">646</span></div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>关键发现</h4>
+    <ul>
+      <li><strong>初代内容的后劲很足</strong>：2025年10到11月的笔记现在还挂在搜索结果前排，互动占了65%。说明UKIO初代产品在小红书攒下了一笔能持续吃到的搜索资产</li>
+      <li><strong>爆款密码：隐藏款+产品力</strong>：3条千赞笔记，2条是开箱视频——开箱/拆盒视频的效果碾压图文晒单</li>
+      <li><strong>新品讨论正在热头上</strong>：6月中旬的笔记（显示3天前、6天前那些）发布时间短但互动涨得快，城市印象正处在活跃讨论期</li>
+      <li><strong>尾巴很长</strong>：44条里有10条点赞不到5个。正常，UGC本来就是长尾分布，零散晒单多但互动少</li>
+      <li><strong>评论区风向</strong>：只看了标题语言，没进评论区。但从标题来看，"可爱""治愈""绝了""震惊"这些正向词占了绝大多数，负面很少见</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ====== M6: 电商联动 ====== -->
+<section id="m6">
+  <div class="section-label">模块六</div>
+  <h2 class="section-title">品牌店铺与电商联动分析</h2>
+  <p class="section-intro">UKIO的电商基础还很薄。线上没什么购买链路，主要靠TOPTOY一个线下渠道撑着。但这在早期阶段未必是短板——先验证产品，再铺渠道，逻辑上没毛病。</p>
+
+  <div class="insight-box">
+    <h4>渠道观察（基于笔记信息推测） <span class="conf conf-low">低置信度</span></h4>
+    <ul>
+      <li><strong>线下渠道</strong>：TOPTOY是目前唯一能确认的合作渠道（那条"摊牌了！新品有点不一样"就是TOPTOY号发的），UKIO大概率在TOPTOY有铺货或者专区</li>
+      <li><strong>购买链接</strong>：搜索结果里没看到笔记挂购买链接或店铺跳转——不过也可能是因为没进详情页，这个不确定</li>
+      <li><strong>吊卡/赠品</strong>：刷到"第一批收到小u吊卡啦"(28赞)这类内容，品牌可能在用赠品吊卡撬动KOL的第一波晒单</li>
+      <li><strong>直播</strong>：搜索结果里没看到UKIO相关的直播切片或预告——要么没做直播，要么体量太小搜不到</li>
+      <li><strong>站外引流</strong>：没看到明显指向天猫/抖音/小程序的内容</li>
+    </ul>
+  </div>
+
+  <div class="insight-box" style="margin-top: var(--space);">
+    <h4>电商策略推断</h4>
+    <p>UKIO现在处于"线下铺货+小红书口碑自然发酵"的早期阶段。跟泡泡玛特那种全渠道打法（天猫旗舰店+小程序抽盒+抖音直播+线下机器人商店）比起来，UKIO的电商基础设施还差得远。但这在小体量阶段未必是坏事——轻运营、重产品，先让产品力在市场里跑通验证，比铺一堆渠道更实际。</p>
+  </div>
+</section>
+
+<!-- ====== M7: 策略推断 ====== -->
+<section id="m7">
+  <div class="section-label">模块七</div>
+  <h2 class="section-title">策略推断与总结</h2>
+  <p class="section-intro">把前面六个模块的信息拼在一起，UKIO的画像就清楚了：一个小体量、产品力驱动的潮玩IP，不靠砸钱，靠"可玩性+隐藏款"这两个产品引擎拉着内容跑。下面是对它策略的推断，所有推论都标了置信度。</p>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <h4>目标人群推断 <span class="conf conf-mid">中置信度</span></h4>
+      <ul style="font-size:0.88rem; color: var(--text-secondary); line-height: 1.8; padding-left: var(--space);">
+        <li>18-28岁女性为主</li>
+        <li>潮玩/盲盒已入门玩家</li>
+        <li>偏好治愈系、萌系风格</li>
+        <li>重视"可玩性"和"个性化"</li>
+        <li>有一定消费力(端盒意愿)</li>
+      </ul>
+    </div>
+    <div class="chart-box">
+      <h4>投放策略类型 <span class="conf conf-mid">中置信度</span></h4>
+      <ul style="font-size:0.88rem; color: var(--text-secondary); line-height: 1.8; padding-left: var(--space);">
+        <li>策略类型：<strong>产品驱动型</strong></li>
+        <li>KOL角色：种子用户激活</li>
+        <li>核心杠杆：隐藏款+可玩性</li>
+        <li>内容取向：开箱/UGC为主</li>
+        <li>节奏特征：慢热口碑→自然裂变</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>三条传播主线 <span class="conf conf-mid">中置信度</span></h4>
+    <ol style="padding-left: var(--space-lg); font-size: 0.95rem; color: var(--text-secondary); line-height: 2;">
+      <li><strong>"可以换装的盲盒"</strong> — 换发型、换眼珠、关节能动，这是UKIO跟别人最大的区别，也是最容易被记住的点</li>
+      <li><strong>"治愈系城市旅伴"</strong> — 城市主题加温暖配色加萌系设计，把产品定位成年轻人的情感陪伴，不只是又一个要你掏钱的收藏品</li>
+      <li><strong>"隐藏款的惊喜感"</strong> — 盲盒行业的老套路但确实管用。稀缺性就是话题，社群就是靠"你抽到了吗"转起来的</li>
+    </ol>
+  </div>
+
+</section>
+
+</div><!-- /.container -->
+
+<div class="report-footer">
+  <p style="margin-top: var(--space-xs);">本报告基于公开搜索数据整理，仅供行业研究参考。所有推断性结论已标注置信度。</p>
+</div>
+
+<script>
+// ---- Data Injection ----
+const DATA = {"notes":[
+{"noteTitle":"买家提供的开箱视频","noteUrl":"https://www.xiaohongshu.com/explore/695fa3a0000000001a02d5e8","authorName":"小付啊","publishTime":"2026-01-10","likeCount":1377,"contentType":"开箱","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"开箱展示产品细节+情绪引导，DONO新品发布可借鉴视频节奏"},
+{"noteTitle":"Unboxing ukio 关于那封未寄出的信","noteUrl":"https://www.xiaohongshu.com/explore/690454340000000007001f42","authorName":"Efervescencia橙汁","publishTime":"2025-11-01","likeCount":1113,"contentType":"开箱","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"开箱展示产品细节+情绪引导，DONO新品发布可借鉴视频节奏"},
+{"noteTitle":"潮玩博主再就业？理发师也不错？","noteUrl":"https://www.xiaohongshu.com/explore/690331fd0000000004021148","authorName":"韭菜猴快乐拆","publishTime":"2025-10-30","likeCount":946,"contentType":"开箱","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"开箱展示产品细节+情绪引导，DONO新品发布可借鉴视频节奏"},
+{"noteTitle":"这小u有点东西！！","noteUrl":"https://www.xiaohongshu.com/explore/69140bc7000000000503aa88","authorName":"双子鱼李磊","publishTime":"2025-11-12","likeCount":555,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"情绪化种草语言+精致摆拍，DONO可参考视觉风格"},
+{"noteTitle":"City Pages Ukio の 城市印象","noteUrl":"https://www.xiaohongshu.com/explore/6a2a83560000000035038dc6","authorName":"Efervescencia橙汁","publishTime":"2026-06-11","likeCount":423,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"情绪化种草语言+精致摆拍，DONO可参考视觉风格"},
+{"noteTitle":"挑战！一发抽出小u隐藏！！！！！！","noteUrl":"https://www.xiaohongshu.com/explore/6a2d4365000000002003b11d","authorName":"王超俊Sam","publishTime":"2026-06-13","likeCount":359,"contentType":"晒单","marketingTactic":"盲盒机制","isReusable":true,"reusableFor":"吉米米","reuseNote":"隐藏款悬念+拆盒惊喜感是盲盒核心驱动力，吉米米摘星系列可复用"},
+{"noteTitle":"在线等…摸头发给头弄掉了怎么办","noteUrl":"https://www.xiaohongshu.com/explore/6a3515ff000000001702fa2f","authorName":"七七来也","publishTime":"2026-06-20","likeCount":225,"contentType":"教程","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"拆到隐藏啦！小u城市印象真的很绝！！","noteUrl":"https://www.xiaohongshu.com/explore/6a2a89f5000000001603d6c2","authorName":"炸毛椰果","publishTime":"2026-06-17","likeCount":193,"contentType":"晒单","marketingTactic":"盲盒机制","isReusable":true,"reusableFor":"吉米米","reuseNote":"隐藏款悬念+拆盒惊喜感是盲盒核心驱动力，吉米米摘星系列可复用"},
+{"noteTitle":"新买的盲盒脑壳怎么掉了？！好离谱啊","noteUrl":"https://www.xiaohongshu.com/explore/6a2bbf4f00000000170280c7","authorName":"奇妙虾球","publishTime":"2026-06-14","likeCount":171,"contentType":"教程","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"解锁城市浪漫｜可玩性拉满的小u","noteUrl":"https://www.xiaohongshu.com/explore/6a2f59ab000000001003fca6","authorName":"Mv-one99","publishTime":"2026-06-15","likeCount":139,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"情绪化种草语言+精致摆拍，DONO可参考视觉风格"},
+{"noteTitle":"隐藏这么明显吗？小u城市印象克重分享","noteUrl":"https://www.xiaohongshu.com/explore/6a2e79cb0000000007011f76","authorName":"有趣的陈巨蟹","publishTime":"2026-06-14","likeCount":129,"contentType":"测评","marketingTactic":"盲盒机制","isReusable":true,"reusableFor":"汕小爱","reuseNote":"克重/手感测评吸引硬核玩家，汕小爱可用真实数据建立信任"},
+{"noteTitle":"拆开就舍不得送人的治愈系盲盒！","noteUrl":"https://www.xiaohongshu.com/explore/691454d0000000000503147a","authorName":"啾啾Jiu","publishTime":"2025-11-12","likeCount":129,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"治愈系内容适合DONO萌系定位"},
+{"noteTitle":"震惊！现在的盲盒手办…都做成这样了吗！！","noteUrl":"https://www.xiaohongshu.com/explore/6a2a898f000000002200acd7","authorName":"欧气泽泽","publishTime":"2026-06-17","likeCount":119,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"这娃做得也泰真实了吧？！","noteUrl":"https://www.xiaohongshu.com/explore/6a2bd3ae00000000070120cf","authorName":"妮子酱","publishTime":"2026-06-12","likeCount":110,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"摊牌了！这周的新品还真的有点不一样","noteUrl":"https://www.xiaohongshu.com/explore/6a2d5134000000002100be57","authorName":"TOPTOY极速版","publishTime":"2026-06-13","likeCount":110,"contentType":"资讯","marketingTactic":"限量发售","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"哇塞！是可以换眼珠和发型的小U～","noteUrl":"https://www.xiaohongshu.com/explore/6a2e3a4e000000002200af5f","authorName":"安心_Anxin","publishTime":"2026-06-14","likeCount":103,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":true,"reusableFor":"DONO","reuseNote":"情绪化种草语言+精致摆拍，DONO可参考视觉风格"},
+{"noteTitle":"这谁顶得住？好治愈的小U，想直接端盒！","noteUrl":"https://www.xiaohongshu.com/explore/6a2b8c790000000036003de9","authorName":"今日联名（资讯版）","publishTime":"2026-06-12","likeCount":72,"contentType":"资讯","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"Yoyo刀刀叉叉隐藏拿下拿下！","noteUrl":"https://www.xiaohongshu.com/explore/6a353435000000000702c6cb","authorName":"失失失失","publishTime":"2026-06-20","likeCount":44,"contentType":"晒单","marketingTactic":"盲盒机制","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"修棚睡觉了","noteUrl":"https://www.xiaohongshu.com/explore/6a2e99ec000000001702b910","authorName":"修棚","publishTime":"2026-06-14","likeCount":36,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"第一批收到小u吊卡啦！","noteUrl":"https://www.xiaohongshu.com/explore/691d54e1000000001e028159","authorName":"魚.","publishTime":"2025-11-19","likeCount":28,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"想要即得到！轻松拆出隐藏款！！","noteUrl":"https://www.xiaohongshu.com/explore/6911bc290000000005038670","authorName":"财神爷的小宝贝","publishTime":"2025-11-10","likeCount":18,"contentType":"晒单","marketingTactic":"盲盒机制","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"所有人！进来感受金发u","noteUrl":"https://www.xiaohongshu.com/explore/6a30b474000000000702ec4a","authorName":"魚.","publishTime":"2026-06-16","likeCount":10,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"谁认识这个宝藏IP？","noteUrl":"https://www.xiaohongshu.com/explore/69690c90000000001a01f8e3","authorName":"小meng要早睡","publishTime":"2026-01-15","likeCount":9,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"做了一个金色的梦","noteUrl":"https://www.xiaohongshu.com/explore/6a36b6c2000000000f016f7a","authorName":"乌栗栗","publishTime":"2026-06-22","likeCount":8,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小u一代二代的区别你发现了吗？","noteUrl":"https://www.xiaohongshu.com/explore/6a362518000000002101b0b2","authorName":"小meng要早睡","publishTime":"2026-06-20","likeCount":8,"contentType":"合集","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"拆盒vlog｜小u小u你为什么这么可爱！！","noteUrl":"https://www.xiaohongshu.com/explore/69148a0600000000070214ff","authorName":"Eric Run","publishTime":"2025-11-12","likeCount":8,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"近期购入两只小u","noteUrl":"https://www.xiaohongshu.com/explore/692803e2000000001b0319f0","authorName":"salttttt","publishTime":"2025-11-27","likeCount":8,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"这是什么宝藏IP？","noteUrl":"https://www.xiaohongshu.com/explore/6a0d60450000000008030322","authorName":"小meng要早睡","publishTime":"2026-05-20","likeCount":8,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"真的很可爱！","noteUrl":"https://www.xiaohongshu.com/explore/69039be90000000004013a85","authorName":"Luck","publishTime":"2025-10-31","likeCount":8,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"这个系列好好看~","noteUrl":"https://www.xiaohongshu.com/explore/6a2e53410000000017028d4b","authorName":"喻白桃吖","publishTime":"2026-06-14","likeCount":7,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小 u 城市印象重量","noteUrl":"https://www.xiaohongshu.com/explore/6a32c42c0000000015024cee","authorName":"该睡觉了","publishTime":"2026-06-18","likeCount":6,"contentType":"测评","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"我的娘嘞！好佩服设计师的脑洞","noteUrl":"https://www.xiaohongshu.com/explore/6927ce09000000000d037316","authorName":"salttttt","publishTime":"2025-11-27","likeCount":6,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小U寄信人完美收到","noteUrl":"https://www.xiaohongshu.com/explore/697353b0000000002103ee66","authorName":"旺大爷","publishTime":"2026-01-23","likeCount":6,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"u这么可爱","noteUrl":"https://www.xiaohongshu.com/explore/6a351bf2000000002201a778","authorName":"loloco","publishTime":"2026-06-20","likeCount":5,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小U初代珍藏「未寄出的信」系列","noteUrl":"https://www.xiaohongshu.com/explore/69f2fede000000001e00f0b0","authorName":"小白","publishTime":"2026-05-02","likeCount":5,"contentType":"合集","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"鸡窝头也太可爱了","noteUrl":"https://www.xiaohongshu.com/explore/6a355563000000001700b589","authorName":"惶恐的煎饺","publishTime":"2026-06-20","likeCount":4,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小U城市印象系列盲盒","noteUrl":"https://www.xiaohongshu.com/explore/6a313fd40000000008024d18","authorName":"深氪思考","publishTime":"2026-06-17","likeCount":4,"contentType":"合集","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小黑嘿","noteUrl":"https://www.xiaohongshu.com/explore/6a2c0df70000000035033d10","authorName":"小黑嘿","publishTime":"2026-06-12","likeCount":3,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"新ip真的好爱呀～","noteUrl":"https://www.xiaohongshu.com/explore/69345492000000001e0392cf","authorName":"卷毛敲Q干饭兔子","publishTime":"2025-12-07","likeCount":3,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"金色海浪和黑白菲林！","noteUrl":"https://www.xiaohongshu.com/explore/6a38333f000000001101b51c","authorName":"二白","publishTime":"2026-06-22","likeCount":2,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"鸭梨","noteUrl":"https://www.xiaohongshu.com/explore/6a33cb9300000000150265c1","authorName":"鸭梨","publishTime":"2026-06-19","likeCount":2,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小u新品","noteUrl":"https://www.xiaohongshu.com/explore/6a2bf9aa000000000802484c","authorName":"BiBiBi","publishTime":"2026-06-12","likeCount":1,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"小u城市印象盲盒","noteUrl":"https://www.xiaohongshu.com/explore/6a30aff20000000016027402","authorName":"Nana","publishTime":"2026-06-16","likeCount":0,"contentType":"晒单","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""},
+{"noteTitle":"爱了爱了～","noteUrl":"https://www.xiaohongshu.com/explore/6917f3da000000000d03fb60","authorName":"兔兔","publishTime":"2025-11-15","likeCount":0,"contentType":"KOL种草","marketingTactic":"KOL种草","isReusable":false,"reusableFor":"通用","reuseNote":""}
+]};
+
+// ---- Build charts ----
+(function(){
+  // Content type distribution
+  const ct = {}; DATA.notes.forEach(n => { ct[n.contentType] = (ct[n.contentType]||0)+1; });
+  const ctSorted = Object.entries(ct).sort((a,b) => b[1]-a[1]);
+  const ctMax = ctSorted[0][1];
+  const ctColors = { '开箱':'accent','晒单':'teal','KOL种草':'rose','合集':'gold','测评':'teal','教程':'rose','资讯':'gold' };
+  document.getElementById('chart-ct').innerHTML = ctSorted.map(([k,v]) =>
+    '<div class="bar-row"><span class="bar-label">'+k+'</span><div class="bar-track"><div class="bar-fill '+ (ctColors[k]||'accent') +'" style="width:'+(v/ctMax*100)+'%"></div></div><span class="bar-val">'+v+'</span></div>'
+  ).join('');
+
+  // Marketing tactic distribution
+  const mt = {}; DATA.notes.forEach(n => { mt[n.marketingTactic] = (mt[n.marketingTactic]||0)+1; });
+  const mtSorted = Object.entries(mt).sort((a,b) => b[1]-a[1]);
+  const mtMax = mtSorted[0][1];
+  document.getElementById('chart-mt').innerHTML = mtSorted.map(([k,v]) =>
+    '<div class="bar-row"><span class="bar-label">'+k+'</span><div class="bar-track"><div class="bar-fill '+(k==='KOL种草'?'accent':k==='盲盒机制'?'rose':'teal')+'" style="width:'+(v/mtMax*100)+'%"></div></div><span class="bar-val">'+v+'</span></div>'
+  ).join('');
+
+  // TOP 10 table
+  const top10 = DATA.notes.slice(0,10);
+  const tagCls = { '开箱':'tag-open','测评':'tag-review','晒单':'tag-share','KOL种草':'tag-share','资讯':'tag-info','合集':'tag-info','教程':'tag-other' };
+  document.getElementById('top10-table').innerHTML = top10.map((n,i) =>
+    '<tr><td>'+(i+1)+'</td><td><a href="'+n.noteUrl+'" target="_blank">'+n.noteTitle+'</a></td><td>'+n.authorName+'</td><td class="num">'+n.likeCount+'</td><td><span class="tag '+ (tagCls[n.contentType]||'tag-other') +'">'+n.contentType+'</span></td><td>'+n.searchKeyword||''+'</td></tr>'
+  ).join('');
+
+  // Nav active tracking
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector('.nav a[href="#'+e.target.id+'"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+</body>
+</html>
