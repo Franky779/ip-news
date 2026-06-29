@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新文创老贾聊IP-IP圈本周发生了啥？ | 2026-06-22 至 2026-06-28</title>
+<style>
+  @import url('https://chinese-font.netlify.app/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css');
+
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a5a6e;
+    --text-muted: #8a8a9a;
+    --accent: #e85d4a;
+    --accent-light: #fef0ee;
+    --border: #ede8e3;
+    --border-light: #f5f2ee;
+    --tag-bg: #f0ece6;
+    --tag-text: #6b6560;
+    --shadow: 0 1px 3px rgba(26,26,46,0.06), 0 4px 12px rgba(26,26,46,0.04);
+    --shadow-hover: 0 2px 8px rgba(26,26,46,0.08), 0 8px 24px rgba(26,26,46,0.06);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'LXGW WenKai', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  .back-to-list {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: oklch(30% 0.06 28 / 0.92);
+    border: 1px solid oklch(45% 0.10 28 / 0.5);
+    border-radius: 999px;
+    font-size: 13px;
+    color: oklch(96% 0.01 70);
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px oklch(20% 0.02 50 / 0.25);
+    transition: all .2s ease;
+    letter-spacing: 0.02em;
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .back-to-list:hover {
+    color: oklch(98% 0.02 70);
+    border-color: oklch(55% 0.14 28 / 0.7);
+    transform: translateX(-2px);
+    background: oklch(28% 0.08 28 / 0.95);
+    text-decoration: none;
+  }
+  .back-to-list svg { flex-shrink: 0; }
+  @media print { .back-to-list { display: none; } }
+
+  .header {
+    text-align: center;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .header .date-range {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+    text-align: center;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover { box-shadow: var(--shadow); }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .section { margin-bottom: 48px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section-icon { font-size: 22px; line-height: 1; }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .section-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+
+  .summary-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .summary-box p:last-child { margin-bottom: 0; }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .news-card {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+
+  .news-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+
+  .news-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .news-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    margin-top: 2px;
+  }
+
+  .news-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .news-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+  }
+
+  .news-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 500;
+  }
+
+  .news-tag.important {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .news-tag.overseas {
+    background: #e8f4fd;
+    color: #2563eb;
+  }
+
+  .news-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .news-summary {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: 40px;
+  }
+
+  .news-link {
+    margin-top: 10px;
+    padding-left: 40px;
+  }
+
+  .news-link a {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .news-link a:hover { text-decoration: underline; }
+
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+  }
+
+  .event-table th {
+    background: var(--bg);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    vertical-align: top;
+  }
+
+  .event-table tr:last-child td { border-bottom: none; }
+
+  .event-table tr:hover td { background: var(--accent-light); }
+
+  .event-name {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .event-date {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+
+  .footer-brand {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .footer-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .footer-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 20px 16px 40px; }
+    .header { padding: 32px 0 28px; }
+    .header h1 { font-size: 24px; }
+    .news-card { padding: 16px 18px; }
+    .news-meta, .news-summary, .news-link { padding-left: 0; }
+    .news-card-header { gap: 10px; }
+    .event-table { font-size: 12px; }
+    .event-table th, .event-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-to-list" aria-label="返回首页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>返回</a>
+
+<div class="container">
+
+  <header class="header">
+    <div class="header-badge">IP NEWS Weekly</div>
+    <h1>新文创老贾聊IP<br>IP圈本周发生了啥？</h1>
+    <p class="subtitle">动漫IP · 潮玩 · 文创 · ACG · 二次元</p>
+    <div class="date-range">
+      <span>📅</span>
+      <span>2026-06-22 至 2026-06-28</span>
+    </div>
+  </header>
+
+  <div class="overview">
+    <div class="stat-card">
+      <div class="stat-number">12</div>
+      <div class="stat-label">资讯总条数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10</div>
+      <div class="stat-label">国内资讯</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">2</div>
+      <div class="stat-label">海外动态</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10</div>
+      <div class="stat-label">涉及IP/品牌</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3</div>
+      <div class="stat-label">展会活动</div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3><span>📝</span> 本周行业小结</h3>
+    <p>
+      6月22日到28日这一周，IP 行业呈现<strong>「国漫片单大年、潮玩泡沫退烧、体育IP接棒世界杯」</strong>三条主线。
+    </p>
+    <p>
+      <strong>国漫进入"系统化上新"阶段</strong>，腾讯视频动漫年度发布用7小时直播抛出94个项目、26部全新IP全球首发，国产动画首次以"制作方"身份参与《猫武士》国际合作。但行业媒体也指出，片单里老IP拆分、续作占比较高，新IP真正破圈仍是难题，商业化距离B站《凡人修仙传》4025万众筹纪录仍有差距。
+    </p>
+    <p>
+      <strong>潮玩市场理性回归</strong>，泡泡玛特LABUBU"复古理发店"系列发售半小时即现"破发"，常规款跌幅超30%，与此前隐藏款近26倍溢价形成鲜明对比。官方百万量级补货+大众消费品定位，正在挤出黄牛泡沫，考验IP长期价值运营。
+    </p>
+    <p>
+      <strong>体育大年带动IP衍生升温</strong>，元隆雅图借世界杯窗口推出阿根廷、葡萄牙等国家队正版潮玩周边，并在全国20多个城市开设足球主题快闪店；LABUBU亮相世界杯开幕式也被视为中国潮玩IP从"产品出海"迈向"文化符号出海"的关键一步。
+    </p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🔥</span>
+      <h2 class="section-title">热门资讯</h2>
+      <span class="section-count">10 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">2026腾讯视频动漫年度发布：94个项目、26部全新IP全球首发</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">行业大事件</span>
+          <span class="news-tag">腾讯视频动漫</span>
+          <span class="news-date">2026-06-22</span>
+        </div>
+        <p class="news-summary">6月22日，腾讯视频动漫用近7小时直播发布94个项目，包括26部全新IP全球首发、32部人气IP制作新进度及超36部动漫精品，并提出"日日有新番可期"的系统化内容排播目标。</p>
+        <div class="news-link"><a href="https://www.sohu.com/a/1040451228_121184938" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">LABUBU发布新品遇冷！多款拆盒上市即"破发"，价格降幅超30%</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">热点</span>
+          <span class="news-tag">泡泡玛特 × LABUBU</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">6月25日，泡泡玛特LABUBU"复古理发店"系列线上发售，多个常规款半小时内成交价跌破159元发行价，"雨过天晴""浅蓝序曲"等跌幅超30%，与此前隐藏款近26倍溢价形成反差。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/wm/2026-06-26/doc-inieszry5259069.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">元隆雅图加码体育IP衍生，世界杯期间全国开设20+足球主题快闪店</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">体育IP</span>
+          <span class="news-tag">元隆雅图 × 世界杯</span>
+          <span class="news-date">2026-06-23</span>
+        </div>
+        <p class="news-summary">元隆雅图旗下"元隆元创"联手聚星动力，推出阿根廷、葡萄牙、法国、西班牙等国家队正版周边，并自6月12日起在全国20多个城市限时开放足球主题快闪店。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/cj/2026-06-23/doc-iniekvar6428254.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">泡泡玛特 ×《怪物猎人》联名随从猫盲盒6月26日全球同步发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">泡泡玛特 × 怪物猎人</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">泡泡玛特与《怪物猎人》联名推出随从猫盲盒，共13款设计（12常规款+1隐藏款），于怪物猎人二十周年之际全球同步发售。</p>
+        <div class="news-link"><a href="https://www.bilibili.com/video/BV1o37T6fE6m/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">老IP式微、新IP爆雷，腾讯2026动漫新片单还剩啥？</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">行业观察</span>
+          <span class="news-tag">腾讯视频动漫</span>
+          <span class="news-date">2026-06-24</span>
+        </div>
+        <p class="news-summary">行业媒体统计指出，腾讯2026片单94部作品中实际新IP约17部，大量为老IP拆分、续作或往年已官宣项目；新IP破圈与商业化仍是平台待解难题。</p>
+        <div class="news-link"><a href="https://www.163.com/dy/article/L06896VH05566TJY.html" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">LABUBU亮相2026世界杯，中国潮玩出海迈入文化符号竞争</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">出海</span>
+          <span class="news-tag">泡泡玛特 × FIFA世界杯</span>
+          <span class="news-date">2026-06-25</span>
+        </div>
+        <p class="news-summary">据蓝瀚互动消息，泡泡玛特旗下IP LABUBU亮相2026美加墨世界杯开幕式，完成中国原创潮玩IP在世界级赛事的首次亮相，FIFA联名系列首日预售突破10万套。</p>
+        <div class="news-link"><a href="https://stock.10jqka.com.cn/20260625/c677701762.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">7</span>
+          <h3 class="news-title">2026上海国际礼品及文创展览会6月26日开幕，"谷子"进礼单成新宠</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">展会</span>
+          <span class="news-tag">上海礼品展</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">6月26日至28日，2026上海国际礼品及文创展览会在上海新国际博览中心举办，特设"谷子文化专区"与"潮玩进礼单"主题沙龙，探索二次元周边在礼赠场景的落地。</p>
+        <div class="news-link"><a href="https://www.163.com/dy/article/KOFQS0AG0556L6NN.html" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">8</span>
+          <h3 class="news-title">2026腾讯视频动漫年度发布｜94部作品开席，这份动漫饕餮菜单请查收</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">片单</span>
+          <span class="news-tag">腾讯视频动漫</span>
+          <span class="news-date">2026-06-22</span>
+        </div>
+        <p class="news-summary">腾讯视频动漫公布五大主题片单，《仙逆剧场版：弑仙之战》《剑来：十三之争》《DNF》《王者荣耀：荣耀之章 宝藏篇》等头部IP剧场版与年番进度集中曝光。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/wm/2026-06-22/doc-iniekknt9781181.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">9</span>
+          <h3 class="news-title">腾讯视频动漫年度发布26部全新IP，全年94部作品，日日有新番可期</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">官方发布</span>
+          <span class="news-tag">腾讯视频动漫</span>
+          <span class="news-date">2026-06-24</span>
+        </div>
+        <p class="news-summary">腾讯方面强调，2026片单重在把"新"从偶发惊喜变成可预期常态，从IP源头选品、国际合作、经典焕新到技术赋能构建系统化内容生产能力。</p>
+        <div class="news-link"><a href="https://news.qq.com/rain/a/20260624A03FSC00" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">10</span>
+          <h3 class="news-title">2026北京国际文创展与潮玩展6月26日开幕</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">展会</span>
+          <span class="news-tag">北京文创展与潮玩展</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">2026北京国际文创展与潮玩展于6月26日至28日在中国国际展览中心（朝阳馆）举行，以"文创赋能，潮玩未来"为主题，汇聚超500家海内外优质展商。</p>
+        <div class="news-link"><a href="https://www.sohu.com/a/960673494_122571232" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">海外动态</h2>
+      <span class="section-count">2 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">【海外】国产动画首次以"制作方"身份参与《猫武士》国际合作</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag overseas">海外</span>
+          <span class="news-tag">国际合作</span>
+          <span class="news-date">2026-06-22</span>
+        </div>
+        <p class="news-summary">腾讯视频动漫年度发布会上，《猫武士》首部官方动画剧集亮相，由腾讯视频携手中、美、英动画团队共同打造，迪士尼拿下海外发行，国产动画出海从"版权输出方"转向"制作方"。</p>
+        <div class="news-link"><a href="https://www.sohu.com/a/1040451228_121184938" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">【海外】LABUBU亮相2026美加墨世界杯开幕式，FIFA联名预售破10万套</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag overseas">海外</span>
+          <span class="news-tag">潮玩出海</span>
+          <span class="news-date">2026-06-25</span>
+        </div>
+        <p class="news-summary">泡泡玛特旗下IP LABUBU以特邀嘉宾身份亮相2026世界杯开幕式，完成中国原创潮玩IP在世界级赛事的首秀，与FIFA联名系列首日预售突破10万套。</p>
+        <div class="news-link"><a href="https://stock.10jqka.com.cn/20260625/c677701762.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📌</span>
+      <h2 class="section-title">品牌动态</h2>
+      <span class="section-count">6 条</span>
+    </div>
+    <div class="news-list">
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">1</span>
+          <h3 class="news-title">泡泡玛特LABUBU"复古理发店"系列发售半小时即现破发</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">新品</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">LABUBU新系列常规款在二手平台成交价跌破159元发行价，隐藏款"迷雾白噪音"仍溢价至855元，市场呈现分化。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/wm/2026-06-26/doc-inieszry5259069.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">2</span>
+          <h3 class="news-title">泡泡玛特 ×《怪物猎人》联名随从猫盲盒全球发售</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">联名</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">联名系列共13款设计，借怪物猎人二十周年节点全球同步上线。</p>
+        <div class="news-link"><a href="https://www.bilibili.com/video/BV1o37T6fE6m/" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">3</span>
+          <h3 class="news-title">元隆雅图体育IP衍生与潮玩融合打开新空间</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag important">体育IP</span>
+          <span class="news-tag">元隆雅图</span>
+          <span class="news-date">2026-06-23</span>
+        </div>
+        <p class="news-summary">元隆雅图与聚星动力推出多支世界杯强队正版周边，涵盖搪胶毛绒公仔挂件盲盒、Q版毛绒手办、立体冰箱贴等潮玩单品。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/cj/2026-06-23/doc-iniekvar6428254.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">4</span>
+          <h3 class="news-title">腾讯视频动漫发布94部作品片单</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">内容平台</span>
+          <span class="news-tag">腾讯视频</span>
+          <span class="news-date">2026-06-22</span>
+        </div>
+        <p class="news-summary">7小时直播、五大主题片单、94部新作，涵盖年番、剧场版、新IP首发与人气IP续作。</p>
+        <div class="news-link"><a href="https://finance.sina.com.cn/wm/2026-06-22/doc-iniekknt9781181.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">5</span>
+          <h3 class="news-title">LABUBU借世界杯完成世界级赛事首秀</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">出海</span>
+          <span class="news-tag">泡泡玛特</span>
+          <span class="news-date">2026-06-25</span>
+        </div>
+        <p class="news-summary">FIFA联名系列首日预售突破10万套，标志中国潮玩IP进入文化符号全球流通阶段。</p>
+        <div class="news-link"><a href="https://stock.10jqka.com.cn/20260625/c677701762.shtml" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-card-header">
+          <span class="news-number">6</span>
+          <h3 class="news-title">上海礼品展与北京文创展同步呈现"谷子"与潮玩</h3>
+        </div>
+        <div class="news-meta">
+          <span class="news-tag">渠道</span>
+          <span class="news-tag">礼品/文创展会</span>
+          <span class="news-date">2026-06-26</span>
+        </div>
+        <p class="news-summary">两大展会集中展示谷子、盲盒、手办等品类，推动潮玩进入礼赠与商务集采场景。</p>
+        <div class="news-link"><a href="https://www.163.com/dy/article/KOFQS0AG0556L6NN.html" target="_blank" rel="noopener noreferrer">🔗 阅读原文</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🎪</span>
+      <h2 class="section-title">展会活动</h2>
+      <span class="section-count">3 条</span>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-secondary);margin-bottom:14px;font-weight:600;">📅 已结束/进行中</h3>
+    <table class="event-table">
+      <thead>
+        <tr>
+          <th>活动名称</th>
+          <th>时间</th>
+          <th>地点</th>
+          <th>主要内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="event-name">2026腾讯视频动漫年度发布会</span></td>
+          <td><span class="event-date">2026-06-22</span></td>
+          <td>线上直播</td>
+          <td>94个项目、26部全新IP全球首发，7小时直播</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026上海国际礼品及文创展览会</span></td>
+          <td><span class="event-date">2026-06-26 至 28</span></td>
+          <td>上海新国际博览中心</td>
+          <td>谷子文化专区、潮玩进礼单主题沙龙、IP授权对接会</td>
+        </tr>
+        <tr>
+          <td><span class="event-name">2026北京国际文创展与潮玩展</span></td>
+          <td><span class="event-date">2026-06-26 至 28</span></td>
+          <td>中国国际展览中心（朝阳馆）</td>
+          <td>超500家展商，潮玩、AI玩具、博物馆文创等展区</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-brand">新文创老贾聊IP-IP圈本周发生了啥？</div>
+    <div class="footer-desc">由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+    <div class="footer-date">2026-06-29</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
