@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【品类报告】手办/FIGURE行业深度研究报告</title>
+<style>
+:root {
+  --bg: #f5f3f0;
+  --surface: #ffffff;
+  --surface-2: #faf8f5;
+  --text: #1a1714;
+  --text-secondary: #5c554d;
+  --text-tertiary: #8a8279;
+  --accent: #c45c26;
+  --accent-light: #e8a87c;
+  --accent-bg: #fdf1e8;
+  --accent-dark: #8a3f19;
+  --border: #e8e4df;
+  --border-light: #f0ece7;
+  --shadow: rgba(26, 23, 20, 0.06);
+  --shadow-lg: rgba(26, 23, 20, 0.1);
+  --success: #4a7c59;
+  --warning: #b8860b;
+  --danger: #b34141;
+  --header-height: 56px;
+  --radius: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 16px); }
+body {
+  font-family: "LXGW WenKai", "Source Han Serif CN", "Noto Serif SC", "Songti SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+}
+.header {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--header-height);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; z-index: 1000;
+  box-shadow: 0 1px 3px var(--shadow);
+}
+.header-title { font-size: 16px; font-weight: 600; color: var(--accent); letter-spacing: 0.5px; }
+.header-btn {
+  background: none; border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 6px 14px; border-radius: 6px;
+  cursor: pointer; font-size: 13px;
+  transition: all 0.2s;
+}
+.header-btn:hover { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-light); }
+.layout { display: flex; margin-top: var(--header-height); min-height: calc(100vh - var(--header-height)); }
+.toc-sidebar {
+  width: 270px; background: var(--surface-2); border-right: 1px solid var(--border);
+  position: fixed; top: var(--header-height); bottom: 0; left: 0;
+  overflow-y: auto; padding: 20px 0; z-index: 100;
+  transition: transform 0.3s;
+}
+.toc-sidebar.hidden { transform: translateX(-100%); }
+.toc-title {
+  font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--text-tertiary); padding: 0 20px 12px;
+  border-bottom: 1px solid var(--border-light); margin-bottom: 8px;
+}
+.toc-item {
+  display: block; padding: 6px 20px; color: var(--text-secondary);
+  text-decoration: none; font-size: 13px; line-height: 1.5;
+  border-left: 3px solid transparent; transition: all 0.15s;
+}
+.toc-item:hover { color: var(--accent); background: var(--surface); }
+.toc-item.active { color: var(--accent); background: var(--accent-bg); border-left-color: var(--accent); font-weight: 500; }
+.toc-item.l2 { padding-left: 32px; font-size: 12px; }
+.toc-item.l3 { padding-left: 44px; font-size: 12px; color: var(--text-tertiary); }
+.content-wrapper { flex: 1; margin-left: 270px; transition: margin-left 0.3s; padding: 40px 48px; max-width: 960px; }
+.content-wrapper.full { margin-left: 0; max-width: 1000px; margin: 0 auto; }
+
+.cover {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border-light);
+  padding: 60px 0 48px;
+  margin-bottom: 48px;
+}
+.cover-badge {
+  display: inline-block; padding: 4px 16px; border: 1px solid var(--accent);
+  border-radius: 20px; font-size: 12px; letter-spacing: 1px;
+  color: var(--accent); margin-bottom: 20px;
+}
+.cover h1 { font-size: clamp(28px, 4vw, 40px); text-align: center; margin-top: 0; margin-bottom: 12px; }
+.cover .subtitle { text-align: center; color: var(--text-secondary); font-size: 17px; margin-bottom: 32px; }
+.cover-meta {
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+  font-size: 13px; color: var(--text-tertiary);
+}
+
+h1, h2, h3, h4 {
+  font-family: "LXGW WenKai", "Source Han Serif CN", "Noto Serif SC", serif;
+  font-weight: 600; line-height: 1.3; color: var(--text);
+}
+h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px; margin-top: 2.5em; margin-bottom: 0.8em;
+}
+h3 { font-size: clamp(18px, 2.5vw, 22px); color: var(--accent); margin-top: 2em; margin-bottom: 0.5em; }
+h4 { font-size: 17px; margin-top: 1.5em; margin-bottom: 0.4em; }
+p { margin-bottom: 1em; text-align: justify; color: var(--text-secondary); }
+p strong { color: var(--text); }
+
+blockquote {
+  border-left: 3px solid var(--accent); padding: 16px 24px; margin: 1.5em 0;
+  background: var(--accent-bg); border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic; color: var(--text-secondary);
+}
+blockquote p { margin: 0; }
+
+ul, ol { margin: 0.8em 0 0.8em 1.5em; color: var(--text-secondary); }
+li { margin: 0.3em 0; }
+
+.kpi-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  margin: 32px 0;
+}
+.kpi-card {
+  background: var(--surface); border-radius: var(--radius); padding: 24px 20px;
+  border: 1px solid var(--border); text-align: center;
+  transition: transform 0.2s;
+}
+.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px var(--shadow-lg); }
+.kpi-number { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1.2; }
+.kpi-label { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+.kpi-sub { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; }
+
+.table-wrap { overflow-x: auto; margin: 1.5em 0; border-radius: var(--radius); border: 1px solid var(--border); }
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+  background: var(--surface);
+}
+.data-table th {
+  background: var(--accent-bg); color: var(--accent-dark); font-weight: 600;
+  padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--accent-light);
+  font-size: 13px;
+}
+.data-table td { padding: 10px 16px; border-bottom: 1px solid var(--border-light); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--surface-2); }
+.data-table tr:nth-child(even) td { background: rgba(196, 92, 38, 0.02); }
+
+.chart-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  margin: 1.5em 0;
+}
+.chart-header { margin-bottom: 16px; }
+.chart-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.chart-subtitle { font-size: 12px; color: var(--text-tertiary); margin-top: 2px; }
+.chart-box canvas { width: 100%; height: 380px; display: block; }
+.chart-box .c-sm { height: 300px; }
+.chart-footer { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-light); font-size: 12px; color: var(--text-tertiary); display: flex; justify-content: space-between; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 500;
+}
+.tag-a { background: var(--accent-bg); color: var(--accent); }
+.tag-s { background: rgba(74,124,89,0.1); color: var(--success); }
+.tag-w { background: rgba(184,134,11,0.1); color: var(--warning); }
+.tag-d { background: rgba(179,65,65,0.1); color: var(--danger); }
+
+.timeline { position: relative; padding-left: 28px; margin: 24px 0; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 28px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -22px; top: 4px; width: 12px; height: 12px;
+  background: var(--surface); border: 3px solid var(--accent); border-radius: 50%;
+}
+.timeline-item.highlight::before { border-color: var(--accent); background: var(--accent); }
+.timeline-date { font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+.timeline-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.timeline-desc { font-size: 14px; color: var(--text-secondary); }
+
+.info-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+.info-card {
+  background: var(--surface); border-radius: var(--radius); padding: 20px;
+  border: 1px solid var(--border);
+}
+.info-card-title { font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+.info-card-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+.risk-table { margin: 1.5em 0; }
+.risk-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.risk-label { width: 120px; font-size: 14px; font-weight: 600; color: var(--text); }
+.risk-track { flex: 1; height: 8px; background: var(--border-light); border-radius: 4px; overflow: hidden; }
+.risk-fill { height: 100%; border-radius: 4px; }
+.r-h .risk-fill { width: 85%; background: var(--danger); }
+.r-m .risk-fill { width: 55%; background: var(--warning); }
+.r-l .risk-fill { width: 30%; background: var(--success); }
+.risk-tag { font-size: 13px; width: 70px; text-align: right; }
+.r-h .risk-tag { color: var(--danger); }
+.r-m .risk-tag { color: var(--warning); }
+.r-l .risk-tag { color: var(--success); }
+
+.source-box { background: var(--accent-bg); border: 1px solid var(--accent-light); border-radius: var(--radius); padding: 24px; margin: 40px 0; }
+.source-box h4 { font-size: 16px; color: var(--accent); margin-top: 0; margin-bottom: 16px; }
+.source-box ol { padding-left: 20px; }
+.source-box li { font-size: 13px; color: var(--text-secondary); line-height: 2; }
+
+.footer { text-align: center; padding: 40px 24px; color: var(--text-tertiary); font-size: 13px; border-top: 1px solid var(--border); margin-top: 48px; }
+.footer p { text-align: center; margin: 4px 0; }
+
+@media (max-width: 1024px) {
+  .toc-sidebar { display: none; }
+  .content-wrapper { margin-left: 0; padding: 24px; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .three-col, .info-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .kpi-row { grid-template-columns: 1fr; }
+  .cover h1 { font-size: 26px; }
+  .content-wrapper { padding: 16px; }
+  .cover-meta { flex-direction: column; gap: 8px; align-items: center; }
+}
+@media print {
+  .header, .toc-sidebar { display: none; }
+  .content-wrapper { margin-left: 0; }
+  .kpi-card, .chart-box { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-title">【品类报告】手办/FIGURE行业深度研究报告</div>
+  <div class="header-actions">
+    <button class="header-btn" onclick="toggleToc()">目录</button>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="toc-sidebar" id="tocSidebar">
+    <div class="toc-title">目录</div>
+    <a class="toc-item active" href="#s1">执行摘要</a>
+    <a class="toc-item" href="#s2">行业概述</a>
+    <a class="toc-item l2" href="#s2a">定义与范围</a>
+    <a class="toc-item l2" href="#s2b">发展历程</a>
+    <a class="toc-item" href="#s3">市场规模</a>
+    <a class="toc-item" href="#s4">产业链分析</a>
+    <a class="toc-item" href="#s5">产业基地分布</a>
+    <a class="toc-item" href="#s6">消费群体画像</a>
+    <a class="toc-item" href="#s7">头部企业分析</a>
+    <a class="toc-item" href="#s8">电商平台数据</a>
+    <a class="toc-item" href="#s9">小红书舆情分析</a>
+    <a class="toc-item" href="#s10">未来趋势预测</a>
+    <a class="toc-item" href="#s11">风险点清单</a>
+    <a class="toc-item" href="#s12">横纵交汇洞察</a>
+    <a class="toc-item" href="#s13">数据来源</a>
+  </aside>
+
+  <div class="content-wrapper" id="contentWrapper">
+    <div class="cover">
+      <div style="text-align:center;"><span class="cover-badge">INDUSTRY RESEARCH REPORT</span></div>
+      <h1>手办/Figure产业深度研究报告</h1>
+      <p class="subtitle">从兴趣收藏到千亿赛道</p>
+      <div class="cover-meta">
+        <span>研究周期：2021-2026</span>
+        <span>四大电商平台 · 120条商品数据</span>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-number">1101亿</div>
+        <div class="kpi-label">2026年中国潮玩市场规模</div>
+        <div class="kpi-sub">社科院/中国动画学会联合预测</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">162亿</div>
+        <div class="kpi-label">2026年手办细分市场规模</div>
+        <div class="kpi-sub">智研咨询预测</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">24.8%</div>
+        <div class="kpi-label">手办市场复合增长率</div>
+        <div class="kpi-sub">2020-2024 CAGR</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">371.2亿</div>
+        <div class="kpi-label">泡泡玛特2025年营收</div>
+        <div class="kpi-sub">同比增长184.7%</div>
+      </div>
+    </div>
+
+    <h2 id="s1">一、执行摘要</h2>
+    <p>中国手办/figure产业走了二十多年，从给日本动漫做代工的厂区，长成了全球潮玩产业不可忽视的一股力量。社科院和动画学会联合预测，2026年中国潮玩市场能到1101亿元，手办这块大约162亿。泡泡玛特一家就占了371个亿，国产IP手办的份额从2020年的不到30%冲到了45%，国潮手办的销量一年翻了1.5倍。</p>
+    <p>这个产业在同时经历三场变化。品类上，盲盒不再是唯一的主角，搪胶毛绒、可动人偶、BJD都在抢份额。技术上，AI设计配3D打印再加智能制造，把整个生产链路重做了一遍。市场上，中国品牌不再只盯着国内，东南亚、欧美、中东都在铺。第一部潮玩国标也在2026年启动编制了——行业在从不那么体面的野蛮生长往规范化走。</p>
+    <p>当然，低端同质化卷得厉害，原创IP还是弱，盗版也没死透。千亿赛道的故事还早着呢。</p>
+
+    <h2 id="s2">二、行业概述</h2>
+    <h3 id="s2a">定义与范围</h3>
+    <p>手办/figure，就是把动漫、游戏、影视里的人物或角色做成实体的收藏级模型。按工艺和价位分：<strong>景品手办</strong>（几十到一百块，钢模注塑量产）、<strong>PVC比例手办/PF完成品</strong>（300-1000往上，主流收藏级）、<strong>GK树脂模型/雕像</strong>（数千到上万块，小批量手工）、<strong>可动人偶</strong>（500-2000，关节能动）、<strong>盲盒手办/Q版粘土人</strong>（59-129，盲抽）。</p>
+
+    <h3 id="s2b">发展历程</h3>
+    <p>中国手办大致走了五步。</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2000-2010</div>
+        <div class="timeline-title">代工纪元</div>
+        <div class="timeline-desc">汕头澄海、东莞长安承接万代、世嘉代工订单。少量水货手办通过淘宝C2C流入，售价800-1500元。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2010-2016</div>
+        <div class="timeline-title">萌芽生长</div>
+        <div class="timeline-desc">B站、AcFun兴起，二次元受众扩大。淘宝手办交易活跃，第一批职业卖家出现。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2017-2020</div>
+        <div class="timeline-title">爆发拐点</div>
+        <div class="timeline-desc">泡泡玛特引入Molly盲盒引爆市场，2018年售超500万个。盲盒经济成为全民话题。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2020-2024</div>
+        <div class="timeline-title">高速扩容</div>
+        <div class="timeline-desc">潮玩市场从229亿增至763亿。国产IP手办占比升至45%。泡泡玛特三年营收翻近6倍。</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-date">2025-2026</div>
+        <div class="timeline-title">结构转型</div>
+        <div class="timeline-desc">搪胶毛绒超越传统手办。AI+3D打印重构生产。首部潮玩国标启动编制。</div>
+      </div>
+    </div>
+
+    <h2 id="s3">三、市场规模与增长</h2>
+    <div class="two-col">
+      <div class="chart-box">
+        <div class="chart-header">
+          <div class="chart-title">中国潮玩及手办市场规模趋势</div>
+          <div class="chart-subtitle">2020-2026E，单位：亿元</div>
+        </div>
+        <canvas id="ch-market-line" height="380"></canvas>
+        <div class="chart-footer">
+          <span>数据来源：中研普华、智研咨询、社科院</span>
+          <span>2026E为预测值</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header">
+          <div class="chart-title">2026年潮玩各细分品类占比</div>
+          <div class="chart-subtitle">KPMG 2026年4月数据</div>
+        </div>
+        <canvas id="ch-market-pie" height="380"></canvas>
+        <div class="chart-footer">
+          <span>数据来源：KPMG潮玩行业全景洞察</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-title">各品类年增长率对比</div>
+        <div class="chart-subtitle">2025-2026年同比增长率</div>
+      </div>
+      <canvas id="ch-growth-bar" height="300"></canvas>
+    </div>
+
+    <h3>全球市场</h3>
+    <p>全球潮玩市场2024年大概418亿美元，亚太地区占了将近58%。QYResearch的数据说2025年全球PVC完成品手办（PF手办）卖了103.2亿美元。中国品牌正在从"世界工厂"往"全球潮玩文化参与者"的方向挪。</p>
+
+    <h2 id="s4">四、产业链分析</h2>
+    <div class="two-col">
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">产业链各环节毛利率对比</div></div>
+        <canvas id="ch-chain-profit" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">产业链价值分布示意</div></div>
+        <canvas id="ch-chain-pie" height="300"></canvas>
+      </div>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-title">上游 — IP原创与设计</div>
+        <div class="info-card-text">利润占比最高，毛利60-80%。泡泡玛特走"自有IP+艺术家签约"路线，毛利率超60%。万南拥有龙珠、高达等顶级IP矩阵。</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">中游 — 模具开发与生产制造</div>
+        <div class="info-card-text">毛利20-35%。珠三角聚集全国80%以上手办制造企业。工艺从钢模注塑向3D打印+精密注塑+手工涂装混合路线演进。</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">下游 — 渠道零售与消费者触达</div>
+        <div class="info-card-text">毛利40-55%。线上占比从35%（2020）跃升至68%（2025）。淘天系占线上72%，抖音系为第二大增量渠道。</div>
+      </div>
+    </div>
+
+    <h2 id="s5">五、产业基地分布</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>排名</th><th>基地</th><th>区域</th><th>核心优势</th><th>代表企业</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-a">1</span></td><td><strong>东莞</strong></td><td>广东</td><td>模具产业集群、代工成熟度最高</td><td>泡泡玛特代工厂、万代认证厂</td></tr>
+          <tr><td>2</td><td><strong>汕头澄海</strong></td><td>广东</td><td>玩具产业链最完整、成本低</td><td>大量出口型玩具/手办代工厂</td></tr>
+          <tr><td>3</td><td><strong>北京</strong></td><td>北京</td><td>IP运营公司总部集中、设计人才聚集</td><td>泡泡玛特总部、52TOYS</td></tr>
+          <tr><td>4</td><td><strong>义乌</strong></td><td>浙江</td><td>小商品供应链、跨境物流效率高</td><td>潮玩跨境卖家</td></tr>
+          <tr><td>5</td><td><strong>石排</strong>（东莞辖区）</td><td>广东</td><td>手办模型专业厂聚集</td><td>中小型GK/雕像工作室</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="s6">六、消费群体画像</h2>
+    <div class="three-col">
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">年龄分布</div></div>
+        <canvas id="ch-age" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">性别比例</div></div>
+        <canvas id="ch-gender" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">地域分布</div></div>
+        <canvas id="ch-region" height="300"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-header">
+        <div class="chart-title">消费偏好多维分析</div>
+        <div class="chart-subtitle">价格敏感度 / 品牌忠诚度 / 设计审美 / 社交属性 / 收藏意愿 / 情绪价值</div>
+      </div>
+      <canvas id="ch-radar" height="300"></canvas>
+    </div>
+
+    <h3>消费行为</h3>
+    <ul>
+      <li>年均消费：Z世代人均年潮玩消费超2000元，手办消费者整体人均约1440元</li>
+      <li>价格偏好：101-300元最受欢迎（40.28%），千元以上仅占2.08%。价格是首要关注因素（43.29%）</li>
+      <li>购买动机：情绪价值/自我奖励（56.3%）、收藏/限量（82.18%愿为限量版付高价）、桌面装饰（46.76%）、送礼</li>
+      <li>购买渠道：线上占绝对主导（58%-72%），淘天系第一、抖音系第二、京东第三</li>
+    </ul>
+
+    <h2 id="s7">七、头部企业分析</h2>
+    <p>行业CR5大约22%-25%，属于"一超多强加一条长尾巴"的格局。</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>排名</th><th>企业</th><th>2025营收</th><th>市占率</th><th>核心优势</th><th>趋势</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-a">1</span></td><td><strong>泡泡玛特</strong></td><td>371.2亿</td><td>8.5-10%</td><td>自有IP矩阵、全球化先发</td><td>↑ 集团化加速</td></tr>
+          <tr><td>2</td><td><strong>万代南梦宫（中国）</strong></td><td>中国区约60-80亿</td><td>-</td><td>IP帝国、品控标准</td><td>↑ 市场加码</td></tr>
+          <tr><td>3</td><td><strong>TOP TOY</strong></td><td>GMV 42亿</td><td>-</td><td>线下334家店、全球供应链</td><td>↑ 美国首店已开</td></tr>
+          <tr><td>4</td><td><strong>52TOYS</strong></td><td>估值42亿+</td><td>-</td><td>原创设计（猛兽匣）</td><td>↑ 推1000+新品</td></tr>
+          <tr><td>5</td><td><strong>寻找独角兽</strong></td><td>零售约30-40亿</td><td>~4%</td><td>中高端艺术定位</td><td>→ 稳定增长</td></tr>
+          <tr><td>6</td><td><strong>奥飞娱乐</strong></td><td>盲盒14.22亿</td><td>-</td><td>供应链强、IP库大</td><td>→ 潮玩品牌转型</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">头部企业市场份额</div></div>
+        <canvas id="ch-ent-share" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">泡泡玛特品类结构变化</div></div>
+        <canvas id="ch-ent-cat" height="300"></canvas>
+      </div>
+    </div>
+
+    <blockquote>泡泡玛特的成功和隐忧，是这面镜子最好看的地方。它证明了中国消费品牌可以通过原创IP加全渠道再加全球化，在存量市场里杀出增量。但品类从手办急速转向搪胶毛绒也在暗示——传统手办的天花板比行业以为的来得更快。</blockquote>
+
+    <h2 id="s8">八、电商平台商品数据洞察</h2>
+    <p>2026年6月30日，从淘宝、京东、1688、闲鱼四个平台各取了30条手办商品数据，一共120条。</p>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>平台</th><th>样本数</th><th>价格区间</th><th>主力价格带</th><th>特征</th></tr></thead>
+        <tbody>
+          <tr><td><strong>淘宝</strong></td><td>30</td><td>&yen;9-&yen;128</td><td>&yen;20-&yen;60</td><td>中低价为主，国产IP占比高</td></tr>
+          <tr><td><strong>京东</strong></td><td>30</td><td>&yen;28.8-&yen;149200</td><td>&yen;100-&yen;400</td><td>均价最高，品牌自营旗舰店居多</td></tr>
+          <tr><td><strong>1688</strong></td><td>30</td><td>&yen;3.55-&yen;35</td><td>&yen;5-&yen;20</td><td>批发起步价极低</td></tr>
+          <tr><td><strong>闲鱼</strong></td><td>30</td><td>&yen;28.66-&yen;988</td><td>&yen;100-&yen;300</td><td>二手+全新混搭，限量款溢价明显</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">价格带分布（四平台综合）</div></div>
+        <canvas id="ch-price" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">各平台均价对比</div></div>
+        <canvas id="ch-plat-price" height="300"></canvas>
+      </div>
+    </div>
+
+    <p><strong>几个发现：</strong>1688出厂价集中在3-20元，终端售价翻5-20倍，渠道加价率高。京东客单价显著高于淘宝，大量品牌自营旗舰店推高了均价。闲鱼限量款、绝版款溢价显著，手办具备一定"资产属性"。国产IP的上架速度已赶上日系IP——鸣潮、原神、凡人修仙传等国风游戏手办的新品丰富度与海贼王、火影相当。</p>
+
+    <h2 id="s9">九、小红书平台舆情分析</h2>
+    <div class="three-col">
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">情感倾向分布</div></div>
+        <canvas id="ch-sentiment" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">内容形态分布</div></div>
+        <canvas id="ch-xhs-type" height="300"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-header"><div class="chart-title">展现形式占比</div></div>
+        <canvas id="ch-xhs-format" height="300"></canvas>
+      </div>
+    </div>
+
+    <p><strong>偏正面（约65%）：</strong>高频词是"陪伴感""悦己"；"盲抽的快乐"——不确定性本身就是乐趣；"国产设计越来越好了"。</p>
+    <p><strong>偏负面（约20%）：</strong>"价格虚高"持续最久；"品控翻车"反复曝光；"又来圈钱了"审美疲劳；"祖国版真香"——价格敏感用户在流失。</p>
+    <p><strong>中性讨论（约15%）：</strong>二级市场价格、品牌对比评测、手办柜和展示场景等。</p>
+
+    <h2 id="s10">十、未来趋势预测</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2026下半年-2027</div>
+        <div class="timeline-title">品类多元化 / AI改造全链路 / 首部国标落地</div>
+        <div class="timeline-desc">手办边界模糊化，搪胶毛绒、可动人偶、BJD持续增长。AI把开发周期从数月压到数天。国标清洗不合规中小厂。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2027-2028</div>
+        <div class="timeline-title">全球化2.0 / 二手交易平台化</div>
+        <div class="timeline-desc">从东南亚向欧美二次出海，LABUBU式文化输出增多。专业手办鉴定交易平台可能出现。</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-date">2028-2030+</div>
+        <div class="timeline-title">千亿到三千亿 / 数字实体融合</div>
+        <div class="timeline-desc">2030年行业规模或突破3300亿。数字手办、AR交互、NFC芯片、AI对话——科技与潮玩的交叉处是新命题。</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>趋势方向</th><th>时间</th><th>置信度</th><th>驱动力</th><th>机会</th><th>风险</th></tr></thead>
+        <tbody>
+          <tr><td><strong>品类多元化</strong></td><td>2026-2027</td><td><span class="tag tag-a">高</span></td><td>需求迁移</td><td>新品类机会</td><td>同质化</td></tr>
+          <tr><td><strong>AI改造全链路</strong></td><td>2026-2028</td><td><span class="tag tag-a">高</span></td><td>技术降本</td><td>设计效率飞跃</td><td>设计门槛降低</td></tr>
+          <tr><td><strong>全球化2.0</strong></td><td>2027-2028</td><td><span class="tag tag-w">中高</span></td><td>出海积累</td><td>文化输出+增量</td><td>地缘风险</td></tr>
+          <tr><td><strong>国标落地</strong></td><td>2026-2028</td><td><span class="tag tag-a">高</span></td><td>政策推动</td><td>行业净化</td><td>中小厂出清</td></tr>
+          <tr><td><strong>数字实体融合</strong></td><td>2028-2030+</td><td><span class="tag tag-w">中</span></td><td>技术成熟</td><td>品类革命</td><td>落地不确定</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="s11">十一、风险点清单</h2>
+    <div class="risk-table">
+      <div class="risk-bar r-h"><div class="risk-label">盗版侵权</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">高风险</div></div>
+      <div class="risk-bar r-h"><div class="risk-label">产品同质化</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">高风险</div></div>
+      <div class="risk-bar r-m"><div class="risk-label">政策合规</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">中风险</div></div>
+      <div class="risk-bar r-m"><div class="risk-label">库存周转</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">中风险</div></div>
+      <div class="risk-bar r-m"><div class="risk-label">二级市场泡沫</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">中风险</div></div>
+      <div class="risk-bar r-l"><div class="risk-label">地缘政治</div><div class="risk-track"><div class="risk-fill"></div></div><div class="risk-tag">低-中风险</div></div>
+    </div>
+
+    <h2 id="s12">十二、横纵交汇：中日手办产业对比与核心判断</h2>
+    <p><strong>日本模式</strong>：攥着顶级IP走"动画/漫画→衍生品授权→手办制造"的链条。万代南梦宫干的是IP生态运营。好处是IP厚度和品控硬，短处是创新慢、对新消费趋势反应慢半拍。</p>
+    <p><strong>中国模式</strong>：核心能力是运营（渠道+营销+供应链），把收藏品做成快消品。泡泡玛特干的是IP全生命周期运营。好处是迭代快（18天出新品）、渠道掌控力强、用户运营深，短处是IP文化底蕴薄、全球化经验不够。</p>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-title">护城河一：供应链效率</div>
+        <div class="info-card-text">东莞-澄海-深圳产业集群，全球找不出第二个同等密度和响应速度的制造网络。从设计到量产，中国品牌45-60天，日本6-12个月。</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">护城河二：渠道全覆盖</div>
+        <div class="info-card-text">淘天+抖音+线下集合店+自动售货机+展会，消费者触达密度全球第一。</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">护城河三：用户运营深度</div>
+        <div class="info-card-text">从抽盒机制到私域社群到二手交易，对用户终身价值的挖掘远深于日本品牌。</div>
+      </div>
+    </div>
+
+    <h3>三个剧本</h3>
+    <p><strong>最可能的方向（六成概率）：</strong>规模继续扩大领先，头部品牌全球化布局，但"大而不强"——IP文化厚度比不了日本。2030年行业规模到3000亿以上，原创IP方收益占比不足15%。</p>
+    <p><strong>最糟的方向（两成五概率）：</strong>同质化加剧叠加AI降低设计门槛，供给端极度内卷。头部品牌利润率压缩，中小厂倒闭。行业规模在1500-2000亿触顶。</p>
+    <p><strong>最好的方向（一成五概率）：</strong>从"卖货"到"文化输出"。1-2个国产IP成为全球级文化符号。2030年行业规模突破4000亿。</p>
+
+    <div class="footer">
+      <p><strong>免责声明</strong></p>
+      <p>本报告基于公开数据整理分析，部分市场规模数据来自行业研究机构预测值而非精确统计，仅供战略研究参考，不构成投资建议。</p>
+      <p>报告生成：2026年6月30日</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Canvas-based lightweight chart engine, no external deps */
+const C = '#c45c26', C2 = '#e8a87c', C3 = '#4a7c59', C4 = '#8a8279', C5 = '#b8860b', C6 = '#b34141', C7 = '#8a3f19';
+
+function resizeCanvas(canvas) {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const w = rect.width - 40;
+  const h = parseInt(canvas.getAttribute('height')) || 380;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return { ctx, w, h };
+}
+
+/* Draw a donut chart with category labels */
+function drawPie(id, data, colors, labels) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const { ctx, w, h } = resizeCanvas(canvas);
+  const cx = w/2, cy = h/2 - 20, r = Math.min(w, h) * 0.3;
+  const total = data.reduce((a, b) => a + b, 0);
+  let start = -Math.PI/2;
+  data.forEach((v, i) => {
+    const angle = (v / total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, start, start + angle);
+    ctx.arc(cx, cy, r * 0.5, start + angle, start, true);
+    ctx.closePath();
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    // draw label + percentage
+    if (angle > 0.2) {
+      const mid = start + angle/2;
+      const lx = cx + Math.cos(mid) * r * 0.72;
+      const ly = cy + Math.sin(mid) * r * 0.72;
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 12px "LXGW WenKai", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(Math.round(v / total * 100) + '%', lx, ly + 4);
+    }
+    start += angle;
+  });
+  // legend at bottom (auto wrap)
+  const itemW = 105, maxCol = Math.max(1, Math.floor(w / itemW) - 1);
+  const rows = Math.ceil(labels.length / maxCol);
+  const legendY = h - 12 - (rows - 1) * 18;
+  labels.forEach((l, i) => {
+    const row = Math.floor(i / maxCol);
+    const col = i % maxCol;
+    const colsThisRow = Math.min(maxCol, labels.length - row * maxCol);
+    const lx = cx - (colsThisRow * itemW) / 2 + col * itemW;
+    const ly = legendY + row * 18;
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fillRect(lx, ly - 8, 10, 10);
+    ctx.fillStyle = '#5c554d';
+    ctx.font = '11px "LXGW WenKai", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(l + ' ' + Math.round(data[i]/total*100) + '%', lx + 14, ly + 1);
+  });
+}
+
+/* Draw a bar chart */
+function drawBar(id, labels, values, colors, opts) {
+  opts = opts || {};
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const { ctx, w, h } = resizeCanvas(canvas);
+  const pad = { t: 20, r: 20, b: 50, l: 50 };
+  const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
+  const max = Math.max(...values) * 1.15;
+  const bw = Math.min(cw / labels.length * 0.55, 50);
+  const gap = cw / labels.length;
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.strokeStyle = '#e8e4df';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t + ch); ctx.stroke();
+
+  // Y axis labels
+  for (let i = 0; i <= 4; i++) {
+    const v = (max / 4) * i;
+    const y = pad.t + ch - (v / max) * ch;
+    ctx.fillStyle = '#8a8279';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(opts.prefix || '' + Math.round(v), pad.l - 8, y + 4);
+    ctx.strokeStyle = '#f0ece7'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.l + 2, y); ctx.lineTo(pad.l + cw, y); ctx.stroke();
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.l + i * gap + (gap - bw) / 2;
+    const bh = (v / max) * ch;
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.beginPath();
+    ctx.roundRect(x, pad.t + ch - bh, bw, bh, [3,3,0,0]);
+    ctx.fill();
+
+    ctx.fillStyle = '#1a1714';
+    ctx.font = '12px "LXGW WenKai", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(opts.suffix ? v + opts.suffix : v, x + bw/2, pad.t + ch - bh - 6);
+
+    ctx.fillStyle = '#5c554d';
+    ctx.font = '11px sans-serif';
+    ctx.save();
+    ctx.translate(x + bw/2, pad.t + ch + 14);
+    ctx.rotate(0);
+    ctx.fillText(labels[i].substring(0, 6), 0, 14);
+    ctx.restore();
+  });
+}
+
+/* Draw a line chart */
+function drawLine(id, labels, series) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const { ctx, w, h } = resizeCanvas(canvas);
+  const pad = { t: 30, r: 30, b: 50, l: 55 };
+  const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
+  let maxVal = 0;
+  series.forEach(s => maxVal = Math.max(maxVal, ...s.data));
+  maxVal *= 1.1;
+  const xStep = cw / (labels.length - 1);
+
+  ctx.clearRect(0, 0, w, h);
+  // grid
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.t + ch - (i/4) * ch;
+    ctx.strokeStyle = '#f0ece7'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + cw, y); ctx.stroke();
+    const v = Math.round((maxVal/4)*i);
+    ctx.fillStyle = '#8a8279'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(v, pad.l - 8, y+4);
+  }
+
+  // x labels
+  labels.forEach((l, i) => {
+    ctx.fillStyle = '#5c554d'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(l, pad.l + i * xStep, pad.t + ch + 20);
+  });
+
+  // series
+  series.forEach((s, si) => {
+    ctx.strokeStyle = s.color; ctx.lineWidth = 3;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.l + i * xStep;
+      const y = pad.t + ch - (v / maxVal) * ch;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // area
+    const lastX = pad.l + (s.data.length - 1) * xStep;
+    ctx.lineTo(lastX, pad.t + ch);
+    ctx.lineTo(pad.l, pad.t + ch);
+    ctx.closePath();
+    ctx.fillStyle = s.area || 'transparent';
+    ctx.fill();
+
+    // dots
+    s.data.forEach((v, i) => {
+      const x = pad.l + i * xStep;
+      const y = pad.t + ch - (v / maxVal) * ch;
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(x, y, 5, 0, 2*Math.PI); ctx.fill();
+      ctx.fillStyle = s.color;
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, 2*Math.PI); ctx.fill();
+    });
+  });
+
+  // legend
+  ctx.font = '12px "LXGW WenKai", sans-serif';
+  series.forEach((s, i) => {
+    const lx = pad.l + i * 130 + 10;
+    const ly = h - 8;
+    ctx.fillStyle = s.color;
+    ctx.fillRect(lx, ly - 8, 16, 3);
+    ctx.fillStyle = '#5c554d';
+    ctx.textAlign = 'left';
+    ctx.fillText(s.name, lx + 22, ly - 3);
+  });
+}
+
+/* Draw a radar chart */
+function drawRadar(id, labels, values) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const { ctx, w, h } = resizeCanvas(canvas);
+  const cx = w/2, cy = h/2 - 5, r = Math.min(w, h) * 0.35;
+  const n = labels.length;
+  const max = 100;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // rings
+  for (let ring = 1; ring <= 4; ring++) {
+    const rr = (ring / 4) * r;
+    ctx.strokeStyle = '#e8e4df'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const angle = (i % n) * (2*Math.PI/n) - Math.PI/2;
+      const x = cx + (i === 0 ? 0 : Math.cos(angle) * rr);
+      const y = cy + (i === 0 ? 0 : Math.sin(angle) * rr);
+      i === 0 ? ctx.moveTo(cx, cy - rr) : ctx.lineTo(x, y);
+    }
+    ctx.closePath(); ctx.stroke();
+  }
+
+  // axes
+  for (let i = 0; i < n; i++) {
+    const angle = i * (2*Math.PI/n) - Math.PI/2;
+    ctx.strokeStyle = '#e8e4df';
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r); ctx.stroke();
+    const lx = cx + Math.cos(angle) * (r + 22);
+    const ly = cy + Math.sin(angle) * (r + 22);
+    ctx.fillStyle = '#5c554d'; ctx.font = '12px "LXGW WenKai", sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], lx, ly + 4);
+  }
+
+  // data area
+  ctx.beginPath();
+  for (let i = 0; i <= n; i++) {
+    const idx = i % n;
+    const angle = idx * (2*Math.PI/n) - Math.PI/2;
+    const v = (values[idx] / max) * r;
+    const x = cx + Math.cos(angle) * v;
+    const y = cy + Math.sin(angle) * v;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(196,92,38,0.2)';
+  ctx.fill();
+  ctx.strokeStyle = '#c45c26';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // dots
+  for (let i = 0; i < n; i++) {
+    const angle = i * (2*Math.PI/n) - Math.PI/2;
+    const v = (values[i] / max) * r;
+    const x = cx + Math.cos(angle) * v;
+    const y = cy + Math.sin(angle) * v;
+    ctx.fillStyle = '#c45c26';
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, 2*Math.PI); ctx.fill();
+  }
+}
+
+/* Init all charts */
+document.addEventListener('DOMContentLoaded', function() {
+  drawLine('ch-market-line', ['2020','2021','2022','2023','2024','2025','2026E'], [
+    { name: '潮玩市场', data: [229,310,478,612,763,879,1101], color: C, area: 'rgba(196,92,38,0.08)' },
+    { name: '手办市场', data: [36.6,45,68,89,110.8,135,162], color: C3, area: 'rgba(74,124,89,0.08)' }
+  ]);
+  drawPie('ch-market-pie', [45.1, 42, 23.9, 9.4, 8], [C, C2, C7, C3, C4], ['手办类','盲盒品类','3D拼装','搪胶毛绒','其他']);
+  drawBar('ch-growth-bar', ['搪胶毛绒','可动人偶','设计师联名','3D拼装','手办','盲盒'], [560, 31, 25, 18, 24.8, 11.8], [C, C2, C3, C4, C5, C7], { suffix: '%' });
+  drawBar('ch-chain-profit', ['IP/设计\n(上游)','生产制造\n(中游)','渠道零售\n(下游)'], [70, 28, 48], [C, C2, C3], { suffix: '%' });
+  drawPie('ch-chain-pie', [45, 20, 35], [C, C2, C3], ['IP/设计','生产制造','渠道零售']);
+  drawPie('ch-age', [55.3, 24.8, 12, 7.9], [C, C2, C3, C4], ['18-25岁','26-35岁','36-45岁','45岁以上']);
+  drawPie('ch-gender', [60, 40], [C2, C4], ['女性','男性']);
+  drawBar('ch-region', ['一线','新一线','二线','三线','四线'], [19.1, 27.5, 25, 16, 12.4], [C, C2, C3, C4, C5], { suffix: '%' });
+  drawRadar('ch-radar', ['价格敏感', '品牌忠诚', '设计审美', '社交属性', '收藏意愿', '情绪价值'], [70, 55, 65, 75, 82, 85]);
+  drawPie('ch-ent-share', [10, 5, 4, 3.5, 3, 74.5], [C, C2, C3, C7, C4, '#e8e4df'], ['泡泡玛特','万代(中国)','TOP TOY','52TOYS','寻找独角兽','长尾市场']);
+
+  // Stacked bar for enterprise category
+  (function() {
+    const canvas = document.getElementById('ch-ent-cat');
+    if (!canvas) return;
+    const { ctx, w, h } = resizeCanvas(canvas);
+    const pad = { t: 20, r: 20, b: 50, l: 55 };
+    const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
+    const labels = ['2023','2024','2025'];
+    const series = [
+      { label: '传统手办', data: [44, 69, 120], color: C },
+      { label: '搪胶毛绒', data: [8, 35, 187], color: C2 },
+      { label: 'MEGA珍藏', data: [7, 18, 37], color: C3 },
+      { label: '其他', data: [4, 8, 27], color: C4 }
+    ];
+    const max = series.reduce((m, s) => Math.max(m, ...s.data), 0) * 1.12;
+    const bw = 40, gap = 80;
+    ctx.clearRect(0, 0, w, h);
+    // grid
+    for (let i = 0; i <= 4; i++) {
+      const y = pad.t + ch - (i/4)*ch;
+      ctx.strokeStyle = '#f0ece7'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l+cw, y); ctx.stroke();
+      ctx.fillStyle = '#8a8279'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(Math.round(max/4*i), pad.l-8, y+4);
+    }
+    series.forEach((s, si) => {
+      const starts = [0, 0, 0];
+      s.data.forEach((v, i) => {
+        const x = pad.l + i * gap + (gap-bw)/2 + si * (bw/series.length);
+        const bh = (v / max) * ch;
+        const y = pad.t + ch - (starts[i]/max)*ch - bh;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.roundRect(x, y, bw/series.length-2, bh, [2,2,0,0]);
+        ctx.fill();
+        // value label on each segment
+        if (bh > 18) {
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 11px "LXGW WenKai", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(v, x + (bw/series.length)/2, y + bh/2 + 4);
+        }
+        starts[i] += v;
+      });
+    });
+    // labels
+    labels.forEach((l, i) => {
+      ctx.fillStyle = '#5c554d'; ctx.font = '12px "LXGW WenKai", sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(l, pad.l + i*gap + gap/2, pad.t + ch + 20);
+    });
+    // legend (auto wrap)
+    const rows = Math.ceil(series.length / 2);
+    series.forEach((s, i) => {
+      const row = Math.floor(i / 2);
+      const col = i % 2;
+      const lx = pad.l + col * ((cw - pad.l) / 2);
+      const ly = h - 18 + row * 16;
+      ctx.fillStyle = s.color; ctx.fillRect(lx, ly - 8, 14, 3);
+      ctx.fillStyle = '#5c554d'; ctx.font = '11px sans-serif'; ctx.textAlign = 'left';
+      ctx.fillText(s.label, lx + 18, ly - 5);
+    });
+  })();
+
+  drawPie('ch-price', [40.3, 28.5, 18.2, 10.9, 2.1], [C, C2, C3, C7, C4], ['101-300元','59-100元','301-500元','501-1000元','千元以上']);
+  drawBar('ch-plat-price', ['淘宝','京东','1688','闲鱼'], [48, 138, 12, 186], [C, C3, C4, C2], { prefix: '¥' });
+  drawPie('ch-sentiment', [65, 20, 15], [C3, C6, C4], ['正面(种草)','负面(拔草)','中性讨论']);
+  drawPie('ch-xhs-type', [45, 25, 15, 10, 5], [C, C2, C6, C3, C4], ['开箱晒单','购买攻略','避坑拔草','改造展示','交易估价']);
+  drawPie('ch-xhs-format', [70, 25, 5], [C, C2, C3], ['图文笔记','视频笔记','直播']);
+});
+
+function toggleToc() {
+  document.getElementById('tocSidebar').classList.toggle('hidden');
+  document.getElementById('contentWrapper').classList.toggle('full');
+}
+
+// Scroll spy
+document.addEventListener('scroll', function() {
+  var items = document.querySelectorAll('.toc-item');
+  var scrollY = window.scrollY + 120;
+  var active = null;
+  items.forEach(function(item) {
+    var target = document.querySelector(item.getAttribute('href'));
+    if (target && target.offsetTop <= scrollY) active = item;
+  });
+  items.forEach(function(i) { i.classList.remove('active'); });
+  if (active) active.classList.add('active');
+});
+
+// Resize handler
+window.addEventListener('resize', function() {
+  document.querySelectorAll('[id^="ch-"]').forEach(function(el) {
+    if (!el.tagName || el.tagName !== 'CANVAS') return;
+    // charts redraw on next frame
+  });
+});
+</script>
+</body>
+</html>
