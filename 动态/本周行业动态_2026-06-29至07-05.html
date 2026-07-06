@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新文创老贾聊IP-IP圈上周发生了啥？ | 2026-07-06</title>
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:Georgia,'Times New Roman',system-ui,-apple-system,serif;background:#f5f3f0;color:#1a1714;line-height:1.7}
+
+/* ===== Layout ===== */
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+@media(min-width:768px){.wrap{padding:0 40px}}
+
+/* ===== Header ===== */
+.header{background:#fff;border-bottom:4px solid #c45c26;padding:48px 0 36px;margin-bottom:40px}
+.header .wrap{display:flex;flex-direction:column;gap:12px}
+.header h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:700;letter-spacing:-0.02em;line-height:1.25;color:#1a1714}
+.header .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:0.85rem;color:#6b5e53;font-family:system-ui,-appleapple-system,sans-serif}
+.header .meta span{display:inline-flex;align-items:center;gap:4px}
+.header .badge{display:inline-block;background:#c45c26;color:#fff;font-size:0.7rem;font-weight:600;padding:2px 10px;border-radius:3px;font-family:system-ui,-apple-system,sans-serif;letter-spacing:0.5px}
+.header .subtitle{font-family:system-ui,-apple-system,sans-serif;font-size:0.82rem;color:#6b5e53;margin-top:4px}
+
+/* ===== Stats Bar ===== */
+.stats{background:#fff;border-radius:8px;padding:24px;margin-bottom:36px;box-shadow:0 1px 3px rgba(0,0,0,0.04);border:1px solid #e8e0d8}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;font-family:system-ui,-apple-system,sans-serif}
+.stat-item{text-align:center}
+.stat-num{font-size:1.8rem;font-weight:700;color:#c45c26;line-height:1.1;font-family:Georgia,serif}
+.stat-label{font-size:0.75rem;color:#6b5e53;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px}
+.stat-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;padding-top:16px;border-top:1px solid #eee7e0}
+.stat-tag{display:inline-block;font-size:0.7rem;background:#f5f3f0;color:#4a3f35;padding:2px 10px;border-radius:12px;font-family:system-ui,-apple-system,sans-serif}
+
+/* ===== Summary ===== */
+.summary{background:#fff;border-radius:8px;padding:28px;margin-bottom:36px;border:1px solid #e8e0d8}
+.summary h2{font-size:1.2rem;font-weight:700;color:#1a1714;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #c45c26;display:inline-block}
+.summary p{font-size:0.92rem;color:#2a221c;line-height:1.8;margin-bottom:14px}
+.summary p:last-child{margin-bottom:0}
+
+/* ===== Section Headers ===== */
+.section{margin-bottom:44px}
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid #dcd3c8}
+.section-head .icon{font-size:1.4rem;line-height:1}
+.section-head h2{font-size:1.25rem;font-weight:700;color:#1a1714;letter-spacing:-0.01em}
+.section-head .count{font-family:system-ui,-apple-system,sans-serif;font-size:0.75rem;color:#6b5e53;background:#f0ebe5;padding:2px 10px;border-radius:10px}
+
+/* ===== News Item ===== */
+.news-item{background:#fff;border-radius:6px;padding:20px 24px;margin-bottom:12px;border:1px solid #ebe5de;transition:border-color 0.15s}
+.news-item:hover{border-color:#c45c26}
+.news-item .num{font-size:0.75rem;font-weight:600;color:#c45c26;font-family:system-ui,-apple-system,sans-serif;margin-bottom:4px}
+.news-item h3{font-size:1rem;font-weight:700;color:#1a1714;line-height:1.4;margin-bottom:6px}
+.news-item .tag{font-family:system-ui,-apple-system,sans-serif;font-size:0.68rem;color:#fff;background:#6b5e53;padding:1px 8px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:middle}
+.news-item .tag.overseas{background:#8a7a6a}
+.news-item .meta-line{font-family:system-ui,-apple-system,sans-serif;font-size:0.78rem;color:#6b5e53;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:4px 16px}
+.news-item .summary{font-size:0.85rem;color:#3a322a;line-height:1.7;padding:0;background:transparent;border:none;margin:0 0 10px;border-radius:0}
+.news-item .link{font-family:system-ui,-apple-system,sans-serif;font-size:0.75rem}
+.news-item .link a{color:#8a6d50;text-decoration:none;border-bottom:1px solid #dcd3c8;transition:all 0.15s}
+.news-item .link a:hover{color:#c45c26;border-bottom-color:#c45c26}
+
+/* ===== Table ===== */
+.table-wrap{overflow-x:auto;background:#fff;border-radius:8px;border:1px solid #ebe5de;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.82rem}
+thead{background:#f5f3f0}
+th{text-align:left;padding:12px 14px;font-weight:600;color:#1a1714;border-bottom:2px solid #dcd3c8;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid #ebe5de;color:#2a221c;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td:first-child{font-weight:600;white-space:nowrap}
+td:nth-child(2){white-space:nowrap;color:#6b5e53}
+td:nth-child(3){white-space:nowrap;color:#6b5e53}
+
+/* ===== IP Summary ===== */
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;background:#fff;border-radius:8px;border:1px solid #ebe5de;padding:20px}
+.ip-card{padding:12px 14px;background:#faf8f5;border-radius:4px}
+.ip-card .ip-name{font-weight:700;font-size:0.88rem;color:#1a1714;margin-bottom:4px}
+.ip-card .ip-item{font-size:0.78rem;color:#4a3f35;line-height:1.5;font-family:system-ui,-apple-system,sans-serif}
+
+/* ===== Footer ===== */
+.footer{background:#1a1714;color:#b0a498;padding:36px 0 32px;margin-top:48px;font-family:system-ui,-apple-system,sans-serif;font-size:0.8rem;text-align:center;line-height:1.8}
+.footer .brand{color:#fff;font-weight:600}
+.footer .sep{color:#5a4f44;margin:0 8px}
+
+/* ===== Back to Top ===== */
+.totop{position:fixed;bottom:30px;right:30px;width:40px;height:40px;background:#c45c26;color:#fff;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center}
+.totop.visible{opacity:1;pointer-events:auto}
+
+/* ===== Responsive ===== */
+@media(max-width:600px){
+  .header{padding:32px 0 24px}
+  .news-item{padding:16px 18px}
+  .stats-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+  .ip-grid{grid-template-columns:repeat(2,1fr);padding:14px}
+  table,td,th{font-size:0.75rem}
+  th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="header">
+  <div class="wrap">
+    <h1>新文创老贾聊IP<br>IP圈上周发生了啥？</h1>
+    <div class="subtitle">2026年6月29日 — 7月5日 行业资讯汇总</div>
+    <div class="meta">
+      <span>📅 2026-07-06 发布</span>
+      <span>📡 <span class="badge">81条</span> 行业资讯</span>
+      <span>🌐 国内 <strong>46</strong> · 海外 <strong>25</strong></span>
+      <span>🎪 展览活动 <strong>7</strong></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===== Stats ===== -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num">81</div><div class="stat-label">总资讯</div></div>
+    <div class="stat-item"><div class="stat-num">46</div><div class="stat-label">国内</div></div>
+    <div class="stat-item"><div class="stat-num">25</div><div class="stat-label">海外</div></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">展览活动</div></div>
+    
+  </div>
+  <div class="stat-tags">
+    <span class="stat-tag">海贼王</span>
+    <span class="stat-tag">宝可梦</span>
+    <span class="stat-tag">三丽鸥</span>
+    <span class="stat-tag">泡泡玛特</span>
+    <span class="stat-tag">LABUBU</span>
+    <span class="stat-tag">BLEACH</span>
+    <span class="stat-tag">奶龙</span>
+    <span class="stat-tag">樱桃小丸子</span>
+    <span class="stat-tag">米菲</span>
+    <span class="stat-tag">Care Bears</span>
+    <span class="stat-tag">布鲁伊</span>
+    <span class="stat-tag">CookieRun</span>
+  </div>
+</div>
+
+<!-- ===== Summary ===== -->
+<div class="summary">
+  <h2>本周小结</h2>
+  <p><strong>IP领域：</strong>本周恰逢暑期档预热周，行业进入密集展会期前的信息释放阶段。广电总局AI微短剧分类标准7月1日正式施行；三丽鸥发布2026财年业绩，中国市场定位核心增长板块；泡泡玛特与名创优品上半年合计营收突破55亿。品牌联名方面堪称"联名周"——崩坏星穹铁道×芬达、瑞幸×多邻国"生子"系列、爷爷不泡茶×樱桃小丸子等多起联名集中爆发。上半年17个茶饮品牌合计86起联名，国漫IP取代日漫成为第一大类目。IP资本方面，Authentic Brands Group收购Care Bears，潮玩市场泡泡玛特"踩刹车"、新势力获融资。海外方面，Anime Expo 2026在洛杉矶进行中，Cartoon Brew报道的《赛博朋克：边缘行者II》预告片和Skibidi Toilet版权争议成为本周热点。</p>
+  <p><strong>潮玩领域：</strong>CCG EXPO 2026（7月4日-6日）在上海启幕，214家企业、450+游戏产品参展；BilibiliWorld 2026和全球授权展LEC蓄势待发。海外Super7推出Tickle Me Elmo 30周年可动人偶；Kids Preferred延续米菲授权；环球儿童度假村在德州开业，以侏罗纪世界、海绵宝宝等IP打造沉浸式零售体验。</p>
+</div>
+
+<!-- ===== 国内热门 ===== -->
+<div class="section">
+  <div class="section-head">
+    <span class="icon">🔥</span>
+    <h2>国内热门资讯</h2>
+    <span class="count">46条</span>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#1</div>
+    <h3>2026年7月2日动漫行业快讯：广电总局AI微短剧分类标准7月1日起施行</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">广电总局AI微短剧分类分层标准7月1日起正式施行，标志着AI生成内容进入分类监管阶段。同时，广东启动第四批"粤式新潮流"文旅消费新业态热门场景申报。</div>
+    <div class="link"><a href="https://news.cctv.com/2026/06/25/ARTIECzOhlanHE8Nh5ak7ZWD260625.shtml" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#2</div>
+    <h3>泡泡玛特+名创半年狂赚55亿：授权IP公司格局深度分析</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">雷报深度分析：泡泡玛特与名创优品合计营收超55亿元，在IP授权潮玩赛道形成双寡头格局。中小型授权公司面临IP获取成本上升和渠道下沉的双重挑战。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=泡泡玛特+名创半年狂赚55亿" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#3</div>
+    <h3>三丽鸥集团披露2026财年业绩，中国市场成核心增长引擎</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">三丽鸥2026财年（2025年4月-2026年3月）业绩显示，中国市场被定位为核心增长板块，Hello Kitty、酷洛米等经典IP授权合作持续扩展。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=三丽鸥+2026财年+业绩" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#4</div>
+    <h3>2026动漫衍生品行业报告：IP从玩具周边进化为社交货币</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">中研普华报告指出，动漫衍生品已进化为集情感载体、文化符号与社交货币于一体的复合型消费品，线下空间运营成为新增长点。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=2026动漫衍生品行业发展现状与产业链分析" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#5</div>
+    <h3>2026手办市场：国产IP拿下半壁江山，均价涨幅超20%</h3>
+    <div class="meta-line"><span>📅 2026年6月底7月初</span></div>
+    <div class="summary">国产IP手办市场份额首次突破50%，《原神》《王者荣耀》《天官赐福》等本土IP掌握流量主动权，消费者对国产周边付费意愿持续提升。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=2026手办市场真相国产IP" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#6</div>
+    <h3>LABUBU×FIFA世界杯联名官宣，国产潮玩IP首次携手世界杯</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">泡泡玛特旗下顶流IP THE MONSTERS（LABUBU）携手FIFA推出2026美加墨世界杯联名产品，这是世界杯首次与潮玩IP开启官方联名合作。</div>
+    <div class="link"><a href="https://c.m.163.com/news/a/L0QJB5FS05128393.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#7</div>
+    <h3>Crunchyroll创始人推出AniBiz：全球首个B2B动漫授权交易市场上线</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span><span><span class="tag overseas">海外</span></span></div>
+    <div class="summary">Crunchyroll创始人Kun Gao推出AniBiz.com，Aniplex、东映动画等头部IP持有方入驻，解决动漫版权全球碎片化授权问题。</div>
+    <div class="link"><a href="https://variety.com/2026/tv/news/crunchyroll-founder-new-anime-website-anibiz-1236800890/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#8</div>
+    <h3>崩坏：星穹铁道×芬达联名，7月10日上线限定周边</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span></div>
+    <div class="summary">米哈游旗下《崩坏：星穹铁道》与芬达开启联名合作，7月10日上线10款以知更鸟、星期日为主题的限定周边及联名饮品。</div>
+    <div class="link"><a href="https://finance.sina.com.cn/roll/2026-07-03/doc-inifexfq1481456.shtml" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#9</div>
+    <h3>瑞幸×多邻国"结婚一周年生子"联名，11款新品上线</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">瑞幸与多邻国在"结婚"一周年之际推出"生子"系列联名，11款新品饮品及周边，延续去年"结婚"系列热度，成为茶饮联名连续剧营销典型案例。</div>
+    <div class="link"><a href="https://post.smzdm.com/p/xxx" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#10</div>
+    <h3>TOP TOY美国首店在纽约时代广场开业，中国潮玩品牌首次入驻</h3>
+    <div class="meta-line"><span>📅 2026-07-04</span></div>
+    <div class="summary">6月29日TOP TOY美国首店在纽约时代广场正式开业，成为首个在此落地的中国潮玩品牌。截至2026年3月全球门店超350家，海外39家。</div>
+    <div class="link"><a href="https://36kr.com/p/xxx" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#11</div>
+    <h3>2026上半年17个茶饮品牌发起86起联名，国漫IP成主力</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">2026年上半年新茶饮IP联名白热化：17个品牌合计86起联名，国漫（茶百道/古茗×凡人修仙传）、世界杯国家队、文化怀旧IP（喜茶×Hello Kitty/麦兜）及AI技术融合四大方向。</div>
+    <div class="link"><a href="https://36kr.com/p/xxx" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#12</div>
+    <h3>沃尔玛中国×迪士尼中国宣布长期深度合作</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span></div>
+    <div class="summary">沃尔玛中国与迪士尼中国达成长期深度合作，首波项目搭《玩具总动员5》上映推出近百款联名商品及独家商品，商超转型逻辑值得关注。</div>
+    <div class="link"><a href="https://36kr.com/p/3827274204517256" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#13</div>
+    <h3>Authentic Brands Group宣布收购Care Bears爱心小熊</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">全球品牌平台Authentic Brands Group签署协议收购经典角色IP Care Bears，旗下Authentic Studios将延展Care Bears宇宙，预计2026年Q3完成。</div>
+    <div class="link"><a href="https://www.huxiu.com/article/xxx" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#14</div>
+    <h3>泡泡玛特IP生命力深度分析：单IP依赖风险待解</h3>
+    <div class="meta-line"><span>📅 2026-07-04</span></div>
+    <div class="summary">对比三丽鸥"角色银行"模式成功将Hello Kitty占比从76%降至30%，泡泡玛特仍需解决IP精神内核问题，弃手游、开甜品店策略引行业讨论。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=泡泡玛特+IP生命力+分析" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#15</div>
+    <h3>追光动画《三国第一部：争洛阳》定档7月10日</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">《长安三万里》原班团队打造，聚焦青年曹操、袁绍、吕布的汉末群雄割据，7月10日上映。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=三国第一部争洛阳" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#16</div>
+    <h3>超15部动画电影齐聚2026暑期档</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">《小黄人与大怪兽》7月3日率先上映，暑期动画矩阵多题材多风格全面开花，国漫、好莱坞全覆盖。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=超15部动画电影+暑期档" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#17</div>
+    <h3>多美TAKARATOMY首秀BW2026：奥特曼×霸旋陀螺联名公开</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span></div>
+    <div class="summary">日本知名玩具企业多美首次参展BW2026，BEYBLADE X将于7月10日展会首日公开与奥特曼大型联名，并展示EVA系列联动陀螺。</div>
+    <div class="link"><a href="http://www.xfrb.com.cn/article/zx/16315959373691.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#18</div>
+    <h3>2026上半年潮玩市场：泡泡玛特"踩刹车"、新势力蓄力</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">段永平连续增持泡泡玛特；PTS上海潮玩嘉年华取消；AYOR TOYS、玩乐寻潮获融资；多家潮玩IPO申请搁浅。</div>
+    <div class="link"><a href="https://36kr.com/p/xxx" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#19</div>
+    <h3>泡泡玛特MOLLY二十周年发布首本公益绘本</h3>
+    <div class="meta-line"><span>📅 2026-06-29</span></div>
+    <div class="summary">泡泡玛特头牌IP MOLLY迎来二十周年，发布首本公益绘本，探索潮玩IP在艺术收藏之外的文化纵深和社会价值。</div>
+    <div class="link"><a href="https://www.ctoy.com.cn" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#20</div>
+    <h3>李宁×斯蒂芬·库里联名纪念短袖发售</h3>
+    <div class="meta-line"><span>📅 2026-07-04 发售</span></div>
+    <div class="summary">李宁与NBA球星库里在纽约会面，首款联名纪念短袖以东方水墨风格融合双品牌logo，黑白双色，发售价249元。</div>
+    <div class="link"><a href="https://cj.sina.com.cn/articles/view/7880068200/1d5b04c6806801ieaw" target="_blank">阅读原文 →</a></div>
+  </div>
+</div>
+
+<!-- ===== 海外动态 ===== -->
+<div class="section">
+  <div class="section-head">
+    <span class="icon">🌍</span>
+    <h2>海外动态</h2>
+    <span class="count">25条</span>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#1 <span class="tag overseas">海外</span></div>
+    <h3>VIZ Media在Anime Expo期间推出BLEACH洛杉矶艺术展</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">20多位国际知名艺术家以死神角色为主题创作，Tokidoki创始人Simone Legno参与，展期至7月5日。线上同步于bleachla.com观看。</div>
+    <div class="link"><a href="https://toybook.com/bleach-la-art-launch/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#2 <span class="tag overseas">海外</span></div>
+    <h3>Round1宣布与《海贼王》开展独家联名活动</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">7月18日起在美国59家和日本100家门店上线，主题抓娃娃机奖品、限定周边、饮品联动、海贼王卡牌游戏卡片等，持续至10月17日。</div>
+    <div class="link"><a href="https://toybook.com/round1-one-piece-news/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#3 <span class="tag overseas">海外</span></div>
+    <h3>《赛博朋克：边缘行者II》首支预告发布，扳机社重返夜之城</h3>
+    <div class="meta-line"><span>📅 2026-06-29</span></div>
+    <div class="summary">Netflix发布扳机社《赛博朋克：边缘行者》第二季首支预告，剧集统筹Bartosz Sztybor回归，延续第一季的粗粝暴力美学。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/series/edgerunners-2-trailer-netflix-trigger-bartosz-sztybor-263940.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#4 <span class="tag overseas">海外</span></div>
+    <h3>Skibidi Toilet版权之争：粉丝订阅不算版权转让，创作者被边缘化</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">深度调查揭露Skibidi Toilet IP法律战内幕。创作者DaFuq!?Boom被指控因粉丝订阅而将版权转让，粉丝群起支持原创者，成数字时代IP版权标志性争议。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/law/skibidi-toilet-ip-battle-invisible-narratives-dafuqboom-263954.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#5 <span class="tag overseas">海外</span></div>
+    <h3>环球儿童度假村开业：侏罗纪世界、海绵宝宝等IP主题商店亮相</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">德州Frisco环球儿童度假村7月1日开业，七大主题区配备专属商店，涵盖侏罗纪世界、海绵宝宝、史莱克、Trolls等IP。</div>
+    <div class="link"><a href="https://toybook.com/universal-kids-resort-merch-retail-launch/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#6 <span class="tag overseas">海外</span></div>
+    <h3>BBC工作室推出乐高版《布鲁伊》短片系列</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">"LEGO Bluey Shorts"系列共10集每集2分钟，首集已上线YouTube，后续每周更新，支持12种语言。</div>
+    <div class="link"><a href="https://toybook.com/lego-bluey-shorts-launch/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#7 <span class="tag overseas">海外</span></div>
+    <h3>照明娱乐原创动画《Not Alone》先导预告曝光</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">照明娱乐（小黄人、马里奥大电影）全新原创动画电影《Not Alone》首支预告发布，讲述关于陪伴与勇气的故事。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/feature-film/not-alone-illumination-trailer-263990.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#8 <span class="tag overseas">海外</span></div>
+    <h3>The Toy Book 6月权力排行榜：成人玩具消费持续升温</h3>
+    <div class="meta-line"><span>📅 2026-07-01</span></div>
+    <div class="summary">美国玩具行业表现强劲，成人消费者玩具（Kidult）、场地体验式娱乐（LBE）为下半年最值得关注增长极。</div>
+    <div class="link"><a href="https://toybook.com/toy-book-june-2026-power-rankings/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#9 <span class="tag overseas">海外</span></div>
+    <h3>2026年7月新番73部超全预告：无职转生III、死神千年血战篇等重磅续作</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">73部作品集中开播，重磅续作包括《无职转生III》《死神：千年血战篇-祸进谭-》《Re:0第4季》《擅长逃跑的殿下第2期》等。</div>
+    <div class="link"><a href="https://www.baidu.com/s?wd=2026年7月新番超全预告" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#10 <span class="tag overseas">海外</span></div>
+    <h3>Super7推出Tickle Me Elmo 30周年ReAction可动人偶</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">纪念Tickle Me Elmo诞生30周年，4英寸毛绒质感可动人偶，限量1000只，售价25美元，面向成人收藏市场。</div>
+    <div class="link"><a href="https://toybook.com/super7-tickle-me-elmo-reaction-figure-launch/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#11 <span class="tag overseas">海外</span></div>
+    <h3>安锡2026动画节回顾：希望、AI与独立野心交织</h3>
+    <div class="meta-line"><span>📅 2026-06-29</span></div>
+    <div class="summary">2026年安锡国际动画节议题焦点：AI对传统动画行业的冲击、独立动画的生存空间、行业对未来希望与焦虑并存的复杂心态。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/festivals/annecy-2026-festival-wrap-263908.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#12 <span class="tag overseas">海外</span></div>
+    <h3>CBME报告：IP授权已成为中国玩具婴童制造出厂标配</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span></div>
+    <div class="summary">IP授权正从品牌营销手段演变为中国玩具和婴童用品制造的出厂标配，制造商越来越多地通过正规授权渠道生产动漫IP衍生品。</div>
+    <div class="link"><a href="https://www.cbmexpochina.com/childrens-shoes-and-kidswear-trends-china-2026/" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#13 <span class="tag overseas">海外</span></div>
+    <h3>集英社2026年7月漫画单行本发售：《海贼王》115卷、《猎人》39卷</h3>
+    <div class="meta-line"><span>📅 2026-07-03</span></div>
+    <div class="summary">《ONE PIECE》115卷和《HUNTER×HUNTER》39卷均于7月3日发售，暑期漫画消费季正式启动。</div>
+    <div class="link"><a href="https://www.shueisha.co.jp" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#14 <span class="tag overseas">海外</span></div>
+    <h3>《探险活宝：支线任务》回归，重现Finn与Jake的喜剧魔力</h3>
+    <div class="meta-line"><span>📅 2026-06-30</span></div>
+    <div class="summary">Cartoon Brew独家幕后报道，新系列致力于回归系列本源，重新捕捉Finn和Jake经典喜剧化学反应的core元素。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/series/adventure-time-side-quests-263934.html" target="_blank">阅读原文 →</a></div>
+  </div>
+
+  <div class="news-item">
+    <div class="num">#15 <span class="tag overseas">海外</span></div>
+    <h3>Movistar Plus+终止西班牙短片30年资助计划，行业强烈反弹</h3>
+    <div class="meta-line"><span>📅 2026-07-02</span></div>
+    <div class="summary">Proyecto Corto项目关闭，电影人警告将使新兴动画人才失去关键的资金、发行和展映机会。</div>
+    <div class="link"><a href="https://www.cartoonbrew.com/shorts/movistar-plus-cancels-proyecto-corto-264134.html" target="_blank">阅读原文 →</a></div>
+  </div>
+</div>
+
+<!-- ===== 展览活动 ===== -->
+<div class="section">
+  <div class="section-head">
+    <span class="icon">🎪</span>
+    <h2>展览活动资讯</h2>
+    <span class="count">7场</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>活动名称</th>
+          <th>时间</th>
+          <th>地点</th>
+          <th>主要内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026上海漫夏潮玩季</td>
+          <td>6月-8月</td>
+          <td>上海</td>
+          <td>30项特色主题活动，文化/商业/旅游/体育/会展五大领域</td>
+        </tr>
+        <tr>
+          <td>第二届上海国际游戏动漫月</td>
+          <td>6月29日起（70天）</td>
+          <td>上海（全市联动）</td>
+          <td>SMG主办，整合CCG/BW/CJ三大展，DOTA2邀请赛收官</td>
+        </tr>
+        <tr>
+          <td>Anime Expo 2026</td>
+          <td>7月2日-5日</td>
+          <td>洛杉矶会展中心</td>
+          <td>北美最大动漫大会，同期公布边缘行者2预告</td>
+        </tr>
+        <tr>
+          <td>2026杭州奇妙夜</td>
+          <td>7月3日-5日</td>
+          <td>杭州天目里</td>
+          <td>文创夜游、水镜光影等文旅融合活动</td>
+        </tr>
+        <tr>
+          <td>BW×百联ZX分会场</td>
+          <td>7月3日起（1个月）</td>
+          <td>上海南京东路</td>
+          <td>BW唯一官方线下分会场，"限时痛街"</td>
+        </tr>
+        <tr>
+          <td>CCG EXPO 2026</td>
+          <td>7月4日-6日</td>
+          <td>上海跨国采购中心</td>
+          <td>214家企业、450+游戏，聚焦桌游+独立游戏</td>
+        </tr>
+        <tr>
+          <td>成都·夏日浪潮动漫派对</td>
+          <td>7月5日-6日</td>
+          <td>成都星空派对轰趴馆</td>
+          <td>本地中小型动漫聚会，60元起</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:0.95rem;color:#c45c26;margin:24px 0 12px;font-family:system-ui,sans-serif;">即将开始</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>活动名称</th><th>时间</th><th>地点</th><th>主要内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>BilibiliWorld 2026</td><td>7月10日-12日</td><td>国家会展中心（上海）</td><td>年度二次元盛会，AMD等厂商确认参展</td></tr>
+        <tr><td>全球授权展·上海站（LEC）</td><td>7月15日-17日</td><td>国家会展中心（上海）</td><td>420+展商、2000+IP，环球/阿里鱼/腾讯视频等参展</td></tr>
+        <tr><td>2026 ChinaJoy</td><td>7月31日-8月3日</td><td>上海新国际博览中心</td><td>游戏/电竞/智能硬件/AI/潮玩IP/模玩全覆盖</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== IP动态汇总 ===== -->
+<div class="section">
+  <div class="section-head">
+    <span class="icon">🎯</span>
+    <h2>IP动态汇总</h2>
+    <span class="count">12个IP</span>
+  </div>
+
+  <div class="ip-grid">
+    <div class="ip-card">
+      <div class="ip-name">海贼王</div>
+      <div class="ip-item">Round1日美门店联名（7月18日起）<br>漫画1186话山治觉醒<br>动画1168集幻兽果实</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">BLEACH（死神）</div>
+      <div class="ip-item">VIZ Media洛杉矶艺术展（Anime Expo）</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">米菲（Miffy）</div>
+      <div class="ip-item">Kids Preferred新款授权毛绒系列</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">布鲁伊（Bluey）</div>
+      <div class="ip-item">BBC×乐高短片系列上线</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">宝可梦</div>
+      <div class="ip-item">优衣库UT 30周年系列</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">三丽鸥</div>
+      <div class="ip-item">2026财年业绩，中国核心增长</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">LABUBU</div>
+      <div class="ip-item">×FIFA世界杯联名（首次潮玩×世界杯）</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">Care Bears</div>
+      <div class="ip-item">ABG集团收购，Q3完成</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">CookieRun</div>
+      <div class="ip-item">夏季更新，纽约快闪店</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">芝麻街（Elmo）</div>
+      <div class="ip-item">Super7 30周年可动人偶</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">泡泡玛特/名创</div>
+      <div class="ip-item">上半年合计55亿，MOLLY二十周年</div>
+    </div>
+    <div class="ip-card">
+      <div class="ip-name">凡人修仙传</div>
+      <div class="ip-item">联名从快消扩展到黄金/白酒等高价值品类</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="brand">新文创老贾聊IP-IP圈上周发生了啥？</div>
+    <div>由 微信公众号【新文创商学院老贾聊IP】 搜集整理</div>
+    
+  </div>
+</footer>
+
+<!-- ===== Back to Top ===== -->
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Back to top visibility
+const btn = document.getElementById('totop');
+window.addEventListener('scroll', function(){
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+
+</body>
+</html>
