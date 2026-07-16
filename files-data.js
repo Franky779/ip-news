@@ -1,6 +1,11 @@
-// 自动生成，请勿手动修改。运行 publish-report.mjs 更新。
+// 自动生成，请勿手动修改。运行 push-report.mjs 更新。
 const FILE_LISTS = {
     "数据分析": [
+        {
+            "name": "【IP评估报告】阿豆豆_2026-07-16.html",
+            "displayName": "【IP评估报告】阿豆豆",
+            "date": "2026-07-16"
+        },
         {
             "name": "【品类报告】棉花娃娃深度研究报告.html",
             "displayName": "【品类报告】棉花娃娃产业深度研究报告",
@@ -9,6 +14,11 @@ const FILE_LISTS = {
         {
             "name": "品类报告_手办FIGURE行业深度研究报告_2026-06-30.html",
             "displayName": "【品类报告】手办/FIGURE行业深度研究报告",
+            "date": "2026-06-30"
+        },
+        {
+            "name": "手办FIGURE行业深度研究报告_2026-06-30.html",
+            "displayName": "【品类报告】手办FIGURE行业深度研究报告",
             "date": "2026-06-30"
         },
         {
@@ -63,6 +73,11 @@ const FILE_LISTS = {
         }
     ],
     "动态": [
+        {
+            "name": "本周行业动态_2026-06-29至07-05.html",
+            "displayName": "【资讯汇总】本周_2026-06-29至07-05",
+            "date": "2026-07-06"
+        },
         {
             "name": "【资讯汇总】2026年6月22日6月28日.html",
             "displayName": "【资讯汇总】2026年6月22日~6月28日",
